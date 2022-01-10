@@ -1,6 +1,6 @@
-const server =require( './app');
 
 
-  server.listen(4001, () => {
-    console.log('%s listening at 4001'); // eslint-disable-line no-console
-  });
+const express = require('express')
+const app = express();
+
+app.listen(3000, ()=> console.log('server on port 3000'))
