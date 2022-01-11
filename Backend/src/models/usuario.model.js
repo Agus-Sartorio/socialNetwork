@@ -24,8 +24,13 @@ const Usuario = new Schema({
         },
   
   email:  String,
-  profile: String,
-  state: Boolean,
+  profile: {type:String,
+            default:'https://cdn1.vectorstock.com/i/thumb-large/05/85/programmer-vector-37610585.jpg'},
+
+  state: {
+          type:Boolean,
+          default:true
+          },
 
 });
 
