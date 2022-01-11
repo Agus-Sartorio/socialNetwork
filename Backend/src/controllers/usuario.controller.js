@@ -28,10 +28,10 @@ const userById = async (req, res, next)=>{
     const total = await usuario.findById(id).exec()
     res.status(200).json(total)
   } catch (error) {
-    
+    console.error(error)
   }
 }
-const postUsuario = async (req, res, next) => {
+const postUser = async (req, res, next) => {
   const {name, LastName, birthday, email, profile} = req.body
   try {
     const newUsuario =  new usuario ({
@@ -47,4 +47,33 @@ const postUsuario = async (req, res, next) => {
      console.error(error)
    }
 };
-module.exports = { usersAll, userByName, userById, postUsuario };
+const deleteUser = async (req, res, next) =>{
+const { id } = req.params;
+const total = await usuario.findById(id).exec()
+if (total) {
+  await usuario.deleteOne({id: total}).exec()
+res.status(200).json({message:"se ha elimnado exitosamente  el usuario:",total })
+}else{
+  res.status(200).json({message:"no se tiene informacion del usuario"})
+}
+}
+const Updateuser = async (res, req, next) =>{
+  try {
+    const { id } = req.params
+    const total = await usuario.findById(id).exec()
+if (total) {
+  await usuario.updateOne({
+    id: total,
+    name:"Baltazar",
+    birthday:'no hay',
+    email: "no tiene"
+  }).exec()
+res.status(200).json({message:"se ha modificado exitosamente  el usuario:",total })
+}else{
+  res.status(200).json({message:"no se tiene informacion del usuario"})
+}    
+  } catch (error) {
+    console.error(error)
+  }
+}
+module.exports = { usersAll, userByName, userById, postUser,deleteUser, Updateuser };
