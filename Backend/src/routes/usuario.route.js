@@ -10,6 +10,6 @@ router.get('/all', usersAll)
 router.get('/name/:name', userByName)
 router.get('/byId/:id', userById)
 router.post('/create', postUser)
-router.get('/delete/:id', deleteUser)
-router.get('/update/:id', Updateuser)
+router.delete('/delete/:id', deleteUser)
+router.put('/update/:id', Updateuser)
 module.exports = router

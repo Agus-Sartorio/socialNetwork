@@ -57,18 +57,20 @@ res.status(200).json({message:"se ha elimnado exitosamente  el usuario:",total }
   res.status(200).json({message:"no se tiene informacion del usuario"})
 }
 }
-const Updateuser = async (res, req, next) =>{
+const Updateuser = async (req,res, next) =>{
   try {
     const { id } = req.params
     const total = await usuario.findById(id).exec()
 if (total) {
-  await usuario.updateOne({
+  const { name, birthday, email} = req.body
+ const Modificado= await usuario.updateOne({
     id: total,
-    name:"Baltazar",
-    birthday:'no hay',
-    email: "no tiene"
+    name:name,
+    birthday:birthday,
+    email: email
   }).exec()
-res.status(200).json({message:"se ha modificado exitosamente  el usuario:",total })
+  const resulFinal = await usuario.findById(id).exec()
+res.status(200).json({message:"se ha modificado exitosamente  el usuario:",resulFinal })
 }else{
   res.status(200).json({message:"no se tiene informacion del usuario"})
 }    
