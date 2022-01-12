@@ -16,10 +16,11 @@ const Users = () => {
 			<div className="views">
                 {
                     users.map(e=><User 
+						key={e._id}
 						name={e.name}
 						lastname={e.lastname}
 						profile={e.profile}
-						
+
 					/>)
                 }
                 </div>

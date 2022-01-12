@@ -29,6 +29,8 @@ server.use((err, req, res, next) => {
 });
 
 //
+server.use(express.static('./public'))
+
 server.use('/', routes);
 
 server.set('port', process.env.PORT || 3001);

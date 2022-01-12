@@ -32,11 +32,11 @@ const userById = async (req, res, next)=>{
   }
 }
 const postUser = async (req, res, next) => {
-  const {name, LastName, birthday, email, profile} = req.body
+  const {name, lastname, birthday, email, profile} = req.body
   try {
     const newUsuario =  new usuario ({
       name:name,
-      LastName:LastName,
+      lastname:lastname,
       birthday:birthday,
       email:email,
       profile:profile
@@ -62,7 +62,7 @@ const Updateuser = async (req,res, next) =>{
     const { id } = req.params
     const total = await usuario.findById(id).exec()
 if (total) {
- const Modificado= await usuario.updateOne({
+ const Modificado= await usuario.updateOne({_id:id},{
   ...req.body
   }).exec()
   const resulFinal = await usuario.findById(id).exec()

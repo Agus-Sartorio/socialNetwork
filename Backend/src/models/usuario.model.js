@@ -1,3 +1,4 @@
+require('dotenv').config()
 const { Schema, model } = require('mongoose');
 
 const Usuario = new Schema({
@@ -24,8 +25,7 @@ const Usuario = new Schema({
         },
   
   email:  String,
-  profile: {type:String,
-            default:'https://cdn1.vectorstock.com/i/thumb-large/05/85/programmer-vector-37610585.jpg'},
+  profile: {type:String,default:`${process.env.PATH}profile.jpg`},
 
   state: {
           type:Boolean,

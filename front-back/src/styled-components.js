@@ -30,19 +30,26 @@ height: 100vh;
 display: flex;
 align-items: center;
 justify-content: center;
+background: linear-gradient(to bottom right, #ddf, #fff);
 & .views{
+    width: 90%;
     display: flex;
-    & .usuario{
-        display: flex;
-        flex-direction: column;
-
-    }
+    justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 ` 
 
 export const Usuario = styled.div`
-width: 5rem;
+width: 20rem;
 display: flex;
+flex-direction: column;
 align-items: center;
 justify-content: center;
+border-radius: 5%;
+box-shadow: 0 0 3rem #00000023;
+overflow:hidden;
+background: white;
+& > img {
+    width: 100%;
+}
 `
