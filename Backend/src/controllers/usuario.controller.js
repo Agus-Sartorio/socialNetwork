@@ -62,12 +62,8 @@ const Updateuser = async (req,res, next) =>{
     const { id } = req.params
     const total = await usuario.findById(id).exec()
 if (total) {
-  const { name, birthday, email} = req.body
  const Modificado= await usuario.updateOne({
-    id: total,
-    name:name,
-    birthday:birthday,
-    email: email
+  ...req.body
   }).exec()
   const resulFinal = await usuario.findById(id).exec()
 res.status(200).json({message:"se ha modificado exitosamente  el usuario:",resulFinal })

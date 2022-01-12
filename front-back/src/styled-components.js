@@ -24,3 +24,18 @@ export const Register = styled.div`
         }
     }
 `
+export const Usuarios = styled.div`
+width: 100vw;
+height: 100vh;
+display: flex;
+align-items: center;
+justify-content: center;
+& .views{
+    display: flex;
+    & .usuario{
+        display: flex;
+        flex-direction: column;
+
+    }
+}
+` 

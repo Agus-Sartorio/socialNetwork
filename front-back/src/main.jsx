@@ -5,11 +5,13 @@ import App from './App';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NewUser from './components/NewUser';
 import Login from './components/Login';
+import Users from './components/Users';
 
 ReactDOM.render(
 	<React.StrictMode>
 		<BrowserRouter>
 			<Routes>
+				<Route path={'/'} element={<Users/>}/>
 				<Route path={'/register'} element={<NewUser/>}/>
 				<Route path={'/login'} element={<Login/>}/>
 			</Routes>
