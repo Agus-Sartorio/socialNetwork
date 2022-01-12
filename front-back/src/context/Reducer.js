@@ -1,15 +1,10 @@
 
-export const Reducer = (state, {type}) => {
+export const Reducer = (state, {type, payload}) => {
 	switch (type) {
-		case 'TOGGLE_THEME':
+		case 'GET_USERS':
 			return {
 				...state,
-				theme: state.theme==='dark'?'light': 'dark'
-			};
-		case 'TOGGLE_LANG':
-            return {
-				...state,
-				lang: state.lang==='en'?'es':'en'
+				users: payload,
 			};
 		default:
 			return state;

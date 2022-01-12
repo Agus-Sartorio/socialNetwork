@@ -39,3 +39,10 @@ justify-content: center;
     }
 }
 ` 
+
+export const Usuario = styled.div`
+width: 5rem;
+display: flex;
+align-items: center;
+justify-content: center;
+`
