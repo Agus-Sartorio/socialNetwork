@@ -1,13 +1,18 @@
 import { Route, Routes } from 'react-router-dom';
-import GlobalStyle from "./IndexStyled.jsx";
+// import GlobalStyle from "./IndexStyled.jsx";
+import LandingPage from './Components/LandingPage/LandingPage.jsx';
 
 function App() {
   return (
     <div>
-      <GlobalStyle/>
+
+      {/* <GlobalStyle/> */}
       <Routes>
-        <Route />
-      </Routes>
+        <Route path="/" element={<LandingPage/>}/>
+
+        </Routes>
+
+      <GlobalStyle/>
     </div>
   );
 }
