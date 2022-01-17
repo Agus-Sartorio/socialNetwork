@@ -30,8 +30,8 @@ export default function Form() {
             </form>
       </Container>
     </MainContainer>
+    <img src='hola.com' alt="img not found"/>
     </Wrapper>
-
   );
 }
 
