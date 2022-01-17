@@ -5,11 +5,14 @@ import LandingPage from './Components/LandingPage/LandingPage.jsx';
 function App() {
   return (
     <div>
+
       {/* <GlobalStyle/> */}
       <Routes>
         <Route path="/" element={<LandingPage/>}/>
 
         </Routes>
+
+      <GlobalStyle/>
     </div>
   );
 }
