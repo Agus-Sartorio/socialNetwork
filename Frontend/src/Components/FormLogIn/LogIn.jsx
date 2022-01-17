@@ -16,6 +16,7 @@ export default function Form() {
         <Text>
           Inicia sesión en Henry Network
         </Text>
+        {/* comentario */}
         <form>
         <ButtonContainer>
             <Input  type="text" placeholder=" Iniciar sesión con tu email" />
@@ -30,7 +31,6 @@ export default function Form() {
       </Container>
     </MainContainer>
     </Wrapper>
-
   );
 }
 

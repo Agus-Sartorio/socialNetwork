@@ -7,7 +7,7 @@ import {
   signOut,
   sendPasswordResetEmail,
 } from "firebase/auth";
-import { authentication } from "../FormLogIn/Firebase/firebase";
+import { authentication } from '../Firebase/firebase';
 
 const UserContext = createContext({});
 

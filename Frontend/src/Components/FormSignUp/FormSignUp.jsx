@@ -11,7 +11,6 @@ export default function SignUp() {
         <Input type="text" placeholder="Correo electronico" />
         <Input type="password" placeholder="Contraseña" />
       </Container>
-
     </MainContainer>
     
 

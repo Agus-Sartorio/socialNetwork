@@ -8,6 +8,9 @@ import LandingPage from './Components/LandingPage/LandingPage'
 function App() {
   return (
     <div>
+
+      {/* <GlobalStyle/> */}
+      
       <GlobalStyle/>
       <Routes>
       <Route path="/" element={<LandingPage/>}/>
