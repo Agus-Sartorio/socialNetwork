@@ -30,7 +30,9 @@ export default function Form() {
             </form>
       </Container>
     </MainContainer>
+    <h1>Generamos un error</h1>
     </Wrapper>
+
 
   );
 }
