@@ -31,9 +31,10 @@ export default function Form() {
       </Container>
     </MainContainer>
     <h1>Generamos un error</h1>
+
+
+    <img src='hola.com' alt="img not found"/>
     </Wrapper>
-
-
   );
 }
 

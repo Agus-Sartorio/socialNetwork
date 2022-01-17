@@ -5,6 +5,9 @@ function App() {
   return (
     <div>
       <GlobalStyle/>
+      <Routes>
+        <Route />
+      </Routes>
     </div>
   );
 }
