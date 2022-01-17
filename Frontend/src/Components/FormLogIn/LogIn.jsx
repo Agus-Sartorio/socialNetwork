@@ -31,7 +31,7 @@ export default function Form() {
       </Container>
     </MainContainer>
     </Wrapper>
-
+     <img src='hola.com' alt="img not found"/>
   );
 }
 
