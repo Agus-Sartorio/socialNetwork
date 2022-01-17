@@ -10,15 +10,13 @@ function App() {
       <GlobalStyle />
       <Routes>
         <Route path='/home' element={<Home />} />
+
+        {/* <GlobalStyle/> */}
+        <Route path="/" element={<LandingPage />} />
+
       </Routes>
 
-      {/* <GlobalStyle/> */}
-      <Routes>
-        <Route path="/" element={<LandingPage/>}/>
-
-        </Routes>
-
-      <GlobalStyle/>
+      <GlobalStyle />
     </div>
   );
 }
