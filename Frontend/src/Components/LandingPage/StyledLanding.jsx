@@ -6,6 +6,7 @@ import { ReactComponent as Meteoritesvg } from './meteorite.svg';
 import { ReactComponent as Lunasvg } from './luna.svg';
 import { ReactComponent as Rocketsvg } from './rocket.svg';
 import { ReactComponent as Cohetesvg } from './cohete.svg';
+import { ReactComponent as Henrysvg } from './Henry2.svg';
 
 export const GlobalStyle = createGlobalStyle`
   body {
@@ -66,14 +67,40 @@ export const FraseContainer = styled.div`
   margin: 0%;
   padding: 0%;
   width: 300px;
-  left:15%
+  left:10%
 `;
 
+export const InfoContainer = styled(FraseContainer)`
+  
+  gap:0;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0%;
+  padding: 0%;
+  width: 150px;
+  left:20%;
+  text-decoration:none;
+
+  &:hover{
+    cursor:pointer;
+    .Cohetico{
+     fill: blue;
+    }
+  }
+`;
 
 export const Frase = styled.h3`
 
   color:#1D1D1D;
   font-size:22px;
+  text-decoration:none;
+
+`;
+
+export const Info = styled.h3`
+
+  color:#1D1D1D;
+  font-size:20px;
 
 `;
 
@@ -82,9 +109,9 @@ export const ButtonContainer = styled.div`
 
 position: relative;
 display: flex;
-left: 45%;
+left: 40%;
 /* top:25px;  */
-gap:15px;
+gap:10px;
 margin-top: 20px;
 padding: 0%;
 justify-content: center;
@@ -135,6 +162,19 @@ export const LogoHenry = styled(LogoHenrysvg)`
       animation-timing-function: ease;
       animation-direction: alternate;
     } */
+`;
+
+export const Henry = styled(Henrysvg)`
+  
+  position: absolute;
+  top:-2px;
+  left: 100%;
+  width: 100px;
+  /* height: 50px; */
+  margin: 0%;
+  padding:0%;
+  z-index: 1000;
+ 
 `;
 
 export const Planet = styled(Planetsvg)`
@@ -252,6 +292,7 @@ export const Rocket = styled(Rocketsvg)`
     left: 75%;
     width: 150px;
     height: 150px;
+    z-index:-100;
 
       animation-name: ${caida2};
       animation-duration: 40s; 
@@ -262,7 +303,7 @@ export const Rocket = styled(Rocketsvg)`
 export const Foot = styled.div`
   position: absolute;
   display: flex;
- 
+  z-index: -1;
   text-align: center;
   background:#FAE800;
   margin: 0%;
