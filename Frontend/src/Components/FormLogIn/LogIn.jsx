@@ -31,7 +31,6 @@ export default function Form() {
       </Container>
     </MainContainer>
     </Wrapper>
-
   );
 }
 
