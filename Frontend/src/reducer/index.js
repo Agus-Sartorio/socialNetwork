@@ -1,20 +1,26 @@
-const initialState ={
+import { CLEAR_USERS_STATE, GET_USER } from "../actions/actionTypes"
 
-    post: [],
+const initialState = {
+
+    users: [],
 
 }
 
-export function rootReducer(state = initialState, action){
-    
+export function rootReducer(state = initialState, action) {
+
     switch (action.type) {
-         
-        case "get": 
+
+        case GET_USER:
             return {
                 ...state,
-                post: action.payload,            
+                users: action.payload,
             }
-
-
-         default: return state  
-        }
-    }        
+        case CLEAR_USERS_STATE:
+            return {
+                ...state,
+                users:action.payload
+            }    
+        default:
+            return state
+    }
+}        

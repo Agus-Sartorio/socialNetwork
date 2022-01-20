@@ -5,7 +5,9 @@ import FormSignUp from './Components/FormSignUp/FormSignUp';
 import Home from './Components/Home/Home';
 import LandingPage from './Components/LandingPage/LandingPage';
 import Edit from './Components/Edit/Edit';
+import Suggestions from './Components/Suggestions/Suggestions.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   return (
@@ -20,6 +22,7 @@ function App() {
       <Route path='/signup' element={<FormSignUp/>}/>
       <Route path='/home'   element={<Home/>}/>
       <Route path='/edit'   element={<Edit/>}/>
+      <Route path='/suggestions' element={<Suggestions/>}/>
       </Routes>
       
      

@@ -1,0 +1,4 @@
+export const GET_USER = 'GET_USER';
+export const GET_DETAIL = 'GET_DETAIL';
+export const CLEAR_USERS_STATE = 'CLEAR_USERS_STATE';
+export const CLEAR_DETAIL_STATE = 'CLEAR_DETAIL_STATE';
