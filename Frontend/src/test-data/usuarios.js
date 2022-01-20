@@ -1,4 +1,4 @@
-const users = [
+export const users = [
 	{
 		follow: {
 			followers: [],
