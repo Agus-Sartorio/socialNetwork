@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom'
 import logo from '../../images/LogoHenry.svg';
 import SearchBar from '../SearchBar/SearchBar'
 import { StyledDiv } from './styles'
+import Email from '../Icons/Email'
+import Bell from '../Icons/Bell'
 
 export default function NavBar() {
     return (
@@ -16,11 +18,11 @@ export default function NavBar() {
             <div className="botones">
                 <Link to='#' className='link'>
                     <span>Mensajes</span>
-                    <i className="fas fa-envelope"></i>
+                    <Email />
                 </Link>
                 <button>
                     <span>Notificaciones</span>
-                    <i className="fas fa-bell"></i>
+                    <Bell />
                 </button>
             </div>
         </StyledDiv>

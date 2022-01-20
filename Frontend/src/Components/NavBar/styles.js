@@ -4,8 +4,11 @@ export const StyledDiv = styled.div`
 display: flex;
 align-items: center;
 justify-content: space-around;
-min-width: 100vw;
-border-bottom: 1.5px solid rgba(var(--bb2,239,239,239),1);
+width: 100vw;
+border-bottom: 5px solid var(--yellow-1);
+background-color: #1D1D1D;
+color: #eee;
+padding: 20px 0;    
 
 div{
     display: flex;
@@ -15,8 +18,7 @@ div{
 p{
     letter-spacing: 1.5px;
     font-weight: bold;
-    font-size: 15px;
-    
+    font-size: 15px; 
 }
 
 img{
@@ -29,13 +31,15 @@ img{
     & > *{
         position: relative;
         font-family: 'Roboto', sans-serif;
+        
         span{
             position: absolute;
-            background-color: #273639;
-            color: #fafafa;
-            top: 150%;
+            background-color: var(--yellow-1);
+            color: var(--grey-1);
+            font-weight: 500;
+            top: 120%;
             left: 50%;
-            font-size: 12px;
+            font-size: 13px;
             transform: translateX(-50%);
             opacity: 0;
             padding: 4px 8px;
@@ -56,7 +60,7 @@ img{
         width: 0;
         height: 0;
         border: 10px solid transparent;
-        border-bottom-color: #273639;
+        border-bottom-color: var(--yellow-1);
         position: absolute;
         bottom: 80%;
         left: 50%;
@@ -66,10 +70,11 @@ img{
         margin-left:30px;
         background-color: transparent;
         border: none;
+        color: #eee
     }
     .link{
         text-decoration: none;
-        color: black;
+        color: #eee;
     }
 }
 `
