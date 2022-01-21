@@ -9,12 +9,13 @@ import Profile from './Components/Profile/Profile.jsx';
 
 function App() {
   return (
-    <div>
+    <>
 
       {/* <GlobalStyle/> */}
-      
-      <GlobalStyle/>
+
+      <GlobalStyle />
       <Routes>
+
       <Route path="/" element={<LandingPage/>}/>
       <Route path= "/login" element={<LogIn/>}/>
       <Route path='/signup' element={<FormSignUp/>}/>
@@ -22,9 +23,9 @@ function App() {
       <Route path='/suggestions' element={<Suggestions/>}/>
       <Route path='/profile/:id' element={<Profile/>}/>
       </Routes>
-      
-     
-    </div>
+
+
+    </>
   );
 }
 
