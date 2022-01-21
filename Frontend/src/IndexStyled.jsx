@@ -2,11 +2,30 @@ import { createGlobalStyle } from 'styled-components';
 // #FAE800
 //#1D1D1D
 const GlobalStyle = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }  
+
+  :root{
+    --grey-1: #1D1D1D;
+    --yellow-1: #FAE800;
+  }
+
   body {
   margin: 0%;
   width: 100vh;
   height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+  }
+
+  input,
+  button,
+  textarea,
+  select,
+  details {
+    font-family: inherit;
   }
 `;
 

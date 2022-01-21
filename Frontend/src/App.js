@@ -4,6 +4,7 @@ import LogIn from './Components/FormLogIn/LogIn';
 import FormSignUp from './Components/FormSignUp/FormSignUp';
 import Home from './Components/Home/Home';
 import LandingPage from './Components/LandingPage/LandingPage'
+import Suggestions from './Components/Suggestions/Suggestions.jsx';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Route path= "/login" element={<LogIn/>}/>
       <Route path='/signup' element={<FormSignUp/>}/>
       <Route path='/home'   element={<Home/>}/>
+      <Route path='/suggestions' element={<Suggestions/>}/>
       </Routes>
       
      

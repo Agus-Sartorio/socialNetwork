@@ -8,8 +8,9 @@ form{
     width:fit-content;
     border-radius:8px;
     border: none;
-    background-color: rgba(var(--bb2,239,239,239),1);
-    padding: 0 16px;
+    background-color: white;
+    padding: 0 16px 0 5px;
+    display: flex;
 }
 input{
     font-size:16px;
@@ -24,7 +25,10 @@ button{
     border-radius:5px;
     border:none;
     background-color:transparent;
-    padding: 10px 10px 10px 0;
-    color:rgba(var(--f52,142,142,142),1);
+    padding: 5px;
+    color: #777;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 `
