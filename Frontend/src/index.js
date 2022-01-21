@@ -4,15 +4,15 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './store';
-import { UserContextProvider } from './Components/Context/UserContext';
+
 
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <React.StrictMode>
-        <UserContextProvider>
+       
         <App />
-        </UserContextProvider>
+     
       </React.StrictMode>
     </BrowserRouter>
   </Provider>,
