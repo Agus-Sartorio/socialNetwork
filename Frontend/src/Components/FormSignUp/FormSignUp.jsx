@@ -6,18 +6,40 @@ export default function SignUp() {
   return (
     <MainContainer>
       <Container>
-        {/* comentario */}
         <Texto>Crea tu cuenta </Texto>
         <Input type="text" placeholder="Nombre" />
         <Input type="text" placeholder="Correo electronico" />
         <Input type="password" placeholder="Contraseña" />
+        <Input type="password" placeholder="Repite la contraseña" />
+        <Button>Registrarte</Button>
       </Container>
-
     </MainContainer>
     
 
   )
 }
+
+const Button = styled.button`
+   margin: 4rem 0 4rem 0;
+  height: 2.3rem;
+  padding: 8px 40px;
+  background-color: black;
+  color: white;
+  border-radius: 3rem;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  width: 19rem;
+  letter-spacing: 0.04rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  &:hover {
+    opacity: 0.7;
+    background-color: #b3b3ad;
+  }
+`
 
 const MainContainer = styled.div`
   display: flex;
