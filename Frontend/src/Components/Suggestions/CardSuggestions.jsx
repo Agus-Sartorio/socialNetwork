@@ -6,9 +6,9 @@ const CardSuggestions = ({ name, id, profile,email }) => {
         <StyledCardSuggestions>
             <div className="container-card">
                 <div className="img-name">
-                <Link to={`/detail/${id}`}><img className="image" src={profile} alt={name}></img></Link>
+                <Link to={`/profile/${id}`}><img className="image" src={profile} alt={name}></img></Link>
                 <div className="name">
-                    <Link to={`/detail/${id}`} className="Link"><h3>{name}</h3></Link>
+                    <Link to={`/profile/${id}`} className="Link"><h3>{name}</h3></Link>
                     <p>{email}</p>
                 </div>
                 </div>

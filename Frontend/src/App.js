@@ -5,6 +5,7 @@ import FormSignUp from './Components/FormSignUp/FormSignUp';
 import Home from './Components/Home/Home';
 import LandingPage from './Components/LandingPage/LandingPage'
 import Suggestions from './Components/Suggestions/Suggestions.jsx';
+import Profile from './Components/Profile/Profile.jsx';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Route path='/signup' element={<FormSignUp/>}/>
       <Route path='/home'   element={<Home/>}/>
       <Route path='/suggestions' element={<Suggestions/>}/>
+      <Route path='/profile/:id' element={<Profile/>}/>
       </Routes>
       
      
