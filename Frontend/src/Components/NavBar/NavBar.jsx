@@ -4,6 +4,7 @@ import SearchBar from '../SearchBar/SearchBar'
 import { StyledDiv } from './styles'
 import Email from '../Icons/Email'
 import Bell from '../Icons/Bell'
+import Experience from '../Icons/Experience'
 
 export default function NavBar() {
     return (
@@ -24,6 +25,10 @@ export default function NavBar() {
                     <span>Notificaciones</span>
                     <Bell />
                 </button>
+                <Link to='#' className='link'>
+                    <span>Experiencias</span>
+                    <Experience />
+                </Link>
             </div>
         </StyledDiv>
     )

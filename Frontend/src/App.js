@@ -8,21 +8,22 @@ import Suggestions from './Components/Suggestions/Suggestions.jsx';
 
 function App() {
   return (
-    <div>
+    <>
 
       {/* <GlobalStyle/> */}
-      
-      <GlobalStyle/>
+
+      <GlobalStyle />
       <Routes>
+
       <Route path="/" element={<LandingPage/>}/>
       <Route path= "/login" element={<LogIn/>}/>
       <Route path='/signup' element={<FormSignUp/>}/>
       <Route path='/home'   element={<Home/>}/>
       <Route path='/suggestions' element={<Suggestions/>}/>
       </Routes>
-      
-     
-    </div>
+
+
+    </>
   );
 }
 
