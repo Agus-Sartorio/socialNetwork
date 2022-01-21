@@ -4,6 +4,7 @@ export default function Button({ children, onClick, type }) {
   return <StyledButton onClick={onClick} type={type}>{children}</StyledButton>;
 }
 
+
 const StyledButton = styled.button`
   padding: 8px 40px;
   background: white;
