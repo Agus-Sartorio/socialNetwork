@@ -28,6 +28,10 @@ img{
 }
 
 .botones{
+    display: flex;
+    justify-content: space-around;
+    width: 150px;
+
     & > *{
         position: relative;
         font-family: 'Roboto', sans-serif;
@@ -67,7 +71,7 @@ img{
         transform: translatex(-50%)
     }
     button{
-        margin-left:30px;
+        /* margin-left:30px; */
         background-color: transparent;
         border: none;
         color: #eee
