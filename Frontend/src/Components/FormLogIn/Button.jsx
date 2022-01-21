@@ -22,7 +22,7 @@ const StyledButton = styled.button`
   transition: opacity .3s ease;
   &:focus{
       opacity: .7;
-      background-color:##FFFF99;
+      background-color:#FFFF99;
   }
   
 `
