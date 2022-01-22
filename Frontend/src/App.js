@@ -4,7 +4,7 @@ import LogIn from './Components/FormLogIn/LogIn';
 import FormSignUp from './Components/FormSignUp/FormSignUp';
 import Home from './Components/Home/Home';
 import LandingPage from './Components/LandingPage/LandingPage';
-import Edit from './Components/Edit/Edit';
+import Edit from './Components/Edit/Index';
 import Suggestions from './Components/Suggestions/Suggestions.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
