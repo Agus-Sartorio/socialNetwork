@@ -6,12 +6,9 @@ import Home from './Components/Home/Home';
 import LandingPage from './Components/LandingPage/LandingPage';
 import Edit from './Components/Edit/Index';
 import Suggestions from './Components/Suggestions/Suggestions.jsx';
-<<<<<<< HEAD
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-=======
 import Profile from './Components/Profile/Profile.jsx';
->>>>>>> 0ddb8862446851667ee084e843d3f49bb0d381e4
 
 function App() {
   return (

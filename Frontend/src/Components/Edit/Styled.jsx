@@ -175,6 +175,7 @@ export const InputName = styled(Form.Control).attrs(props => ({
   }))` 
   
   color:white;
+  width:350px;
   background: transparent;
   border-color:gray;
   transition:0.2s;

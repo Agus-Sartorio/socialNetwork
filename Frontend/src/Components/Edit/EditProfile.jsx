@@ -83,15 +83,15 @@ import { GroupForm, InputName, LabelName,
    <GroupForm>
          <LabelName>Name:</LabelName>
          <div>
-           <InputName/> 
+           <InputName value="Dufainder Bedoya"></InputName> 
          </div>
-         <div class="invalid-feedback">Example invalid custom select feedback</div>
+         
     </GroupForm>
 
     <GroupForm>
          <LabelName>Description:</LabelName>
        <div>
-         <InputDescription/> 
+         <InputDescription> Soy un monstruo programando o eso creo xD </InputDescription> 
        </div>
     </GroupForm>
 
