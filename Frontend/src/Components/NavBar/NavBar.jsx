@@ -21,7 +21,7 @@ export default function NavBar() {
         <StyledDiv>
             <div>
                 <p>HENRY NETWORK</p>
-                <img src={logo} alt="" />
+                <Link to='/home'><img src={logo} alt="" /></Link>
             </div>
             <div>
                 <SearchBar />

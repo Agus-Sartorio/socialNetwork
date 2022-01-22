@@ -1,5 +1,6 @@
 import { StyledSideBar } from "./styles";
 import Channels from '../Icons/Channels'
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import Chevron from '../Icons/Chevron'
 
@@ -40,6 +41,7 @@ export default function SideBar() {
                     Canales
                     <span><Chevron /></span>
                 </summary>
+
                 {
                     open &&
                     <ul className='list'>

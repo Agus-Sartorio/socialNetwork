@@ -4,7 +4,7 @@ export const users = [
 			followers: [],
 			follows: []
 		},
-		_id: '61dd3f658c40217e939a4985',
+		_id: '1',
 		name: 'Dufainder',
 		LastName: 'Diaz',
 		birthday: '13/01/1990',
@@ -21,7 +21,7 @@ export const users = [
 			followers: [],
 			follows: []
 		},
-		_id: '61dd3f658c40217e939a4985',
+		_id: '2',
 		name: 'Armando',
 		LastName: 'Amezquita',
 		birthday: '13/01/2001',
@@ -38,7 +38,7 @@ export const users = [
 			followers: [],
 			follows: []
 		},
-		_id: '61dd3f658c40217e939a4985',
+		_id: '3',
 		name: 'Edgar',
 		LastName: 'Vival',
 		birthday: '13/01/200',
