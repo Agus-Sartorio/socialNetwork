@@ -32,6 +32,10 @@ img{
     justify-content: space-around;
     width: 150px;
 
+    .open{
+        position: relative;
+    }
+
     & > *{
         position: relative;
         font-family: 'Roboto', sans-serif;
@@ -74,7 +78,8 @@ img{
         /* margin-left:30px; */
         background-color: transparent;
         border: none;
-        color: #eee
+        color: #eee;
+        cursor: pointer;
     }
     .link{
         text-decoration: none;
