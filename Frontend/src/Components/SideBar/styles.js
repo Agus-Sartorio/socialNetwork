@@ -3,11 +3,62 @@ import styled from 'styled-components';
 export const StyledSideBar = styled.aside`
     background-color: var(--grey-1);
     min-height: 100vh;
-    width: 275px;
+    width: 55px;
     display: flex;
     flex-direction: column;
     color: white;
     padding: 20px 15px;
+    overflow-x: hidden;
+    transition: width 200ms;
+
+    &.open{
+        width: 300px;
+    }
+
+    .menu-button{
+        width: 25px;
+        height: 25px;
+        background-color: transparent;
+        border: none;
+        margin-bottom: 50px;
+        cursor: pointer;
+
+        &.open{
+            margin-left: 3px;
+
+            .menu-icon2:after{
+                opacity: 0;
+            }
+
+            .menu-icon:before{
+                transform: rotate(45deg) translateY(5px);  
+            }
+
+            .menu-icon:after{
+                transform: rotate(315deg) translate(-1px, -5px);
+            }
+        }
+
+        .menu-icon:after,
+        .menu-icon2:after,
+        .menu-icon:before{
+            content: '';
+            background-color: white;
+            width: 24px;
+            height: 3px;
+            display: block;
+            transition: all 200ms cubic-bezier(0, 0.82, 1, 1.22);
+        }
+
+        .menu-icon2:after{
+            margin-top: 3px;
+        }
+
+        .menu-icon:before{
+            margin-bottom: 3px;
+        }
+
+    }
 
     .settings{
         margin-top: -40px;
@@ -26,16 +77,20 @@ export const StyledSideBar = styled.aside`
     }
 
     .user{
+        margin-bottom: 50px;
+
         button{
             display: flex;
             align-items: center;
-            margin-bottom: 50px;
             font-size: 20px;
+            font-weight: 600;
+            text-transform: uppercase;
+        letter-spacing: 2px;
             border: none;
             background-color: transparent;
             color: #eee;
             cursor: pointer;
-            width: 100%;
+            width: max-content;
         }
 
         svg{
@@ -46,7 +101,7 @@ export const StyledSideBar = styled.aside`
             width: 25px;
             height: 25px;
             border-radius: 999px;
-            margin-left: auto;
+            margin-right: 30px;
         }
     }
 
@@ -85,7 +140,8 @@ export const StyledSideBar = styled.aside`
         }
         
         .channels{
-            margin-left: auto;
+            margin-right: 35px;
+            min-width: 25px;
         }
         
     }
