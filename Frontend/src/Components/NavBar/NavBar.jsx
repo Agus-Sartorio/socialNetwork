@@ -20,7 +20,7 @@ export default function NavBar() {
     return (
         <StyledDiv>
             <div>
-                <p>HENRY NETWORK</p>
+                <p className='app-title'>HENRY NETWORK</p>
                 <Link to='/home'><img src={logo} alt="" /></Link>
             </div>
             <div>
@@ -30,7 +30,7 @@ export default function NavBar() {
                 <Link to='#' className='link'>
                     {
                         !open &&
-                        <span>Mensajes</span>
+                        <span className='nav-hover'>Mensajes</span>
                     }
                     <Email />
                 </Link>
@@ -38,7 +38,7 @@ export default function NavBar() {
                     <button onClick={handleClick}>
                         {
                             !open &&
-                            <span>Notificaciones</span>
+                            <span className='nav-hover'>Notificaciones</span>
                         }
                         <Bell />
                     </button>
@@ -56,7 +56,7 @@ export default function NavBar() {
                 <Link to='#' className='link'>
                     {
                         !open &&
-                        <span>Experiencias</span>
+                        <span className='nav-hover'>Experiencias</span>
                     }
                     <Experience />
                 </Link>

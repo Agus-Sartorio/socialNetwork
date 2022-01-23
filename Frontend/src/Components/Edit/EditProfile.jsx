@@ -31,12 +31,27 @@ import { GroupForm, InputName, LabelName,
         });
       }
 
+
+
+      const [input, setInput] = useState({
+        name: 'Dufainder Bedoya',
+        description: 'Soy un monstruprogramando',
+        imageprofile: './perfil2.jpg', 
+        imageport: './BReact.png',
+        rol: '',
+        cohorte: 'FT-19b',
+        
+    })
+
+       let imageport= input.imageport;
+       console.log(typeof imageport)
+
      return( <>
                     
                     <PrincipalContainer>
             
             <PortadaContainer onMouseEnter={()=>setEdit(true)} onMouseOut={()=>setEdit(false)} onClick={update2}>
-              <ImagePortada/>
+              <ImagePortada src={require(`${input.imageport}`)} />
             </PortadaContainer>
               
 
@@ -83,7 +98,7 @@ import { GroupForm, InputName, LabelName,
    <GroupForm>
          <LabelName>Name:</LabelName>
          <div>
-           <InputName value="Dufainder Bedoya"></InputName> 
+           <InputName></InputName> 
          </div>
          
     </GroupForm>
@@ -91,7 +106,7 @@ import { GroupForm, InputName, LabelName,
     <GroupForm>
          <LabelName>Description:</LabelName>
        <div>
-         <InputDescription> Soy un monstruo programando o eso creo xD </InputDescription> 
+         <InputDescription></InputDescription> 
        </div>
     </GroupForm>
 
@@ -115,7 +130,8 @@ import { GroupForm, InputName, LabelName,
       <GroupForm>
          <LabelName>Cohorte:</LabelName>
          <div>
-           <InputCohorte/> 
+           <InputCohorte 
+             /> 
          </div>
        </GroupForm>
      </div>    

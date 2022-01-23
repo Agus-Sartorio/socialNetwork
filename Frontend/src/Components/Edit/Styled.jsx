@@ -228,8 +228,9 @@ export const InputDescription = styled(Form.Control).attrs(props => ({
 
   export const InputFile = styled.input.attrs(props => ({
   type: props.type || 'file',
-  name:props.name  || 'ImageUploud',
-  size: props.size || 'sm'
+  name:props.name  ||  'ImageUploud',
+  size: props.size || 'sm',
+  accept:props.accept || "image/png, image/jpeg"
   }))` 
   
   width:150px;
@@ -340,7 +341,6 @@ export const ImageProfile = styled(Image).attrs(props => ({
 
 export const ImagePortada = styled(Image).attrs(props => ({
   fluid: props.fluid	|| true,
-  src: props.src  || require('./BReact.png'),
   alt: props.alt  || 'Portada'
   }))` 
    width: 600px;

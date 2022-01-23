@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import logo from '../../images/LogoHenry.svg';
 import SearchBar from '../SearchBar/SearchBar'
-import { StyledDiv } from './styles'
+import { StyledDiv } from '../NavBar/styles'
 import Email from '../Icons/Email'
 import Bell from '../Icons/Bell'
 
