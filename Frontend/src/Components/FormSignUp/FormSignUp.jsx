@@ -109,11 +109,9 @@ const Container = styled.div`
 `;
 
 const Texto = styled.h2`
-  @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Roboto:ital,wght@1,300&display=swap");
   margin: 2rem 200px 1rem 0;
   font-size: 25px;
   font-weight: 700;
-  font-family: "Roboto", sans-serif;
   color: #2e2e1c;
   align-items: center;
 `;
