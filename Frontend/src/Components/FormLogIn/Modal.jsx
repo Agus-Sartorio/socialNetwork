@@ -1,24 +1,81 @@
-import React from "react";
+import React, {useRef, useState} from "react";
 import styled from "styled-components";
-import { MdClose } from 'react-icons/md'
+import { MdClose } from 'react-icons/md';
+import { useSpring, animated} from 'react-spring'
+import { useUserAuth } from "../Context/UserContext";
+import { Link } from "react-router-dom";
 
 
 export default function Modal ({showModal, setShowModal}) {
+  const modalRef = useRef();
+
+  const animation = useSpring({
+    config: {
+      duration: 250
+    },
+    opacity: showModal ? 1 : 0,
+    transform: showModal ? `translateY(0%)` : `translateY(-100%)`
+  })
+
+  const closeModal = e => {
+    if (modalRef.current === e.target) {
+      setShowModal(false);
+    }
+  }
+
+  //  const keyPress = useCallback(e => {
+  //    if (e.key === 'Escape' && showModal) {
+  //      setShowModal(false);
+  //    }
+  //  }, [setShowModal, showModal])
+
+  //  useEffect(()=> {
+  //    document.addEventListener('keydown', keyPress);
+  //    return () => document.removeEventListener('keydown', keyPress)
+  //  }, [keyPress])
+
+  //reset password
+  const [resetEmailPassword, setResetEmailPassword] = useState("");
+  const {forgotPassword} = useUserAuth();
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [message, setMessage] = useState('')
+
+
+  async function resetPassword (e) {
+    e.preventDefault();
+    try{
+      setMessage('')
+      setError('')
+      setLoading(true)
+      await forgotPassword(resetEmailPassword)
+      setMessage('Check your inbox of the email you provided')
+    }catch {
+      setError('Failed to reset your password')
+    }
+    setLoading(false)
+  }
+
     return(
         <>
-        {showModal ? 
-        <Background>
-                <ModalWrapper>
+        {showModal ? (
+        <Background ref={modalRef} onClick={closeModal}>
+          <animated.div style={animation}>
+                <ModalWrapper >
                     <Container showModal={showModal}>
                     <CloseModalButton onClick={() => setShowModal(prev => !prev)}/>
                 <h1>Password Reset</h1>
-                <Input type="text" placeholder="Introduce your email to reset your password"/>
+                {error && <p>{error}</p>}
+                <Input type="text" placeholder="Introduce your email to reset your password"
+                onChange={(e)=> setResetEmailPassword(e.target.value)}/>
                 </Container>
-                <Button>Search</Button>
+                <Button disabled={loading} onClick={resetPassword}>Reset password</Button>
+                <p><Link to='/'><span>Go back</span></Link></p>
                 </ModalWrapper>
+                </animated.div>
         </Background>
     
-    : null }
+    ): null }
         </>
     );
 }

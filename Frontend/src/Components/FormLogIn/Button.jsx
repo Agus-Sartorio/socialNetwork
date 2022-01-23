@@ -12,7 +12,7 @@ const StyledButton = styled.button`
   align-items: center;
   font-size: 17px;
   font-weight: 500;
-  width: 65%;
+  width: 80%;
   margin-top: -50px;
   height: 2.5rem;
   border: none;
