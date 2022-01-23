@@ -2,17 +2,30 @@ import { StyledSideBar } from "./styles";
 import Channels from '../Icons/Channels'
 import { useState } from "react";
 import Chevron from '../Icons/Chevron'
+import { useUserAuth } from "../Context/UserContext";
 
 export default function SideBar() {
+    
+    const { user, logOut} = useUserAuth()
+    console.log(user)
 
-    const [user, setUser] = useState(false);
+    const handleLogOut = async() => {
+        try{
+           await logOut();
+
+        }catch(error){
+            console.log(error.message)
+        }
+    }
+
+    const [isuser, setIsUser] = useState(false);
     const [open, setOpen] = useState(false);
 
     const handleOpen = () => {
         setOpen(!open);
-        if (user) setUser(false);
+        if (isuser) setIsUser(false);
     }
-    const handleClick = () => setUser(!user);
+    const handleClick = () => setIsUser(!isuser);
 
     return (
         <StyledSideBar className={open ? 'open' : undefined}>
@@ -22,16 +35,16 @@ export default function SideBar() {
             </button>
             <div className='user'>
                 <button onClick={handleClick}>
-                    <img src="https://img2.freepng.es/20180714/ro/kisspng-computer-icons-user-membership-vector-5b498fc76f2a07.4607730515315475914553.jpg" alt="" />
-                    Juan Manuel
-                    <span className={user && 'chevron'}><Chevron /></span>
+                    <img src={user.photoURL} alt="" />
+                    {user.displayName}
+                    <span className={isuser && 'chevron'}><Chevron /></span>
                 </button>
             </div>
             {
-                user && open &&
+                isuser && open &&
                 <div className='settings'>
                     <li><a href="#"># Perfil</a></li>
-                    <li><a href="#"># Cerrar Sesión</a></li>
+                    <li><button onClick={handleLogOut}>Cerrar sesion</button></li>
                 </div>
             }
             <details open={open === false && undefined}>

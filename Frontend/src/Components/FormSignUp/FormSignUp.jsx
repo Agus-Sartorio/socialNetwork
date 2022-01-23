@@ -5,6 +5,7 @@ import { useUserAuth } from "../Context/UserContext";
 import { useNavigate } from "react-router-dom";
 
 
+
 export default function SignUp() {
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerName, setRegisterName] = useState("")
@@ -48,6 +49,7 @@ export default function SignUp() {
         <Input
           type="password"
           placeholder="Contraseña"
+          requiered
           onChange={(event) => {
             setRegisterPassword(event.target.value);
           }} 
