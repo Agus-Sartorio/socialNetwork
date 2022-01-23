@@ -4,13 +4,10 @@ import SideBar from "../SideBar/SideBar";
 
 
 export default function Home() {
-
     return (
         <>
             <NavBar />
             <SideBar />
-           
-          
-      </>
+        </>
     )
 }

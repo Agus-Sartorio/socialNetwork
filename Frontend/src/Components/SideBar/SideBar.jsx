@@ -1,14 +1,13 @@
 import { StyledSideBar } from "./styles";
 import Channels from '../Icons/Channels'
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import Chevron from '../Icons/Chevron'
-import { useUserAuth } from '../Context/UserContext';
+import { useUserAuth } from "../Context/UserContext";
 
 export default function SideBar() {
-
-    const { user, logOut} = useUserAuth();
-    console.log(user,'usuario')
+    
+    const { user, logOut} = useUserAuth()
+    console.log(user)
 
     const handleLogOut = async() => {
         try{
@@ -26,7 +25,7 @@ export default function SideBar() {
         setOpen(!open);
         if (isuser) setIsUser(false);
     }
-    const handleClick = () => setIsUser(!user);
+    const handleClick = () => setIsUser(!isuser);
 
     return (
         <StyledSideBar className={open ? 'open' : undefined}>
@@ -37,15 +36,15 @@ export default function SideBar() {
             <div className='user'>
                 <button onClick={handleClick}>
                     <img src={user.photoURL} alt="" />
-                    {user && user.displayName}
-                    <span className={user && 'chevron'}><Chevron /></span>
+                    {user.displayName}
+                    <span className={isuser && 'chevron'}><Chevron /></span>
                 </button>
             </div>
             {
-                user && open &&
+                isuser && open &&
                 <div className='settings'>
                     <li><a href="#"># Perfil</a></li>
-                    <li><button  onClick={handleLogOut} >Cerrar sesion</button></li>
+                    <li><button onClick={handleLogOut}>Cerrar sesion</button></li>
                 </div>
             }
             <details open={open === false && undefined}>
@@ -54,7 +53,6 @@ export default function SideBar() {
                     Canales
                     <span><Chevron /></span>
                 </summary>
-
                 {
                     open &&
                     <ul className='list'>
