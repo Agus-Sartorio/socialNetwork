@@ -4,14 +4,14 @@ import SideBar from "../SideBar/SideBar";
 
 
 export default function Home() {
-    const { user, logOut} = useUserAuth()
+    const { user, logOut } = useUserAuth()
     console.log(user)
 
-    const handleLogOut = async() => {
-        try{
-           await logOut();
+    const handleLogOut = async () => {
+        try {
+            await logOut();
 
-        }catch(error){
+        } catch (error) {
             console.log(error.message)
         }
     }
@@ -19,12 +19,8 @@ export default function Home() {
         <>
             <NavBar />
             <SideBar />
-<<<<<<< HEAD
             <button onClick={handleLogOut}>logout</button>
-          
-        </div>
-=======
+
         </>
->>>>>>> Develop
     )
 }

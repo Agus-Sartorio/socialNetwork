@@ -44,7 +44,6 @@ export const StyledNotifications = styled.div`
             border: none;
             color: #347fd2;
             font-weight: 600;
-            margin-right: 20px;
             background-color: transparent;
             padding: 8px 10px;
             border-radius: 15px;
@@ -54,12 +53,6 @@ export const StyledNotifications = styled.div`
                 background-color: #d1e7ff;
             }
         }
-    
-            p{
-                margin-left: 15px;
-                font-weight: 500;
-                letter-spacing: 0;
-            }
         }
     }
 `
