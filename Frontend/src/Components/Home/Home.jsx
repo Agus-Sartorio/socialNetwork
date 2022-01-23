@@ -19,12 +19,6 @@ export default function Home() {
         <>
             <NavBar />
             <SideBar />
-<<<<<<< HEAD
-            <button onClick={handleLogOut}>logout</button>
-          
-        </div>
-=======
         </>
->>>>>>> Develop
     )
 }
