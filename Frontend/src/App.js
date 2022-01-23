@@ -7,6 +7,7 @@ import LandingPage from "./Components/LandingPage/LandingPage";
 import Suggestions from "./Components/Suggestions/Suggestions.jsx";
 import { UserAuthContextProvider } from "./Components/Context/UserContext";
 import {ProtectedRoute} from './Components/ProtectedRoute'
+import Profile from './Components/Profile/Profile.jsx';
 function App() {
   return (
     <div>
@@ -20,10 +21,11 @@ function App() {
           <Route path="/signup" element={<FormSignUp />} />
           <Route path="/home" element={<ProtectedRoute><Home/></ProtectedRoute>} />
           <Route path="/suggestions" element={<Suggestions />} />
+          <Route path='/profile/:id' element={<Profile/>}/>
         </Routes>
       </UserAuthContextProvider>
     </div>
-  );
+  )
 }
 
 export default App;

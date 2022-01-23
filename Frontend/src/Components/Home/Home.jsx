@@ -16,11 +16,15 @@ export default function Home() {
         }
     }
     return (
-        <div>
+        <>
             <NavBar />
             <SideBar />
+<<<<<<< HEAD
             <button onClick={handleLogOut}>logout</button>
           
         </div>
+=======
+        </>
+>>>>>>> Develop
     )
 }
