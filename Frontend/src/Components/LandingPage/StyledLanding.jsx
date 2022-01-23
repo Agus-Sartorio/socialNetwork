@@ -91,15 +91,16 @@ export const InfoContainer = styled(FraseContainer)`
 
 export const Frase = styled.h3`
 
-  color:#1D1D1D;
+  color: var(--grey-1);
   font-size:22px;
   text-decoration:none;
+  margin-top: 15px;
 
 `;
 
 export const Info = styled.h3`
 
-  color:#1D1D1D;
+  color: var(--grey-1);
   font-size:20px;
 
 `;
@@ -123,18 +124,19 @@ export const Button = styled.button`
  
           
            margin-top: 0;
-           padding: 5px 20px 5px 20px;
-           font-size: 30px;
+           padding: 5px 30px 5px 30px;
+           font-size: 20px;
            border-radius: 20px ;
-           background-color:#FAE800;
+           background-color: var(--yellow-1);
            border:none;
            box-shadow: 15px 15px 37px 7px rgb(0, 0, 0);
+           transition: 0.2s;
 
            &:hover{
                cursor: pointer;
-               background-color:#1D1D1D;
-               color:#FAE800;
-
+               background-color: var(--grey-1);
+               color: var(--yellow-1);
+               
            }
   
 `;
@@ -305,7 +307,7 @@ export const Foot = styled.div`
   display: flex;
   z-index: -1;
   text-align: center;
-  background:#FAE800;
+  background: var(--yellow-1);
   margin: 0%;
   padding: 0%;
   top: 86%;
