@@ -13,10 +13,6 @@
     "react": "^17.0.2",
     "react-bootstrap": "^2.1.1",
     "react-dom": "^17.0.2",
-<<<<<<< HEAD
-=======
-    "react-hover": "^3.0.1",
->>>>>>> aa74f370d68b85fb6f9b70bff50ee447a4797501
     "react-firebase-hooks": "^5.0.0",
     "react-icons": "^4.3.1",
     "react-redux": "^7.2.6",
