@@ -15,7 +15,7 @@ div{
     align-items: center;
 }
 
-p{
+.app-title{
     letter-spacing: 1.5px;
     font-weight: bold;
     font-size: 15px; 
@@ -40,7 +40,7 @@ img{
         position: relative;
         font-family: 'Roboto', sans-serif;
         
-        span{
+        .nav-hover{
             position: absolute;
             background-color: var(--yellow-1);
             color: var(--grey-1);
@@ -56,13 +56,13 @@ img{
             transition: opacity 0.5s;
         }
         &:hover{
-            span{
+            .nav-hover{
                 opacity: 1;
                 visibility: visible;
             }
         }
     }
-    span:after{
+    .nav-hover:after{
         content: '';
         display: block;
         width: 0;
