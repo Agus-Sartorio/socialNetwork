@@ -3,6 +3,7 @@ import NavBar from '../NavBar/NavBar';
 import Account from './Account';
 import EditProfile from './EditProfile';
 import SideBar from './SideBar';
+import 'bootstrap/dist/css/bootstrap.min.css';
 // import ReactHover from 'react-hover';
 // import { FormControl, FormLabel } from 'react-bootstrap';
 import {GlobalStyle, Container2, SidebarContainer, 
@@ -18,7 +19,6 @@ function Edit() {
     <>
       
       <NavBar/>  
-      <GlobalStyle/>
         <Container2>
            <SidebarContainer>
               <SideBar setgstate={setgstate}/>

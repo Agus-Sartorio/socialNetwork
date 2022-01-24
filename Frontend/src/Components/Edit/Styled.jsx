@@ -55,6 +55,10 @@ margin-top: 10px;
 export const DownContainer = styled(SidebarContainer)`
 display:flex;
 justify-content: space-evenly;
+gap:15px;
+position:absolute;
+left:56%;
+top:60%;
 
 `;
 
@@ -175,7 +179,7 @@ export const InputName = styled(Form.Control).attrs(props => ({
   }))` 
   
   color:white;
-  width:350px;
+  width:300px;
   background: transparent;
   border-color:gray;
   transition:0.2s;
@@ -250,15 +254,12 @@ export const InputDescription = styled(Form.Control).attrs(props => ({
   
 `;
 
-export const SelectRol = styled(Form.Select).attrs(props => ({
-  size: props.size || 'lg',
-  // value: props.value  || 'Estudiante'
-  }))` 
+export const SelectRol = styled(Form.Select)` 
   
   transition:0.2s;
   background: transparent;
   color: #FAE800;
-  width: 160px;
+  width: 120px;
   padding-right: 10px;
   padding-bottom: 5px;
   &:hover{
@@ -317,7 +318,6 @@ export const InputCohorte = styled(InputName).attrs(props => ({
 
 export const ImageProfile = styled(Image).attrs(props => ({
   fluid: props.fluid	|| true,
-  src: props.src  || require('./perfil2.jpg'),
   alt: props.alt  || 'Profile'
   }))` 
   
