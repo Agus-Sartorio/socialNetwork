@@ -6,10 +6,6 @@ import Home from './Components/Home/Home';
 import LandingPage from './Components/LandingPage/LandingPage';
 import Edit from './Components/Edit/Index';
 import Suggestions from './Components/Suggestions/Suggestions.jsx';
-<<<<<<< HEAD
-=======
-
->>>>>>> 06fa8785263f7dcb32ea29395437e002a1582806
 import { UserAuthContextProvider } from "./Components/Context/UserContext";
 // import { ProtectedRoute } from './Components/ProtectedRoute'
 import Profile from './Components/Profile/Profile.jsx';
@@ -23,12 +19,8 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<LogIn />} />
-<<<<<<< HEAD
-          <Route path='/signup' element={<FormSignUp />} />
-=======
           <Route path="/edit" element={<Edit />} />
           <Route path="/signup" element={<FormSignUp />} />
->>>>>>> 06fa8785263f7dcb32ea29395437e002a1582806
           <Route path="/home" element={<Home />} />
           <Route path="/suggestions" element={<Suggestions />} />
           <Route path='/profile/:id' element={<Profile />} />
