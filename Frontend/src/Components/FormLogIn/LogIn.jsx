@@ -4,15 +4,19 @@ import Input from "./Input";
 import Button from "./Button";
 import GithubIcon from "./Icons/GitHub";
 import { Link, useNavigate } from "react-router-dom";
-import { GithubAuthProvider, signInWithPopup } from "firebase/auth";
+import {
+  GithubAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
 import { authentication } from "./Firebase/firebase";
 import Modal from "./Modal";
+import { useUserAuth } from "../Context/UserContext";
 
 export default function Form() {
   const [showModal, setShowModal] = useState(false);
 
   const openModal = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     setShowModal((prev) => !prev);
   };
 
@@ -33,19 +37,48 @@ export default function Form() {
     }
   };
 
+  //Log in with email and password
+  const [logInEmail, setLogInEmail] = useState("");
+  const [logInPassword, setLogInPassword] = useState("");
+  const [error, setError] = useState("");
+  const { logIn } = useUserAuth();
+ 
+
+  const login =  async(e) => {
+    e.preventDefault();
+    setError("");
+    try{
+      await logIn(logInEmail, logInPassword);
+      Navigate("/home");
+    }catch(error){
+      setError(error.message);
+
+    }
+
+  };
+ 
+
+
   return (
     <Wrapper>
       <MainContainer>
         <Container>
           <Text>Inicia sesión en Henry Network</Text>
-          {/* comentario */}
-          <form>
+          {error && <p>{error}</p>}
+          
             <ButtonContainer>
-              <Input type="text" placeholder=" Iniciar sesión con tu email" />
-              <Input type="password" placeholder="contraseña" />
-              <Link to="/home">
-                <ButtonSig>Siguiente</ButtonSig>
-              </Link>
+              <Input
+                type="text"
+                value={logInEmail}
+                placeholder=" Iniciar sesión con tu email"
+                onChange={(e) => setLogInEmail(e.target.value)}
+              />
+              <Input
+                type="password"
+                placeholder="contraseña"
+                onChange={(e) => setLogInPassword(e.target.value)}
+              />
+              <ButtonSig onClick={login}>Siguiente</ButtonSig>
               <Button onClick={handleGithubeSignIn}>
                 {" "}
                 <GithubIcon width={25} height={25} />
@@ -63,7 +96,7 @@ export default function Form() {
                 </Link>
               </Registrarse>
             </ButtonContainer>
-          </form>
+          
         </Container>
       </MainContainer>
     </Wrapper>
@@ -115,7 +148,8 @@ const ButtonSig = styled.button`
   justify-content: space-around;
   &:hover {
     opacity: 0.7;
-    background-color: #ffff99;
+    background-color: #9e9e9e;
+    color: black;
   }
 `;
 const ButtonContra = styled.button`
@@ -127,7 +161,7 @@ const ButtonContra = styled.button`
   border: 1px solid #dbdbdb;
   cursor: pointer;
   font-weight: 700;
-  width: 19rem;
+  width: 20rem;
   letter-spacing: 0.04rem;
   display: flex;
   flex-direction: column;

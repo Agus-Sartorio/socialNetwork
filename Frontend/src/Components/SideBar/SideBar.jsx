@@ -1,19 +1,31 @@
 import { StyledSideBar } from "./styles";
 import Channels from '../Icons/Channels'
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import Chevron from '../Icons/Chevron'
+import { useUserAuth } from "../Context/UserContext";
 
 export default function SideBar() {
 
-    const [user, setUser] = useState(false);
+    const { user, logOut } = useUserAuth()
+    console.log(user)
+
+    const handleLogOut = async () => {
+        try {
+            await logOut();
+
+        } catch (error) {
+            console.log(error.message)
+        }
+    }
+
+    const [isuser, setIsUser] = useState(false);
     const [open, setOpen] = useState(false);
 
     const handleOpen = () => {
         setOpen(!open);
-        if (user) setUser(false);
+        if (isuser) setIsUser(false);
     }
-    const handleClick = () => setUser(!user);
+    const handleClick = () => setIsUser(!isuser);
 
     return (
         <StyledSideBar className={open ? 'open' : undefined}>
@@ -23,16 +35,18 @@ export default function SideBar() {
             </button>
             <div className='user'>
                 <button onClick={handleClick}>
-                    <img src="https://img2.freepng.es/20180714/ro/kisspng-computer-icons-user-membership-vector-5b498fc76f2a07.4607730515315475914553.jpg" alt="" />
-                    Juan Manuel
-                    <span className={user && 'chevron'}><Chevron /></span>
+                    <img src={user.photoURL} alt="" />
+                    <p>{user.displayName}</p>
+                    <span className={isuser && 'chevron'}><Chevron /></span>
                 </button>
             </div>
             {
-                user && open &&
+                isuser && open &&
                 <div className='settings'>
                     <li><a href="#"># Perfil</a></li>
-                    <li><a href="#"># Cerrar Sesión</a></li>
+                    <button className='cerrar-sesion' onClick={handleLogOut}>
+                        # Cerrar sesion
+                    </button>
                 </div>
             }
             <details open={open === false && undefined}>
@@ -41,7 +55,6 @@ export default function SideBar() {
                     Canales
                     <span><Chevron /></span>
                 </summary>
-
                 {
                     open &&
                     <ul className='list'>
