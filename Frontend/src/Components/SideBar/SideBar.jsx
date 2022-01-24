@@ -2,7 +2,10 @@ import { StyledSideBar } from "./styles";
 import Channels from '../Icons/Channels'
 import { useState } from "react";
 import Chevron from '../Icons/Chevron'
+import Red from '../Icons/Red'
+import Settings from '../Icons/Settings';
 import { useUserAuth } from "../Context/UserContext";
+
 
 export default function SideBar() {
     
@@ -17,7 +20,6 @@ export default function SideBar() {
             console.log(error.message)
         }
     }
-
     const [isuser, setIsUser] = useState(false);
     const [open, setOpen] = useState(false);
 
@@ -43,7 +45,7 @@ export default function SideBar() {
             {
                 isuser && open &&
                 <div className='settings'>
-                    <li><a href="#"># Perfil</a></li>
+                    <li><a href="/home"># Perfil</a></li>
                     <li><button onClick={handleLogOut}>Cerrar sesion</button></li>
                 </div>
             }
@@ -56,12 +58,37 @@ export default function SideBar() {
                 {
                     open &&
                     <ul className='list'>
-                        <li><a href="#"># Canal 1</a></li>
-                        <li><a href="#"># Canal 2</a></li>
-                        <li><a href="#"># Canal 3</a></li>
+                        <li><a href="/login"># Canal 1</a></li>
+                    </ul>
+                }
+            </details>
+            <details open={open === false && undefined}>
+                <summary className='canales'>
+                    <Red/>
+                    Red
+                    <span><Chevron /></span>
+                </summary>
+                {
+                    open &&
+                    <ul className='list'>
+                        <li><a href="/suggestions">Sugerencias</a></li>
+                    </ul>
+                }
+            </details>
+            <details open={open === false && undefined}>
+                <summary className='canales'>
+                    <Settings/>
+                    Configuracion
+                    <span><Chevron /></span>
+                </summary>
+                {
+                    open &&
+                    <ul className='list'>
+                        <li><a href="/edit">Editar perfil</a></li>
                     </ul>
                 }
             </details>
         </StyledSideBar>
     )
 }
+
