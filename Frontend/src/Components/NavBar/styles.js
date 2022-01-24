@@ -8,7 +8,8 @@ width: 100vw;
 border-bottom: 5px solid var(--yellow-1);
 background-color: #1D1D1D;
 color: #eee;
-padding: 20px 0;    
+padding: 20px 0; 
+position: relative; ;
 
 div{
     display: flex;
