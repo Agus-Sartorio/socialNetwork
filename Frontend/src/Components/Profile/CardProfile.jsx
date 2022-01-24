@@ -17,6 +17,9 @@ const CardProfile = ({ profile }) => {
                     <button>seguir</button>
                 </div>
             </div>
+            <div className="publicaciones">
+                <h1>Hola mundo</h1>
+            </div>
 
         </DivCardProfile>
     )

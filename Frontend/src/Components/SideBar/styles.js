@@ -151,6 +151,16 @@ export const StyledSideBar = styled.aside`
             margin-right: 35px;
             min-width: 25px;
         }
+
+        .red{
+            margin-right: 35px;
+            min-width: 25px;
+        }
+
+        .ediciones{
+            margin-right: 35px;
+            min-width: 25px;
+        }
         
     }
     
