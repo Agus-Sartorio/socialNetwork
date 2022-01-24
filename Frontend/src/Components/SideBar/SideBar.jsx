@@ -5,15 +5,15 @@ import Chevron from '../Icons/Chevron'
 import { useUserAuth } from "../Context/UserContext";
 
 export default function SideBar() {
-    
-    const { user, logOut} = useUserAuth()
+
+    const { user, logOut } = useUserAuth()
     console.log(user)
 
-    const handleLogOut = async() => {
-        try{
-           await logOut();
+    const handleLogOut = async () => {
+        try {
+            await logOut();
 
-        }catch(error){
+        } catch (error) {
             console.log(error.message)
         }
     }
@@ -36,7 +36,7 @@ export default function SideBar() {
             <div className='user'>
                 <button onClick={handleClick}>
                     <img src={user.photoURL} alt="" />
-                    {user.displayName}
+                    <p>{user.displayName}</p>
                     <span className={isuser && 'chevron'}><Chevron /></span>
                 </button>
             </div>
@@ -44,7 +44,9 @@ export default function SideBar() {
                 isuser && open &&
                 <div className='settings'>
                     <li><a href="#"># Perfil</a></li>
-                    <li><button onClick={handleLogOut}>Cerrar sesion</button></li>
+                    <button className='cerrar-sesion' onClick={handleLogOut}>
+                        # Cerrar sesion
+                    </button>
                 </div>
             }
             <details open={open === false && undefined}>
