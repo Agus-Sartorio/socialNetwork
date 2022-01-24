@@ -8,15 +8,15 @@ import { useUserAuth } from "../Context/UserContext";
 
 
 export default function SideBar() {
-    
-    const { user, logOut} = useUserAuth()
+
+    const { user, logOut } = useUserAuth()
     console.log(user)
 
-    const handleLogOut = async() => {
-        try{
-           await logOut();
+    const handleLogOut = async () => {
+        try {
+            await logOut();
 
-        }catch(error){
+        } catch (error) {
             console.log(error.message)
         }
     }
@@ -38,15 +38,18 @@ export default function SideBar() {
             <div className='user'>
                 <button onClick={handleClick}>
                     <img src={user.photoURL} alt="" />
-                    {user.displayName}
+                    <p>{user.displayName}</p>
                     <span className={isuser && 'chevron'}><Chevron /></span>
                 </button>
             </div>
             {
                 isuser && open &&
                 <div className='settings'>
-                    <li><a href="/home"># Perfil</a></li>
-                    <li><button onClick={handleLogOut}>Cerrar sesion</button></li>
+
+                    <li><a href="#"># Perfil</a></li>
+                    <button className='cerrar-sesion' onClick={handleLogOut}>
+                        # Cerrar sesion
+                    </button>
                 </div>
             }
             <details open={open === false && undefined}>
