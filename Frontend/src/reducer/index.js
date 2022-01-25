@@ -3,7 +3,7 @@ import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_PROFILE, GET_USER } from ".
 const initialState = {
 
     users: [],
-    profile: []
+    profile: [],
 
 }
 
@@ -30,7 +30,7 @@ export function rootReducer(state = initialState, action) {
             return{
                 ...state,
                 profile:action.payload
-            }            
+            }             
         default:
             return state
     }

@@ -2,3 +2,4 @@ export const GET_USER = 'GET_USER';
 export const GET_PROFILE = 'GET_PROFILE';
 export const CLEAR_USERS_STATE = 'CLEAR_USERS_STATE';
 export const CLEAR_PROFILE_STATE = 'CLEAR_PROFILE_STATE';
+export const GET_PEOPLE_BY_NAME = 'GET_PEOPLE_BY_NAME';
