@@ -6,7 +6,6 @@ import Home from './Components/Home/Home';
 import LandingPage from './Components/LandingPage/LandingPage';
 import Edit from './Components/Edit/Index';
 import Suggestions from './Components/Suggestions/Suggestions.jsx';
-
 import { UserAuthContextProvider } from "./Components/Context/UserContext";
 // import { ProtectedRoute } from './Components/ProtectedRoute'
 import Profile from './Components/Profile/Profile.jsx';

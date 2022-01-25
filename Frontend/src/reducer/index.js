@@ -1,4 +1,4 @@
-import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_PROFILE, GET_USER, SEARCH_BY_NAME } from "../actions/actionTypes"
+import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_USER, GET_USER_BY_ID, SEARCH_BY_NAME } from "../actions/actionTypes"
 
 const initialState = {
 
@@ -22,7 +22,7 @@ export function rootReducer(state = initialState, action) {
                 ...state,
                 users:action.payload
             }
-        case GET_PROFILE:
+        case GET_USER_BY_ID:
             return{
                 ...state,
                 profile:action.payload

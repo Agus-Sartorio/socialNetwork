@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import Account from './Account';
 import EditProfile from './EditProfile';
-import SideBar from "../SideBar/SideBar";
-import NavBar from "../NavBar/NavBar";
-// import ReactHover from 'react-hover';
-// import { FormControl, FormLabel } from 'react-bootstrap';
+import SideBar from './SideBar';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import NavBar from '../NavBar/NavBar'
 import {
       GlobalStyle, Container2, SidebarContainer,
 
@@ -12,24 +11,22 @@ import {
 
 function Edit() {
 
-      const [gstate, setgstate] = useState(true);
+  const [gstate, setgstate] = useState(true);
+         
+    return (
+         
+    <>
+      
+      <NavBar/>  
+        <Container2>
+           <SidebarContainer>
+              <SideBar setgstate={setgstate}/>
+           </SidebarContainer>
+           {gstate? <EditProfile/> : <Account/>}
+     </Container2>
+      </>
 
-      return (
-
-            <>
-
-                  <NavBar />
-                  <GlobalStyle />
-                  <Container2>
-                        <SidebarContainer>
-                              <SideBar setgstate={setgstate} />
-                        </SidebarContainer>
-                        {gstate ? <EditProfile /> : <Account />}
-                  </Container2>
-            </>
-
-      );
-}
+    );} 
 
 export default Edit;
 

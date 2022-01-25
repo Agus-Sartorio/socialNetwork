@@ -8,9 +8,11 @@ import {
   GithubAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
-import { authentication } from "./Firebase/firebase";
+import { authentication } from "../Firebase/firebase";
 import Modal from "./Modal";
 import { useUserAuth } from "../Context/UserContext";
+import axios from "axios";
+
 
 export default function Form() {
   const [showModal, setShowModal] = useState(false);
@@ -22,26 +24,35 @@ export default function Form() {
 
   const Navigate = useNavigate();
 
-  function googleSignIn() {
+  function githubSignIn() {
     const githubAuthProvider = new GithubAuthProvider();
     return signInWithPopup(authentication, githubAuthProvider);
   }
-
+  const registro = async () => {
+    await axios.post('http://localhost:4001/usuarios/', {
+      fullname: user.displayName,
+      email: user.email,
+      id: user.uid,
+      profile: user.photoURL
+     })
+  }
   const handleGithubeSignIn = async (e) => {
     e.preventDefault();
     try {
-      await googleSignIn();
+      await githubSignIn();
+      await registro();
       Navigate("/home");
     } catch (error) {
       console.log(error);
     }
   };
 
+
   //Log in with email and password
   const [logInEmail, setLogInEmail] = useState("");
   const [logInPassword, setLogInPassword] = useState("");
   const [error, setError] = useState("");
-  const { logIn } = useUserAuth();
+  const { logIn, user } = useUserAuth();
  
 
   const login =  async(e) => {
@@ -193,11 +204,9 @@ const Container = styled.div`
 `;
 
 const Text = styled.h2`
-  @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Roboto:ital,wght@1,300&display=swap");
   margin: 4rem 0 1rem 0;
   font-size: 20px;
   font-weight: 700;
-  font-family: "Roboto", sans-serif;
   color: #2e2e1c;
   align-items: center;
 `;
