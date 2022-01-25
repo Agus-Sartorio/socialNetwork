@@ -29,7 +29,7 @@ export default function Form() {
     return signInWithPopup(authentication, githubAuthProvider);
   }
   const registro = async () => {
-    await axios.post('http://localhost:3001/usuarios/', {
+    await axios.post(`${process.env.REACT_APP_PUERTO}usuarios`, {
       fullname: user.displayName,
       email: user.email,
       id: user.uid,
