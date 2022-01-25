@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { getUsers } from "../../actions";
+import { getPeopleByName } from "../../actions";
 import { StyledForm } from "./styles";
 import Search from "../Icons/Search";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-export default function SearchBar({_id}) {
+export default function SearchBar() {
   const dispatch = useDispatch();
 
-  const users = useSelector((state) => state.users);
-  console.log(users);
+  const users = useSelector((state => state.search));
+  console.log(users, 'search');
 
   const [filteredData, setFilteredData] = useState([]);
 
@@ -17,13 +17,13 @@ export default function SearchBar({_id}) {
     event.preventDefault();
     const searchWord = event.target.value;
     const newFilter = users.filter((value) => {
-      return value.name.toLowerCase().includes(searchWord.toLowerCase());
+      return value.fullname.toLowerCase().includes(searchWord.toLowerCase());
     });
     setFilteredData(newFilter);
   };
   useEffect(() => {
-    dispatch(getUsers());
-  }, [dispatch]);
+    dispatch(getPeopleByName(filteredData))
+}, [])
 
   return (
     <>
