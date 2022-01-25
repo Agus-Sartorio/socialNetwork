@@ -7,12 +7,13 @@ import {
   sendPasswordResetEmail,
   updateProfile,
 } from "firebase/auth";
-import { authentication } from "../FormLogIn/Firebase/firebase";
+import { authentication } from "../Firebase/firebase";
 
 const userAuthContext = createContext();
 
 export function UserAuthContextProvider({ children }) {
   const [user, setUser] = useState("");
+  console.log(user, 'firebase')
   function signUp(email, name,  password) {
    createUserWithEmailAndPassword(authentication, email, password).then(() => {
        return updateProfile(authentication.currentUser, {

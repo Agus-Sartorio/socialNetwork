@@ -14,11 +14,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-  margin: 0%;
-  width: 100vh;
-  height: 100vh;
   font-family: 'Montserrat', sans-serif;
-  overflow: hidden;
+  /* overflow: hidden; */
   }
 
   input,

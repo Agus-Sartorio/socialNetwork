@@ -25,7 +25,7 @@ export function rootReducer(state = initialState, action) {
                 ...state,
                 users:action.payload
             }
-        case GET_PROFILE:
+        case GET_USER_BY_ID:
             return{
                 ...state,
                 profile:action.payload

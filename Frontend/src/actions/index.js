@@ -1,21 +1,36 @@
+import axios from 'axios';
 import { users } from "../test-data/usuarios";
 import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_PROFILE, GET_USER, SEARCH_BY_NAME, GET_MY_PROFILE } from "./actionTypes";
 
 export const getUsers = () => {
-    return({type:GET_USER,payload:users})
+    return async (dispatch) => {
+        try {
+            const usuarios = await axios.get('http://localhost:3001/usuarios')
+            return dispatch({ type: GET_USER, payload: usuarios.data })
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
 }
 
 export const clearUsersState = () => {
-    return({type:CLEAR_USERS_STATE,payload:[]})
+    return ({ type: CLEAR_USERS_STATE, payload: [] })
 }
 
 export const getProfile = (id) => {
-    const profile = users.filter(e => e._id===id)
-    return({type:GET_PROFILE,payload:profile})
+    return async (dispatch) => {
+        try {
+            const user = await axios.get(`http://localhost:3001/usuarios/Id/${id}`)
+            return dispatch({ type: GET_USER_BY_ID, payload: user.data })
+        } catch (err) {
+            console.log(err)
+        }
+    }
 }
 
 export const clearProfileState = () => {
-    return({type:CLEAR_PROFILE_STATE,payload:[]})
+    return ({ type: CLEAR_PROFILE_STATE, payload: [] })
 }
 
 export const searchByName = (name) => {
