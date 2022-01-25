@@ -5,6 +5,7 @@ import { clearProfileState, getProfile } from "../../actions";
 import NavBar from "../NavBar/NavBar";
 import SideBar from "../SideBar/SideBar";
 import CardProfile from "./CardProfile";
+import { Container } from "./styledCardProfile";
 
 const Profile = () => {
 
@@ -21,6 +22,7 @@ const Profile = () => {
     return (
         <div>
             <NavBar/>
+            <Container>
             <SideBar/>
             {profile.length ?
                 <div>
@@ -30,7 +32,7 @@ const Profile = () => {
                 </div>
                 :<div>cargando...</div>
             }
-            <div>No Hay publicaciones</div>
+            </Container>
         </div>
     )
 }

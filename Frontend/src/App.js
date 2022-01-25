@@ -13,15 +13,16 @@ function App() {
   return (
     <div>
       {/* <GlobalStyle/> */}
+
       <GlobalStyle />
       <UserAuthContextProvider>
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<LogIn />} />
-          <Route path='/signup' element={<FormSignUp />} />
+          <Route path="/edit" element={<Edit />} />
+          <Route path="/signup" element={<FormSignUp />} />
           <Route path="/home" element={<Home />} />
-          <Route path='/edit' element={<Edit />} />
-          <Route path='/suggestions' element={<Suggestions />} />
+          <Route path="/suggestions" element={<Suggestions />} />
           <Route path='/profile/:id' element={<Profile />} />
         </Routes>
       </UserAuthContextProvider>

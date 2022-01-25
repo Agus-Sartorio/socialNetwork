@@ -12,7 +12,7 @@ export const StyledSideBar = styled.aside`
     transition: width 200ms;
 
     &.open{
-        width: 300px;
+        width: 340px;
     }
 
     .menu-button{
@@ -74,6 +74,14 @@ export const StyledSideBar = styled.aside`
             text-decoration: none;
             font-weight: bold
         }
+        .cerrar-sesion{
+            background-color: transparent;
+            border: none;
+            color: #666;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+        }
     }
 
     .user{
@@ -85,7 +93,7 @@ export const StyledSideBar = styled.aside`
             font-size: 20px;
             font-weight: 600;
             text-transform: uppercase;
-        letter-spacing: 2px;
+            letter-spacing: 2px;
             border: none;
             background-color: transparent;
             color: #eee;
@@ -140,6 +148,16 @@ export const StyledSideBar = styled.aside`
         }
         
         .channels{
+            margin-right: 35px;
+            min-width: 25px;
+        }
+
+        .red{
+            margin-right: 35px;
+            min-width: 25px;
+        }
+
+        .ediciones{
             margin-right: 35px;
             min-width: 25px;
         }

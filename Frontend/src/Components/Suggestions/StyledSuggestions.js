@@ -16,3 +16,21 @@ height: 100%;
     height: 5%;
 }
 `
+
+
+export const DivSug = styled.div`
+display:flex; 
+grid-column-gap: 150px;
+position: absolute;
+width: 100%;
+`
+
+export const DivCards = styled.div`
+position: relative;
+align-content: center;
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+grid-gap: 10px;
+padding: 5px 5px 0px 5px;
+
+`

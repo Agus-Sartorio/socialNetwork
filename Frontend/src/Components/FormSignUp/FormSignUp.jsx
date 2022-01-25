@@ -55,7 +55,6 @@ export default function SignUp() {
           type="password"
           required
           placeholder="Contraseña"
-          requiered
           onChange={(event) => {
             setRegisterPassword(event.target.value);
           }}

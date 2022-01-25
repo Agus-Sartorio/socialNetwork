@@ -3,9 +3,9 @@ import styled from "styled-components";
 
 
 export const DivCardProfile = styled.div`
-top: 15%;
-width: 100%;
-position: absolute;
+top: 10%;
+width: 70%;
+position: fixed;
 display: flex;
 align-items: center;
 flex-direction: column;
@@ -53,4 +53,27 @@ button{
     height: 25px;
     border-radius:5px;
 }
+
+.publicaciones{
+    margin-top: 50px;
+    width: 50%;
+    background-color: black;
+    color: white;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+`
+
+
+export const Container = styled.div `
+background-color: transparent;
+display:flex; 
+grid-column-gap: 200px;
+position: absolute;
+width: 100%;
+
+
 `
