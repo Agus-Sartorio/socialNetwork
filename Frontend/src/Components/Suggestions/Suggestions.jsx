@@ -28,11 +28,11 @@ const Suggestions = () => {
                 <DivCards>
                     {users.length ? users.map(e =>
                         <div className="card"><CardSuggestions
-                            name={e.name}
-                            id={e._id}
+                            fullname={e.fullname}
+                            id={e.id}
                             profile={e.profile}
                             email={e.email}
-                            key={e._id}
+                            key={e.id}
                         />
                         </div>
                     ) : <div>Cargando...</div>}

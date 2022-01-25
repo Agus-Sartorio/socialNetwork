@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
 import { StyledCardSuggestions } from "./StyledCardSuggestion";
 
-const CardSuggestions = ({ name, id, profile,email }) => {
+const CardSuggestions = ({ fullname, id, profile,email }) => {
     return (
         <StyledCardSuggestions>
             <div className="container-card">
                 <div className="img-name">
-                <Link to={`/profile/${id}`}><img className="image" src={profile} alt={name}></img></Link>
+                <Link to={`/profile/${id}`}><img className="image" src={profile} alt={fullname}></img></Link>
                 <div className="name">
-                    <Link to={`/profile/${id}`} className="Link"><h3>{name}</h3></Link>
+                    <Link to={`/profile/${id}`} className="Link"><h3>{fullname}</h3></Link>
                     <p>{email}</p>
                 </div>
                 </div>
