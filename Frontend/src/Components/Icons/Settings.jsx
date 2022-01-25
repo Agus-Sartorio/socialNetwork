@@ -6,6 +6,7 @@ function Icon() {
         viewBox="0 0 24 24" 
         width="24px" 
         fill="currentcolor"
+        className="ediciones"
         >
             
         <path d="M0 0h24v24H0V0z" fill="none"/>

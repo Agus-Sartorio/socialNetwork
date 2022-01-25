@@ -55,6 +55,10 @@ margin-top: 10px;
 export const DownContainer = styled(SidebarContainer)`
 display:flex;
 justify-content: space-evenly;
+gap:15px;
+position:absolute;
+left:56%;
+top:60%;
 
 `;
 
@@ -175,6 +179,7 @@ export const InputName = styled(Form.Control).attrs(props => ({
   }))` 
   
   color:white;
+  width:300px;
   background: transparent;
   border-color:gray;
   transition:0.2s;
@@ -227,8 +232,9 @@ export const InputDescription = styled(Form.Control).attrs(props => ({
 
   export const InputFile = styled.input.attrs(props => ({
   type: props.type || 'file',
-  name:props.name  || 'ImageUploud',
-  size: props.size || 'sm'
+  name:props.name  ||  'ImageUploud',
+  size: props.size || 'sm',
+  accept:props.accept || "image/png, image/jpeg"
   }))` 
   
   width:150px;
@@ -248,15 +254,12 @@ export const InputDescription = styled(Form.Control).attrs(props => ({
   
 `;
 
-export const SelectRol = styled(Form.Select).attrs(props => ({
-  size: props.size || 'lg',
-  // value: props.value  || 'Estudiante'
-  }))` 
+export const SelectRol = styled(Form.Select)` 
   
   transition:0.2s;
   background: transparent;
   color: #FAE800;
-  width: 160px;
+  width: 120px;
   padding-right: 10px;
   padding-bottom: 5px;
   &:hover{
@@ -315,7 +318,6 @@ export const InputCohorte = styled(InputName).attrs(props => ({
 
 export const ImageProfile = styled(Image).attrs(props => ({
   fluid: props.fluid	|| true,
-  src: props.src  || require('./perfil2.jpg'),
   alt: props.alt  || 'Profile'
   }))` 
   
@@ -339,7 +341,6 @@ export const ImageProfile = styled(Image).attrs(props => ({
 
 export const ImagePortada = styled(Image).attrs(props => ({
   fluid: props.fluid	|| true,
-  src: props.src  || require('./BReact.png'),
   alt: props.alt  || 'Portada'
   }))` 
    width: 600px;
