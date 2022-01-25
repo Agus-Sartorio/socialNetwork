@@ -1,11 +1,17 @@
-import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_PROFILE, GET_USER } from "../actions/actionTypes"
+
+import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_USER, GET_NAME, GET_MY_PROFILE, GET_USER_BY_ID} from "../actions/actionTypes"
+
 
 const initialState = {
 
     users: [],
-    profile: []
+    profile: [],
+    search:[],
+    myprofile:{}
 
 }
+
+
 
 export function rootReducer(state = initialState, action) {
 
@@ -21,7 +27,7 @@ export function rootReducer(state = initialState, action) {
                 ...state,
                 users:action.payload
             }
-        case GET_PROFILE:
+        case GET_USER_BY_ID:
             return{
                 ...state,
                 profile:action.payload
@@ -30,7 +36,19 @@ export function rootReducer(state = initialState, action) {
             return{
                 ...state,
                 profile:action.payload
-            }            
+            }
+        case GET_NAME:
+            return{
+                ...state,
+                search:action.payload
+            }       
+            
+        case GET_MY_PROFILE:
+            return{
+                ...state,
+                myprofile:action.payload
+            }
+
         default:
             return state
     }

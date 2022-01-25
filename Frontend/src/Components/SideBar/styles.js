@@ -12,7 +12,7 @@ export const StyledSideBar = styled.aside`
     transition: width 200ms;
 
     &.open{
-        width: 340px;
+        width: 320px;
     }
 
     .menu-button{
@@ -68,6 +68,7 @@ export const StyledSideBar = styled.aside`
             list-style: none;
             color: #666;
             margin-bottom: 10px;
+            font-size: 16px;
         }
         a{
             color: currentcolor;
@@ -130,6 +131,10 @@ export const StyledSideBar = styled.aside`
         color: #eee;
     }
 
+    details{
+        margin-bottom: 20px;
+    }
+
     .canales{
         display: flex;
         align-items: center;
@@ -151,6 +156,16 @@ export const StyledSideBar = styled.aside`
             margin-right: 35px;
             min-width: 25px;
         }
+
+        .red{
+            margin-right: 35px;
+            min-width: 25px;
+        }
+
+        .ediciones{
+            margin-right: 35px;
+            min-width: 25px;
+        }
         
     }
     
@@ -167,4 +182,14 @@ export const StyledSideBar = styled.aside`
         }
     }
 
+    @media (max-width: 500px) {
+        .user{
+            button{
+                font-size: 14px;
+            }
+        }
+        .canales{
+            font-size: 14px;
+        }
+    }
 `

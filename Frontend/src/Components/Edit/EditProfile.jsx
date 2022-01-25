@@ -1,4 +1,6 @@
-import React, {useState} from 'react';
+import {getMyProfile} from "../../actions";
+import React,{ useState, useEffect } from 'react';
+import { useDispatch, useSelector} from 'react-redux'
 
 import { GroupForm, InputName, LabelName,
      InputDescription, SelectRol, 
@@ -8,10 +10,26 @@ import { GroupForm, InputName, LabelName,
      InputFile,FileContainer, LabelFile,FileContainerP,PortadaContainer,
  } from './Styled';
 
+ import {GlobalStyle} from './Styled';
 
 
+ 
+function EditProfile() {
+   
+  
+const user = useSelector((state) => state.myprofile) 
+console.log(user);
 
- function EditProfile() {
+const [input,setInput] =useState({   
+
+  name: user.name,
+  description: user.description,
+  imageprofile: user.imageprofile, 
+  imageport: user.imageport,
+  birthday: user.birthday,
+  roll: user.roll,
+  cohorte: user.birthday,
+  });
 
     const [editP, setEditP] = useState(false);
     const [edit, setEdit] = useState(false);
@@ -31,12 +49,47 @@ import { GroupForm, InputName, LabelName,
         });
       }
 
-     return( <>
-                    
+      // name: `${user.name}`,
+      // description:`${user.description}`, 
+      // imageprofile: `${user.imageprofile}`, 
+      // imageport: `${user.imageport}`,
+
+      
+      function handleChange(evt){
+        let  valo = evt.target.value;
+        console.log(valo)
+        setInput({
+          ...input,
+          [evt.target.name]:evt.target.value
+      })
+    }
+    
+    function handleSelect(evt){
+      if(!input.includes(evt.target.value)){
+        setInput({
+          ...input,
+          diets: [...input.diets, evt.target.value]
+        })
+      }
+      
+    }
+    
+    
+    //   const fileSelector = document.getElementById('file-selector');
+    //   function  Fselector(fileSelector){fileSelector.addEventListener('change', (event) => {
+      //   const fileList = event.target.files;
+      //   console.log(fileList);
+      //   });
+      // }
+      
+
+      
+      return( <>
+                     <GlobalStyle/> 
                     <PrincipalContainer>
-            
+                    {/* `${input.imageport}` */}
             <PortadaContainer onMouseEnter={()=>setEdit(true)} onMouseOut={()=>setEdit(false)} onClick={update2}>
-              <ImagePortada/>
+              <ImagePortada src={require(`${input.imageport}`)}/>
             </PortadaContainer>
               
 
@@ -57,7 +110,7 @@ import { GroupForm, InputName, LabelName,
            
              
               <div>
-                 <ImageProfile onMouseEnter={()=>setEditP(true)} onMouseOut={()=>setEditP(false)} onClick={update} />
+                 <ImageProfile  src={require(`${input.imageprofile}`)} onMouseEnter={()=>setEditP(true)} onMouseOut={()=>setEditP(false)} onClick={update} />
                </div>
 
                <div>
@@ -66,7 +119,11 @@ import { GroupForm, InputName, LabelName,
                {OptionUpProfile?
                  <FileContainer>
                   <LabelFile> Uploud to photo
-                     <InputFile/>
+                     <InputFile
+                      name = 'imageprofile' 
+                      
+                      
+                    />
                   </LabelFile>
                  </FileContainer>
                   
@@ -82,16 +139,26 @@ import { GroupForm, InputName, LabelName,
 
    <GroupForm>
          <LabelName>Name:</LabelName>
-         <div>
-           <InputName/> 
-         </div>
-         <div class="invalid-feedback">Example invalid custom select feedback</div>
+          
+           <div>
+           <InputName 
+           value={input.name} 
+           name = 'name' 
+           onChange = {evt => handleChange(evt)}/>
+         </div> 
+        
+         
+        
+         
     </GroupForm>
 
     <GroupForm>
          <LabelName>Description:</LabelName>
        <div>
-         <InputDescription/> 
+         <InputDescription 
+         value={`${input.description}`}
+         name = 'description' 
+         onChange = {evt => handleChange(evt)}/>
        </div>
     </GroupForm>
 
@@ -102,10 +169,13 @@ import { GroupForm, InputName, LabelName,
 
     <GroupForm>
     <LabelName>Rol:</LabelName>
-      <SelectRol>
+      <SelectRol 
+      name = 'roll' 
+      value={`${input.roll}`}
+      onChange = {evt => handleChange(evt)}
+      >
          <OptionRol>Estudiante</OptionRol>
-         <OptionRol>Egresado</OptionRol>
-         <OptionRol>Instructor</OptionRol>
+        
       </SelectRol>
       </GroupForm>
      </div>
@@ -113,9 +183,13 @@ import { GroupForm, InputName, LabelName,
      <div>
 
       <GroupForm>
-         <LabelName>Cohorte:</LabelName>
+         <LabelName>Birthday:</LabelName>
          <div>
-           <InputCohorte/> 
+           <InputCohorte 
+           value={`${input.cohorte}`}
+           name = 'cohorte' 
+           onChange = {evt => handleChange(evt)}/>
+      
          </div>
        </GroupForm>
      </div>    

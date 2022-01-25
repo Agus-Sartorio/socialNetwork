@@ -4,7 +4,7 @@ export const StyledNotifications = styled.div`
     position: absolute;
     top: 40px;
     left: 50%;
-    transform: translateX(-84%);
+    transform: translateX(-84.1%);
 
     &::after{
             content: '';
@@ -53,6 +53,14 @@ export const StyledNotifications = styled.div`
                 background-color: #d1e7ff;
             }
         }
+        }
+    }
+
+    @media (max-width: 500px) {
+        transform: translateX(-85%);
+
+        .container{
+            width: 300px;
         }
     }
 `

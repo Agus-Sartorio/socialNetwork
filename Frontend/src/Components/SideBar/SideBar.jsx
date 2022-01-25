@@ -2,7 +2,11 @@ import { StyledSideBar } from "./styles";
 import Channels from '../Icons/Channels'
 import { useState } from "react";
 import Chevron from '../Icons/Chevron'
+import Red from '../Icons/Red'
+import Settings from '../Icons/Settings';
 import { useUserAuth } from "../Context/UserContext";
+import { Link } from "react-router-dom";
+
 
 export default function SideBar() {
 
@@ -17,7 +21,6 @@ export default function SideBar() {
             console.log(error.message)
         }
     }
-
     const [isuser, setIsUser] = useState(false);
     const [open, setOpen] = useState(false);
 
@@ -36,13 +39,14 @@ export default function SideBar() {
             <div className='user'>
                 <button onClick={handleClick}>
                     <img src={user.photoURL} alt="" />
-                    <p>{user.displayName}</p>
+                    <p>{user.displayName.split(' ')[0]}</p>
                     <span className={isuser && 'chevron'}><Chevron /></span>
                 </button>
             </div>
             {
                 isuser && open &&
                 <div className='settings'>
+
                     <li><a href="#"># Perfil</a></li>
                     <button className='cerrar-sesion' onClick={handleLogOut}>
                         # Cerrar sesion
@@ -58,12 +62,37 @@ export default function SideBar() {
                 {
                     open &&
                     <ul className='list'>
-                        <li><a href="#"># Canal 1</a></li>
-                        <li><a href="#"># Canal 2</a></li>
-                        <li><a href="#"># Canal 3</a></li>
+                        <li><a href="/login"># Canal 1</a></li>
+                    </ul>
+                }
+            </details>
+            <details open={open === false && undefined}>
+                <summary className='canales'>
+                    <Red />
+                    Red
+                    <span><Chevron /></span>
+                </summary>
+                {
+                    open &&
+                    <ul className='list'>
+                        <li><Link to='/suggestions'><a># Sugerencias</a></Link></li>
+                    </ul>
+                }
+            </details>
+            <details open={open === false && undefined}>
+                <summary className='canales'>
+                    <Settings />
+                    Configuracion
+                    <span><Chevron /></span>
+                </summary>
+                {
+                    open &&
+                    <ul className='list'>
+                        <li><a href="/edit"># Editar perfil</a></li>
                     </ul>
                 }
             </details>
         </StyledSideBar>
     )
 }
+

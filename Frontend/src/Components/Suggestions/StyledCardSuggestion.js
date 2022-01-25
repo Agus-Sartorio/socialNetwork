@@ -3,46 +3,31 @@ import styled from "styled-components";
 
 export const StyledCardSuggestions = styled.div`
 .container-card{
+    border: 1px solid var(--yellow-1);
+    border-radius: 5px;
     display: flex;
-    flex-direction: row;
-    height: 80px;
-    margin: auto;
-    width: 40%;
-    padding: 10px;
-    /* border: 3px solid #73AD21; */
-    background-color: white;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
+    text-align: center;
 }
 
 .btn{
-    background-color: yellow;
-    height: 30px;
-    text-align: center;
-    width: 60px;
-    border-radius: 5px;
+height:30px;
+background-color: var(--yellow-1);
+border-radius: 5px;
+width: 50%;
+position: relative;
+left: 25%;
 
-}
-
-.name{
-    display: flex;
-    flex-direction: column;
-    display: block;
 }
 
 .image{
     height: 70px;
     border-radius: 50px;
     border:1px solid black ;
-    display: flex;
-    align-items: center;
+    position: relative;
 }
 
-.img-name{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
+
 
 .Link{
     text-decoration: none;
