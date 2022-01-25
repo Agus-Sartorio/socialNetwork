@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getUsers } from "../../actions";
-import { StyledDiv } from "./styles";
+// import { StyledDiv } from "./styles";
 import Search from "../Icons/Search";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -26,7 +26,7 @@ export default function SearchBar({_id}) {
   }, [dispatch]);
 
   return (
-    <StyledDiv>
+    <>
       <form>
         <button type="submit">
           <Search />
@@ -46,6 +46,6 @@ export default function SearchBar({_id}) {
           })}
         </div>
       )}
-    </StyledDiv>
+    </>
   );
 }
