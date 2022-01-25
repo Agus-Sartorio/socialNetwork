@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { users } from "../test-data/usuarios";
-import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_USER, GET_USER_BY_ID, SEARCH_BY_NAME } from "./actionTypes";
+import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_PROFILE, GET_USER, SEARCH_BY_NAME, GET_MY_PROFILE } from "./actionTypes";
+
 
 export const getUsers = () => {
     return async (dispatch) => {
@@ -34,6 +35,21 @@ export const clearProfileState = () => {
 }
 
 export const searchByName = (name) => {
-    const serch = users.filter(e => e.name === name)
-    return ({ type: SEARCH_BY_NAME, payload: serch })
+    const serch = users.filter(e => e.name===name)
+    return({type: SEARCH_BY_NAME, payload: serch})
 }
+
+export const getMyProfile = () => {
+    return({type:GET_MY_PROFILE,payload: {
+    
+    name: 'Dufainder Bedoya',
+    description: 'Soy un monstruo programando xD',
+    imageprofile: './perfil2.jpg', 
+    imageport: './BReact.png',
+    birthday:'15-02-2022',
+    roll: 'Estudiante',
+    cohorte:'FT-19b'
+    
+     }})
+}
+

@@ -1,4 +1,6 @@
-import React, {useState} from 'react';
+import {getMyProfile} from "../../actions";
+import React,{ useState, useEffect } from 'react';
+import { useDispatch, useSelector} from 'react-redux'
 
 import { GroupForm, InputName, LabelName,
      InputDescription, SelectRol, 
@@ -11,9 +13,23 @@ import { GroupForm, InputName, LabelName,
  import {GlobalStyle} from './Styled';
 
 
+ 
+function EditProfile() {
+   
+  
+const user = useSelector((state) => state.myprofile) 
+console.log(user);
 
+const [input,setInput] =useState({   
 
- function EditProfile() {
+  name: user.name,
+  description: user.description,
+  imageprofile: user.imageprofile, 
+  imageport: user.imageport,
+  birthday: user.birthday,
+  roll: user.roll,
+  cohorte: user.birthday,
+  });
 
     const [editP, setEditP] = useState(false);
     const [edit, setEdit] = useState(false);
@@ -33,51 +49,43 @@ import { GroupForm, InputName, LabelName,
         });
       }
 
+      // name: `${user.name}`,
+      // description:`${user.description}`, 
+      // imageprofile: `${user.imageprofile}`, 
+      // imageport: `${user.imageport}`,
 
-
-      const [input, setInput] = useState({
-        name: 'Dufainder Bedoya',
-        description: 'Soy un monstruo programando xD',
-        imageprofile: './perfil2.jpg', 
-        imageport: './BReact.png',
-        roll: 'Estudiante',
-        cohorte:'FT-19b'
-        
-    })
-
-    function handleChange(evt){
-      let  valo = evt.target.value;
-      console.log(valo)
-      setInput({
+      
+      function handleChange(evt){
+        let  valo = evt.target.value;
+        console.log(valo)
+        setInput({
           ...input,
           [evt.target.name]:evt.target.value
       })
     }
-
+    
     function handleSelect(evt){
       if(!input.includes(evt.target.value)){
-          setInput({
-              ...input,
-              diets: [...input.diets, evt.target.value]
-          })
+        setInput({
+          ...input,
+          diets: [...input.diets, evt.target.value]
+        })
       }
-      console.log(input)
-  }
+      
+    }
+    
+    
+    //   const fileSelector = document.getElementById('file-selector');
+    //   function  Fselector(fileSelector){fileSelector.addEventListener('change', (event) => {
+      //   const fileList = event.target.files;
+      //   console.log(fileList);
+      //   });
+      // }
+      
 
-
-  //   const fileSelector = document.getElementById('file-selector');
-  //   function  Fselector(fileSelector){fileSelector.addEventListener('change', (event) => {
-  //   const fileList = event.target.files;
-  //   console.log(fileList);
-  //   });
-  // }
-
-
-       let imageport= input.imageport;
-       console.log(typeof imageport)
-
-     return( <>
-                    <GlobalStyle/>
+      
+      return( <>
+                     <GlobalStyle/> 
                     <PrincipalContainer>
                     {/* `${input.imageport}` */}
             <PortadaContainer onMouseEnter={()=>setEdit(true)} onMouseOut={()=>setEdit(false)} onClick={update2}>
@@ -131,12 +139,16 @@ import { GroupForm, InputName, LabelName,
 
    <GroupForm>
          <LabelName>Name:</LabelName>
-         <div>
+          
+           <div>
            <InputName 
            value={input.name} 
            name = 'name' 
            onChange = {evt => handleChange(evt)}/>
-         </div>
+         </div> 
+        
+         
+        
          
     </GroupForm>
 
@@ -163,8 +175,7 @@ import { GroupForm, InputName, LabelName,
       onChange = {evt => handleChange(evt)}
       >
          <OptionRol>Estudiante</OptionRol>
-         <OptionRol>Egresado</OptionRol>
-         <OptionRol>Instructor</OptionRol>
+        
       </SelectRol>
       </GroupForm>
      </div>
@@ -172,7 +183,7 @@ import { GroupForm, InputName, LabelName,
      <div>
 
       <GroupForm>
-         <LabelName>Cohorte:</LabelName>
+         <LabelName>Birthday:</LabelName>
          <div>
            <InputCohorte 
            value={`${input.cohorte}`}
