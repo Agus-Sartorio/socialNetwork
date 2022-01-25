@@ -24,7 +24,7 @@ const Profile = () => {
             <NavBar/>
             <Container>
             <SideBar/>
-            {profile.length ?
+            {Object.keys(profile).length ?
                 <div>
                     <CardProfile
                         profile={profile}

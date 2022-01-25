@@ -38,7 +38,7 @@ export default function SideBar() {
             <div className='user'>
                 <button onClick={handleClick}>
                     <img src={user.photoURL} alt="" />
-                    <p>{user.displayName}</p>
+                    <p>{user.displayName.split(' ')[0]}</p>
                     <span className={isuser && 'chevron'}><Chevron /></span>
                 </button>
             </div>
@@ -67,27 +67,27 @@ export default function SideBar() {
             </details>
             <details open={open === false && undefined}>
                 <summary className='canales'>
-                    <Red/>
+                    <Red />
                     Red
                     <span><Chevron /></span>
                 </summary>
                 {
                     open &&
                     <ul className='list'>
-                        <li><a href="/suggestions">Sugerencias</a></li>
+                        <li><a href="/suggestions"># Sugerencias</a></li>
                     </ul>
                 }
             </details>
             <details open={open === false && undefined}>
                 <summary className='canales'>
-                    <Settings/>
+                    <Settings />
                     Configuracion
                     <span><Chevron /></span>
                 </summary>
                 {
                     open &&
                     <ul className='list'>
-                        <li><a href="/edit">Editar perfil</a></li>
+                        <li><a href="/edit"># Editar perfil</a></li>
                     </ul>
                 }
             </details>

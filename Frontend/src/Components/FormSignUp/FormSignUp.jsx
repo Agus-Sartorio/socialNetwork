@@ -32,7 +32,8 @@ export default function SignUp() {
       <Container>
         <Texto>Crea tu cuenta </Texto>
         {error && <p>{error}</p>}
-        <Input
+        <form onSubmit={register}>
+                  <Input
           required
           type="text"
           placeholder="Nombre completo"
@@ -43,6 +44,7 @@ export default function SignUp() {
         <Input
           required
           type="email"
+          required
           placeholder="Correo electronico"
           onChange={(event) => {
             setRegisterEmail(event.target.value);
@@ -51,12 +53,14 @@ export default function SignUp() {
         <Input
           required
           type="password"
+          required
           placeholder="Contraseña"
           onChange={(event) => {
             setRegisterPassword(event.target.value);
           }}
         />
-        <Button onClick={register}>Registrarte</Button>
+        <Button>Registrarte</Button>
+        </form>
       </Container>
     </MainContainer>
   );
