@@ -1,5 +1,5 @@
 
-import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_PROFILE, GET_USER, SEARCH_BY_NAME, GET_MY_PROFILE} from "../actions/actionTypes"
+import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_USER, SEARCH_BY_NAME, GET_MY_PROFILE, GET_USER_BY_ID} from "../actions/actionTypes"
 
 
 const initialState = {

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { users } from "../test-data/usuarios";
-import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_PROFILE, GET_USER, SEARCH_BY_NAME, GET_MY_PROFILE } from "./actionTypes";
+import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_USER, SEARCH_BY_NAME, GET_MY_PROFILE, GET_USER_BY_ID } from "./actionTypes";
 
 
 export const getUsers = () => {

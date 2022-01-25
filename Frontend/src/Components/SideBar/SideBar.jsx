@@ -5,6 +5,7 @@ import Chevron from '../Icons/Chevron'
 import Red from '../Icons/Red'
 import Settings from '../Icons/Settings';
 import { useUserAuth } from "../Context/UserContext";
+import { Link } from "react-router-dom";
 
 
 export default function SideBar() {
@@ -74,7 +75,7 @@ export default function SideBar() {
                 {
                     open &&
                     <ul className='list'>
-                        <li><a href="/suggestions"># Sugerencias</a></li>
+                        <li><Link to='/suggestions'><a># Sugerencias</a></Link></li>
                     </ul>
                 }
             </details>
