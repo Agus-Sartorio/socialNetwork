@@ -8,7 +8,7 @@ width: 100vw;
 border-bottom: 5px solid var(--yellow-1);
 background-color: #1D1D1D;
 color: #eee;
-padding: 20px 0; 
+padding: 20px 10px; 
 position: relative; ;
 
 div{
@@ -87,4 +87,15 @@ img{
         color: #eee;
     }
 }
+
+@media screen and (max-width: 700px) {
+    .app-title{
+        display: none;
+    }
+
+    .nav-hover{
+        display: none;
+    }
+}
+
 `
