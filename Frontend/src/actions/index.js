@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { users } from "../test-data/usuarios";
-import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_USER, SEARCH_BY_NAME, GET_MY_PROFILE, GET_USER_BY_ID } from "./actionTypes";
+import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_USER, GET_NAME, GET_MY_PROFILE, GET_USER_BY_ID } from "./actionTypes";
 
 
 export const getUsers = () => {
@@ -34,11 +34,6 @@ export const clearProfileState = () => {
     return ({ type: CLEAR_PROFILE_STATE, payload: [] })
 }
 
-export const searchByName = (name) => {
-    const serch = users.filter(e => e.name===name)
-    return({type: SEARCH_BY_NAME, payload: serch})
-}
-
 export const getMyProfile = () => {
     return({type:GET_MY_PROFILE,payload: {
     
@@ -52,4 +47,24 @@ export const getMyProfile = () => {
     
      }})
 }
+
+export function getPeopleByName(name) {
+    return async function (dispatch) {
+      try {
+        let names = await axios.get(`${process.env.REACT_APP_PUERTO}usuarios/`
+           + name
+          );
+         
+        return dispatch({
+          type: "GET_NAME",
+          payload: names.data,
+        });
+      } catch (error) {
+       console.log(error)
+      }
+    
+    };
+  }
+
+
 
