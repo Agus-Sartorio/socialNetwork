@@ -49,7 +49,9 @@ export default function NavBar() {
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.3 }}
                         >
-                            <Notifications />
+                            <Notifications
+                                setOpen={setOpen}
+                            />
                         </motion.div>
                     }
                 </div>
