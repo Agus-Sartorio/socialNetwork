@@ -332,10 +332,17 @@ export const OptionRol = styled.option`
   }
 `;
 
-export const InputCohorte = styled(InputName).attrs(props => ({
+export const InputEmail = styled(InputName).attrs(props => ({
   name:props.name  || 'cohorte'
   }))` 
-    width: 100px;
+    width: 165px;
+    padding: 3%;
+    border-radius: 5px;
+    border:none;
+ 
+    &:hover{
+      box-shadow: 0 1px 1px rgba(40, 217, 245, 0.5)inset, 0 0 10px #28D9F5;
+  }
 `;
 
 export const ImageProfile = styled(Image).attrs(props => ({

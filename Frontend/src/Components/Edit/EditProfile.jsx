@@ -1,17 +1,16 @@
-import {getMyProfile, getUsers, getMyProfileData} from "../../actions";
-import React,{ useState, useEffect } from 'react';
+import React,{ useState} from 'react';
 import { useDispatch, useSelector} from 'react-redux';
-import {postUploadProfile, getProfile} from "../../actions";
+import {postUploadProfile} from "../../actions";
 
 
 
 import { GroupForm, InputName, LabelName,
      InputDescription, SelectRol, 
-     OptionRol, InputCohorte, PrincipalContainer,
+     OptionRol,  PrincipalContainer,
      ImageProfile, ImagePortada, FormContainer, DownContainer,
      LabelImgProfile, LabelImgPort, 
      InputFile,FileContainer, LabelFile,FileContainerP,PortadaContainer,
-     ButtonSubmit,DivSubmitContainer
+     ButtonSubmit,DivSubmitContainer,InputEmail
  } from './Styled';
 
  import {GlobalStyle} from './Styled';
@@ -33,7 +32,7 @@ const [input,setInput] = useState({
   profile:  userk[0].profile, 
   background_picture: ['./BReact.png'],
   email: userk[0].email,
-  roll: ['Estudiante'],
+  nacionalidad: userk[0].nacionalidad,
   cohorte:['FT-19b']
   });
 console.log(input)
@@ -210,15 +209,39 @@ console.log(input)
   <DownContainer>
      
      <div>
-
+     {/* value={`${input.nacionalidad}`} */}
     <GroupForm>
-    <LabelName>Rol:</LabelName>
+    <LabelName>Nacionalidad:</LabelName>
       <SelectRol 
-      name = 'roll' 
-      value={`${input.roll}`}
+      name = 'nacionalidad' 
+    
       onChange = {evt => handleChange(evt)}
       >
-         <OptionRol>Estudiante</OptionRol>
+         
+        
+<OptionRol>Argentina</OptionRol>
+<OptionRol> Bolivia</OptionRol>
+<OptionRol> Brasil</OptionRol>
+<OptionRol> Chile</OptionRol>
+<OptionRol> Colombia</OptionRol>
+<OptionRol> Costa Rica </OptionRol>
+<OptionRol> Cuba</OptionRol>
+<OptionRol> Ecuador</OptionRol>
+<OptionRol> El Salvador</OptionRol>
+<OptionRol> Guatemala</OptionRol>
+<OptionRol> Haití </OptionRol>
+<OptionRol> Honduras</OptionRol>
+<OptionRol> Jamaica</OptionRol>
+<OptionRol> México</OptionRol>
+<OptionRol> Nicaragua</OptionRol>
+<OptionRol> Paraguay</OptionRol>
+<OptionRol> Panamá</OptionRol>
+<OptionRol> Perú</OptionRol>
+<OptionRol> Puerto Rico</OptionRol>
+<OptionRol> República Dominicana</OptionRol>
+<OptionRol> Uruguay</OptionRol>
+<OptionRol> Venezuela</OptionRol>
+
         
       </SelectRol>
       </GroupForm>
@@ -229,7 +252,7 @@ console.log(input)
       <GroupForm>
          <LabelName>Email:</LabelName>
          <div>
-           <InputCohorte 
+           <InputEmail 
            value={`${input.email}`}
            name = 'email' 
            onChange = {evt => handleChange(evt)}/>
