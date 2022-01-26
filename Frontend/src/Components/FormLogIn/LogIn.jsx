@@ -5,8 +5,10 @@ import { GithubAuthProvider, signInWithPopup } from "firebase/auth";
 import { authentication } from "../Firebase/firebase";
 import { useUserAuth } from "../Context/UserContext";
 import axios from "axios";
+import { bake_cookie } from 'sfcookies'
 import { StyledLogIn } from "./styles";
 import logoHenry from '../../images/LOGO-HENRY.png'
+
 
 
 export default function Form() {
@@ -18,12 +20,13 @@ export default function Form() {
     return signInWithPopup(authentication, githubAuthProvider);
   }
   const registro = async () => {
-    await axios.post(`${process.env.REACT_APP_PUERTO}usuarios`, {
+    const {data:{data}} = await axios.post(`${process.env.REACT_APP_PUERTO}usuarios`, {
       fullname: user.displayName,
       email: user.email,
       id: user.uid,
       profile: user.photoURL
-    })
+     })
+     bake_cookie('userToken',data)
   }
   const handleGithubeSignIn = async (e) => {
     e.preventDefault();
