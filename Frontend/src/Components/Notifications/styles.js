@@ -1,10 +1,21 @@
 import styled from 'styled-components';
 
+export const StyledOverflow = styled.div`
+    position: fixed;
+    display: flex;
+    background-color: transparent;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 2;
+`
+
 export const StyledNotifications = styled.div`
     position: absolute;
-    top: 40px;
-    left: 50%;
-    transform: translateX(-84.1%);
+    top: 70px;
+    left: 62.8%;
+    /* transform: translateX(-84.1%); */
 
     &::after{
             content: '';
