@@ -51,9 +51,7 @@ export const getMyProfile = () => {
 export function getPeopleByName(name) {
     return async function (dispatch) {
       try {
-        let names = await axios.get(`${process.env.REACT_APP_PUERTO}usuarios/`
-           + name
-          );
+        let names = await axios.get(`${process.env.REACT_APP_PUERTO}usuarios/${name}` , tokenUsuario())
          
         return dispatch({
           type: "GET_NAME",
