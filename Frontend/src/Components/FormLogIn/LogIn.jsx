@@ -6,6 +6,10 @@ import { authentication } from "../Firebase/firebase";
 import { useUserAuth } from "../Context/UserContext";
 import axios from "axios";
 import { bake_cookie } from 'sfcookies'
+import { StyledLogIn } from "./styles";
+import logoHenry from '../../images/LOGO-HENRY.png'
+
+
 
 export default function Form() {
 
@@ -38,10 +42,15 @@ export default function Form() {
   const { user } = useUserAuth();
 
   return (
-    <button onClick={handleGithubeSignIn}>
-      {" "}
-      <GithubIcon width={25} height={25} />
-      <span> Iniciar sesión con GitHub </span>{" "}
-    </button>
+    <StyledLogIn>
+      <div className='texto'>
+        <h1 className='welcome'>Bienvenido a Henry Network</h1>
+        <img className='logo' src={logoHenry} alt="" />
+      </div>
+      <button className="btn-logIn" onClick={handleGithubeSignIn}>
+        <GithubIcon width={25} height={25} />
+        <span> Iniciar sesión con GitHub </span>
+      </button>
+    </StyledLogIn>
   );
 };
