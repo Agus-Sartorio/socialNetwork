@@ -10,12 +10,13 @@ const GlobalStyle = createGlobalStyle`
 
   :root{
     --grey-1: #1D1D1D;
+    --grey-9: #f3f3f3;
     --yellow-1: #FAE800;
   }
 
   body {
   font-family: 'Montserrat', sans-serif;
-  /* overflow: hidden; */
+  overflow: hidden;
   }
 
   input,
