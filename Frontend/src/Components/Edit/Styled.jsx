@@ -10,6 +10,28 @@ margin: 0%;
 padding: 0%;
 `;
 
+export const DivSubmitContainer = styled.div`
+margin: 1%;
+padding: 1%;
+`;
+
+export const ButtonSubmit= styled.button`
+margin: 1%;
+padding: 1%;
+background-color:black;
+color: #FAE800;
+position: relative;
+z-index:10;
+text-align:center;
+border-radius:5px;
+&:hover{
+  color:white;
+  background-color:#00BFFF;
+  cursor:pointer;
+  }
+`;
+
+
 export const PrincipalContainer = styled(SidebarContainer)`
 margin-left:25%;
 margin-top: 2%;

@@ -14,7 +14,7 @@ export default function SearchBar() {
   const users = useSelector((state => state.search));
 
   const [filteredData, setFilteredData] = useState([]);
-  console.log(filteredData)
+ 
 
   const handleFilter = (event) => {
     const searchWord = event.target.value;

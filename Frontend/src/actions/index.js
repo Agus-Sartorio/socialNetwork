@@ -1,9 +1,6 @@
+
 import axios from 'axios';
-<<<<<<< HEAD
-import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_USER, GET_NAME, GET_MY_PROFILE, GET_USER_BY_ID, tokenUsuario } from "./actionTypes";
-=======
-import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_USER,  GET_MY_PROFILE, GET_USER_BY_ID, tokenUsuario, MY_PROFILE } from "./actionTypes";
->>>>>>> 40974ae750e16b95bcd8a78c65a78021e131e70a
+import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_USER, GET_NAME,  GET_MY_PROFILE, GET_USER_BY_ID, tokenUsuario, MY_PROFILE } from "./actionTypes";
 
 
 export const getUsers = () => {
@@ -38,18 +35,27 @@ export const clearProfileState = () => {
 }
 
 export const getMyProfile = () => {
-    return({type:GET_MY_PROFILE,payload: {
+   
+    return async (dispatch) => {
+        try {
+            const usuario = await axios.get(`${process.env.REACT_APP_PUERTO}usuarios/?myself=true`, tokenUsuario())
+            
+    return  dispatch({type:GET_MY_PROFILE,payload: {
     //esta actions la puede hacer getProfile  mandandole el ID de mi perfil
-    name: 'Dufainder Bedoya',
-    id:'',
-    description: 'Soy un monstruo programando xD',
-    imageprofile: './perfil2.jpg', 
+    name: usuario.data[0].fullname,
+    description: usuario.data[0].description,
+    imageprofile: usuario.data[0].profile, 
     imageport: './BReact.png',
-    birthday:'15-02-2022',
+    birthday:usuario.data[0].fullname,
     roll: 'Estudiante',
     cohorte:'FT-19b'
-    
+
      }})
+    } catch (err) {
+        console.log(err)
+    }
+}
+
 }
 
 
@@ -58,7 +64,7 @@ export function postUploadProfile(payload){
     return async function(dispatch) {
         try {
             
-            const response = await axios.put(`${process.env.REACT_APP_PUERTO}usuarios/${id}`, payload, tokenUsuario())
+            const response = await axios.put(`${process.env.REACT_APP_PUERTO}usuarios/` + payload, tokenUsuario())
             console.log(response)
             return response
 

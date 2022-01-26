@@ -1,10 +1,6 @@
-<<<<<<< HEAD
-import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE,  GET_USER_BY_ID, GET_USER, GET_NAME, GET_MY_PROFILE} from "../actions/actionTypes"
-=======
 
 import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_USER, GET_NAME, GET_MY_PROFILE, GET_USER_BY_ID, MY_PROFILE} from "../actions/actionTypes"
 
->>>>>>> 40974ae750e16b95bcd8a78c65a78021e131e70a
 
 const initialState = {
 
