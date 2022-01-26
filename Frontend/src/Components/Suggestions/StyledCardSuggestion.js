@@ -20,6 +20,16 @@ left: 25%;
 
 }
 
+.btn2{
+height:30px;
+background-color: black;
+color: white;
+border-radius: 5px;
+width: 50%;
+position: relative;
+left: 25%;
+
+}
 .image{
     height: 70px;
     border-radius: 50px;
