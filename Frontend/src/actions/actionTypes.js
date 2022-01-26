@@ -15,3 +15,5 @@ export const CLEAR_PROFILE_STATE = 'CLEAR_PROFILE_STATE';
 export const GET_MY_PROFILE ='GET_MY_PROFILE';
 export const GET_NAME = 'GET_NAME';
 export const PUT_UPLOUD_PROFILE='PUT_UPLOUD_PROFILE';
+export const MY_PROFILE='MY_PROFILE';
+

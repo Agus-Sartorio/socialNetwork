@@ -1,6 +1,5 @@
 
-import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_MY_PROFILE, 
-    GET_USER_BY_ID, GET_USER, GET_NAME, PUT_UPLOUD_PROFILE} from "../actions/actionTypes"
+import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_USER, GET_NAME, GET_MY_PROFILE, GET_USER_BY_ID, MY_PROFILE,  PUT_UPLOUD_PROFILE} from "../actions/actionTypes"
 
 
 const initialState = {
@@ -8,7 +7,8 @@ const initialState = {
     users: [],
     profile: [],
     search:[],
-    myprofile:{}
+    myprofile:{},
+    myProfileData:[]
 
 }
 
@@ -55,7 +55,11 @@ export function rootReducer(state = initialState, action) {
                 ...state,
                 myprofile:action.payload
             }
-
+        case MY_PROFILE:
+            return{
+                ...state,
+                myProfileData:action.payload
+            }    
         default:
             return state
     }

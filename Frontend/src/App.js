@@ -8,6 +8,7 @@ import Suggestions from './Components/Suggestions/Suggestions.jsx';
 import { UserAuthContextProvider } from "./Components/Context/UserContext";
 // import { ProtectedRoute } from './Components/ProtectedRoute'
 import Profile from './Components/Profile/Profile.jsx';
+import MyProfile from "./Components/MyProfile/MyProfile.jsx";
 function App() {
   return (
     <div>
@@ -22,6 +23,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/suggestions" element={<Suggestions />} />
           <Route path='/profile/:id' element={<Profile />} />
+          <Route path='/myprofile' element={<MyProfile/>}/>
         </Routes>
       </UserAuthContextProvider>
     </div>
