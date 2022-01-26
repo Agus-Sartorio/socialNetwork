@@ -1,6 +1,7 @@
 import {read_cookie} from 'sfcookies';
 import axios from 'axios';
-import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_USER,  GET_MY_PROFILE, GET_USER_BY_ID, tokenUsuario } from "./actionTypes";
+
+import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_USER,  GET_MY_PROFILE, GET_USER_BY_ID, tokenUsuario,} from "./actionTypes";
 
 
 export const getUsers = () => {
@@ -33,6 +34,22 @@ export const getProfile = (id) => {
 export const clearProfileState = () => {
     return ({ type: CLEAR_PROFILE_STATE, payload: [] })
 }
+
+
+export function postUploadProfile(payload,id){
+    console.log(payload)
+    return async function(dispatch) {
+        try {
+            const response = await axios.put(`${process.env.REACT_APP_PUERTO}usuarios/${id}`, payload)
+            console.log(response)
+            return response
+
+        }catch(error){
+            console.log(error);
+        }
+    }
+}
+
 
 export const getMyProfile = () => {
     return({type:GET_MY_PROFILE,payload: {
