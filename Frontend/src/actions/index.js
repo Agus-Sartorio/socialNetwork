@@ -1,6 +1,6 @@
 import {read_cookie} from 'sfcookies';
 import axios from 'axios';
-import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_USER,  GET_MY_PROFILE, GET_USER_BY_ID, tokenUsuario } from "./actionTypes";
+import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_USER, GET_NAME, GET_MY_PROFILE, GET_USER_BY_ID, tokenUsuario } from "./actionTypes";
 
 
 export const getUsers = () => {

@@ -27,11 +27,7 @@ export default function SearchBar() {
 
   return (
     <>
-<<<<<<< HEAD
-      <form>
-=======
   <StyledForm>
->>>>>>> 08e70142b381843444100059d94959bd1b3e8014
         <button type="submit">
           <Search />
         </button>
@@ -50,10 +46,6 @@ export default function SearchBar() {
           })}
         </div>
       )}
-<<<<<<< HEAD
-    </>
-=======
 </>
->>>>>>> 08e70142b381843444100059d94959bd1b3e8014
   );
 }
