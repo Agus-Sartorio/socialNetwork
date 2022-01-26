@@ -8,14 +8,15 @@ width: 100vw;
 border-bottom: 5px solid var(--yellow-1);
 background-color: #1D1D1D;
 color: #eee;
-padding: 20px 0;    
+padding: 20px 10px; 
+position: relative; ;
 
 div{
     display: flex;
     align-items: center;
 }
 
-p{
+.app-title{
     letter-spacing: 1.5px;
     font-weight: bold;
     font-size: 15px; 
@@ -28,11 +29,19 @@ img{
 }
 
 .botones{
+    display: flex;
+    justify-content: space-around;
+    width: 150px;
+
+    .open{
+        position: relative;
+    }
+
     & > *{
         position: relative;
         font-family: 'Roboto', sans-serif;
         
-        span{
+        .nav-hover{
             position: absolute;
             background-color: var(--yellow-1);
             color: var(--grey-1);
@@ -48,13 +57,13 @@ img{
             transition: opacity 0.5s;
         }
         &:hover{
-            span{
+            .nav-hover{
                 opacity: 1;
                 visibility: visible;
             }
         }
     }
-    span:after{
+    .nav-hover:after{
         content: '';
         display: block;
         width: 0;
@@ -67,14 +76,26 @@ img{
         transform: translatex(-50%)
     }
     button{
-        margin-left:30px;
+        /* margin-left:30px; */
         background-color: transparent;
         border: none;
-        color: #eee
+        color: #eee;
+        cursor: pointer;
     }
     .link{
         text-decoration: none;
         color: #eee;
     }
 }
+
+@media screen and (max-width: 700px) {
+    .app-title{
+        display: none;
+    }
+
+    .nav-hover{
+        display: none;
+    }
+}
+
 `
