@@ -46,13 +46,7 @@ grid-row-gap: 10px;
     justify-content: space-around;
 }
 
-button{
-    background-color: yellow;
-    border: 2px solid white;
-    width: 80px;
-    height: 25px;
-    border-radius:5px;
-}
+
 
 .publicaciones{
     margin-top: 50px;
@@ -65,6 +59,21 @@ button{
     align-items: center;
 }
 
+.follow{
+    background-color: yellow;
+    border: 2px solid white;
+    width: 80px;
+    height: 25px;
+    border-radius:5px;
+}
+.unfollow{
+    background-color: white;
+    color: black;
+    border: 2px solid white;
+    width: 80px;
+    height: 25px;
+    border-radius:5px;
+}
 `
 
 
