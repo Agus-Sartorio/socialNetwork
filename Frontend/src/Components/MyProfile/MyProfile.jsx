@@ -1,18 +1,23 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Div } from './StyledMyProfile';
 import NavBar from "../NavBar/NavBar";
 import SideBar from "../SideBar/SideBar";
-import { Div } from './StyledMyProfile';
+import { useEffect } from "react";
+import { getMyProfileData } from "../../actions";
 
 
 const MyProfile = () => {
     const myProfile = useSelector((state) => state.myProfileData)
-
+    const dispatch = useDispatch()
     
+    useEffect(()=>{
+    dispatch(getMyProfileData())
+    },[dispatch])
+  
     return (
         <>
-        <NavBar/>
-        <Div>
-        <SideBar/>
+       <NavBar/>
+        <Div>   
         <div>
             <img src={myProfile[0].profile}></img>
         <h1>{myProfile[0].fullname}</h1>
