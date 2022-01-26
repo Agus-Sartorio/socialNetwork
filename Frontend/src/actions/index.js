@@ -1,12 +1,12 @@
+import {read_cookie} from 'sfcookies';
 import axios from 'axios';
-import { users } from "../test-data/usuarios";
-import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_USER, GET_NAME, GET_MY_PROFILE, GET_USER_BY_ID } from "./actionTypes";
+import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_USER,  GET_MY_PROFILE, GET_USER_BY_ID, tokenUsuario } from "./actionTypes";
 
 
 export const getUsers = () => {
     return async (dispatch) => {
         try {
-            const usuarios = await axios.get(`${process.env.REACT_APP_PUERTO}usuarios`)
+            const usuarios = await axios.get(`${process.env.REACT_APP_PUERTO}usuarios/?myself=false`, tokenUsuario())
             return dispatch({ type: GET_USER, payload: usuarios.data })
         } catch (err) {
             console.log(err)
