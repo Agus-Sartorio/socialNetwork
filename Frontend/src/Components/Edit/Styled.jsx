@@ -10,6 +10,28 @@ margin: 0%;
 padding: 0%;
 `;
 
+export const DivSubmitContainer = styled.div`
+margin: 1%;
+padding: 1%;
+`;
+
+export const ButtonSubmit= styled.button`
+margin: 1%;
+padding: 1%;
+background-color:black;
+color: #FAE800;
+position: relative;
+z-index:10;
+text-align:center;
+border-radius:5px;
+&:hover{
+  color:white;
+  background-color:#00BFFF;
+  cursor:pointer;
+  }
+`;
+
+
 export const PrincipalContainer = styled(SidebarContainer)`
 margin-left:25%;
 margin-top: 2%;
@@ -310,10 +332,17 @@ export const OptionRol = styled.option`
   }
 `;
 
-export const InputCohorte = styled(InputName).attrs(props => ({
+export const InputEmail = styled(InputName).attrs(props => ({
   name:props.name  || 'cohorte'
   }))` 
-    width: 100px;
+    width: 165px;
+    padding: 3%;
+    border-radius: 5px;
+    border:none;
+ 
+    &:hover{
+      box-shadow: 0 1px 1px rgba(40, 217, 245, 0.5)inset, 0 0 10px #28D9F5;
+  }
 `;
 
 export const ImageProfile = styled(Image).attrs(props => ({

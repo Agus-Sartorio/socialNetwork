@@ -88,7 +88,7 @@ export default function SideBar() {
                 {
                     open &&
                     <ul className='list'>
-                        <li><a href="/edit"># Editar perfil</a></li>
+                        <Link to="/edit"><li><p># Editar perfil</p></li></Link>
                     </ul>
                 }
             </details>

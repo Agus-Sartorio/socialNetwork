@@ -1,23 +1,22 @@
-import {getMyProfile} from "../../actions";
+import {getMyProfileData} from "../../actions";
 import { useDispatch, useSelector} from 'react-redux'
 import React, { useState,useEffect } from 'react';
-import Account from './Account';
 import EditProfile from './EditProfile';
-import SideBar from './SideBar';
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import SideBar from "../SideBar/SideBar";
 import NavBar from '../NavBar/NavBar'
 import {
-      GlobalStyle, Container2, SidebarContainer,
+       Container2, SidebarContainer,
 
 } from './Styled';
 
 function Edit() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch( getMyProfileData())
+ }, [dispatch])
 
   const [gstate, setgstate] = useState(true);       
-  const dispatch = useDispatch();
-  
-  dispatch(getMyProfile());
-
 
     return (
          
@@ -28,7 +27,7 @@ function Edit() {
            <SidebarContainer>
               <SideBar setgstate={setgstate}/>
            </SidebarContainer>
-           {gstate? <EditProfile/> : <Account/>}
+           <EditProfile/> 
      </Container2>
       </>
 
