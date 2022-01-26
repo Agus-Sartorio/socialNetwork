@@ -9,6 +9,7 @@ export const StyledForm = styled.form`
     background-color: white;
     padding: 0 16px 0 5px;
     margin: 0 10px;
+    position: relative;
 
 input{
     font-size:16px;
@@ -30,5 +31,63 @@ button{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.datalist{
+    background-color: var(--grey-9);
+    position: absolute;
+    top: 140%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 5px 10px;
+    max-height: 200px;
+    overflow-y: auto;
+    border-radius: 7px;
+    box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.3);
+
+    .name{
+        padding: 10px;
+        background-color: transparent;
+        margin: 3px 0;
+        width: 90vw;
+        max-width: 300px;
+        display: flex;
+        align-items: center;
+        border-radius: 7px;
+        transition: background-color 250ms, box-shadow 250ms;
+        position: relative;
+
+        a{
+            text-decoration: none;
+            color: black;
+            font-weight: 600;
+        }
+
+        .user-img{
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        &:hover{
+            background-color: white;
+            box-shadow: 0px 5px 15px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .email{
+            display: block;
+            font-weight: 500;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .span-link{
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+    }
 }
 `

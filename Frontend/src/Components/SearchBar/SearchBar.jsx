@@ -6,46 +6,60 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 export default function SearchBar() {
+
+  const [isFocus, setIsFocus] = useState(false);
+
   const dispatch = useDispatch();
 
   const users = useSelector((state => state.search));
-  console.log(users, 'search');
 
   const [filteredData, setFilteredData] = useState([]);
+  console.log(filteredData)
 
   const handleFilter = (event) => {
-    event.preventDefault();
     const searchWord = event.target.value;
-    const newFilter = users.filter((value) => {
-      return value.fullname.toLowerCase().includes(searchWord.toLowerCase());
-    });
-    setFilteredData(newFilter);
+    if (!searchWord) {
+      setFilteredData([]);
+    }
+    else {
+      const newFilter = users.filter((value) => {
+        return value.fullname.toLowerCase().includes(searchWord.toLowerCase());
+      });
+      setFilteredData(newFilter);
+    }
   };
   useEffect(() => {
     dispatch(getPeopleByName(filteredData))
-}, [])
+  }, [])
 
   return (
-    <>
-  <StyledForm>
-        <button type="submit">
-          <Search />
-        </button>
-        <input type="text" placeholder="Search" onChange={handleFilter} />
-      </StyledForm>
-      {filteredData.length !== 0 && (
-        <div>
-          {filteredData.map((value, key) => {
+    <StyledForm>
+      <button type="submit">
+        <Search />
+      </button>
+      <input
+        type="text"
+        placeholder="Search"
+        onChange={handleFilter}
+        onFocus={() => setIsFocus(true)}
+        onBlur={() => setIsFocus(false)}
+      />
+      {filteredData.length !== 0 && isFocus && (
+        <div className='datalist'>
+          {filteredData.map((value) => {
             return (
+              <p className='name' key={value.id}>
+                <img className='user-img' src={value.profile} alt={value.fullname} />
                 <Link to={`/profile/` + value.id} >
-              <a href={value.id}>
-                <p>{value.fullname}</p>
-              </a>
-              </Link>
+                  {value.fullname}
+                  <span className='email'>{value.email}</span>
+                  <span className='span-link' />
+                </Link>
+              </p>
             );
           })}
         </div>
       )}
-</>
+    </StyledForm>
   );
 }
