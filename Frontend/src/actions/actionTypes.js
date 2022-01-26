@@ -1,3 +1,13 @@
+import {read_cookie} from 'sfcookies';
+
+// variable para configurar el header 
+
+export const tokenUsuario = () => {
+    const token = read_cookie('userToken')
+return {headers:{token}}
+} 
+
+
 export const GET_USER = 'GET_USER';
 export const GET_USER_BY_ID = 'GET_USER_BY_ID';
 export const CLEAR_USERS_STATE = 'CLEAR_USERS_STATE';
