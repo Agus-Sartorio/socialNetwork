@@ -7,12 +7,12 @@ export const getUsers = () => {
     return async (dispatch) => {
         try {
             const usuarios = await axios.get(`${process.env.REACT_APP_PUERTO}usuarios/?myself=true`, tokenUsuario())
+
             return dispatch({ type: GET_USER, payload: usuarios.data })
         } catch (err) {
             console.log(err)
         }
     }
-
 }
 
 export const clearUsersState = () => {

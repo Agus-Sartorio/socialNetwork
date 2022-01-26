@@ -13,9 +13,9 @@ export default function SideBar() {
     const { user, logOut } = useUserAuth()
     console.log(user)
 
-    const handleLogOut = async () => {
+    const handleLogOut =() => {
         try {
-            await logOut();
+            logOut();
 
         } catch (error) {
             console.log(error.message)
@@ -48,9 +48,9 @@ export default function SideBar() {
                 <div className='settings'>
 
                     <li><Link to='/myprofile'><a># Perfil</a></Link></li>
-                    <button className='cerrar-sesion' onClick={handleLogOut}>
+                   <a href="/"><button className='cerrar-sesion' onClick={handleLogOut}>
                         # Cerrar sesion
-                    </button>
+                    </button></a>
                 </div>
             }
             <details open={open === false && undefined}>

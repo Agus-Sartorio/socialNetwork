@@ -1,3 +1,4 @@
+import { delete_cookie } from "sfcookies";
 import { createContext, useContext, useEffect, useState } from "react";
 import {
   createUserWithEmailAndPassword,
@@ -28,6 +29,7 @@ export function UserAuthContextProvider({ children }) {
   }
 
     function logOut (){
+      delete_cookie('userToken')
         return signOut(authentication)
     }  
   useEffect(() => {
