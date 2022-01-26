@@ -1,6 +1,5 @@
-import {read_cookie} from 'sfcookies';
 import axios from 'axios';
-import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_USER,  GET_MY_PROFILE, GET_USER_BY_ID, tokenUsuario } from "./actionTypes";
+import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_USER,  GET_MY_PROFILE, GET_USER_BY_ID, tokenUsuario, MY_PROFILE } from "./actionTypes";
 
 
 export const getUsers = () => {
@@ -22,7 +21,7 @@ export const clearUsersState = () => {
 export const getProfile = (id) => {
     return async (dispatch) => {
         try {
-            const user = await axios.get(`${process.env.REACT_APP_PUERTO}usuarios/Id/${id}`)
+            const user = await axios.get(`${process.env.REACT_APP_PUERTO}usuarios/Id/${id}`,tokenUsuario())
             return dispatch({ type: GET_USER_BY_ID, payload: user.data })
         } catch (err) {
             console.log(err)
@@ -51,8 +50,8 @@ export const getMyProfile = () => {
 export function getPeopleByName(name) {
     return async function (dispatch) {
       try {
-        let names = await axios.get(`${process.env.REACT_APP_PUERTO}usuarios/`
-           + name
+        let names = await axios.get(`${process.env.REACT_APP_PUERTO}usuarios/?myself=false`
+           + name,tokenUsuario()
           );
          
         return dispatch({
@@ -68,3 +67,14 @@ export function getPeopleByName(name) {
 
 
 
+  export const getMyProfileData = () => {
+    return async (dispatch) => {
+        try {
+            const profile = await axios.get(`${process.env.REACT_APP_PUERTO}usuarios/?myself=true`, tokenUsuario())
+            return dispatch({ type: MY_PROFILE, payload: profile.data })
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+}

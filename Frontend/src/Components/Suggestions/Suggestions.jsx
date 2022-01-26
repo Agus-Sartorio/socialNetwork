@@ -32,6 +32,7 @@ const Suggestions = () => {
                             id={e.id}
                             profile={e.profile}
                             email={e.email}
+                            follow={e.follow}
                             key={e.id}
                         />
                         </div>
