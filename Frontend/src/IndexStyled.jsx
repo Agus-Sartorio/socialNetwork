@@ -14,9 +14,13 @@ const GlobalStyle = createGlobalStyle`
     --yellow-1: #FAE800;
   }
 
+  html{
+    height: 100%;
+  }
+
   body {
   font-family: 'Montserrat', sans-serif;
-  overflow: hidden;
+  height: 100%;
   }
 
   input,
@@ -25,6 +29,22 @@ const GlobalStyle = createGlobalStyle`
   select,
   details {
     font-family: inherit;
+  }
+
+  #root{
+    display: flex;
+    height: 100%;
+  }
+
+  .app{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    .main{
+      flex: 1;
+      display: flex;
+    }
   }
 `;
 

@@ -13,9 +13,9 @@ export default function SideBar() {
     const { user, logOut } = useUserAuth()
     console.log(user)
 
-    const handleLogOut = async () => {
+    const handleLogOut = () => {
         try {
-            await logOut();
+            logOut();
 
         } catch (error) {
             console.log(error.message)
@@ -39,15 +39,15 @@ export default function SideBar() {
             <div className='user'>
                 <button onClick={handleClick}>
                     <img src={user.photoURL} alt="" />
-                    <p>{user.displayName.split(' ')[0]}</p>
-                    <span className={isuser && 'chevron'}><Chevron /></span>
+                    <p>{user.displayName?.split(' ')[0]}</p>
+                    <span className={isuser ? 'chevron' : undefined}><Chevron /></span>
                 </button>
             </div>
             {
                 isuser && open &&
                 <div className='settings'>
 
-                    <li><Link to='/myprofile'><a># Perfil</a></Link></li>
+                    <Link to='/myprofile'><p>perfil</p></Link>
                     <button className='cerrar-sesion' onClick={handleLogOut}>
                         # Cerrar sesion
                     </button>
@@ -75,7 +75,7 @@ export default function SideBar() {
                 {
                     open &&
                     <ul className='list'>
-                        <li><Link to='/suggestions'><a># Sugerencias</a></Link></li>
+                        <li><Link to='/suggestions'># Sugerencias</Link></li>
                     </ul>
                 }
             </details>
@@ -88,7 +88,7 @@ export default function SideBar() {
                 {
                     open &&
                     <ul className='list'>
-                        <li><a href="/edit"># Editar perfil</a></li>
+                        <Link to="/edit"><li><p># Editar perfil</p></li></Link>
                     </ul>
                 }
             </details>

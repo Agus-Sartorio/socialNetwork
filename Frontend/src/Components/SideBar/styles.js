@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const StyledSideBar = styled.aside`
     background-color: var(--grey-1);
-    min-height: 100vh;
     width: 55px;
     display: flex;
     flex-direction: column;
@@ -63,15 +62,12 @@ export const StyledSideBar = styled.aside`
     .settings{
         margin-top: -40px;
         margin-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
 
-        li{
-            list-style: none;
-            color: #666;
-            margin-bottom: 10px;
-            font-size: 16px;
-        }
         a{
-            color: currentcolor;
+            color: #666;
             text-decoration: none;
             font-weight: bold
         }

@@ -20,6 +20,7 @@ input{
     background-color:transparent;
     width: 100%;
     max-width: 300px;
+    z-index: 1;
 }
 button{
     margin-left: 5px;
@@ -45,6 +46,7 @@ button{
     overflow-y: auto;
     border-radius: 7px;
     box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.3);
+    z-index: 1;
 
     .name{
         padding: 10px;
@@ -59,6 +61,9 @@ button{
         position: relative;
 
         a{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
             text-decoration: none;
             color: black;
             font-weight: 600;
@@ -75,7 +80,6 @@ button{
         }
 
         .email{
-            display: block;
             font-weight: 500;
             font-size: 13px;
             color: #666;
@@ -89,5 +93,13 @@ button{
             right: 0;
         }
     }
+}
+
+.overlay-searchBar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 `
