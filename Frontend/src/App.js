@@ -19,7 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LogIn />} />
           <Route path="/edit" element={<Edit />} />
-          <Route path="/edit" element={<Chat />} />
+          <Route path="/chat" element={<Chat />} />
           <Route path="/home" element={<Home />} />
           <Route path="/suggestions" element={<Suggestions />} />
           <Route path='/profile/:id' element={<Profile />} />

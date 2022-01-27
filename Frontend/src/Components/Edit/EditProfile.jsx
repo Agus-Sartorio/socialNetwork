@@ -29,8 +29,8 @@ function EditProfile() {
 
     fullname: userk.data[0].fullname,
     description: userk.data[0].description,
-    profile: userk.data[0].profile,
-    background_picture: './BReact.png',
+    profile:`${process.env.REACT_APP_PUERTO}/${userk.data[0].profile}` ,
+    background_picture: `${process.env.REACT_APP_PUERTO}/${userk.data[0].background_picture}`,
     nacionalidad: userk.data[0].nacionalidad,
     email: userk.data[0].email,
     birthday: userk.data[0].birthday
@@ -81,7 +81,7 @@ function EditProfile() {
       <form onSubmit={(evt) => handleSubmit(evt)}>
         {/* `${input.imageport}` */}
         <div>
-          <ImagePortada onMouseEnter={() => setEdit(true)} onMouseOut={() => setEdit(false)} onClick={update2} src={require(`${input.background_picture}`)} />
+          <ImagePortada onMouseEnter={() => setEdit(true)} onMouseOut={() => setEdit(false)} onClick={update2} src={`${input.background_picture}`} />
 
           {/* <div>
               {edit? <LabelImgPort onMouseEnter={()=>setEdit(true)} onMouseOut={()=>setEdit(false)} onClick={update2}>Edit</LabelImgPort> : <></>} 
