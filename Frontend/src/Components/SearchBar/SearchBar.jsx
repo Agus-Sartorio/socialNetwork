@@ -14,7 +14,7 @@ export default function SearchBar() {
   const users = useSelector((state => state.search));
 
   const [filteredData, setFilteredData] = useState([]);
- 
+
 
   const handleFilter = (event) => {
     const searchWord = event.target.value;
@@ -30,7 +30,7 @@ export default function SearchBar() {
   };
   useEffect(() => {
     dispatch(getPeopleByName(filteredData))
-  }, [])
+  }, [dispatch, filteredData])
 
   return (
     <StyledForm>
