@@ -12,6 +12,7 @@ padding: 0%;
 export const H2= styled.h2`
 margin-bottom: 2%;
 margin-left:200px;
+color:white;
 padding: 1%;
 `;
 export const DivSubmitContainer = styled.div`
@@ -38,8 +39,8 @@ border-radius:5px;
 
 
 export const PrincipalContainer = styled(SidebarContainer)`
-margin-left:35%;
-margin-top: 2%;
+margin-left:25%;
+margin-top: 1%;
 
 `;
 
@@ -111,11 +112,11 @@ border-radius:5px;
 export const GlobalStyle = createGlobalStyle`
   body {
   background:black;
-  margin: 0%;
+  /* margin: 0%;
   width: 100vh;
   height: 100vh;
-  color:white;
-  overflow-y:visible;
+  color:white; */
+  /* overflow-y:visible; */
   }
 `;
 
