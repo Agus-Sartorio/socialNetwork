@@ -19,11 +19,10 @@ export default function NavBar() {
 
     return (
         <StyledDiv>
-            <div>
-                <p className='app-title'>HENRY NETWORK</p>
-                <Link to='/home'><img src={logo} alt="" /></Link>
-            </div>
-            <div>
+            <div className='div-1'>
+                <p className='app-title'>
+                    <Link to='/home'><span className='title-text'>HENRY NETWORK</span><img src={logo} alt="" /></Link>
+                </p>
                 <SearchBar />
             </div>
             <div className="botones">
