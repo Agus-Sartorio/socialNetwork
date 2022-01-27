@@ -9,14 +9,19 @@ export const SidebarContainer = styled.div`
 margin: 0%;
 padding: 0%;
 `;
-
+export const H2= styled.h2`
+margin-bottom: 2%;
+margin-left:200px;
+padding: 1%;
+`;
 export const DivSubmitContainer = styled.div`
 margin: 1%;
 padding: 1%;
 `;
 
 export const ButtonSubmit= styled.button`
-margin: 1%;
+margin-left: 0%;
+margin-bottom:0%; 
 padding: 1%;
 background-color:black;
 color: #FAE800;
@@ -33,7 +38,7 @@ border-radius:5px;
 
 
 export const PrincipalContainer = styled(SidebarContainer)`
-margin-left:25%;
+margin-left:35%;
 margin-top: 2%;
 
 `;
@@ -53,34 +58,36 @@ export const FileContainer = styled(SidebarContainer)`
   bottom: 0;
   height: 24px;
   width:160px;
-  box-shadow: 0 1px 1px rgba(40, 217, 245, 0.5)inset, 0 0 10px #28D9F5;
+ 
   cursor: pointer;
   
 `;
 
 export const FileContainerP = styled(FileContainer)`
- position: absolute;
- left:780px;
- top:298px;
+ position: relative;
+ left:380px;
+ top:0px;
  height: 24px;
  width:160px;
- box-shadow: 0 1px 1px rgba(40, 217, 245, 0.5)inset, 0 0 10px #28D9F5;
+ 
 
   
 `;
 
 export const FormContainer = styled(SidebarContainer)`
 margin-top: 10px;
+display:flex;
 
 `;
 
 export const DownContainer = styled(SidebarContainer)`
 display:flex;
 justify-content: space-evenly;
+flex-direction: column;
 gap:15px;
-position:absolute;
-left:56%;
-top:60%;
+position:relative;
+left:12%;
+margin-top:3%;
 
 `;
 
@@ -108,7 +115,7 @@ export const GlobalStyle = createGlobalStyle`
   width: 100vh;
   height: 100vh;
   color:white;
-  overflow-x: hidden;
+  overflow-y:visible;
   }
 `;
 
@@ -127,9 +134,9 @@ color:#FAE800;
 font-size: 12px;
 width: 35px;
 padding:2px 5px 2px 5px;
-position: absolute;
-left:485px;
-top:297px;
+position: relative;
+left:85px;
+top:-25px;
 background-color: black;
 z-index:10000;
 border-radius: 5px;
@@ -141,15 +148,15 @@ transition:0.2;
 
 export const LabelImgPort = styled(Form.Label)`
 
-left:850px;
-top:275px;
+left:500px;
+top:-30px;
 width:40;
 z-index:10000;
 color:#FAE800;
 font-size: 12px;
 width: 35px;
 padding:2px 5px 2px 5px;
-position: absolute;
+position: relative;
 background-color: black;
 border-radius: 5px;
 transition:0.2;
@@ -202,9 +209,13 @@ export const InputName = styled(Form.Control).attrs(props => ({
   
   color:white;
   width:300px;
+  margin:2%;
+  padding:3%;
   background: transparent;
   border-color:gray;
   transition:0.2s;
+  border:none;
+  border-radius:5px;
   
   &::placeholder{
       color: snow;
@@ -219,6 +230,11 @@ export const InputName = styled(Form.Control).attrs(props => ({
        border-color:rgba(40, 217, 245);
        color:white;
      }
+     &:hover{
+       
+       box-shadow: 0 1px 1px rgba(40, 217, 245, 0.5)inset, 0 0 10px #28D9F5;
+      
+     }
   `;
 
 
@@ -227,12 +243,14 @@ export const InputDescription = styled(Form.Control).attrs(props => ({
   name:props.name  || 'description'
   }))` 
    
-   width: 600px;
+   width: 320px;
    height: 100px;
    background: transparent;
    color:white;
    border-radius: 5px;
    transition:0.2s;
+   margin:2%;
+   padding:3%;
    
    
    &::placeholder{
@@ -249,6 +267,11 @@ export const InputDescription = styled(Form.Control).attrs(props => ({
         color:white;
         border-color:rgba(40, 217, 245);
       }
+      &:hover{
+       
+       box-shadow: 0 1px 1px rgba(40, 217, 245, 0.5)inset, 0 0 10px #28D9F5;
+      
+     }
    `;
 
 
@@ -280,18 +303,21 @@ export const SelectRol = styled(Form.Select)`
   
   transition:0.2s;
   background: transparent;
-  color: #FAE800;
-  width: 120px;
-  padding-right: 10px;
-  padding-bottom: 5px;
+  color: white;
+  width: 110px;
+  margin-top: 5px;
+  padding:4%;
+  border-radius: 5px;
+  border:none;
   &:hover{
+ 
     cursor:pointer;
+    box-shadow: 0 1px 1px rgba(40, 217, 245, 0.5)inset, 0 0 10px #28D9F5;
   }
 
   &:focus{
        outline: none !important;
-       box-shadow: 0 1px 1px rgba(40, 217, 245, 0.5)inset, 0 0 10px #28D9F5;
-       border-color:rgba(40, 217, 245);
+      
        
      }
 `;
@@ -333,6 +359,20 @@ export const OptionRol = styled.option`
 `;
 
 export const InputEmail = styled(InputName).attrs(props => ({
+  name:props.name  || 'cohorte'
+  }))` 
+    width: 165px;
+    padding: 3%;
+    border-radius: 5px;
+    border:none;
+ 
+    &:hover{
+      box-shadow: 0 1px 1px rgba(40, 217, 245, 0.5)inset, 0 0 10px #28D9F5;
+  }
+`;
+
+
+export const InputBirthday = styled(InputName).attrs(props => ({
   name:props.name  || 'cohorte'
   }))` 
     width: 165px;
