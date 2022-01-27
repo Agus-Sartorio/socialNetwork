@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Div } from './StyledMyProfile';
 import NavBar from "../NavBar/NavBar";
-import SideBar from "../SideBar/SideBar";
 import { useEffect } from "react";
 import { getMyProfileData } from "../../actions";
 
@@ -9,20 +8,20 @@ import { getMyProfileData } from "../../actions";
 const MyProfile = () => {
     const myProfile = useSelector((state) => state.myProfileData)
     const dispatch = useDispatch()
-    
-    useEffect(()=>{
-    dispatch(getMyProfileData())
-    },[dispatch])
-  
+
+    useEffect(() => {
+        dispatch(getMyProfileData())
+    }, [dispatch])
+
     return (
         <>
-       <NavBar/>
-        <Div>   
-        <div>
-            <img src={myProfile[0].profile}></img>
-        <h1>{myProfile[0].fullname}</h1>
-        </div>
-        </Div>
+            <NavBar />
+            <Div>
+                <div>
+                    <img src={myProfile[0].profile} alt='imagen de usuario' />
+                    <h1>{myProfile[0].fullname}</h1>
+                </div>
+            </Div>
         </>
     )
 }
