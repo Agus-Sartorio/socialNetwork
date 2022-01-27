@@ -8,7 +8,6 @@ import { UserAuthContextProvider } from "./Components/Context/UserContext";
 // import { ProtectedRoute } from './Components/ProtectedRoute'
 import Profile from './Components/Profile/Profile.jsx';
 import MyProfile from "./Components/MyProfile/MyProfile.jsx";
-import Chat from "./Components/Chat/index.jsx";
 function App() {
   return (
     <div className='app'>
@@ -17,14 +16,9 @@ function App() {
       <GlobalStyle />
       <UserAuthContextProvider>
         <Routes>
-<<<<<<< HEAD
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/chat" element={<Chat />} />
-          <Route path="/login" element={<LogIn />} />
-=======
           <Route path="/" element={<LogIn />} />
->>>>>>> 57374c6f160da50ae37c89ff35c87b104be42711
           <Route path="/edit" element={<Edit />} />
+          <Route path="/edit" element={<Chat />} />
           <Route path="/home" element={<Home />} />
           <Route path="/suggestions" element={<Suggestions />} />
           <Route path='/profile/:id' element={<Profile />} />
