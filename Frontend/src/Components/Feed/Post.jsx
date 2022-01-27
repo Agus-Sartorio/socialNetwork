@@ -21,7 +21,7 @@ export default function Post () {
     return (
 
         <>         
-         {post.map((p)=> {
+         {post.length? post.map((p)=> {
              return(
               <div key={p._id}>
                   <Link to={`/profile/${p.autor.id}`}>
@@ -33,7 +33,7 @@ export default function Post () {
                   <h1>{p.description}</h1>
                   <button>Like</button>
               </div>
-         )})}
+         )}): <div>Cargando...</div>}
           
           </>
 
