@@ -63,8 +63,8 @@ export function postUploadProfile(payload){
     console.log(payload)
     return async function(dispatch) {
         try {
-            
-            const response = await axios.put(`${process.env.REACT_APP_PUERTO}usuarios/` + payload, tokenUsuario())
+            console.log(payload,"dentro del try")
+            const response = await axios.put(`${process.env.REACT_APP_PUERTO}usuarios`, payload, tokenUsuario())
             console.log(response)
             return response
 
@@ -98,7 +98,7 @@ export function getPeopleByName(name) {
     return async (dispatch) => {
         try {
             const profile = await axios.get(`${process.env.REACT_APP_PUERTO}usuarios/?myself=true`, tokenUsuario())
-            return dispatch({ type: MY_PROFILE, payload: profile.data })
+            return dispatch({ type: MY_PROFILE, payload: profile.data})
         } catch (err) {
             console.log(err)
         }

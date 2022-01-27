@@ -20,20 +20,20 @@ import { GroupForm, InputName, LabelName,
  function EditProfile() {
    
    const userk = useSelector((state) => state.myProfileData)
-   console.log(userk);
+   console.log( userk.data[0]);
    const dispatch = useDispatch(); 
 
 const [input,setInput] = useState({   
 //  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiBf9NIb94QLztGC6JuQk3-FNCrCY1ry64GA&usqp=CAU"
 // "https://images.ole.com.ar/2022/01/01/smOuc4YsP_340x340__1.jpg"  
 
-  fullname: userk[0].fullname,
-  description:'',
-  profile:  userk[0].profile, 
-  background_picture: ['./BReact.png'],
-  email: userk[0].email,
-  nacionalidad: userk[0].nacionalidad,
-  birthday:'d/m/a'
+  fullname: userk.data[0].fullname,
+  description:userk.data[0].description,
+  profile:  userk.data[0].profile, 
+  background_picture:'./BReact.png',
+  nacionalidad: userk.data[0].nacionalidad,
+  // mail: userk.data[0].mail,
+  birthday: userk.data[0].birthday
   });
 console.log(input)
 
