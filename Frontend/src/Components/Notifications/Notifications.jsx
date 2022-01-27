@@ -16,7 +16,7 @@ export default function Notifications({ setOpen }) {
         return () => {
             window.removeEventListener('keydown', event)
         }
-    }, [])
+    })
 
     const handleOverlayClick = (e) => {
         if (e.target === overlay.current) {
