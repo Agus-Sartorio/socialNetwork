@@ -29,8 +29,8 @@ function EditProfile() {
 
     fullname: userk.data[0].fullname,
     description: userk.data[0].description,
-    profile:`${process.env.REACT_APP_PUERTO}/${userk.data[0].profile}` ,
-    background_picture: `${process.env.REACT_APP_PUERTO}/${userk.data[0].background_picture}`,
+    profile:`${process.env.REACT_APP_PUERTO}${userk.data[0].profile}` ,
+    background_picture: `${process.env.REACT_APP_PUERTO}${userk.data[0].background_picture}`,
     nacionalidad: userk.data[0].nacionalidad,
     email: userk.data[0].email,
     birthday: userk.data[0].birthday
