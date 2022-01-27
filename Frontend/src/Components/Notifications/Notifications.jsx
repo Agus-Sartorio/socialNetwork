@@ -16,7 +16,7 @@ export default function Notifications({ setOpen }) {
         return () => {
             window.removeEventListener('keydown', event)
         }
-    }, [])
+    })
 
     const handleOverlayClick = (e) => {
         if (e.target === overlay.current) {
@@ -25,7 +25,8 @@ export default function Notifications({ setOpen }) {
     }
 
     return (
-        <StyledOverflow ref={overlay} onClick={handleOverlayClick}>
+        <>
+            <StyledOverflow ref={overlay} onClick={handleOverlayClick} />
             <StyledNotifications>
                 <div className='container'>
                     <div className="titulo">
@@ -38,6 +39,6 @@ export default function Notifications({ setOpen }) {
                     <NotificationCard />
                 </div>
             </StyledNotifications>
-        </StyledOverflow>
+        </>
     )
 }

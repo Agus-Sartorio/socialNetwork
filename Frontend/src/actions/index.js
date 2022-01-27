@@ -6,7 +6,12 @@ import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_USER, GET_NAME,  GET_MY_PRO
 export const getUsers = () => {
     return async (dispatch) => {
         try {
+<<<<<<< HEAD
             const usuarios = await axios.get(`${process.env.REACT_APP_PUERTO}usuarios/?myself=false&suggestions=true`, tokenUsuario())
+=======
+            const usuarios = await axios.get(`${process.env.REACT_APP_PUERTO}usuarios/?myself=true`, tokenUsuario())
+
+>>>>>>> 5087113cf9cd7ce5ea3378f4673750c2e2ac8715
             return dispatch({ type: GET_USER, payload: usuarios.data })
         } catch (err) {
             console.log(err)
