@@ -17,10 +17,9 @@ import { GlobalStyle } from './Styled';
 
 
 
-function EditProfile() {
+function EditProfile({userk}) {
 
-  const userk = useSelector((state) => state.myProfileData)
-  console.log(userk.data[0]);
+  
   const dispatch = useDispatch();
 
   const [input, setInput] = useState({
