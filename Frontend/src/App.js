@@ -9,6 +9,7 @@ import { UserAuthContextProvider } from "./Components/Context/UserContext";
 // import { ProtectedRoute } from './Components/ProtectedRoute'
 import Profile from './Components/Profile/Profile.jsx';
 import MyProfile from "./Components/MyProfile/MyProfile.jsx";
+import Chat from "./Components/Chat/index.jsx";
 function App() {
   return (
     <div className='app'>
@@ -18,6 +19,7 @@ function App() {
       <UserAuthContextProvider>
         <Routes>
           <Route path="/" element={<LandingPage />} />
+          <Route path="/chat" element={<Chat />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/edit" element={<Edit />} />
           <Route path="/home" element={<Home />} />

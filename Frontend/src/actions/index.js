@@ -35,20 +35,6 @@ export const clearProfileState = () => {
 }
 
 
-export function postUploadProfile(payload,id){
-    console.log(payload)
-    return async function(dispatch) {
-        try {
-            const response = await axios.put(`${process.env.REACT_APP_PUERTO}usuarios/${id}`, payload)
-            console.log(response)
-            return response
-
-        }catch(error){
-            console.log(error);
-        }
-    }
-}
-
 
 export const getMyProfile = () => {
    
