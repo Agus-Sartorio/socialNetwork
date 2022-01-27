@@ -40,7 +40,7 @@ export default function SideBar() {
                 <button onClick={handleClick}>
                     <img src={user.photoURL} alt="" />
                     <p>{user.displayName.split(' ')[0]}</p>
-                    <span className={isuser && 'chevron'}><Chevron /></span>
+                    <span className={isuser ? 'chevron' : undefined}><Chevron /></span>
                 </button>
             </div>
             {

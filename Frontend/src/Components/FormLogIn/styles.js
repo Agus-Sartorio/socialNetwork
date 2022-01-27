@@ -7,6 +7,7 @@ export const StyledLogIn = styled.div`
     justify-content: center;
     align-items: center;
     height: 100vh;
+    padding: 20px;
 
     .texto{
         display: flex;
@@ -42,6 +43,23 @@ export const StyledLogIn = styled.div`
         &:hover{
             background-color: black;
             color: var(--yellow-1);
+        }
+    }
+
+    @media (max-width: 700px){
+        .welcome{
+            font-size: 20px;
+        }
+    }
+
+    @media (max-width: 500px){
+        .logo{
+            display: none;
+        }
+
+        .welcome{
+            text-align: center;
+            margin-bottom: 15px;
         }
     }
 

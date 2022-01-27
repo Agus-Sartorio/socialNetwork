@@ -3,11 +3,12 @@ import SideBar from "../SideBar/SideBar";
 
 
 export default function Home() {
-
     return (
         <>
             <NavBar />
-            <SideBar />
+            <div className='main'>
+                <SideBar />
+            </div>
         </>
     )
 }

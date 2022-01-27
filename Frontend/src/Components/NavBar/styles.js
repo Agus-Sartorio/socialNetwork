@@ -3,13 +3,29 @@ import styled from 'styled-components';
 export const StyledDiv = styled.div`
 display: flex;
 align-items: center;
-justify-content: space-around;
-width: 100vw;
+justify-content: space-between;
+width: calc(100vw - (100vw - 100%));
 border-bottom: 5px solid var(--yellow-1);
 background-color: #1D1D1D;
 color: #eee;
-padding: 20px 10px; 
-position: relative; ;
+padding: 20px 80px; 
+position: relative;
+
+.div-1{
+    display: flex;
+    flex: 1;
+
+    a{
+        display: flex;
+        align-items: center;    
+        text-decoration: none;
+        color: white;
+    }
+
+    form{
+        margin: 0 auto;
+    }
+}
 
 div{
     display: flex;
@@ -88,8 +104,12 @@ img{
     }
 }
 
+@media (max-width: 800px){
+    padding: 20px 40px;
+}
+
 @media screen and (max-width: 700px) {
-    .app-title{
+    .title-text{
         display: none;
     }
 
@@ -98,4 +118,18 @@ img{
     }
 }
 
+@media (max-width: 550px){
+    flex-direction: column;
+    padding: 20px 20px;
+
+    .div-1{
+        margin-bottom: 20px;
+
+        img{
+            margin-right: 20px;
+            width: 35px;
+            height: 35px;
+        }
+    }
+}
 `

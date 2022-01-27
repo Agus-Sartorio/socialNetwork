@@ -11,7 +11,7 @@ import Profile from './Components/Profile/Profile.jsx';
 import MyProfile from "./Components/MyProfile/MyProfile.jsx";
 function App() {
   return (
-    <div>
+    <div className='app'>
       {/* <GlobalStyle/> */}
 
       <GlobalStyle />
@@ -23,7 +23,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/suggestions" element={<Suggestions />} />
           <Route path='/profile/:id' element={<Profile />} />
-          <Route path='/myprofile' element={<MyProfile/>}/>
+          <Route path='/myprofile' element={<MyProfile />} />
         </Routes>
       </UserAuthContextProvider>
     </div>
