@@ -11,7 +11,7 @@ const CardSuggestions = ({ fullname, id, profile,email ,follow}) => {
     const idToFollow = {"followMe": id}
     const myProfile = useSelector((state) => state.myProfileData)
     async function  followUnFollow() {
-        await axios.put(`${process.env.REACT_APP_PUERTO}usuarios/follow/${myProfile[0].id}`, idToFollow , tokenUsuario())
+        await axios.put(`${process.env.REACT_APP_PUERTO}usuarios/follow/`, idToFollow , tokenUsuario())
         setButton(true)
     } 
         
@@ -19,7 +19,7 @@ const CardSuggestions = ({ fullname, id, profile,email ,follow}) => {
 
 
     return (
-        <StyledCardSuggestions>
+        <StyledCardSuggestions >
             <div className="container-card">
                 <div className="img-name">
                 <Link to={`/profile/${id}`}><img className="image" src={profile} alt={fullname}></img></Link>
