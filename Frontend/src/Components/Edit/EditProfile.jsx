@@ -10,7 +10,7 @@ import { GroupForm, InputName, LabelName,
      ImageProfile, ImagePortada, FormContainer, DownContainer,
      LabelImgProfile, LabelImgPort, 
      InputFile,FileContainer, LabelFile,FileContainerP,PortadaContainer,
-     ButtonSubmit,DivSubmitContainer,InputEmail
+     ButtonSubmit,DivSubmitContainer,InputEmail, InputBirthday,H2,
  } from './Styled';
 
  import {GlobalStyle} from './Styled';
@@ -20,43 +20,22 @@ import { GroupForm, InputName, LabelName,
  function EditProfile() {
    
    const userk = useSelector((state) => state.myProfileData)
-   console.log(userk);
+   console.log( userk.data[0]);
    const dispatch = useDispatch(); 
 
 const [input,setInput] = useState({   
 //  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiBf9NIb94QLztGC6JuQk3-FNCrCY1ry64GA&usqp=CAU"
 // "https://images.ole.com.ar/2022/01/01/smOuc4YsP_340x340__1.jpg"  
 
-  fullname: userk[0].fullname,
-  description:  userk[0].description,
-  profile:  userk[0].profile, 
-  background_picture: ['./BReact.png'],
-  email: userk[0].email,
-  nacionalidad: userk[0].nacionalidad,
-  cohorte:['FT-19b']
+  fullname: userk.data[0].fullname,
+  description:userk.data[0].description,
+  profile:  userk.data[0].profile, 
+  background_picture:'./BReact.png',
+  nacionalidad: userk.data[0].nacionalidad,
+  // mail: userk.data[0].mail,
+  birthday: userk.data[0].birthday
   });
 console.log(input)
-// if(userk.length > 0 ){
-//   var name=userk[0].fullname;
-//   var imageprofile=userk[0].profile
-  
-//   let Inputt = {   
-    
-//       name: userk[0].fullname,
-//       description: 'puta mierda',
-//       imageprofile: userk[0].profile, 
-//       imageport: './BReact.png',
-//       birthday:'15-02-2022',
-//       roll: 'Estudiante',
-//       cohorte:'FT-19b'
-//       };
-
-//   console.log(name)
-// }
-// const user = useSelector((state) => state.myprofile)
-// console.log(userk[0].fullname);
-//  console.log(userk[0].fullname);
-
 
     const [editP, setEditP] = useState(false);
     const [edit, setEdit] = useState(false);
@@ -76,12 +55,8 @@ console.log(input)
         });
       }
 
-      // name: `${user.name}`,
-      // description:`${user.description}`, 
-      // imageprofile: `${user.imageprofile}`, 
-      // imageport: `${user.imageport}`,
-
-      
+    
+  
       function handleChange(evt){
         let mirar = evt.target.value;
         console.log(mirar)
@@ -91,74 +66,57 @@ console.log(input)
       })
     }
 
+   
+
+
     async function handleSubmit(evt){
       evt.preventDefault()
       dispatch(postUploadProfile(input))
   }
     
-    // function handleSelect(evt){
-    //   if(!input.includes(evt.target.value)){
-    //     setInput({
-    //       ...input,
-    //       diets: [...input.diets, evt.target.value]
-    //     })
-    //   }
-      
-    // }
-    
-    
-    //   const fileSelector = document.getElementById('file-selector');
-    //   function  Fselector(fileSelector){fileSelector.addEventListener('change', (event) => {
-      //   const fileList = event.target.files;
-      //   console.log(fileList);
-      //   });
-      // }
-      
-
       
       return( <>
                      <GlobalStyle/> 
                     <PrincipalContainer>
             <form onSubmit={(evt) => handleSubmit(evt)}>         
                     {/* `${input.imageport}` */}
-            <PortadaContainer onMouseEnter={()=>setEdit(true)} onMouseOut={()=>setEdit(false)} onClick={update2}>
-              
-              <ImagePortada src={require(`${input.background_picture}`)}/>
-            </PortadaContainer>
-              
+            <div>
+              <ImagePortada onMouseEnter={()=>setEdit(true)} onMouseOut={()=>setEdit(false)} onClick={update2} src={require(`${input.background_picture}`)}/>
 
-          <div>
+          {/* <div>
               {edit? <LabelImgPort onMouseEnter={()=>setEdit(true)} onMouseOut={()=>setEdit(false)} onClick={update2}>Edit</LabelImgPort> : <></>} 
-          </div>
+          </div> */}
 
             {OptionUpPort? 
                  <FileContainerP>
                   <LabelFile> Uploud to photo
-                     <InputFile/>
+                     <InputFile
+                      name = 'background_picture' 
+                     onChange = {evt => handleChange(evt)}/>
                   </LabelFile>
                  </FileContainerP>
                   
 
-         : <></>}
+         : <></>} 
+         </div>
            
            
              
               <div>
              
-               <ImageProfile  src={`${input.profile}`} onMouseEnter={()=>setEditP(true)} onMouseOut={()=>setEditP(false)} onClick={update} /> 
+               <ImageProfile  src={`${input.profile}`} onMouseEnter={()=>setEditP(true)} onMouseOut={()=>setEditP(false) } onClick={update} /> 
                
                </div>
 
-               <div>
+               {/* <div>
                  {editP? <LabelImgProfile onMouseEnter={()=>setEditP(true)} onMouseOut={()=>setEditP(false)} onClick={update} >Edit</LabelImgProfile> : <></>}
-               </div>
+               </div> */}
                {OptionUpProfile?
                  <FileContainer>
                   <LabelFile> Uploud to photo
                      <InputFile
-                      name = 'imageprofile' 
-                      
-                      
+                      name = 'profile' 
+                      onChange = {evt => handleChange(evt)}
                     />
                   </LabelFile>
                  </FileContainer>
@@ -168,17 +126,17 @@ console.log(input)
             
           
        
+      <H2> Edit Profile </H2>
 
     <FormContainer>
-      
-      <h2> Edit Profile </h2>
+      <div>
+
 
    <GroupForm>
 
          <LabelName>Name:</LabelName>
      
-     
-     <div>
+        <div>
            <InputName 
            value={input.fullname} 
            name = 'fullname' 
@@ -205,6 +163,7 @@ console.log(input)
        
     </GroupForm>
 
+</div>
 
   <DownContainer>
      
@@ -212,13 +171,13 @@ console.log(input)
      {/* value={`${input.nacionalidad}`} */}
     <GroupForm>
     <LabelName>Nacionalidad:</LabelName>
+    <div>
       <SelectRol 
       name = 'nacionalidad' 
-    
+      value={`${input.nacionalidad}`}
       onChange = {evt => handleChange(evt)}
       >
          
-        
 <OptionRol>Argentina</OptionRol>
 <OptionRol> Bolivia</OptionRol>
 <OptionRol> Brasil</OptionRol>
@@ -244,9 +203,24 @@ console.log(input)
 
         
       </SelectRol>
+</div>       
       </GroupForm>
      </div>
      
+
+     <GroupForm>
+         <LabelName>Birthday:</LabelName>
+         <div>
+           <InputBirthday 
+           value={`${input.birthday}`}
+           name = 'email' 
+           onChange = {evt => handleChange(evt)}/>
+      
+         </div>
+       </GroupForm>
+
+
+
      <div>
 
       <GroupForm>
@@ -262,6 +236,7 @@ console.log(input)
      </div>    
    </DownContainer>
       
+</FormContainer>
 <DivSubmitContainer>  
    {(input.fullname !== '')?
      
@@ -273,7 +248,6 @@ console.log(input)
 
 
 
-  </FormContainer>
  </form> 
 </PrincipalContainer>
 
