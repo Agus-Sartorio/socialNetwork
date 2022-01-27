@@ -18,5 +18,7 @@ export const MY_PROFILE='MY_PROFILE';
 export const GET_NAME='GET_NAME';
 export const CREATE_POST= 'CREATE_POST';
 export const GET_ALL_POSTS = 'GET_ALL_POST';
+export const GET_FOLLOWERS = 'GET_FOLLOWERS'
+export const GET_FOLLOWS = 'GET_FOLLOWS';
 
 

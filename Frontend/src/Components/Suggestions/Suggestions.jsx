@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { clearUsersState, getMyProfileData, getUsers } from "../../actions";
+import { clearUsersState, getUsers } from "../../actions";
 import NavBar from "../NavBar/NavBar";
 import CardSuggestions from "./CardSuggestions";
 import { DivCards, DivSug } from "./StyledSuggestions";
@@ -13,7 +13,6 @@ const Suggestions = () => {
 
     useEffect(() => {
         dispatch(getUsers())
-        dispatch(getMyProfileData())
         return () => {
             dispatch(clearUsersState())
         }
