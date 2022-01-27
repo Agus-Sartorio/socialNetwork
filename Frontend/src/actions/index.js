@@ -1,7 +1,6 @@
 
 import axios from 'axios';
-import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_USER,  GET_MY_PROFILE, GET_USER_BY_ID, tokenUsuario, MY_PROFILE, CREATE_POST, GET_ALL_POSTS, GET_NAME } from "./actionTypes";
-
+import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_USER,  GET_MY_PROFILE, GET_USER_BY_ID, tokenUsuario, MY_PROFILE, GET_ALL_POSTS, GET_NAME, GET_FOLLOWS, GET_FOLLOWERS } from "./actionTypes";
 
 export const getUsers = () => {
     return async (dispatch) => {
@@ -134,4 +133,29 @@ export const AllPost = () => {
             console.log(error)
         }
     }
+}
+
+
+export const getFollows = () => {
+    return async (dispatch) => {
+        try {
+            const follows = await axios.get(`${process.env.REACT_APP_PUERTO}usuarios/?myself=false&follows=true`, tokenUsuario())
+            return dispatch({ type: GET_FOLLOWS, payload: follows.data })
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+}
+
+export const getFollowers = () => {
+    return async (dispatch) => {
+        try {
+            const followers = await axios.get(`${process.env.REACT_APP_PUERTO}usuarios/?myself=false&followers=true`, tokenUsuario())
+            return dispatch({ type: GET_FOLLOWERS, payload: followers.data })
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
 }
