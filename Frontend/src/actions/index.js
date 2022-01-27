@@ -6,9 +6,9 @@ import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_USER, GET_NAME,  GET_MY_PRO
 export const getUsers = () => {
     return async (dispatch) => {
         try {
-            const usuarios = await axios.get(`${process.env.REACT_APP_PUERTO}usuarios/?myself=true`, tokenUsuario())
+            const users = await axios.get(`${process.env.REACT_APP_PUERTO}usuarios/?myself=false&follows=false`, tokenUsuario())
 
-            return dispatch({ type: GET_USER, payload: usuarios.data })
+            return dispatch({ type: GET_USER, payload: users.data.data })
         } catch (err) {
             console.log(err)
         }
@@ -83,7 +83,7 @@ export function getPeopleByName(name) {
          
         return dispatch({
           type: GET_NAME,
-          payload: names.data,
+          payload: names.data.data,
         });
       } catch (error) {
        console.log(error)

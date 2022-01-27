@@ -10,8 +10,9 @@ const CardProfile = ({ profile }) => {
     const [button, setButton] = useState(false)
     const idToFollow = { "followMe": profile.id }
     const myProfile = useSelector((state) => state.myProfileData)
-    async function followUnFollow() {
-        await axios.put(`${process.env.REACT_APP_PUERTO}usuarios/follow/${myProfile[0].id}`, idToFollow, tokenUsuario())
+    
+    async function  followUnFollow() {
+        await axios.put(`${process.env.REACT_APP_PUERTO}usuarios/follow/`, idToFollow , tokenUsuario())
         dispatch(clearProfileState())
         dispatch(getProfile(profile.id))
     }
@@ -19,7 +20,7 @@ const CardProfile = ({ profile }) => {
 
 
     useEffect(() => {
-        profile.follow.followers.includes(myProfile[0].id) === true ?
+        profile.follow.followers.includes(myProfile.data[0].id) === true ?
             setButton(true) : setButton(false)
     }, [profile.follow.followers, myProfile])
     return (
@@ -27,7 +28,6 @@ const CardProfile = ({ profile }) => {
             <div className="head">
                 <img src={profile.profile} className="img" alt='imagen de usuario' />
             </div>
-
             <div className="body">
                 <div>
                     <h3>{profile.fullname}</h3>
