@@ -62,15 +62,12 @@ export const StyledSideBar = styled.aside`
     .settings{
         margin-top: -40px;
         margin-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
 
-        li{
-            list-style: none;
-            color: #666;
-            margin-bottom: 10px;
-            font-size: 16px;
-        }
         a{
-            color: currentcolor;
+            color: #666;
             text-decoration: none;
             font-weight: bold
         }
