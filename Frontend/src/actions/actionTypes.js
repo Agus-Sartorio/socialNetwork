@@ -17,4 +17,7 @@ export const GET_MY_PROFILE ='GET_MY_PROFILE';
 export const PUT_UPLOUD_PROFILE='PUT_UPLOUD_PROFILE';
 export const MY_PROFILE='MY_PROFILE';
 export const GET_NAME='GET_NAME';
+export const CREATE_POST= 'CREATE_POST';
+export const GET_ALL_POSTS = 'GET_ALL_POST';
+
 
