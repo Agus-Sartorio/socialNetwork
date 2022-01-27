@@ -3,6 +3,7 @@ import { Div } from './StyledMyProfile';
 import NavBar from "../NavBar/NavBar";
 import { useEffect } from "react";
 import { getMyProfileData } from "../../actions";
+import SideBar from "../SideBar/SideBar";
 
 
 const MyProfile = () => {
@@ -17,9 +18,10 @@ const MyProfile = () => {
         <>
             <NavBar />
             <Div>
+                <SideBar/>
                 <div>
-                    <img src={myProfile[0].profile} alt='imagen de usuario' />
-                    <h1>{myProfile[0].fullname}</h1>
+                    <img src={myProfile.data[0].profile} alt='imagen de usuario' />
+                    <h1>{myProfile.data[0].fullname}</h1>
                 </div>
             </Div>
         </>

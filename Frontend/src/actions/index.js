@@ -6,9 +6,9 @@ import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_USER, GET_NAME,  GET_MY_PRO
 export const getUsers = () => {
     return async (dispatch) => {
         try {
-            const usuarios = await axios.get(`${process.env.REACT_APP_PUERTO}usuarios/?myself=true`, tokenUsuario())
+            const users = await axios.get(`${process.env.REACT_APP_PUERTO}usuarios/?myself=false&follows=false`, tokenUsuario())
 
-            return dispatch({ type: GET_USER, payload: usuarios.data })
+            return dispatch({ type: GET_USER, payload: users.data.data })
         } catch (err) {
             console.log(err)
         }
@@ -65,8 +65,8 @@ export function postUploadProfile(payload){
     console.log(payload)
     return async function(dispatch) {
         try {
-            
-            const response = await axios.put(`${process.env.REACT_APP_PUERTO}usuarios/` + payload, tokenUsuario())
+            console.log(payload,"dentro del try")
+            const response = await axios.put(`${process.env.REACT_APP_PUERTO}usuarios`, payload, tokenUsuario())
             console.log(response)
             return response
 
@@ -85,7 +85,7 @@ export function getPeopleByName(name) {
          
         return dispatch({
           type: GET_NAME,
-          payload: names.data,
+          payload: names.data.data,
         });
       } catch (error) {
        console.log(error)
@@ -100,7 +100,7 @@ export function getPeopleByName(name) {
     return async (dispatch) => {
         try {
             const profile = await axios.get(`${process.env.REACT_APP_PUERTO}usuarios/?myself=true`, tokenUsuario())
-            return dispatch({ type: MY_PROFILE, payload: profile.data })
+            return dispatch({ type: MY_PROFILE, payload: profile.data})
         } catch (err) {
             console.log(err)
         }

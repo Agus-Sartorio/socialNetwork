@@ -39,7 +39,7 @@ export default function SideBar() {
             <div className='user'>
                 <button onClick={handleClick}>
                     <img src={user.photoURL} alt="" />
-                    <p>{user.displayName.split(' ')[0]}</p>
+                    <p>{user.displayName?.split(' ')[0]}</p>
                     <span className={isuser ? 'chevron' : undefined}><Chevron /></span>
                 </button>
             </div>
@@ -47,7 +47,7 @@ export default function SideBar() {
                 isuser && open &&
                 <div className='settings'>
 
-                    <Link to='/myprofile'># Perfil</Link>
+                    <Link to='/myprofile'><p>perfil</p></Link>
                     <button className='cerrar-sesion' onClick={handleLogOut}>
                         # Cerrar sesion
                     </button>

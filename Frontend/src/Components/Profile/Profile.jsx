@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { clearProfileState, getProfile } from "../../actions";
+import { clearProfileState, getMyProfileData, getProfile } from "../../actions";
 import NavBar from "../NavBar/NavBar";
 import SideBar from "../SideBar/SideBar";
 import CardProfile from "./CardProfile";
@@ -15,6 +15,7 @@ const Profile = () => {
 
     useEffect(() => {
         dispatch(getProfile(id))
+        dispatch(getMyProfileData())
         return () => {
             dispatch(clearProfileState())
         }
