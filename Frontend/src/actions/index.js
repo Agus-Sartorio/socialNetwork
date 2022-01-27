@@ -2,7 +2,6 @@
 import axios from 'axios';
 import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_USER,  GET_MY_PROFILE, GET_USER_BY_ID, tokenUsuario, MY_PROFILE, GET_ALL_POSTS, GET_NAME } from "./actionTypes";
 
-
 export const getUsers = () => {
     return async (dispatch) => {
         try {
