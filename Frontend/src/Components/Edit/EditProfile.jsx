@@ -32,7 +32,7 @@ function EditProfile() {
     profile: userk.data[0].profile,
     background_picture: './BReact.png',
     nacionalidad: userk.data[0].nacionalidad,
-    // mail: userk.data[0].mail,
+    email: userk.data[0].email,
     birthday: userk.data[0].birthday
   });
   console.log(input)
@@ -213,7 +213,7 @@ function EditProfile() {
               <div>
                 <InputBirthday
                   value={`${input.birthday}`}
-                  name='email'
+                  name='birthday'
                   onChange={evt => handleChange(evt)} />
 
               </div>
