@@ -1,6 +1,7 @@
 
 import axios from 'axios';
-import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_USER,  GET_MY_PROFILE, GET_USER_BY_ID, tokenUsuario, MY_PROFILE, GET_ALL_POSTS, GET_NAME } from "./actionTypes";
+import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_USER,  GET_MY_PROFILE, GET_USER_BY_ID, tokenUsuario, MY_PROFILE, CREATE_POST, GET_ALL_POSTS, GET_NAME } from "./actionTypes";
+
 
 export const getUsers = () => {
     return async (dispatch) => {
@@ -119,10 +120,11 @@ export const CreatePost = (payload) => {
 export const AllPost = () => {
     return async (dispatch) => {
         try{
-            let {data:{data}} = await axios.get(`${process.env.REACT_APP_PUERTO}posts`, tokenUsuario())
+            let {data:{data, message}} = await axios.get(`${process.env.REACT_APP_PUERTO}posts`, tokenUsuario())
+            console.log(data, 'data')
             data = data.map((p) => {
                 p.autor = JSON.parse(p.autor)
-                return p
+                return p;
             })
             return dispatch({
                 type: GET_ALL_POSTS,
