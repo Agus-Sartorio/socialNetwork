@@ -8,14 +8,13 @@ export const StyledOverflow = styled.div`
     left: 0;
     bottom: 0;
     right: 0;
-    z-index: 2;
 `
 
 export const StyledNotifications = styled.div`
     position: absolute;
-    top: 70px;
-    left: 62.8%;
-    /* transform: translateX(-84.1%); */
+    top: 50px;
+    left: 50%;
+    transform: translateX(-84.1%);
 
     &::after{
             content: '';
@@ -67,11 +66,15 @@ export const StyledNotifications = styled.div`
         }
     }
 
-    @media (max-width: 500px) {
-        transform: translateX(-85%);
+    @media (max-width: 550px) {
+        transform: translateX(-50%);
+
+        &::after{
+            left: 47.7%;
+        }
 
         .container{
-            width: 300px;
+            width: 80vw;
         }
     }
 `

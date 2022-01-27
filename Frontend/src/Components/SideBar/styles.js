@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const StyledSideBar = styled.aside`
     background-color: var(--grey-1);
-    min-height: 100vh;
     width: 55px;
     display: flex;
     flex-direction: column;
