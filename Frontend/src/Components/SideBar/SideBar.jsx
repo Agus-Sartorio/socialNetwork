@@ -47,10 +47,10 @@ export default function SideBar() {
                 isuser && open &&
                 <div className='settings'>
 
-                    <Link to='/myprofile'><p>perfil</p></Link>
-                   <button className='cerrar-sesion' onClick={handleLogOut}>
-                        <a href="/">Cerrar secion</a>
-                    </button> 
+                    <Link to='/myprofile'><p># Perfil</p></Link>
+                    <button className='cerrar-sesion' onClick={handleLogOut}>
+                        # Cerrar sesion
+                    </button>
                 </div>
             }
             <details open={open === false && undefined}>
