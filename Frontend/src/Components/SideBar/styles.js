@@ -61,7 +61,7 @@ export const StyledSideBar = styled.aside`
 
     .settings{
         margin-top: -40px;
-        margin-bottom: 10px;
+        margin-bottom: 30px;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -166,6 +166,7 @@ export const StyledSideBar = styled.aside`
     }
     
     .list{
+
         li{
             list-style: none;
             color: #666;
