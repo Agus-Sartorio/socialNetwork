@@ -15,6 +15,7 @@ export const StyledNotifications = styled.div`
     top: 50px;
     left: 50%;
     transform: translateX(-84.1%);
+    z-index: 1;
 
     &::after{
             content: '';

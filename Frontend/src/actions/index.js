@@ -1,6 +1,6 @@
 
 import axios from 'axios';
-import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_USER,  GET_MY_PROFILE, GET_USER_BY_ID, tokenUsuario, MY_PROFILE, GET_ALL_POSTS, GET_NAME, GET_FOLLOWS, GET_FOLLOWERS } from "./actionTypes";
+import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_USER,  GET_MY_PROFILE, GET_USER_BY_ID, tokenUsuario, MY_PROFILE, GET_ALL_POSTS, GET_NAME, GET_FOLLOWS, GET_FOLLOWERS, FOLLOW_USER_BY_ID } from "./actionTypes";
 
 export const getUsers = () => {
     return async (dispatch) => {
@@ -23,6 +23,17 @@ export const getProfile = (id) => {
         try {
             const user = await axios.get(`${process.env.REACT_APP_PUERTO}usuarios/Id/${id}`,tokenUsuario())
             return dispatch({ type: GET_USER_BY_ID, payload: user.data })
+        } catch (err) {
+            console.log(err)
+        }
+    }
+}
+
+export const getFollowUserById = (id) => {
+    return async (dispatch) => {
+        try {
+            const followUser = await axios.get(`${process.env.REACT_APP_PUERTO}usuarios/Id/${id}?follow=true`,tokenUsuario())
+            return dispatch({ type: FOLLOW_USER_BY_ID, payload: followUser.data })
         } catch (err) {
             console.log(err)
         }
@@ -66,7 +77,6 @@ export function postUploadProfile(payload){
         try {
             console.log(payload,"dentro del try")
             const response = await axios.put(`${process.env.REACT_APP_PUERTO}usuarios`, payload, tokenUsuario())
-            console.log(response)
             return response
 
         }catch(error){
