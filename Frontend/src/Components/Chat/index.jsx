@@ -20,9 +20,7 @@ export default function Chat() {
   
         const contactos = fallows.data;
         console.log(contactos, 'chats lo que mando')
-      // useEffect(() => {
-      //    dispatch(getFollows())
-      //  }, [dispatch])
+    
     return (     
         
      <>

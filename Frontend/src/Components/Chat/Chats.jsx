@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import {Link} from 'react-router-dom';
 import Conversation from './Conversation/IndexC';
+import Message from './Message/IndexM';
 import { Messenger, ChatMenu, ChatMenuWrapper,
          ChatMenuInput, ChatBox, ChatBoxWrapper, ChatBoxTop,
          ChatBoxBottom, ChatMessageInput, ChatSubmitButton, ChatOnlineContainer,
@@ -51,6 +52,13 @@ export default function Chats({contactos}) {
           {true? (
             <>
               <ChatBoxTop>
+                    <Message/>
+                    <Message own={true}/>
+                    <Message/>
+                    <Message/>
+                    <Message/>
+                    <Message own={true}/> 
+                    <Message own={true}/>
                 {/* {messages.map((m) => (
                   <div ref={scrollRef}>
                     <Message message={m} own={m.sender === user._id} /> 
