@@ -99,7 +99,7 @@ export const StyledForm = styled.form`
         transition: transform 300ms;
 
             &:hover{
-                transform: scale(1.05);
+                transform: scale(1.03);
             }
     }
 `

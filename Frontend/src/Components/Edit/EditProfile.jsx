@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { postUploadProfile } from "../../actions";
 
 
@@ -17,9 +17,9 @@ import { GlobalStyle } from './Styled';
 
 
 
-function EditProfile({userk}) {
+function EditProfile({ userk }) {
 
-  
+
   const dispatch = useDispatch();
 
   const [input, setInput] = useState({
@@ -30,7 +30,7 @@ function EditProfile({userk}) {
 
     fullname: userk.data[0].fullname,
     description: userk.data[0].description,
-    profile: userk.data[0].profile ,
+    profile: userk.data[0].profile,
     background_picture: `./BReact.png`,
     nacionalidad: userk.data[0].nacionalidad,
     email: userk.data[0].email,
@@ -69,7 +69,7 @@ function EditProfile({userk}) {
 
   function handleChangeImg(evt) {
     let mirar = evt.target.value;
-    let valor=evt.target.value;
+    let valor = evt.target.value;
     console.log(mirar)
     setInput({
       ...input,
