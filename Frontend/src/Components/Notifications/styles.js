@@ -52,7 +52,7 @@ export const StyledNotifications = styled.div`
             .btn{
             background-color: transparent;
             border: none;
-            color: #347fd2;
+            color: var(--blue-1);
             font-weight: 600;
             background-color: transparent;
             padding: 8px 10px;
@@ -60,7 +60,7 @@ export const StyledNotifications = styled.div`
             transition: background-color 300ms;
 
             &:hover{
-                background-color: #d1e7ff;
+                background-color: var(--blue-2);
             }
         }
         }
