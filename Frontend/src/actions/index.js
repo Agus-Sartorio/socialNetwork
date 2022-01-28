@@ -33,6 +33,8 @@ export const clearProfileState = () => {
     return ({ type: CLEAR_PROFILE_STATE, payload: [] })
 }
 
+
+
 export const getMyProfile = () => {
    
     return async (dispatch) => {
