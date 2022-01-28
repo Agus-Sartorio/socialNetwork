@@ -12,6 +12,8 @@ const GlobalStyle = createGlobalStyle`
     --grey-1: #1D1D1D;
     --grey-9: #f3f3f3;
     --yellow-1: #FAE800;
+    --blue-1: #347fd2;
+    --blue-2: #d1e7ff;
   }
 
   html{
@@ -44,6 +46,13 @@ const GlobalStyle = createGlobalStyle`
     .main{
       flex: 1;
       display: flex;
+
+      .post{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+      }
     }
   }
 `;
