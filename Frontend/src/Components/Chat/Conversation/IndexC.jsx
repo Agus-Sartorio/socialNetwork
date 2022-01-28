@@ -1,11 +1,14 @@
 // import axios from "axios";
-// import { useEffect, useState } from "react";
-import {} from "./styled";
+import { getMyProfileData } from "../../../actions";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import {ConversationCont, ConversationImg, ConversationName} from "./styledC";
 
-export default function Conversation() {
+export default function Conversation({user}) {
 //   const [user, setUser] = useState(null);
 //   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
+  
 //   useEffect(() => {
 //     const friendId = conversation.members.find((m) => m !== currentUser._id);
 
@@ -21,17 +24,12 @@ export default function Conversation() {
 //   }, [currentUser, conversation]);
 
   return (
-    <div className="conversation">
-      <img
-        className="conversationImg"
-        src={
-          user?.profilePicture
-            ? PF + user.profilePicture
-            : PF + "person/noAvatar.png"
-        }
+    <ConversationCont>
+      <ConversationImg
+        src={user.profile}
         alt=""
       />
-      <span className="conversationName">{user?.username}</span>
-    </div>
+      <ConversationName>{user.fullname}</ConversationName>
+    </ConversationCont>
   );
 }

@@ -62,7 +62,7 @@ export default function SideBar() {
                 {
                     open &&
                     <ul className='list'>
-                        <li><a href="/chat"># Canal 1</a></li>
+                        <Link to="/chat"><li><p># Canal 1</p></li></Link>
                     </ul>
                 }
             </details>

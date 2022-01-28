@@ -75,8 +75,8 @@ export const ChatSubmitButton = styled.button`
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  background-color: teal;
-  color: white;
+  background-color: #FAE800;
+  color: #1D1D1D;
 
 `;
 

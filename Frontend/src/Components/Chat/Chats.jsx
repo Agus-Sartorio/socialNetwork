@@ -1,5 +1,8 @@
-import React from 'react';
+import { getMyProfileData, getFollows } from "../../actions";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 import {Link} from 'react-router-dom';
+import Conversation from './Conversation/IndexC';
 import { Messenger, ChatMenu, ChatMenuWrapper,
          ChatMenuInput, ChatBox, ChatBoxWrapper, ChatBoxTop,
          ChatBoxBottom, ChatMessageInput, ChatSubmitButton, ChatOnlineContainer,
@@ -8,7 +11,23 @@ import { Messenger, ChatMenu, ChatMenuWrapper,
 
 
  
-export default function Chats() {
+export default function Chats({contactos}) {
+
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.myProfileData);
+
+//   useEffect(() => {
+//     dispatch(getMyProfileData())
+//   }, [dispatch])
+    
+//   useEffect(() => {
+//    dispatch(getFollows())
+//    }, [dispatch])
+
+//     const fallows = useSelector((state) => state.search)
+//     const contactos= fallows.data
+//         console.log(contactos, 'chats lo que mando')
+    
       
       return (     
           <>
@@ -17,11 +36,14 @@ export default function Chats() {
       <ChatMenu>
         <ChatMenuWrapper>
           <ChatMenuInput placeholder="Search for friends"/>
-          {/* {conversations.map((c) => (
+          {/* <Conversation user={contactos}/> */}
+
+          {contactos.map((c) => (
             <div>
-               <Conversation conversation={c} currentUser={user} /> 
+                <Conversation user={c}/>
             </div>
-          ))} */}
+          ))}  
+
         </ChatMenuWrapper>
       </ChatMenu>
       <ChatBox>
@@ -37,7 +59,7 @@ export default function Chats() {
               </ChatBoxTop>
               <ChatBoxBottom>
                 <ChatMessageInput
-                  placeholder="write something..."
+                  placeholder="write something.."
                   // onChange={(e) => setNewMessage(e.target.value)}
                   // value={newMessage}
                 ></ChatMessageInput>
