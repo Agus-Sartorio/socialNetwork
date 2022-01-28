@@ -39,7 +39,7 @@ export default function CrearPost() {
                 <img className='user-img' src={user.photoURL} alt="" width={"20px"} height={"20px"} />
                 <textarea
                     className='textarea'
-                    placeholder={"¿Qué estas pensando " + user.displayName.split(' ')[0] + "?"}
+                    placeholder={"¿Qué estas pensando " + user.displayName?.split(' ')[0] + "?"}
                     name='description'
                     value={input.description}
                     onChange={handleChange}

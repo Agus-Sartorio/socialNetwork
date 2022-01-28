@@ -48,8 +48,8 @@ export default function SideBar() {
                 <div className='settings'>
 
                     <Link to='/myprofile'><p># Perfil</p></Link>
-                    <button className='cerrar-sesion' onClick={handleLogOut}>
-                        # Cerrar sesion
+                    <button  className='cerrar-sesion' onClick={handleLogOut}>
+                        <a href="/"># Cerrar sesion</a>
                     </button>
                 </div>
             }
