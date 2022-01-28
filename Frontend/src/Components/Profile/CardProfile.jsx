@@ -1,20 +1,22 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { clearProfileState, getProfile } from "../../actions";
 import { tokenUsuario } from "../../actions/actionTypes";
+import Modal from "./Modal";
 import { DivCardProfile } from "./styledCardProfile";
 
-const CardProfile = ({ profile }) => {
-    const dispatch = useDispatch();
+const CardProfile = ({ profile, myProfile, followUser }) => {
     const [button, setButton] = useState(false)
     const idToFollow = { "followMe": profile.id }
-    const myProfile = useSelector((state) => state.myProfileData)
-    
-    async function  followUnFollow() {
-        await axios.put(`${process.env.REACT_APP_PUERTO}usuarios/follow/`, idToFollow , tokenUsuario())
-        dispatch(clearProfileState())
-        dispatch(getProfile(profile.id))
+
+
+    async function followUnFollow() {
+        if (button) {
+            setButton(false)
+            await axios.put(`${process.env.REACT_APP_PUERTO}usuarios/follow/`, idToFollow, tokenUsuario())
+        } else {
+            setButton(true)
+            await axios.put(`${process.env.REACT_APP_PUERTO}usuarios/follow/`, idToFollow, tokenUsuario())
+        }
     }
 
 
@@ -34,7 +36,9 @@ const CardProfile = ({ profile }) => {
                     <p>{profile.email}</p>
                 </div>
                 <div className="follows-button">
-                    <h3>{profile.follow.followers.length} followers {profile.follow.follows.length} follows</h3>
+                   <Modal followUser={followUser}
+                   myProfile={myProfile}
+                   />
                     <div>
                         {button === false ? <button onClick={followUnFollow} className="follow"> seguir</button> : <button onClick={followUnFollow} className='unfollow'>dejar de seguir</button>}
 

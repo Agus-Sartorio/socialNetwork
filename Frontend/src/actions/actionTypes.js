@@ -21,5 +21,7 @@ export const CREATE_POST= 'CREATE_POST';
 export const GET_ALL_POSTS = 'GET_ALL_POST';
 export const GET_FOLLOWERS = 'GET_FOLLOWERS'
 export const GET_FOLLOWS = 'GET_FOLLOWS';
-
+export const SORT_BY_AZ='SORT_BY_AZ';
+export const SORT_BY_ZA='SORT_BY_ZA';
+export const FOLLOW_USER_BY_ID='FOLLOW_USER_BY_ID';
 

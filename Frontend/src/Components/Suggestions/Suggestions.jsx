@@ -27,7 +27,7 @@ const Suggestions = () => {
                 <h1>Sugerencias</h1>
                 <DivCards>
                     {users.length ? users.map(e =>
-                        <div className="card"><CardSuggestions
+                        <CardSuggestions
                             fullname={e.fullname}
                             id={e.id}
                             profile={e.profile}
@@ -35,7 +35,6 @@ const Suggestions = () => {
                             follow={e.follow}
                             key={e.id}
                         />
-                        </div>
                     ) : <div>Cargando...</div>}
                     <div className="espacios"></div>
                 </DivCards>
