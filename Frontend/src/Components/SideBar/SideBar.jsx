@@ -49,7 +49,7 @@ export default function SideBar() {
 
                     <Link to='/myprofile'><p># Perfil</p></Link>
                     <button className='cerrar-sesion' onClick={handleLogOut}>
-                        # Cerrar sesion
+                        <a href="/"># Cerrar sesion</a>
                     </button>
                 </div>
             }
@@ -62,7 +62,7 @@ export default function SideBar() {
                 {
                     open &&
                     <ul className='list'>
-                        <li><a href="/login"># Canal 1</a></li>
+                        <Link to="/chat"><li><p># Canal 1</p></li></Link>
                     </ul>
                 }
             </details>
@@ -82,7 +82,7 @@ export default function SideBar() {
             <details open={open === false && undefined}>
                 <summary className='canales'>
                     <Settings />
-                    Configuracion
+                    Settings
                     <span><Chevron /></span>
                 </summary>
                 {

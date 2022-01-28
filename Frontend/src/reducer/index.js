@@ -1,5 +1,7 @@
 
-import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_USER, GET_NAME, GET_MY_PROFILE, GET_USER_BY_ID, MY_PROFILE, CREATE_POST, GET_ALL_POSTS, GET_FOLLOWS, GET_FOLLOWERS} from "../actions/actionTypes"
+import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_USER, GET_NAME, 
+    PUT_UPLOUD_PROFILE, GET_MY_PROFILE, GET_USER_BY_ID, MY_PROFILE, CREATE_POST, GET_ALL_POSTS, 
+    GET_FOLLOWS, GET_FOLLOWERS, FOLLOW_USER_BY_ID} from "../actions/actionTypes"
 
 
 const initialState = {
@@ -11,7 +13,8 @@ const initialState = {
     myProfileData:[],
     allPost: [],
     follows:[],
-    followers:[]
+    followers:[],
+    followUser:[]
 
 }
 
@@ -47,7 +50,13 @@ export function rootReducer(state = initialState, action) {
                 search:action.payload
             }       
             
-        case GET_MY_PROFILE:
+        case  GET_MY_PROFILE:
+            return{
+                ...state,
+                myprofile:action.payload
+            }
+
+            case  PUT_UPLOUD_PROFILE:
             return{
                 ...state,
                 myprofile:action.payload
@@ -75,7 +84,12 @@ export function rootReducer(state = initialState, action) {
                 return{
                     ...state,
                     followers:action.payload
-                }        
+                }
+            case FOLLOW_USER_BY_ID:
+                return{
+                    ...state,
+                    followUser:action.payload,
+                }            
         default:
             return state
     }

@@ -13,7 +13,7 @@ export default function CrearPost() {
     const [input, setInput] = useState({
         description: ""
     })
-    const [file, setFile] = useState(null)
+    const [, setFile] = useState(null)
 
     const dispatch = useDispatch();
 
@@ -23,23 +23,23 @@ export default function CrearPost() {
             [e.target.name]: e.target.value,
         })
     }
-    /*     function submitHandler(e) {
-            e.preventDefault()
-            dispatch(CreatePost(input));
-            alert("se creo el post")
-            setInput({
-                description: ""
-            })
-            window.location.reload();
-        } */
+    function submitHandler(e) {
+        e.preventDefault()
+        dispatch(CreatePost(input));
+        alert("se creo el post")
+        setInput({
+            description: ""
+        })
+        window.location.reload();
+    }
     return (
 
-        <StyledForm className={input.description ? 'expanded' : undefined} /* onSubmit={submitHandler} */>
+        <StyledForm className={input.description ? 'expanded' : undefined} onSubmit={submitHandler}>
             <div className='img-post'>
                 <img className='user-img' src={user.photoURL} alt="" width={"20px"} height={"20px"} />
                 <textarea
                     className='textarea'
-                    placeholder={"¿Qué estas pensando " + user.displayName.split(' ')[0] + "?"}
+                    placeholder={"¿Qué estas pensando " + user.displayName?.split(' ')[0] + "?"}
                     name='description'
                     value={input.description}
                     onChange={handleChange}

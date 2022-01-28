@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { postUploadProfile } from "../../actions";
 
 
@@ -17,21 +17,23 @@ import { GlobalStyle } from './Styled';
 
 
 
-function EditProfile({userk}) {
+function EditProfile({ userk }) {
 
-  
+
   const dispatch = useDispatch();
 
   const [input, setInput] = useState({
     //  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiBf9NIb94QLztGC6JuQk3-FNCrCY1ry64GA&usqp=CAU"
     // "https://images.ole.com.ar/2022/01/01/smOuc4YsP_340x340__1.jpg"  
+    // `${process.env.REACT_APP_PUERTO}
+    // `${process.env.REACT_APP_PUERTO}uploads/ESiDsykaitaH1weBOslWLJs0TLJ2_profile.jpg`
 
     fullname: userk.data[0].fullname,
     description: userk.data[0].description,
     profile: userk.data[0].profile,
-    background_picture: './BReact.png',
+    background_picture: `./BReact.png`,
     nacionalidad: userk.data[0].nacionalidad,
-    // mail: userk.data[0].mail,
+    email: userk.data[0].email,
     birthday: userk.data[0].birthday
   });
   console.log(input)
@@ -65,7 +67,15 @@ function EditProfile({userk}) {
     })
   }
 
-
+  function handleChangeImg(evt) {
+    let mirar = evt.target.value;
+    let valor = evt.target.value;
+    console.log(mirar)
+    setInput({
+      ...input,
+      [evt.target.name]: valor
+    })
+  }
 
 
   async function handleSubmit(evt) {
@@ -91,7 +101,7 @@ function EditProfile({userk}) {
               <LabelFile> Uploud to photo
                 <InputFile
                   name='background_picture'
-                  onChange={evt => handleChange(evt)} />
+                  onChange={evt => handleChangeImg(evt)} />
               </LabelFile>
             </FileContainerP>
 
@@ -115,7 +125,7 @@ function EditProfile({userk}) {
             <LabelFile> Uploud to photo
               <InputFile
                 name='profile'
-                onChange={evt => handleChange(evt)}
+                onChange={evt => handleChangeImg(evt)}
               />
             </LabelFile>
           </FileContainer>
@@ -212,7 +222,7 @@ function EditProfile({userk}) {
               <div>
                 <InputBirthday
                   value={`${input.birthday}`}
-                  name='email'
+                  name='birthday'
                   onChange={evt => handleChange(evt)} />
 
               </div>

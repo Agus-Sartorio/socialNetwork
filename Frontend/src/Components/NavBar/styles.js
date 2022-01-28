@@ -51,6 +51,7 @@ img{
 
     .open{
         position: relative;
+        z-index: 1;
     }
 
     & > *{
