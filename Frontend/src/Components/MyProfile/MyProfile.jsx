@@ -1,57 +1,81 @@
-import { useDispatch, useSelector } from "react-redux";
-import { Div } from './StyledMyProfile';
-import NavBar from "../NavBar/NavBar";
-import { useEffect } from "react";
-import { getMyProfileData } from "../../actions";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import { CardFollow } from "./CardFollow";
+import { StyledModal } from "./StyledMyProfile";
 
 
-const MyProfile = () => {
-    const myProfile = useSelector((state) => state.myProfileData)
-    const dispatch = useDispatch()
-
-    useEffect(() => {
-        dispatch(getMyProfileData())
-    }, [dispatch])
-
+const MyProfile = ({myProfile}) => {
+    const [isPopOpen, setIsPosOpen] = useState(false)
+    const [isPopOpen2, setIsPosOpen2] = useState(false)
+    const follows = useSelector((state) => state.follows)
+    const followers = useSelector((state) => state.followers)
     return (
         <>
-            <NavBar />
-            <Div>
-                <div>
-                    <img src={myProfile[0].profile} alt='imagen de usuario' />
-                    <h1>{myProfile[0].fullname}</h1>
+        <div>
+            <img src={myProfile.data[0].profile} alt='imagen de usuario' />
+            <h1>{myProfile.data[0].fullname}</h1>
+        </div>
+        <div className="App">
+        <header className="App-header">
+            <span
+                style={{
+                    display: 'flex',
+                    margin: '5rem',
+                    cursor: 'pointer'
+                }}
+                onClick={() => setIsPosOpen(!isPopOpen)}
+            >
+                {myProfile.data[0].follow.followers.length} seguidores
+            </span>
+            <StyledModal
+                show={isPopOpen}
+                handleClose={() => setIsPosOpen(false)}
+            >
+                <div style={{ color: "black" }}>
+
+                {followers.data ? followers.data.map(e => <CardFollow 
+                   fullname={e.fullname}
+                   email={e.email}
+                   profile={e.profile}
+                   id={e.id}
+                   key={e.id}/>)
+                        :
+                        <div>cargando</div>}
+             
                 </div>
-            </Div>
-        </>
+
+            </StyledModal>
+
+            <span
+                style={{
+                    display: 'flex',
+                    margin: '5rem',
+                    cursor: 'pointer'
+                }}
+                onClick={() => setIsPosOpen2(!isPopOpen2)}
+            >
+                {myProfile.data[0].follow.follows.length} siguiendo
+            </span>
+            <StyledModal
+                show={isPopOpen2}
+                handleClose={() => setIsPosOpen2(false)}
+            >
+                <div style={{ color: "black" }}>
+                   {follows.data ? follows.data.map(e => <CardFollow 
+                   fullname={e.fullname}
+                   email={e.email}
+                   profile={e.profile}
+                   id={e.id}
+                   key={e.id}/>)
+                        :
+                        <div>cargando</div>}
+            
+                </div>
+            </StyledModal>
+        </header>
+    </div>
+    </>
     )
 }
 
 export default MyProfile;
-
-
-
-//Agust asi llega la data,para que pongas los campos necesarios
-// [
-//     {
-//         "follow": {
-//             "followers": [],
-//             "follows": [
-//                 "WlpqFTklN1TALxHpVEa6H75U5VF2"
-//             ]
-//         },
-//         "_id": "61f07800b9adea9e37b48f0c",
-//         "id": "ESiDsykaitaH1weBOslWLJs0TLJ2",
-//         "fullname": "Edwin Leon",
-//         "nacionalidad": [],
-//         "cohorte": [],
-//         "rol": [],
-//         "description": [],
-//         "background_picture": [],
-//         "post": [],
-//         "email": "edwinm.leonb@gmail.com",
-//         "profile": "https://avatars.githubusercontent.com/u/86617629?v=4",
-//         "state": true,
-//         "social_networks": [],
-//         "__v": 1
-//     }
-// ]

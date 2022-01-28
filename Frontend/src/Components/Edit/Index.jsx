@@ -1,5 +1,5 @@
 import { getMyProfileData } from "../../actions";
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import React, { useState, useEffect } from 'react';
 import EditProfile from './EditProfile';
 import SideBar from "../SideBar/SideBar";
@@ -11,7 +11,7 @@ import {
 
 function Edit() {
   const dispatch = useDispatch();
-
+  const userk = useSelector((state) => state.myProfileData)
   useEffect(() => {
     dispatch(getMyProfileData())
   }, [dispatch])
@@ -27,7 +27,8 @@ function Edit() {
         <SidebarContainer>
           <SideBar setgstate={setgstate} />
         </SidebarContainer>
-        <EditProfile />
+        {userk.data? <EditProfile userk={userk}/>:<div>cargando...</div>}
+       
       </Container2>
     </>
 

@@ -39,7 +39,7 @@ export default function SideBar() {
             <div className='user'>
                 <button onClick={handleClick}>
                     <img src={user.photoURL} alt="" />
-                    <p>{user.displayName.split(' ')[0]}</p>
+                    <p>{user.displayName?.split(' ')[0]}</p>
                     <span className={isuser ? 'chevron' : undefined}><Chevron /></span>
                 </button>
             </div>
@@ -47,9 +47,9 @@ export default function SideBar() {
                 isuser && open &&
                 <div className='settings'>
 
-                    <Link to='/myprofile'># Perfil</Link>
+                    <Link to='/myprofile'><p># Perfil</p></Link>
                     <button className='cerrar-sesion' onClick={handleLogOut}>
-                        # Cerrar sesion
+                        <a href="/"># Cerrar sesion</a>
                     </button>
                 </div>
             }
@@ -62,7 +62,7 @@ export default function SideBar() {
                 {
                     open &&
                     <ul className='list'>
-                        <li><a href="/login"># Canal 1</a></li>
+                        <Link to="/chat"><li><p># Canal 1</p></li></Link>
                     </ul>
                 }
             </details>
@@ -82,7 +82,7 @@ export default function SideBar() {
             <details open={open === false && undefined}>
                 <summary className='canales'>
                     <Settings />
-                    Configuracion
+                    Settings
                     <span><Chevron /></span>
                 </summary>
                 {

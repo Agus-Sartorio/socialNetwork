@@ -3,11 +3,12 @@ import GlobalStyle from "./IndexStyled.jsx";
 import LogIn from './Components/FormLogIn/LogIn';
 import Home from './Components/Home/Home';
 import Edit from './Components/Edit/Index';
+import Chat from './Components/Chat/index';
 import Suggestions from './Components/Suggestions/Suggestions.jsx';
 import { UserAuthContextProvider } from "./Components/Context/UserContext";
 // import { ProtectedRoute } from './Components/ProtectedRoute'
 import Profile from './Components/Profile/Profile.jsx';
-import MyProfile from "./Components/MyProfile/MyProfile.jsx";
+import { ViewProfile } from "./Components/MyProfile/ViewProfile.jsx";
 function App() {
   return (
     <div className='app'>
@@ -18,10 +19,11 @@ function App() {
         <Routes>
           <Route path="/" element={<LogIn />} />
           <Route path="/edit" element={<Edit />} />
+          <Route path="/chat" element={<Chat />} />
           <Route path="/home" element={<Home />} />
           <Route path="/suggestions" element={<Suggestions />} />
           <Route path='/profile/:id' element={<Profile />} />
-          <Route path='/myprofile' element={<MyProfile />} />
+          <Route path='/myprofile' element={<ViewProfile/>} />
         </Routes>
       </UserAuthContextProvider>
     </div>
