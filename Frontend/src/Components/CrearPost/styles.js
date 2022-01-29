@@ -9,7 +9,7 @@ export const StyledForm = styled.form`
     border-radius: 7px;
     max-width: 600px;
     padding: 15px;
-    background-color: var(--grey-9);
+    background-color: var(--grey-3);
     position: relative;
     transition: height 300ms;
 
@@ -38,9 +38,10 @@ export const StyledForm = styled.form`
             min-height: 60px;
             width: 100%;
             border: 1px solid transparent;
-            background-color: white;
+            background-color: var(--grey-4);
             border-radius: 7px;
             font-size: 14px;
+            color: #ccc;
             padding: 10px 50px 10px 10px;
             resize: none;
             transition: box-shadow 300ms, border 300ms;
@@ -48,7 +49,7 @@ export const StyledForm = styled.form`
             &:focus{
                 outline: none;
                 box-shadow: var(--box-shadow);
-                border: 1px solid #ddd;
+                border: 1px solid var(--grey-2);
             }
         }
     }
@@ -82,10 +83,9 @@ export const StyledForm = styled.form`
             background-color: transparent;
             border: none;
             color: var(--blue-1);
-
         }
         &:hover{
-            background-color: var(--blue-2);
+            background-color: var(--blue-2-50);
         }
     }
 

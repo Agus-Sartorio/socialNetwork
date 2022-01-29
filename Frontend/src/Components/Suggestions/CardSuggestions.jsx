@@ -14,10 +14,10 @@ const CardSuggestions = ({ fullname, id, profile, email }) => {
 
     async function followUnFollow(e) {
         e.preventDefault()
-        try{
+        try {
             await axios.put(`${process.env.REACT_APP_PUERTO}usuarios/follow/`, idToFollow, tokenUsuario())
             setButton(true)
-        }catch(err){
+        } catch (err) {
             console.log(err)
         }
     }
@@ -26,7 +26,7 @@ const CardSuggestions = ({ fullname, id, profile, email }) => {
         <StyledCardSuggestions className='card'>
             {profile.startsWith('https://avatars.') ?
                 <img className="card__image" src={profile} alt={fullname} /> :
-                <DefaultUser />
+                <DefaultUser className="card__image" />
             }
             <h3 className='card__name'>
                 <Link to={`/profile/${id}`} className="Link">
@@ -37,7 +37,7 @@ const CardSuggestions = ({ fullname, id, profile, email }) => {
             <p className='card__email'>{email}</p>
             {button === false ?
                 <button onClick={followUnFollow} className="card__btn"><Follow /> Seguir</button> :
-                <p className='card__follow'>ahora sigues a {fullname}</p>
+                <p className='card__follow'>Ahora sigues a <span>{fullname.split(' ')[0]}</span></p>
             }
         </StyledCardSuggestions>
     )
