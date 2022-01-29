@@ -18,6 +18,7 @@ import {
   GET_MY_ID,
   CLEAR_MY_FOLLOW_STATE,
   SORT_BY_AZ,
+  GET_CLEAN,
 } from "./actionTypes";
 
 export const getUsers = () => {
@@ -270,3 +271,9 @@ export const getMyId = () => {
     }
   };
 };
+
+export function getClean() {
+  return {
+    type: GET_CLEAN,
+  };
+}

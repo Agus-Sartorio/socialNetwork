@@ -1,7 +1,15 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { clearProfileState, getFollowUserById, getMyId, getMyProfileData, getProfile,   getMyfriendsPost, } from "../../actions";
+import {
+  clearProfileState,
+  getClean,
+  getFollowUserById,
+  getMyfriendsPost,
+  getMyProfileData,
+  getProfile,
+  getMyId
+} from "../../actions";
 import NavBar from "../NavBar/NavBar";
 import SideBar from "../SideBar/SideBar";
 import CardProfile from "./CardProfile";
@@ -9,23 +17,28 @@ import { Container } from "./styledCardProfile";
 import { format } from "timeago.js";
 
 const Profile = () => {
-    const { id } = useParams();
-    const dispatch = useDispatch()
-    const profile = useSelector((state) => state.profile)
-    const myId = useSelector((state) => state.myId)
-    const followUser = useSelector((state) => state.followUser)
-    const myFrindsPost = useSelector((state) => state.myFriendsPost);
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const profile = useSelector((state) => state.profile);
+  const followUser = useSelector((state) => state.followUser);
+  const myFrindsPost = useSelector((state) => state.myFriendsPost);
+  const myId = useSelector((state) => state.myId)
 
-    useEffect(() => {
-        dispatch(getProfile(id))
-        dispatch(getFollowUserById(id))
-        dispatch(getMyProfileData())
-        dispatch(getMyId())
-        dispatch(getMyfriendsPost(id))
-        return () => {
-            dispatch(clearProfileState())
-        }
-    }, [dispatch, id])
+
+  useEffect(() => {
+    dispatch(getProfile(id));
+    dispatch(getFollowUserById(id));
+    dispatch(getMyProfileData());
+    dispatch(getMyfriendsPost(id))
+    dispatch(getMyId())
+    return () => {
+      dispatch(clearProfileState());
+      dispatch(getClean())
+    };
+  }, [dispatch, id]);
+
+
+
     return (
         <div>
             <NavBar />
