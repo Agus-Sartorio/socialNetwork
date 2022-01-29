@@ -24,4 +24,6 @@ export const GET_FOLLOWS = 'GET_FOLLOWS';
 export const SORT_BY_AZ='SORT_BY_AZ';
 export const SORT_BY_ZA='SORT_BY_ZA';
 export const FOLLOW_USER_BY_ID='FOLLOW_USER_BY_ID';
+export const GET_MY_POST = 'GET_MY_POST';
+export const GET_MY_FRIENDS_POST = 'GET_MY_FRIENDS_POST';
 

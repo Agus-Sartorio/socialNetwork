@@ -1,7 +1,7 @@
 
 import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_USER, GET_NAME, 
     PUT_UPLOUD_PROFILE, GET_MY_PROFILE, GET_USER_BY_ID, MY_PROFILE, CREATE_POST, GET_ALL_POSTS, 
-    GET_FOLLOWS, GET_FOLLOWERS, FOLLOW_USER_BY_ID} from "../actions/actionTypes"
+    GET_FOLLOWS, GET_FOLLOWERS, FOLLOW_USER_BY_ID, GET_MY_POST, GET_MY_FRIENDS_POST} from "../actions/actionTypes"
 
 
 const initialState = {
@@ -14,7 +14,9 @@ const initialState = {
     allPost: [],
     follows:[],
     followers:[],
-    followUser:[]
+    followUser:[],
+    myProfilePost:[],
+    myFriendsPost: [],
 
 }
 
@@ -89,7 +91,17 @@ export function rootReducer(state = initialState, action) {
                 return{
                     ...state,
                     followUser:action.payload,
-                }            
+                } 
+                case GET_MY_POST:
+                    return{
+                        ...state,
+                        myProfilePost: action.payload,
+                    }      
+                case GET_MY_FRIENDS_POST:
+                    return{
+                        ...state,
+                        myFriendsPost: action.payload,
+                    }         
         default:
             return state
     }

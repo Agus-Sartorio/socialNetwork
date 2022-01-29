@@ -1,6 +1,6 @@
 
 import axios from 'axios';
-import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_USER,  GET_MY_PROFILE, GET_USER_BY_ID, tokenUsuario, MY_PROFILE, GET_ALL_POSTS, GET_NAME, GET_FOLLOWS, GET_FOLLOWERS, FOLLOW_USER_BY_ID } from "./actionTypes";
+import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_USER,  GET_MY_PROFILE, GET_USER_BY_ID, tokenUsuario, MY_PROFILE, GET_ALL_POSTS, GET_NAME, GET_FOLLOWS, GET_FOLLOWERS, FOLLOW_USER_BY_ID, GET_MY_POST, GET_MY_FRIENDS_POST } from "./actionTypes";
 
 export const getUsers = () => {
     return async (dispatch) => {
@@ -131,12 +131,8 @@ export const CreatePost = (payload) => {
 export const AllPost = () => {
     return async (dispatch) => {
         try{
-            let {data:{data, message}} = await axios.get(`${process.env.REACT_APP_PUERTO}posts`, tokenUsuario())
-            console.log(data, 'data')
-            data = data.map((p) => {
-                p.autor = JSON.parse(p.autor)
-                return p;
-            })
+            let {data:{data}} = await axios.get(`${process.env.REACT_APP_PUERTO}posts/?follows=true`, tokenUsuario())
+            console.log(data, 'datapost')
             return dispatch({
                 type: GET_ALL_POSTS,
                 payload: data
@@ -170,4 +166,32 @@ export const getFollowers = () => {
         }
     }
 
+}
+
+export const getMyPost = () => {
+    return async (dispatch) => {
+        try {
+            const myPost = await axios.get(`${process.env.REACT_APP_PUERTO}posts/?myself=true`, tokenUsuario())
+            return dispatch({
+                type:GET_MY_POST,
+                payload: myPost.data
+            })
+        }catch(error){
+            console.log(error)
+        }
+    }
+}
+
+export const getMyfriendsPost = (id) => {
+    return async (dispatch) => {
+        try{
+            const friendsPost = await axios.get(`${process.env.REACT_APP_PUERTO}posts/?userid=${id}`, tokenUsuario())
+            return dispatch({
+                type: GET_MY_FRIENDS_POST,
+                payload:friendsPost.data
+            })
+        }catch(error){
+            console.log(error);
+        }
+    }
 }
