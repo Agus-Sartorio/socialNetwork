@@ -2,9 +2,9 @@
 // import SideBar from "../SideBar/SideBar";
 import CrearPost from "../CrearPost/CrearPost";
 import Layout from '../Layout/Layout'
-import Post from "../Feed/Post"; 
 import Bienvenido from "./Bienvenido";
 import { useSelector } from "react-redux";
+import PostContainer from "../Feed/PostContainer";
 /* import { Div } from "../MyProfile/StyledMyProfile"; */
 
 export default function Home() {
@@ -12,11 +12,9 @@ export default function Home() {
     return (
         <Layout>
             <CrearPost />
-            {
-                post? <Post/> :  <Bienvenido/>
-            }
-       
-          
+            <div>
+                <Bienvenido />
+            </div>
         </Layout>
     )
 }

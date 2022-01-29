@@ -168,21 +168,16 @@ export const CreatePost = (payload) => {
 export const AllPost = () => {
   return async (dispatch) => {
     try {
-      let {
-        data: { data },
-      } = await axios.get(
-        `${process.env.REACT_APP_PUERTO}posts/?follows=true`,
-        tokenUsuario()
-      );
-      console.log(data, "datapost");
+      let { data: { data } } = await axios.get(`${process.env.REACT_APP_PUERTO}posts/?follows=true`, tokenUsuario())
       return dispatch({
         type: GET_ALL_POSTS,
-        payload: data,
-      });
+        payload: data
+      })
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
+};
 };
 
 export const getFollows = () => {

@@ -37,7 +37,7 @@ const CardSuggestions = ({ fullname, id, profile, email }) => {
             <p className='card__email'>{email}</p>
             {button === false ?
                 <button onClick={followUnFollow} className="card__btn"><Follow /> Seguir</button> :
-                <p className='card__follow'>ahora sigues a {fullname}</p>
+                <p className='card__follow'>Ahora sigues a <span>{fullname.split(' ')[0]}</span></p>
             }
         </StyledCardSuggestions>
     )
