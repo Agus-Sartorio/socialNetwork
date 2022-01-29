@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { AllPost } from "../../actions";
+import { AllPost, getMyProfileData } from "../../actions";
 import { format } from "timeago.js";
 
 
@@ -12,22 +12,25 @@ export default function Post () {
     
     useEffect(()=> {
         dispatch(AllPost());
+        dispatch(getMyProfileData())
     },[dispatch])
     
     const post = useSelector((state => state.allPost))
-    console.log(post, 'allpoststate')
+    const myData = useSelector((state => state.myProfileData))
+
+  
   
 
     return (
 
         <>         
-         {post.length? post.map((p)=> {
+         {post?.length? post.map((p)=> {
              return(
               <div key={p._id}>
-                  <Link to={`/profile/${p.autor.id}`}>
-                      <img src={p.autor.profile} alt="img not found" width={"30px"} height={"30px"}/>
+                  <Link to={`/${p.autorData?.[0]?.id === myData?.data?.[0]?.id?`myprofile`: `profile/${p.autorData?.[0]?.id}`}`}>
+                      <img src={p.autorData?.[0]?.profile} alt="img not found" width={"30px"} height={"30px"}/>
                   </Link>
-                  <span>{p.autor.fullname}</span>
+                  <span>{p.autorData?.[0]?.fullname}</span>
                   <hr/>
                   <span>{format(p.createdAt)}</span>
                   <h1>{p.description}</h1>
