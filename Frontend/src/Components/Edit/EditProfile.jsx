@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { postUploadProfile } from "../../actions";
+// import { useDispatch } from 'react-redux';
+// import { postUploadProfile } from "../../actions";
 
 
 
@@ -20,7 +20,7 @@ import { GlobalStyle } from './Styled';
 function EditProfile({ userk }) {
 
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const [input, setInput] = useState({
     //  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiBf9NIb94QLztGC6JuQk3-FNCrCY1ry64GA&usqp=CAU"
@@ -68,15 +68,15 @@ function EditProfile({ userk }) {
     })
   }
 
-  function handleChangeImg(evt) {
-    let mirar = evt.target.value;
-    let valor = evt.target.value;
-    console.log(mirar, "changeimage")
-    setInput({
-      ...input,
-      [evt.target.name]: valor
-    })
-  }
+  // function handleChangeImg(evt) {
+  //   let mirar = evt.target.value;
+  //   let valor = evt.target.value;
+  //   console.log(mirar, "changeimage")
+  //   setInput({
+  //     ...input,
+  //     [evt.target.name]: valor
+  //   })
+  // }
 
   // const fileOnChange = (evt) =>  {
   //   let valor = evt.target.files[0];
@@ -111,20 +111,37 @@ function EditProfile({ userk }) {
 
     evt.preventDefault()
     let formData = new FormData()
-    formData.append('profile', image.data)
-    const response = await fetch('http://localhost:3001/usuarios', {
-      method: 'PUT',
-      body: formData,
-      headers: {
-        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IldscHFGVGtsTjFUQUx4SHBWRWE2SDc1VTVWRjIiLCJpYXQiOjE2NDMzODc4MDEsImV4cCI6MTY0MzQ3NDIwMX0.ndZkdPFoQSlblU9bduvSqOYEjHiiEXu7CD9t54Z2XKA", //Agregado
-      }
-    })
+    if(image.data !== ""){    
+      formData.append('profile', image.data)
+      const response = await fetch('http://localhost:3001/usuarios', {
+        method: 'PUT',
+        body: formData,
+        headers: {
+          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IldscHFGVGtsTjFUQUx4SHBWRWE2SDc1VTVWRjIiLCJpYXQiOjE2NDMzODc4MDEsImV4cCI6MTY0MzQ3NDIwMX0.ndZkdPFoQSlblU9bduvSqOYEjHiiEXu7CD9t54Z2XKA", //Agregado
+        }
+      });
+
     if (response) {console.log(response.statusText)}
+    }
+    if(imageP.data !== ""){    
+      formData.append('background_picture', imageP.data)
+      const response = await fetch('http://localhost:3001/usuarios', {
+        method: 'PUT',
+        body: formData,
+        headers: {
+          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IldscHFGVGtsTjFUQUx4SHBWRWE2SDc1VTVWRjIiLCJpYXQiOjE2NDMzODc4MDEsImV4cCI6MTY0MzQ3NDIwMX0.ndZkdPFoQSlblU9bduvSqOYEjHiiEXu7CD9t54Z2XKA", //Agregado
+        }
+      })
+
+      if (response) {console.log(response.statusText)}
+    }
+
+
     // console.log(formData, "lo que estoy mandando")
     // dispatch(postUploadProfile(formData))
   }
   if(userk.data[0].background_picture===''){
-    userk.data[0].background_picture=''
+     userk.data[0].background_picture='';
   }
 
   return (<>

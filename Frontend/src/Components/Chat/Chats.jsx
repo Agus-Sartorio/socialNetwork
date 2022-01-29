@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react"; */
 /* import { Link } from 'react-router-dom'; */
 import Conversation from './Conversation/IndexC';
 import Message from './Message/IndexM';
+import ChatOnline from './ChatOnline/index';
+
 import { Messenger, ChatMenu, ChatMenuWrapper,
          ChatMenuInput, ChatBox, ChatBoxWrapper, ChatBoxTop,
          ChatBoxBottom, ChatMessageInput, ChatSubmitButton, ChatOnlineContainer,
@@ -85,6 +87,8 @@ export default function Chats({contactos}) {
         </ChatBox>
         <ChatOnlineContainer>
           <ChatOnlineWrapper>
+
+           <ChatOnline contactos={contactos}/>
             {/* <ChatOnline
             onlineUsers={onlineUsers}
             currentId={user._id}
