@@ -177,17 +177,6 @@ export const clearStateFollowsUser = () => {
     return ({ type: CLEAR_FOLLOW_USER_STATE, payload: [] })
 }
 
-export const getMyId = () => {
-    return async (dispatch) => {
-        try {
-            const { data: id } = await axios.get(`${process.env.REACT_APP_PUERTO}usuarios/Id`, tokenUsuario())
-            return dispatch({ type: GET_MY_ID, payload: id })
-        } catch (err) {
-            console.log(err)
-        }
-    }
-}
-
 export const clearMyFollowsState = () => {
     return ({ type: CLEAR_MY_FOLLOW_STATE, payload: [] })
 }
@@ -195,4 +184,16 @@ export const clearMyFollowsState = () => {
 
 export const sortByAz = () => {
     return ({ type: SORT_BY_AZ })
+}
+
+
+export const getMyId = () => {
+    return async (dispatch) => {
+        try {
+            const myId = await axios.get(`${process.env.REACT_APP_PUERTO}usuarios/?myId=true`, tokenUsuario())
+            return dispatch({ type: GET_MY_ID, payload: myId.data })
+        } catch (err) {
+            console.log(err)
+        }
+    } 
 }

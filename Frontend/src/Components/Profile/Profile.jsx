@@ -12,7 +12,7 @@ const Profile = () => {
     const { id } = useParams();
     const dispatch = useDispatch()
     const profile = useSelector((state) => state.profile)
-    const myProfile = useSelector((state) => state.myProfileData)
+    const myId = useSelector((state) => state.myId)
     const followUser = useSelector((state) => state.followUser)
 
     useEffect(() => {
@@ -29,12 +29,12 @@ const Profile = () => {
             <NavBar />
             <Container>
                 <SideBar />
-                {Object.keys(profile).length && myProfile.data ?
+                {Object.keys(profile).length && Object.keys(myId).length?
                     <div>
                         <CardProfile
                             profile={profile}
-                            myProfile={myProfile}
                             followUser={followUser}
+                            myId={myId}
                         />
                     </div>
                     : <div>cargando...</div>
