@@ -1,13 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import {
-  clearProfileState,
-  getFollowUserById,
-  getMyfriendsPost,
-  getMyProfileData,
-  getProfile,
-} from "../../actions";
+import { clearProfileState, getFollowUserById, getMyId, getMyProfileData, getProfile,   getMyfriendsPost, } from "../../actions";
 import NavBar from "../NavBar/NavBar";
 import SideBar from "../SideBar/SideBar";
 import CardProfile from "./CardProfile";
@@ -15,47 +9,40 @@ import { Container } from "./styledCardProfile";
 import { format } from "timeago.js";
 
 const Profile = () => {
-  const { id } = useParams();
-  const dispatch = useDispatch();
-  const profile = useSelector((state) => state.profile);
-  const myProfile = useSelector((state) => state.myProfileData);
-  const followUser = useSelector((state) => state.followUser);
-  const myFrindsPost = useSelector((state) => state.myFriendsPost);
+    const { id } = useParams();
+    const dispatch = useDispatch()
+    const profile = useSelector((state) => state.profile)
+    const myId = useSelector((state) => state.myId)
+    const followUser = useSelector((state) => state.followUser)
+    const myFrindsPost = useSelector((state) => state.myFriendsPost);
 
-
-  useEffect(() => {
-    dispatch(getProfile(id));
-    dispatch(getFollowUserById(id));
-    dispatch(getMyProfileData());
-    dispatch(getMyfriendsPost(id))
-    return () => {
-      dispatch(clearProfileState());
-    };
-  }, [dispatch, id]);
-
-
-
-  return (
-    <div>
-      <NavBar />
-      <Container>
-        <SideBar />
-        {Object.keys(profile).length &&
-        myProfile.data &&
-        Object.keys(followUser).length ? (
-          <div>
-            <CardProfile
-              profile={profile}
-              myProfile={myProfile}
-              followUser={followUser}
-            />
-          </div>
-        ) : (
-          <div>cargando...</div>
-        )}
-      </Container>
-      <hr/>
-
+    useEffect(() => {
+        dispatch(getProfile(id))
+        dispatch(getFollowUserById(id))
+        dispatch(getMyProfileData())
+        dispatch(getMyId())
+        dispatch(getMyfriendsPost(id))
+        return () => {
+            dispatch(clearProfileState())
+        }
+    }, [dispatch, id])
+    return (
+        <div>
+            <NavBar />
+            <Container>
+                <SideBar />
+                {Object.keys(profile).length && Object.keys(myId).length?
+                    <div>
+                        <CardProfile
+                            profile={profile}
+                            followUser={followUser}
+                            myId={myId}
+                        />
+                    </div>
+                    : <div>cargando...</div>
+                }
+            </Container>
+            
       {myFrindsPost?.data?.length ? (
         myFrindsPost?.data?.map((p) => {
           return (
@@ -78,8 +65,8 @@ const Profile = () => {
       ) : (
         <div>Cargando...</div>
       )}
-    </div>
-  );
-};
+        </div>
+    )
+}
 
 export default Profile;

@@ -1,7 +1,7 @@
 
 import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_USER, GET_NAME, 
     PUT_UPLOUD_PROFILE, GET_MY_PROFILE, GET_USER_BY_ID, MY_PROFILE, CREATE_POST, GET_ALL_POSTS, 
-    GET_FOLLOWS, GET_FOLLOWERS, FOLLOW_USER_BY_ID, GET_MY_POST, GET_MY_FRIENDS_POST} from "../actions/actionTypes"
+    GET_FOLLOWS, GET_FOLLOWERS, FOLLOW_USER_BY_ID, GET_MY_POST, GET_MY_FRIENDS_POST,CLEAR_FOLLOW_USER_STATE, GET_MY_ID, CLEAR_MY_FOLLOW_STATE, SORT_BY_AZ, sortByAz} from "../actions/actionTypes"
 
 
 const initialState = {
@@ -17,6 +17,8 @@ const initialState = {
     followUser:[],
     myProfilePost:[],
     myFriendsPost: [],
+    myId:[],
+    sort:[]
 
 }
 
@@ -44,7 +46,8 @@ export function rootReducer(state = initialState, action) {
         case CLEAR_PROFILE_STATE:
             return{
                 ...state,
-                profile:action.payload
+                profile:action.payload,
+                followUser:action.payload
             }
         case GET_NAME:
             return{
@@ -102,7 +105,30 @@ export function rootReducer(state = initialState, action) {
                         ...state,
                         myFriendsPost: action.payload,
                     }         
+                
+            case CLEAR_FOLLOW_USER_STATE:
+                return{
+                    ...state,
+                    followUser:action.payload,
+                }
+            case GET_MY_ID:
+                return{
+                    ...state,
+                    myId:action.payload,
+                }
+            case CLEAR_MY_FOLLOW_STATE:
+                return{
+                    ...state,
+                    followers:action.payload,
+                    follows:action.payload,
+                }
+            case SORT_BY_AZ:
+                return{
+                    ...state,
+                    sort:state.followUser.sort(sortByAz)
+                }                            
         default:
             return state
     }
-}        
+}    
+       
