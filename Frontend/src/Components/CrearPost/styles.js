@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const StyledForm = styled.form`
     display: flex;
     flex-direction: column;
-    margin-top: 15px;
     width: 90%;
     height: 90px;
     overflow: hidden;
@@ -16,6 +15,10 @@ export const StyledForm = styled.form`
 
     &.expanded{
         height: 140px;
+
+        .btn-submit{
+            display: inline-block;
+        }
     }
 
     .img-post{
@@ -44,7 +47,7 @@ export const StyledForm = styled.form`
 
             &:focus{
                 outline: none;
-                box-shadow: 0px 5px 15px -5px rgba(0, 0, 0, 0.1);
+                box-shadow: var(--box-shadow);
                 border: 1px solid #ddd;
             }
         }
@@ -97,6 +100,7 @@ export const StyledForm = styled.form`
         border-radius: 15px;
         cursor: pointer;
         transition: transform 300ms;
+        display: none;
 
             &:hover{
                 transform: scale(1.03);
