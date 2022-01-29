@@ -1,5 +1,5 @@
-import NavBar from "../NavBar/NavBar";
-import SideBar from "../SideBar/SideBar";
+// import NavBar from "../NavBar/NavBar";
+// import SideBar from "../SideBar/SideBar";
 import CrearPost from "../CrearPost/CrearPost";
 import Layout from '../Layout/Layout'
 /* import Post from "../Feed/Post"; */
