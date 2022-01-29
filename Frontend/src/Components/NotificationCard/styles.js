@@ -10,7 +10,7 @@ export const StyledNotificationCard = styled.div`
     border-radius: 5px;
     background-color: white;
     cursor: pointer;
-    box-shadow: 0px 5px 15px -5px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--box-shadow);
     transition: transform 200ms, box-shadow 200ms;
     position: relative;
 
