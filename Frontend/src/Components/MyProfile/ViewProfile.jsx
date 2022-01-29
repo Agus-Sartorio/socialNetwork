@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getFollowers, getFollows, getMyProfileData } from "../../actions"
+import { clearMyFollowsState, getFollowers, getFollows, getMyProfileData } from "../../actions"
 import NavBar from "../NavBar/NavBar"
 import SideBar from "../SideBar/SideBar"
 import MyProfile from "./MyProfile"
@@ -15,6 +15,9 @@ export const ViewProfile = () => {
         dispatch(getMyProfileData())
         dispatch(getFollows())
         dispatch(getFollowers())
+        return () => {
+            dispatch(clearMyFollowsState())
+        }
     }, [dispatch])
 
 

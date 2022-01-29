@@ -1,30 +1,9 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { tokenUsuario } from "../../actions/actionTypes";
-import Modal from "./Modal";
+
+import { ModalFollowers } from "./ModalFollowers";
+import { ModalFollows } from "./ModalFollows";
 import { DivCardProfile } from "./styledCardProfile";
 
 const CardProfile = ({ profile, myProfile, followUser }) => {
-    const [button, setButton] = useState(false)
-    const idToFollow = { "followMe": profile.id }
-
-
-    async function followUnFollow() {
-        if (button) {
-            setButton(false)
-            await axios.put(`${process.env.REACT_APP_PUERTO}usuarios/follow/`, idToFollow, tokenUsuario())
-        } else {
-            setButton(true)
-            await axios.put(`${process.env.REACT_APP_PUERTO}usuarios/follow/`, idToFollow, tokenUsuario())
-        }
-    }
-
-
-
-    useEffect(() => {
-        profile.follow.followers.includes(myProfile.data[0].id) === true ?
-            setButton(true) : setButton(false)
-    }, [profile.follow.followers, myProfile])
     return (
         <DivCardProfile>
             <div className="head">
@@ -36,17 +15,16 @@ const CardProfile = ({ profile, myProfile, followUser }) => {
                     <p>{profile.email}</p>
                 </div>
                 <div className="follows-button">
-                   <Modal followUser={followUser}
-                   myProfile={myProfile}
-                   />
-                    <div>
-                        {button === false ? <button onClick={followUnFollow} className="follow"> seguir</button> : <button onClick={followUnFollow} className='unfollow'>dejar de seguir</button>}
-
-                    </div>
-
+                    {followUser.follows?
+                        <>
+                            <ModalFollows followUser={followUser}
+                               />
+                            <ModalFollowers followUser={followUser} 
+                              myProfile={myProfile}
+                              profile={profile}/>
+                        </> : <div>cargando..</div>}
                 </div>
             </div>
-
         </DivCardProfile>
     )
 }
