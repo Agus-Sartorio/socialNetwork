@@ -1,6 +1,6 @@
 /* import { getMyProfileData, getFollows } from "../../actions";
 import React, { useEffect, useState } from "react"; */
-/* import { useDispatch, useSelector } from 'react-redux'; */
+import {useSelector} from 'react-redux'; 
 /* import { Link } from 'react-router-dom'; */
 import Conversation from './Conversation/IndexC';
 import Message from './Message/IndexM';
@@ -16,9 +16,33 @@ import { Messenger, ChatMenu, ChatMenuWrapper,
  
 export default function Chats({contactos}) {
 
+
+   const menasajes=[
+    
+  {orden: 1,
+    Id:'6d5zgcvhomXcQKMAYd2qY2zWhQe2',
+    mensaje:'Sisi ya funciona'
+
+  },{ orden: 2,
+    Id:'WlpqFTklN1TALxHpVEa6H75U5VF2',
+    mensaje:'lo que hiciste conmigo'
+ },{orden: 3,
+    Id:'WlpqFTklN1TALxHpVEa6H75U5VF2',
+    mensaje:'Borrandolo de firebase'
+ },{orden: 4,
+     Id:'6d5zgcvhomXcQKMAYd2qY2zWhQe2',
+     mensaje:'Ahora a mi tamopoco me funciona',
+ },{orden: 5,
+     Id:'6d5zgcvhomXcQKMAYd2qY2zWhQe2',
+     mensaje:'?',
+ },{ orden: 6,
+  Id:'6d5zgcvhomXcQKMAYd2qY2zWhQe2',
+  mensaje:'Como arreglaste lo del login?',}
+];
   // const dispatch = useDispatch();
   // const user = useSelector((state) => state.myProfileData);
-
+   
+  // const Myid=user.id;
 //   useEffect(() => {
 //     dispatch(getMyProfileData())
 //   }, [dispatch])
