@@ -51,7 +51,7 @@ export default function Chats({contactos}) {
       </ChatMenu>
       <ChatBox>
         <ChatBoxWrapper>
-          {true? (
+          {false? (
             <>
               <ChatBoxTop>
                     <Message/>
