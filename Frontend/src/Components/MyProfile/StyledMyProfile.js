@@ -18,11 +18,8 @@ height: 100px;
 font-weight: 500;
 font-size: 13px;    
 color: #666;
-}
-
-    
+}   
 `
-
 export const ModalDiv = styled.div`
     display: ${p => p.block && p.block};
     position: fixed;
@@ -64,4 +61,11 @@ export const StyledModal = (
     )
 }
 
-
+export const DivSelect = styled.div`
+display: flex;
+flex-direction: row;
+`
+export const DivModal = styled.div`
+display: flex;
+flex-direction: row;
+`
