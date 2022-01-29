@@ -3,7 +3,7 @@ import { ModalFollowers } from "./ModalFollowers";
 import { ModalFollows } from "./ModalFollows";
 import { DivCardProfile } from "./styledCardProfile";
 
-const CardProfile = ({ profile, myProfile, followUser }) => {
+const CardProfile = ({ profile, followUser, myId }) => {
     return (
         <DivCardProfile>
             <div className="head">
@@ -15,13 +15,13 @@ const CardProfile = ({ profile, myProfile, followUser }) => {
                     <p>{profile.email}</p>
                 </div>
                 <div className="follows-button">
-                    {followUser.follows?
+                    {followUser.follows ?
                         <>
                             <ModalFollows followUser={followUser}
-                               />
-                            <ModalFollowers followUser={followUser} 
-                              myProfile={myProfile}
-                              profile={profile}/>
+                            />
+                            <ModalFollowers followUser={followUser}
+                                profile={profile}
+                                myId={myId} />
                         </> : <div>cargando..</div>}
                 </div>
             </div>

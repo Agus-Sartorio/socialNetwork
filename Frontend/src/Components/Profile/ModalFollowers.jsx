@@ -9,10 +9,10 @@ import { CardFollow } from "./CardFollow";
 import { BtnModal, Button, StyledModal } from "./styledCardProfile";
 
 
-export function ModalFollowers({ followUser, profile, myProfile }) {
+export function ModalFollowers({ followUser, profile,myId }) {
     const [isPopOpen, setIsPosOpen] = useState(false)
     const idToFollow = { "followMe": profile.id }
-    const validation = followUser.followers.map(e => e.id).includes(myProfile.data[0].id)
+    const validation = followUser.followers.map(e => e.id).includes(myId.id)
     const dispatch = useDispatch()
     async function followUnFollow() {
         await axios.put(`${process.env.REACT_APP_PUERTO}usuarios/follow/`, idToFollow, tokenUsuario())
