@@ -17,36 +17,58 @@ import { Messenger, ChatMenu, ChatMenuWrapper,
 export default function Chats({contactos}) {
 
 
-   const menasajes=[
+   const mensajesOrigin=[
     
   {orden: 1,
     Id:'6d5zgcvhomXcQKMAYd2qY2zWhQe2',
-    mensaje:'Sisi ya funciona'
+    mensaje:'Sisi ya funciona',
+    own:false
 
   },{ orden: 2,
     Id:'WlpqFTklN1TALxHpVEa6H75U5VF2',
-    mensaje:'lo que hiciste conmigo'
+    mensaje:'lo que hiciste conmigo',
+    own:false
  },{orden: 3,
     Id:'WlpqFTklN1TALxHpVEa6H75U5VF2',
-    mensaje:'Borrandolo de firebase'
+    mensaje:'Borrandolo de firebase',
+    own:false
+
  },{orden: 4,
      Id:'6d5zgcvhomXcQKMAYd2qY2zWhQe2',
      mensaje:'Ahora a mi tamopoco me funciona',
+     own:false
+
  },{orden: 5,
      Id:'6d5zgcvhomXcQKMAYd2qY2zWhQe2',
      mensaje:'?',
+     own:false
+
  },{ orden: 6,
-  Id:'6d5zgcvhomXcQKMAYd2qY2zWhQe2',
-  mensaje:'Como arreglaste lo del login?',}
+     Id:'6d5zgcvhomXcQKMAYd2qY2zWhQe2',
+     mensaje:'Como arreglaste lo del login?',
+     own:false
+    }
 ];
   // const dispatch = useDispatch();
-  // const user = useSelector((state) => state.myProfileData);
+  const mensajes= mensajesOrigin.reverse();
+  const user = useSelector((state) => state.myProfileData);
    
-  // const Myid=user.id;
+  const Myid = user.data[0].id
+  console.log( Myid, 'my id para el chat')
 //   useEffect(() => {
 //     dispatch(getMyProfileData())
 //   }, [dispatch])
     
+    mensajes.map((e)=>{
+      
+      if(Myid === e.Id){
+         e.own=true;
+         console.log(e, 'validacion de mensajes')
+          }
+   })
+
+    // if(Myid === mensajes[1].Id){mensajes[1].own=true;
+    // console.log(mensajes[1].own, 'validacion') }
 //   useEffect(() => {
 //    dispatch(getFollows())
 //    }, [dispatch])
@@ -75,16 +97,20 @@ export default function Chats({contactos}) {
       </ChatMenu>
       <ChatBox>
         <ChatBoxWrapper>
-          {false? (
+          {true? (
             <>
               <ChatBoxTop>
-                    <Message/>
-                    <Message own={true}/>
-                    <Message/>
-                    <Message/>
-                    <Message/>
-                    <Message own={true}/> 
-                    <Message own={true}/>
+              {mensajes.map((c) => (
+               <Message own={c.own} persona={c}/>
+                 ))} 
+                  
+                    {/* <Message own={mensajes[0].own} />
+                    <Message own={mensajes[1].own} />
+                    <Message own={mensajes[2].own} />
+                    <Message own={mensajes[3].own} />
+                    <Message own={mensajes[4].own} />
+                    <Message own={mensajes[5].own} />  */}
+                 
                 {/* {messages.map((m) => (
                   <div ref={scrollRef}>
                     <Message message={m} own={m.sender === user._id} /> 
