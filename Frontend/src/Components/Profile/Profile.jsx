@@ -6,7 +6,6 @@ import {
   getClean,
   getFollowUserById,
   getMyfriendsPost,
-  getMyProfileData,
   getProfile,
   getMyId
 } from "../../actions";
@@ -28,7 +27,6 @@ const Profile = () => {
   useEffect(() => {
     dispatch(getProfile(id));
     dispatch(getFollowUserById(id));
-    dispatch(getMyProfileData());
     dispatch(getMyfriendsPost(id))
     dispatch(getMyId())
     return () => {

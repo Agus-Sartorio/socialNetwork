@@ -12,9 +12,14 @@ const CardSuggestions = ({ fullname, id, profile, email }) => {
 
     const idToFollow = { "followMe": id }
 
-    async function followUnFollow() {
-        await axios.put(`${process.env.REACT_APP_PUERTO}usuarios/follow/`, idToFollow, tokenUsuario())
-        setButton(true)
+    async function followUnFollow(e) {
+        e.preventDefault()
+        try{
+            await axios.put(`${process.env.REACT_APP_PUERTO}usuarios/follow/`, idToFollow, tokenUsuario())
+            setButton(true)
+        }catch(err){
+            console.log(err)
+        }
     }
 
     return (
