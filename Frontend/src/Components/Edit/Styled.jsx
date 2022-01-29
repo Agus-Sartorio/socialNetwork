@@ -279,7 +279,6 @@ export const InputDescription = styled(Form.Control).attrs(props => ({
   export const InputFile = styled.input.attrs(props => ({
   type: props.type || 'file',
   name:props.name  ||  'ImageUploud',
-  size: props.size || 'sm',
   accept:props.accept || "image/png, image/jpeg"
   }))` 
   

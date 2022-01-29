@@ -3,56 +3,65 @@ import React, { useEffect, useState } from "react"; */
 /* import { useDispatch, useSelector } from 'react-redux'; */
 /* import { Link } from 'react-router-dom'; */
 import Conversation from './Conversation/IndexC';
-import {
-  Messenger, ChatMenu, ChatMenuWrapper,
-  ChatMenuInput, ChatBox, ChatBoxWrapper, ChatBoxTop,
-  ChatBoxBottom, ChatMessageInput, ChatSubmitButton, ChatOnlineContainer,
-  ChatOnlineWrapper, NoConversationText
-} from './styledChats.js'
+import Message from './Message/IndexM';
+import ChatOnline from './ChatOnline/index';
+
+import { Messenger, ChatMenu, ChatMenuWrapper,
+         ChatMenuInput, ChatBox, ChatBoxWrapper, ChatBoxTop,
+         ChatBoxBottom, ChatMessageInput, ChatSubmitButton, ChatOnlineContainer,
+         ChatOnlineWrapper, NoConversationText
+      } from './styledChats.js'
 
 
+ 
+export default function Chats({contactos}) {
 
-export default function Chats({ contactos }) {
+  // const dispatch = useDispatch();
+  // const user = useSelector((state) => state.myProfileData);
 
-  /*   const dispatch = useDispatch();
-    const user = useSelector((state) => state.myProfileData); */
+//   useEffect(() => {
+//     dispatch(getMyProfileData())
+//   }, [dispatch])
+    
+//   useEffect(() => {
+//    dispatch(getFollows())
+//    }, [dispatch])
 
-  //   useEffect(() => {
-  //     dispatch(getMyProfileData())
-  //   }, [dispatch])
-
-  //   useEffect(() => {
-  //    dispatch(getFollows())
-  //    }, [dispatch])
-
-  //     const fallows = useSelector((state) => state.search)
-  //     const contactos= fallows.data
-  //         console.log(contactos, 'chats lo que mando')
-
-
-  return (
-    <>
-
+//     const fallows = useSelector((state) => state.search)
+//     const contactos= fallows.data
+//         console.log(contactos, 'chats lo que mando')
+    
+      
+      return (     
+          <>
+        
       <Messenger>
-        <ChatMenu>
-          <ChatMenuWrapper>
-            <ChatMenuInput placeholder="Search for friends" />
-            {/* <Conversation user={contactos}/> */}
+      <ChatMenu>
+        <ChatMenuWrapper>
+          <ChatMenuInput placeholder="Search for friends"/>
+          {/* <Conversation user={contactos}/> */}
 
-            {contactos.map((c) => (
-              <div>
-                <Conversation user={c} />
-              </div>
-            ))}
+          {contactos.map((c) => (
+            <div>
+                <Conversation user={c}/>
+            </div>
+          ))}  
 
-          </ChatMenuWrapper>
-        </ChatMenu>
-        <ChatBox>
-          <ChatBoxWrapper>
-            {true ? (
-              <>
-                <ChatBoxTop>
-                  {/* {messages.map((m) => (
+        </ChatMenuWrapper>
+      </ChatMenu>
+      <ChatBox>
+        <ChatBoxWrapper>
+          {true? (
+            <>
+              <ChatBoxTop>
+                    <Message/>
+                    <Message own={true}/>
+                    <Message/>
+                    <Message/>
+                    <Message/>
+                    <Message own={true}/> 
+                    <Message own={true}/>
+                {/* {messages.map((m) => (
                   <div ref={scrollRef}>
                     <Message message={m} own={m.sender === user._id} /> 
                   </div>
@@ -78,6 +87,8 @@ export default function Chats({ contactos }) {
         </ChatBox>
         <ChatOnlineContainer>
           <ChatOnlineWrapper>
+
+           <ChatOnline contactos={contactos}/>
             {/* <ChatOnline
             onlineUsers={onlineUsers}
             currentId={user._id}

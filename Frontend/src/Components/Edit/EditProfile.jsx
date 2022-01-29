@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { postUploadProfile } from "../../actions";
+// import { useDispatch } from 'react-redux';
+// import { postUploadProfile } from "../../actions";
 
 
 
@@ -20,7 +20,7 @@ import { GlobalStyle } from './Styled';
 function EditProfile({ userk }) {
 
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const [input, setInput] = useState({
     //  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiBf9NIb94QLztGC6JuQk3-FNCrCY1ry64GA&usqp=CAU"
@@ -30,14 +30,15 @@ function EditProfile({ userk }) {
 
     fullname: userk.data[0].fullname,
     description: userk.data[0].description,
-    profile: userk.data[0].profile,
     background_picture: `./BReact.png`,
     nacionalidad: userk.data[0].nacionalidad,
     email: userk.data[0].email,
     birthday: userk.data[0].birthday
   });
   console.log(input)
-
+  
+  const [image, setImage] = useState({ preview: '', data: '' });
+  const [imageP, setImageP] = useState({ preview: '', data: '' });
   const [, setEditP] = useState(false);
   const [, setEdit] = useState(false);
   const [OptionUpProfile, setOptionUpProfile] = useState(false);
@@ -60,29 +61,88 @@ function EditProfile({ userk }) {
 
   function handleChange(evt) {
     let mirar = evt.target.value;
-    console.log(mirar)
+    console.log(mirar, "change")
     setInput({
       ...input,
       [evt.target.name]: evt.target.value
     })
   }
 
-  function handleChangeImg(evt) {
-    let mirar = evt.target.value;
-    let valor = evt.target.value;
-    console.log(mirar)
-    setInput({
-      ...input,
-      [evt.target.name]: valor
-    })
-  }
+  // function handleChangeImg(evt) {
+  //   let mirar = evt.target.value;
+  //   let valor = evt.target.value;
+  //   console.log(mirar, "changeimage")
+  //   setInput({
+  //     ...input,
+  //     [evt.target.name]: valor
+  //   })
+  // }
 
+  // const fileOnChange = (evt) =>  {
+  //   let valor = evt.target.files[0];
+  //   let formData = new FormData()
+  //   formData.append('input.profile', valor)
+  //   // let valor = evt.target.value;
+  //   console.log(formData,"ruta imagen")
+  //   setInput({
+  //     ...input,
+  //     [evt.target.name]: formData
+  //   })
+  // }
+
+
+  const handleFileChange = (e) => {
+    const img = {
+      preview: URL.createObjectURL(e.target.files[0]),
+      data: e.target.files[0],
+    }
+    if(e.target.name ==='background_picture'){
+      userk.data[0].background_picture=img.preview;
+      setImageP(img)
+    }
+    else{
+      userk.data[0].profile=img.preview;
+      setImage(img)
+    }
+
+  }
 
   async function handleSubmit(evt) {
-    evt.preventDefault()
-    dispatch(postUploadProfile(input))
-  }
 
+    evt.preventDefault()
+    let formData = new FormData()
+    if(image.data !== ""){    
+      formData.append('profile', image.data)
+      const response = await fetch('http://localhost:3001/usuarios', {
+        method: 'PUT',
+        body: formData,
+        headers: {
+          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IldscHFGVGtsTjFUQUx4SHBWRWE2SDc1VTVWRjIiLCJpYXQiOjE2NDMzODc4MDEsImV4cCI6MTY0MzQ3NDIwMX0.ndZkdPFoQSlblU9bduvSqOYEjHiiEXu7CD9t54Z2XKA", //Agregado
+        }
+      });
+
+    if (response) {console.log(response.statusText)}
+    }
+    if(imageP.data !== ""){    
+      formData.append('background_picture', imageP.data)
+      const response = await fetch('http://localhost:3001/usuarios', {
+        method: 'PUT',
+        body: formData,
+        headers: {
+          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IldscHFGVGtsTjFUQUx4SHBWRWE2SDc1VTVWRjIiLCJpYXQiOjE2NDMzODc4MDEsImV4cCI6MTY0MzQ3NDIwMX0.ndZkdPFoQSlblU9bduvSqOYEjHiiEXu7CD9t54Z2XKA", //Agregado
+        }
+      })
+
+      if (response) {console.log(response.statusText)}
+    }
+
+
+    // console.log(formData, "lo que estoy mandando")
+    // dispatch(postUploadProfile(formData))
+  }
+  if(userk.data[0].background_picture===''){
+     userk.data[0].background_picture='';
+  }
 
   return (<>
     <GlobalStyle />
@@ -90,7 +150,7 @@ function EditProfile({ userk }) {
       <form onSubmit={(evt) => handleSubmit(evt)}>
         {/* `${input.imageport}` */}
         <div>
-          <ImagePortada onMouseEnter={() => setEdit(true)} onMouseOut={() => setEdit(false)} onClick={update2} src={require(`${input.background_picture}`)} />
+          <ImagePortada onMouseEnter={() => setEdit(true)} onMouseOut={() => setEdit(false)} onClick={update2} src={`${userk.data[0].background_picture}`} />
 
           {/* <div>
               {edit? <LabelImgPort onMouseEnter={()=>setEdit(true)} onMouseOut={()=>setEdit(false)} onClick={update2}>Edit</LabelImgPort> : <></>} 
@@ -101,7 +161,8 @@ function EditProfile({ userk }) {
               <LabelFile> Uploud to photo
                 <InputFile
                   name='background_picture'
-                  onChange={evt => handleChangeImg(evt)} />
+                  onChange={evt => handleFileChange(evt)} 
+                  multiple/>
               </LabelFile>
             </FileContainerP>
 
@@ -113,7 +174,7 @@ function EditProfile({ userk }) {
 
         <div>
 
-          <ImageProfile src={`${input.profile}`} onMouseEnter={() => setEditP(true)} onMouseOut={() => setEditP(false)} onClick={update} />
+          <ImageProfile src={`${userk.data[0].profile}`} onMouseEnter={() => setEditP(true)} onMouseOut={() => setEditP(false)} onClick={update} />
 
         </div>
 
@@ -125,8 +186,8 @@ function EditProfile({ userk }) {
             <LabelFile> Uploud to photo
               <InputFile
                 name='profile'
-                onChange={evt => handleChangeImg(evt)}
-              />
+                onChange={evt=>handleFileChange(evt)}
+                multiple/>
             </LabelFile>
           </FileContainer>
 
