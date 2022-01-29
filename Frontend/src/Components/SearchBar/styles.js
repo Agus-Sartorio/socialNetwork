@@ -76,7 +76,7 @@ button{
 
         &:hover{
             background-color: white;
-            box-shadow: 0px 5px 15px -5px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--box-shadow);
         }
 
         .email{
