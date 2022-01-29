@@ -168,7 +168,7 @@ export const CreatePost = (payload) => {
 export const AllPost = () => {
   return async (dispatch) => {
     try {
-      let { data: { data } } = await axios.get(`${process.env.REACT_APP_PUERTO}posts/?follows=true`, tokenUsuario())
+      let { data: { data } } = await axios.get(`${process.env.REACT_APP_PUERTO}posts`, tokenUsuario()) //despues agregarle la query
       return dispatch({
         type: GET_ALL_POSTS,
         payload: data
@@ -177,7 +177,6 @@ export const AllPost = () => {
       console.log(error)
     }
   }
-};
 };
 
 export const getFollows = () => {

@@ -19,6 +19,7 @@ const GlobalStyle = createGlobalStyle`
     --blue-1: #347fd2;
     --blue-2: #d1e7ff;
     --blue-2-50: #d1e7ff11;
+    --red-1: #e41c38;
     --box-shadow: 0px 5px 15px -5px rgba(0, 0, 0, 0.1);
     --box-shadow-hover: 0px 5px 25px -5px rgba(0, 0, 0, 0.2);
   }

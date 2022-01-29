@@ -2,8 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AllPost } from "../../actions";
 import Post from '../Post/Post'
-
-
+import { StyledPostContainer } from "./styles";
 
 export default function PostContainer() {
 
@@ -18,10 +17,9 @@ export default function PostContainer() {
 
 
     return (
-
-        <>
-            {post.length ? post.map((p) => <Post p={p} key={p._id} />) :
+        <StyledPostContainer>
+            {post?.length ? post.map((p) => <Post p={p} key={p._id} />) :
                 <div>Cargando...</div>}
-        </>
+        </ StyledPostContainer>
     )
 }
