@@ -106,7 +106,7 @@ export function postUploadProfile(payload) {
     try {
       console.log(payload, "dentro del try");
       const response = await axios.put(
-        `https://dogskll.herokuapp.com/usuarios`,
+        `${process.env.REACT_APP_PUERTO}usuarios`,
         payload,
         tokenUsuario()
       );
