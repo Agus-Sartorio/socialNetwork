@@ -19,7 +19,8 @@ import { GlobalStyle } from './Styled';
 
 function EditProfile({ userk, userMe }) {
 
-  const history = useNavigate()
+  const navigate = useNavigate();
+
    const dispatch = useDispatch();
    const tokensito = tokenUsuario().headers.token;
    console.log(tokensito,"tokensito")
@@ -130,7 +131,7 @@ function EditProfile({ userk, userMe }) {
     }
     
     dispatch(postUploadProfile(input))
-    history('/home')
+    navigate('/home', { replace: true });
     // console.log(formData, "lo que estoy mandando")
   }
  const preview = userMe.profile.includes('uploads')
@@ -307,7 +308,7 @@ function EditProfile({ userk, userMe }) {
 
         </FormContainer>
         <DivSubmitContainer>
-          {(input.fullname !== '') ?
+          {(input.fullname !== '') ? 
 
             <ButtonSubmit type='submit'>Guardar</ButtonSubmit>
             : <span>username is require</span>
