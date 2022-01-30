@@ -17,7 +17,7 @@ import { Messenger, ChatMenu, ChatMenuWrapper,
 export default function Chats({contactos}) {
 
     
-  // const [input, setInput] = useState({
+  const [Idother, setIdOtherInput] = useState('')
   //   //  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiBf9NIb94QLztGC6JuQk3-FNCrCY1ry64GA&usqp=CAU"
   //   // "https://images.ole.com.ar/2022/01/01/smOuc4YsP_340x340__1.jpg"  
   //   // `${process.env.REACT_APP_PUERTO}
@@ -107,8 +107,8 @@ export default function Chats({contactos}) {
           {/* <Conversation user={contactos}/> */}
 
           {contactos.map((c) => (
-            <div>
-                <Conversation user={c}/>
+            <div onClick={setIdOtherInput(c.id)}>
+                <Conversation user={c} />
             </div>
           ))}  
 
@@ -116,11 +116,11 @@ export default function Chats({contactos}) {
       </ChatMenu>
       <ChatBox>
         <ChatBoxWrapper>
-          {true? (
+          {Idother !== '' ? (
             <>
               <ChatBoxTop>
               {mensajes.map((c) => (
-               <Message own={c.own} persona={c}/>
+               <Message own={c.own} persona={c} idother={Idother}/>
                  ))} 
                   
                     {/* <Message own={mensajes[0].own} />

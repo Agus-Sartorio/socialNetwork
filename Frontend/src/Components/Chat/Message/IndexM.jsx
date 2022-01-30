@@ -1,7 +1,7 @@
 import {Messagenormal, MessageTop, MessageImg, MessageText} from './styledM'
 import {useSelector } from 'react-redux';
 
-export default function Message({own, persona}) {
+export default function Message({own, persona, idother}) {
 
     const user = useSelector((state) => state.myProfileData);
     const fallows = useSelector((state) => state.follows);
