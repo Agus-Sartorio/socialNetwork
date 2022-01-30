@@ -1,9 +1,9 @@
 /* import { getMyProfileData, getFollows } from "../../actions";
-import React, { useEffect, useState } from "react"; */
-/* import { useDispatch, useSelector } from 'react-redux'; */
 /* import { Link } from 'react-router-dom'; */
+import {useSelector} from 'react-redux'; 
+import React, {useState} from "react";
 import Conversation from './Conversation/IndexC';
-import Message from './Message/IndexM';
+// import Message from './Message/IndexM';
 import ChatOnline from './ChatOnline/index';
 
 import { Messenger, ChatMenu, ChatMenuWrapper,
@@ -16,13 +16,59 @@ import { Messenger, ChatMenu, ChatMenuWrapper,
  
 export default function Chats({contactos}) {
 
-  // const dispatch = useDispatch();
-  // const user = useSelector((state) => state.myProfileData);
-
-//   useEffect(() => {
-//     dispatch(getMyProfileData())
-//   }, [dispatch])
     
+  const [Idother,] = useState('')
+  console.log(Idother.length, 'probando length')
+   const mensajesOrigin=[
+    
+  {orden: 1,
+    Id:'6d5zgcvhomXcQKMAYd2qY2zWhQe2',
+    mensaje:'Sisi ya funciona',
+    own:false
+
+  },{ orden: 2,
+    Id:'WlpqFTklN1TALxHpVEa6H75U5VF2',
+    mensaje:'lo que hiciste conmigo',
+    own:false
+ },{orden: 3,
+    Id:'WlpqFTklN1TALxHpVEa6H75U5VF2',
+    mensaje:'Borrandolo de firebase',
+    own:false
+
+ },{orden: 4,
+     Id:'6d5zgcvhomXcQKMAYd2qY2zWhQe2',
+     mensaje:'Ahora a mi tamopoco me funciona',
+     own:false
+
+ },{orden: 5,
+     Id:'6d5zgcvhomXcQKMAYd2qY2zWhQe2',
+     mensaje:'?',
+     own:false
+
+ },{ orden: 6,
+     Id:'6d5zgcvhomXcQKMAYd2qY2zWhQe2',
+     mensaje:'Como arreglaste lo del login?',
+     own:false
+    }
+];
+  // const dispatch = useDispatch();
+  const mensajes= mensajesOrigin.reverse();
+  const user = useSelector((state) => state.myProfileData);
+   
+  const Myid = user.data
+  console.log( Myid, 'my id para el chat')
+
+  mensajes.forEach((element)=>{
+    if(Myid === element.Id){
+      element.own=true;
+      console.log(element, 'validacion de mensajes')
+    
+       }
+  });    
+
+  
+    // if(Myid === mensajes[1].Id){mensajes[1].own=true;
+    // console.log(mensajes[1].own, 'validacion') }
 //   useEffect(() => {
 //    dispatch(getFollows())
 //    }, [dispatch])
@@ -43,9 +89,9 @@ export default function Chats({contactos}) {
 
           {contactos.map((c) => (
             <div>
-                <Conversation user={c}/>
+                <Conversation user={c} />
             </div>
-          ))}  
+          ))}   
 
         </ChatMenuWrapper>
       </ChatMenu>
@@ -54,13 +100,17 @@ export default function Chats({contactos}) {
           {true? (
             <>
               <ChatBoxTop>
-                    <Message/>
-                    <Message own={true}/>
-                    <Message/>
-                    <Message/>
-                    <Message/>
-                    <Message own={true}/> 
-                    <Message own={true}/>
+              {/* {mensajes.map((c) => (
+               <Message own={c.own} persona={c} idother={Idother}/>
+                 ))}  */}
+                  
+                    {/* <Message own={mensajes[0].own} />
+                    <Message own={mensajes[1].own} />
+                    <Message own={mensajes[2].own} />
+                    <Message own={mensajes[3].own} />
+                    <Message own={mensajes[4].own} />
+                    <Message own={mensajes[5].own} />  */}
+                 
                 {/* {messages.map((m) => (
                   <div ref={scrollRef}>
                     <Message message={m} own={m.sender === user._id} /> 

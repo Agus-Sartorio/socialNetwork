@@ -27,7 +27,7 @@ function Edit() {
         <SidebarContainer>
           <SideBar setgstate={setgstate} />
         </SidebarContainer>
-        {userk.data? <EditProfile userk={userk}/>:<div>cargando...</div>}
+        {userk.data? <EditProfile userk={userk} userMe={userk.data[0]}/>:<div>cargando...</div>}
        
       </Container2>
     </>

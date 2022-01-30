@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-// import { useDispatch } from 'react-redux';
-// import { postUploadProfile } from "../../actions";
-
+import { useDispatch } from 'react-redux';
+import { postUploadProfile } from "../../actions";
+import {tokenUsuario} from "../../actions/actionTypes";
+import { useNavigate }  from 'react-router-dom'
 
 
 import {
-  GroupForm, InputName, LabelName,
+  GroupForm, LabelName,InputName,
   InputDescription, SelectRol,
   OptionRol, PrincipalContainer,
   ImageProfile, ImagePortada, FormContainer, DownContainer,
@@ -16,26 +17,27 @@ import {
 import { GlobalStyle } from './Styled';
 
 
+function EditProfile({ userk, userMe }) {
 
-function EditProfile({ userk }) {
+  const navigate = useNavigate();
 
-
-  // const dispatch = useDispatch();
-
+   const dispatch = useDispatch();
+   const tokensito = tokenUsuario().headers.token;
+   console.log(tokensito,"tokensito")
   const [input, setInput] = useState({
     //  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiBf9NIb94QLztGC6JuQk3-FNCrCY1ry64GA&usqp=CAU"
     // "https://images.ole.com.ar/2022/01/01/smOuc4YsP_340x340__1.jpg"  
     // `${process.env.REACT_APP_PUERTO}
     // `${process.env.REACT_APP_PUERTO}uploads/ESiDsykaitaH1weBOslWLJs0TLJ2_profile.jpg`
 
-    fullname: userk.data[0].fullname,
-    description: userk.data[0].description,
-    background_picture: `./BReact.png`,
-    nacionalidad: userk.data[0].nacionalidad,
-    email: userk.data[0].email,
-    birthday: userk.data[0].birthday
+    fullname: userMe.fullname,
+    description: userMe.description,
+    nacionalidad: userMe.nacionalidad,
+    email:  userMe.email,
+    birthday: userMe.birthday
+
   });
-  console.log(input)
+
   
   const [image, setImage] = useState({ preview: '', data: '' });
   const [imageP, setImageP] = useState({ preview: '', data: '' });
@@ -60,89 +62,81 @@ function EditProfile({ userk }) {
 
 
   function handleChange(evt) {
-    let mirar = evt.target.value;
-    console.log(mirar, "change")
+   
     setInput({
       ...input,
       [evt.target.name]: evt.target.value
     })
   }
 
-  // function handleChangeImg(evt) {
-  //   let mirar = evt.target.value;
-  //   let valor = evt.target.value;
-  //   console.log(mirar, "changeimage")
-  //   setInput({
-  //     ...input,
-  //     [evt.target.name]: valor
-  //   })
-  // }
 
-  // const fileOnChange = (evt) =>  {
-  //   let valor = evt.target.files[0];
-  //   let formData = new FormData()
-  //   formData.append('input.profile', valor)
-  //   // let valor = evt.target.value;
-  //   console.log(formData,"ruta imagen")
-  //   setInput({
-  //     ...input,
-  //     [evt.target.name]: formData
-  //   })
-  // }
+
+  const handleFileChangeP = (e) => {
+    
+    const imgP = { 
+     preview: URL.createObjectURL(e.target.files[0]),
+     data: e.target.files[0],
+   }
+  
+   userMe.background_picture=imgP.preview;
+     setImageP(imgP)
+  }
 
 
   const handleFileChange = (e) => {
-    const img = {
+    
+    const img = { 
       preview: URL.createObjectURL(e.target.files[0]),
       data: e.target.files[0],
-    }
-    if(e.target.name ==='background_picture'){
-      userk.data[0].background_picture=img.preview;
-      setImageP(img)
-    }
-    else{
-      userk.data[0].profile=img.preview;
+      }
+    
+    if(e.target.name === 'profile'){
+      userMe.profile=img.preview;
       setImage(img)
     }
 
   }
 
+
+
   async function handleSubmit(evt) {
 
     evt.preventDefault()
-    let formData = new FormData()
+    
+    let formData = new FormData();
+    let formDataP = new FormData();
+    
     if(image.data !== ""){    
       formData.append('profile', image.data)
-      const response = await fetch('http://localhost:3001/usuarios', {
+      const response = await fetch('https://dogskll.herokuapp.com/usuarios/updateProfile', {
         method: 'PUT',
         body: formData,
         headers: {
-          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IldscHFGVGtsTjFUQUx4SHBWRWE2SDc1VTVWRjIiLCJpYXQiOjE2NDMzODc4MDEsImV4cCI6MTY0MzQ3NDIwMX0.ndZkdPFoQSlblU9bduvSqOYEjHiiEXu7CD9t54Z2XKA", //Agregado
-        }
+          "token":  tokensito   }
       });
 
     if (response) {console.log(response.statusText)}
     }
+
     if(imageP.data !== ""){    
-      formData.append('background_picture', imageP.data)
-      const response = await fetch('http://localhost:3001/usuarios', {
+      formDataP.append('background_picture', imageP.data)
+      const responder = await fetch('https://dogskll.herokuapp.com/usuarios/updateBackPicture', {
         method: 'PUT',
-        body: formData,
+        body: formDataP,
         headers: {
-          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IldscHFGVGtsTjFUQUx4SHBWRWE2SDc1VTVWRjIiLCJpYXQiOjE2NDMzODc4MDEsImV4cCI6MTY0MzQ3NDIwMX0.ndZkdPFoQSlblU9bduvSqOYEjHiiEXu7CD9t54Z2XKA", //Agregado
-        }
+          "token": tokensito }
       })
 
-      if (response) {console.log(response.statusText)}
+      if (responder) {console.log(responder.statusText)}
     }
-
-
+    
+    dispatch(postUploadProfile(input))
+    navigate('/home', { replace: true });
     // console.log(formData, "lo que estoy mandando")
-    // dispatch(postUploadProfile(formData))
   }
-  if(userk.data[0].background_picture===''){
-     userk.data[0].background_picture='';
-  }
+ const preview = userMe.profile.includes('uploads')
+ const previewP = userMe.background_picture.includes('uploads')
+
 
   return (<>
     <GlobalStyle />
@@ -150,7 +144,10 @@ function EditProfile({ userk }) {
       <form onSubmit={(evt) => handleSubmit(evt)}>
         {/* `${input.imageport}` */}
         <div>
-          <ImagePortada onMouseEnter={() => setEdit(true)} onMouseOut={() => setEdit(false)} onClick={update2} src={`${userk.data[0].background_picture}`} />
+          <ImagePortada onMouseEnter={() => setEdit(true)}
+           onMouseOut={() => setEdit(false)}
+            onClick={update2}
+             src={previewP? `https://dogskll.herokuapp.com/${userMe.background_picture}` : userMe.background_picture} />
 
           {/* <div>
               {edit? <LabelImgPort onMouseEnter={()=>setEdit(true)} onMouseOut={()=>setEdit(false)} onClick={update2}>Edit</LabelImgPort> : <></>} 
@@ -161,7 +158,7 @@ function EditProfile({ userk }) {
               <LabelFile> Uploud to photo
                 <InputFile
                   name='background_picture'
-                  onChange={evt => handleFileChange(evt)} 
+                  onChange={evt => handleFileChangeP(evt)} 
                   multiple/>
               </LabelFile>
             </FileContainerP>
@@ -174,7 +171,10 @@ function EditProfile({ userk }) {
 
         <div>
 
-          <ImageProfile src={`${userk.data[0].profile}`} onMouseEnter={() => setEditP(true)} onMouseOut={() => setEditP(false)} onClick={update} />
+          <ImageProfile src={preview? `https://dogskll.herokuapp.com/${userMe.profile}` : userMe.profile} 
+          onMouseEnter={() => setEditP(true)} 
+          onMouseOut={() => setEditP(false)}
+           onClick={update} />
 
         </div>
 
@@ -308,7 +308,7 @@ function EditProfile({ userk }) {
 
         </FormContainer>
         <DivSubmitContainer>
-          {(input.fullname !== '') ?
+          {(input.fullname !== '') ? 
 
             <ButtonSubmit type='submit'>Guardar</ButtonSubmit>
             : <span>username is require</span>
