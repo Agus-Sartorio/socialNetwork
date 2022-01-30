@@ -29,8 +29,7 @@ const MyProfile = ({ myProfile }) => {
             return (
               <div key={p._id}>
                 <img
-                  src={p.autorData?.[0]?.profile}
-                  alt="img not found"
+                  src={preview?`${process.env.REACT_APP_PUERTO}${myProfile.data[0].profile}` : myProfile.data[0].profile} alt={myProfile.data[0].fullname}
                   width={"30px"}
                   height={"30px"}
                 />
