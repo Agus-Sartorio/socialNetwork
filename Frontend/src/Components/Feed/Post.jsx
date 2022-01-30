@@ -19,7 +19,7 @@ export default function Post () {
     
     const post = useSelector((state => state.allPost))
     const myData = useSelector((state => state.myProfileData))
-console.log(post.autorData[0].profile)
+
   
   
 
