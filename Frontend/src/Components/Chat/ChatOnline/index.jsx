@@ -56,7 +56,7 @@ export default function ChatOnline({contactos}) {
        <ChatOnlineFriend>
           <ChatOnlineImgContainer>
             <ChatOnlineImg
-              src={e.profile} 
+              src={e.profile.includes('uploads')? `${process.env.REACT_APP_PUERTO}${e.profile}` : e.profile} 
               alt=""
             />
             <ChatOnlineBadger/>
