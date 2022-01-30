@@ -174,7 +174,7 @@ function EditProfile({ userk }) {
 
         <div>
 
-          <ImageProfile src={`${userk.data[0].profile}`} onMouseEnter={() => setEditP(true)} onMouseOut={() => setEditP(false)} onClick={update} />
+          <ImageProfile src={`https://dogskll.herokuapp.com/${userk.data[0].profile}`} onMouseEnter={() => setEditP(true)} onMouseOut={() => setEditP(false)} onClick={update} />
 
         </div>
 

@@ -1,7 +1,7 @@
 /* import { getMyProfileData, getFollows } from "../../actions";
-import React, { useEffect, useState } from "react"; */
-import {useSelector} from 'react-redux'; 
 /* import { Link } from 'react-router-dom'; */
+import {useSelector} from 'react-redux'; 
+import React, {useState} from "react";
 import Conversation from './Conversation/IndexC';
 import Message from './Message/IndexM';
 import ChatOnline from './ChatOnline/index';
@@ -16,7 +16,20 @@ import { Messenger, ChatMenu, ChatMenuWrapper,
  
 export default function Chats({contactos}) {
 
+    
+  // const [input, setInput] = useState({
+  //   //  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiBf9NIb94QLztGC6JuQk3-FNCrCY1ry64GA&usqp=CAU"
+  //   // "https://images.ole.com.ar/2022/01/01/smOuc4YsP_340x340__1.jpg"  
+  //   // `${process.env.REACT_APP_PUERTO}
+  //   // `${process.env.REACT_APP_PUERTO}uploads/ESiDsykaitaH1weBOslWLJs0TLJ2_profile.jpg`
 
+  //   fullname: userk.data[0].fullname,
+  //   description: userk.data[0].description,
+  //   background_picture: `./BReact.png`,
+  //   nacionalidad: userk.data[0].nacionalidad,
+  //   email: userk.data[0].email,
+  //   birthday: userk.data[0].birthday
+  // });
    const mensajesOrigin=[
     
   {orden: 1,
@@ -58,7 +71,13 @@ export default function Chats({contactos}) {
 //   useEffect(() => {
 //     dispatch(getMyProfileData())
 //   }, [dispatch])
-    
+
+// const getId_other = (e) => {
+ 
+//   const getId= members.find
+//   }
+// getId_other
+   
     mensajes.map((e)=>{
       
       if(Myid === e.Id){

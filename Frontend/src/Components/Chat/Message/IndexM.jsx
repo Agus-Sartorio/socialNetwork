@@ -12,6 +12,8 @@ export default function Message({own, persona}) {
     console.log(mypersona, 'mypersona');
     const otherpersona = fallows.data.find((e)=>e.id === persona.Id );
     console.log(otherpersona, 'other persona');
+    if(otherpersona !== undefined) {console.log(otherpersona.profile.includes('uploads'), "tiene upluads?")
+    console.log(`${process.env.REACT_APP_PUERTO}${otherpersona.profile}/ `, 'la ruta que muestra');}
  
   return (
       
@@ -23,7 +25,7 @@ export default function Message({own, persona}) {
       <MessageTop>
         <MessageImg
           
-          src={own? user.data[0].profile : otherpersona.profile}
+          src={own? user.data[0].profile : `https://dogskll.herokuapp.com/${otherpersona.profile}`}
           alt=""
         />
         <MessageText className='messagetextown'>{own? persona.mensaje: persona.mensaje}</MessageText>
