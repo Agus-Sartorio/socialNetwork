@@ -3,81 +3,81 @@ import styled from "styled-components";
 
 
 export const DivCardProfile = styled.div`
-top: 10%;
-width: 80%;
-position: fixed;
 display: flex;
 align-items: center;
 flex-direction: column;
-grid-row-gap: 10px;
+background-color: var(--grey-5);
+padding: 10px;
+width: 100%;
+max-width: 1000px;
+border-radius: 7px;
 
-.head{
-    width: 50%;
-    display: flex;
-    align-items: center;
-    height: 200px;
-    background-image: url('https://webescuela.com/wp-content/uploads/2020/08/que-hace-un-desarrollador-web.png.webp');
-    border-radius: 5px;
-    background-repeat:no-repeat;
-    background-size: 100% 120px;
-}
-
-.body{
-    color: white;
-    background-color: black;
-    width: 50%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 5px;
-}
-
-.img{
+.card__image{
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
-    border: 2px solid black;
+}
+
+.card__fullname{
+    color: #eee;
+    margin-bottom: 10px;
+    font-size: 30px;
+}
+
+.card__email{
+    font-size: 16px;
+    font-weight: 500;
+    color: #ccc;
+    word-break: break-word;
+    margin-bottom: 10px;
+}
+
+.card__followers{
+    display: flex;
+}
+
+.card__show{
+    button{
+        background-color: transparent;
+        border: none;
+        padding: 10px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        color: #eee;
+
+        &:first-child{
+            margin-right: 15px;
+        }
+    }
+    span{
+        display: block;
+        font-size: 14px;
+        color: #ccc;
+    }
+}
+
+.card__btn-follow{
     width: 150px;
-}
+    padding: 8px 16px;
+    background-color: var(--yellow-1);
+    border: none;
+    margin-top: 10px;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 300ms, color 300ms;
 
-.follows-button{
-    display: flex;
-    flex-direction: row;
-    width: 50%;
-    justify-content: space-around;
+    &:hover{
+        background-color: black;
+        color: var(--yellow-1);
+    }
 }
-
-
-
-.publicaciones{
-    margin-top: 50px;
-    width: 50%;
-    background-color: black;
-    color: white;
-    height: 400px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.follow{
-    background-color: yellow;
-    border: 2px solid white;
-    width: 80px;
-    height: 25px;
-    border-radius:5px;
-}
-.unfollow{
-    background-color: white;
-    color: black;
-    border: 2px solid white;
-    width: 80px;
-    height: 25px;
-    border-radius:5px;
-}
-
 `
 
 
-export const Container = styled.div `
+export const Container = styled.div`
 background-color: transparent;
 display:flex; 
 grid-column-gap: 200px;
@@ -123,7 +123,7 @@ export const StyledModal = (
                     onClick={handleClose}
                 >
                     Close
-            </button>
+                </button>
             </ContentDiv>
         </ModalDiv>
     )

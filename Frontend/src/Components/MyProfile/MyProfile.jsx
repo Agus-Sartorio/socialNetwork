@@ -1,53 +1,32 @@
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getMyPost } from "../../actions";
-import { format } from "timeago.js";
 import { ModalMyFollowers } from "./ModalMyFollowers";
 import { ModalFollows } from "./ModalMyFollows";
 import { DivModal } from "./StyledMyProfile";
+import PostContainer from '../PostContainer/PostContainer'
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getMyPost } from "../../actions";
 
 const MyProfile = ({ myProfile }) => {
-  const myPost = useSelector((state) => state.myProfilePost);
-  const preview = myProfile.data[0].profile.includes('uploads')
-  const dispatch = useDispatch();
+
+  const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(getMyPost());
   }, [dispatch]);
 
+  const posts = useSelector((state => state.myProfilePost.data))
+
+  const preview = myProfile.data[0].profile.includes('uploads')
+
   return (
     <>
-      <div>
-        <img src={preview?`${process.env.REACT_APP_PUERTO}${myProfile.data[0].profile}` : myProfile.data[0].profile} alt={myProfile.data[0].fullname} />
-        <h1>{myProfile.data[0].fullname}</h1>
-        <DivModal>
-          <ModalFollows />
-          <ModalMyFollowers />
-        </DivModal>
-        {myPost.data?.length ? (
-          myPost.data.map((p) => {
-            return (
-              <div key={p._id}>
-                <img
-                  src={p.autorData?.[0]?.profile}
-                  alt="img not found"
-                  width={"30px"}
-                  height={"30px"}
-                />
-
-                <span>{p.autorData?.[0]?.fullname}</span>
-                <hr />
-                <span>{format(p?.createdAt)}</span>
-                <h1>{p.description}</h1>
-                <button>Like</button>
-              </div>
-            );
-          })
-        ) : (
-          <div>Cargando...</div>
-        )}
-      </div>
-
+      <img src={preview ? `${process.env.REACT_APP_PUERTO}${myProfile.data[0].profile}` : myProfile.data[0].profile} alt={myProfile.data[0].fullname} />
+      <h1>{myProfile.data[0].fullname}</h1>
+      <DivModal>
+        <ModalFollows />
+        <ModalMyFollowers />
+      </DivModal>
+      <PostContainer posts={posts} />
     </>
   )
 }

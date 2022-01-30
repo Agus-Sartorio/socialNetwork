@@ -71,7 +71,7 @@ const GlobalStyle = createGlobalStyle`
   .layout__title{
     margin-bottom: 30px;
     text-transform: uppercase;
-    color: var(--grey-1);
+    color: var(--grey-9);
     position: relative;
     font-weight: 900;
     

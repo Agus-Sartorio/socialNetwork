@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 export const StyledPost = styled.article`
     display: flex;
+    width: 100%;
 
     .post__link{
         color: #666;
