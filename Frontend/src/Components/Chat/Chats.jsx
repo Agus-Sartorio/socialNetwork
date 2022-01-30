@@ -1,5 +1,6 @@
 /* import { getMyProfileData, getFollows } from "../../actions";
 /* import { Link } from 'react-router-dom'; */
+import {conversacion} from './Message/conversacion';
 import {useSelector} from 'react-redux'; 
 import React, {useState} from "react";
 import Conversation from './Conversation/IndexC';
@@ -18,7 +19,7 @@ export default function Chats({contactos}) {
 
     
   const [Idother,] = useState('')
-  console.log(Idother.length, 'probando length')
+  console.log(conversacion, 'probando conversacion')
    const mensajesOrigin=[
     
   {orden: 1,
