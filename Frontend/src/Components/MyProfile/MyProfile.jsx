@@ -18,7 +18,7 @@ const MyProfile = ({ myProfile }) => {
   return (
     <>
       <div>
-        <img src={preview?`https://dogskll.herokuapp.com/${myProfile.data[0].profile}` : myProfile.data[0].profile} alt={myProfile.data[0].fullname} />
+        <img src={preview?`${process.env.REACT_APP_PUERTO}${myProfile.data[0].profile}` : myProfile.data[0].profile} alt={myProfile.data[0].fullname} />
         <h1>{myProfile.data[0].fullname}</h1>
         <DivModal>
           <ModalFollows />

@@ -108,7 +108,7 @@ function EditProfile({ userk, userMe }) {
     
     if(image.data !== ""){    
       formData.append('profile', image.data)
-      const response = await fetch('https://dogskll.herokuapp.com/usuarios/updateProfile', {
+      const response = await fetch(`${process.env.REACT_APP_PUERTO}usuarios/updateProfile`, {
         method: 'PUT',
         body: formData,
         headers: {
@@ -120,7 +120,7 @@ function EditProfile({ userk, userMe }) {
 
     if(imageP.data !== ""){    
       formDataP.append('background_picture', imageP.data)
-      const responder = await fetch('https://dogskll.herokuapp.com/usuarios/updateBackPicture', {
+      const responder = await fetch(`${process.env.REACT_APP_PUERTO}usuarios/updateBackPicture`, {
         method: 'PUT',
         body: formDataP,
         headers: {
@@ -147,7 +147,7 @@ function EditProfile({ userk, userMe }) {
           <ImagePortada onMouseEnter={() => setEdit(true)}
            onMouseOut={() => setEdit(false)}
             onClick={update2}
-             src={previewP? `https://dogskll.herokuapp.com/${userMe.background_picture}` : userMe.background_picture} />
+             src={previewP? `${process.env.REACT_APP_PUERTO}${userMe.background_picture}` : userMe.background_picture} />
 
           {/* <div>
               {edit? <LabelImgPort onMouseEnter={()=>setEdit(true)} onMouseOut={()=>setEdit(false)} onClick={update2}>Edit</LabelImgPort> : <></>} 
@@ -171,7 +171,7 @@ function EditProfile({ userk, userMe }) {
 
         <div>
 
-          <ImageProfile src={preview? `https://dogskll.herokuapp.com/${userMe.profile}` : userMe.profile} 
+          <ImageProfile src={preview? `${process.env.REACT_APP_PUERTO}${userMe.profile}` : userMe.profile} 
           onMouseEnter={() => setEditP(true)} 
           onMouseOut={() => setEditP(false)}
            onClick={update} />
