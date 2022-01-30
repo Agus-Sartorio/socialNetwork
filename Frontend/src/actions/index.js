@@ -18,7 +18,8 @@ import {
   GET_MY_ID,
   CLEAR_MY_FOLLOW_STATE,
   SORT_BY_AZ,
-  GET_CLEAN,
+  GET_CLEAN_FRIENDS,
+  CLEAN_HOME
 } from "./actionTypes";
 
 export const getUsers = () => {
@@ -168,7 +169,7 @@ export const CreatePost = (payload) => {
 export const AllPost = () => {
   return async (dispatch) => {
     try {
-      let { data: { data } } = await axios.get(`${process.env.REACT_APP_PUERTO}posts`, tokenUsuario()) //despues agregarle la query
+      let { data: { data } } = await axios.get(`${process.env.REACT_APP_PUERTO}posts/?follows=true`, tokenUsuario()) //despues agregarle la query
       return dispatch({
         type: GET_ALL_POSTS,
         payload: data
@@ -266,8 +267,13 @@ export const getMyId = () => {
   };
 };
 
-export function getClean() {
+export function getCleanFriends() {
   return {
-    type: GET_CLEAN,
+    type: GET_CLEAN_FRIENDS,
   };
 }
+export function getCleanHome() {
+    return {
+      type: CLEAN_HOME,
+    };
+  }
