@@ -38,11 +38,11 @@ const CardProfile = ({ profile, followUser, myId }) => {
             <p className="card__email">{profile.email}</p>
             <div className='card__show'>
                 <button onClick={() => setShowFollowers(!showFollowers)}>
-                    {followUser.followers.length}
-                    <span>{followUser.followers.length === 1 ? ' Seguidor' : ' Seguidores'}</span>
+                    {followUser.followers?.length}
+                    <span>{followUser.followers?.length === 1 ? ' Seguidor' : ' Seguidores'}</span>
                 </button>
                 <button onClick={() => setShowFollowings(!showFollowing)} >
-                    {followUser.follows.length} <span>Siguiendo</span>
+                    {followUser.follows?.length} <span>Siguiendo</span>
                 </button>
             </div>
             <button onClick={followUnFollow} className="card__btn-follow">

@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { cohorte, sortBy } from "../../auxiliares/constantes"
 import { Select } from "../Select/Select"
 import { CardFollow } from "./CardFollow"

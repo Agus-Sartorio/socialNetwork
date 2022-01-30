@@ -63,14 +63,14 @@ export default function SearchBar() {
         onChange={handleFilter}
         onFocus={() => setIsFocus(true)}
       />
-      {filteredData?.length !== 0 && isFocus && (
+      {filteredData && filteredData.length !== 0 && isFocus && (
         <>
           <div className='overlay-searchBar' ref={overlay} onClick={handleOverlayClick} />
           <div className='datalist'>
             {filteredData?.map((value) => {
               return (
                 <p className='name' key={value.id}>
-                  <img className='user-img' src={value.profile} alt={value.fullname} />
+                  <img className='user-img' src={value.profile} alt={value.fullname.split(' ')[0]} />
                   <Link to={`/profile/` + value.id} >
                     {value.fullname}
                     <span className='email'>{value.email}</span>
