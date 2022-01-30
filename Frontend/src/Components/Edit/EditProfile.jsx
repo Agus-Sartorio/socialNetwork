@@ -5,7 +5,7 @@ import {tokenUsuario} from "../../actions/actionTypes";
 
 
 import {
-  GroupForm, InputName, LabelName,
+  GroupForm, LabelName,InputName,
   InputDescription, SelectRol,
   OptionRol, PrincipalContainer,
   ImageProfile, ImagePortada, FormContainer, DownContainer,
@@ -14,7 +14,6 @@ import {
 } from './Styled';
 
 import { GlobalStyle } from './Styled';
-
 
 
 function EditProfile({ userk, userMe }) {
@@ -70,18 +69,6 @@ function EditProfile({ userk, userMe }) {
 
 
 
-  // const fileOnChange = (evt) =>  {
-  //   let valor = evt.target.files[0];
-  //   let formData = new FormData()
-  //   formData.append('input.profile', valor)
-  //   // let valor = evt.target.value;
-  //   console.log(formData,"ruta imagen")
-  //   setInput({
-  //     ...input,
-  //     [evt.target.name]: formData
-  //   })
-  // }
-
   const handleFileChangeP = (e) => {
     
     const imgP = { 
@@ -128,7 +115,6 @@ function EditProfile({ userk, userMe }) {
 
     if (response) {console.log(response.statusText)}
     }
-
 
     if(imageP.data !== ""){    
       formDataP.append('background_picture', imageP.data)
