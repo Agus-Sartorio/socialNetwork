@@ -3,7 +3,7 @@
 import {useSelector} from 'react-redux'; 
 import React, {useState} from "react";
 import Conversation from './Conversation/IndexC';
-import Message from './Message/IndexM';
+// import Message from './Message/IndexM';
 import ChatOnline from './ChatOnline/index';
 
 import { Messenger, ChatMenu, ChatMenuWrapper,
@@ -17,7 +17,7 @@ import { Messenger, ChatMenu, ChatMenuWrapper,
 export default function Chats({contactos}) {
 
     
-  const [Idother, setIdOtherInput] = useState('')
+  const [Idother,] = useState('')
   console.log(Idother.length, 'probando length')
    const mensajesOrigin=[
     
@@ -58,14 +58,15 @@ export default function Chats({contactos}) {
   const Myid = user.data
   console.log( Myid, 'my id para el chat')
 
-      
-  mensajes.map((e)=>{
-      if(Myid === e.Id){
-         e.own=true;
-         console.log(e, 'validacion de mensajes')
-          }
-   })
+  mensajes.forEach((element)=>{
+    if(Myid === element.Id){
+      element.own=true;
+      console.log(element, 'validacion de mensajes')
+    
+       }
+  });    
 
+  
     // if(Myid === mensajes[1].Id){mensajes[1].own=true;
     // console.log(mensajes[1].own, 'validacion') }
 //   useEffect(() => {

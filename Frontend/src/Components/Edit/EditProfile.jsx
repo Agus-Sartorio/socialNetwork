@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { postUploadProfile } from "../../actions";
 import {tokenUsuario} from "../../actions/actionTypes";
+import { useNavigate }  from 'react-router-dom'
 
 
 import {
@@ -18,7 +19,7 @@ import { GlobalStyle } from './Styled';
 
 function EditProfile({ userk, userMe }) {
 
-   console.log(userMe, 'mi usuario')
+  const history = useNavigate()
    const dispatch = useDispatch();
    const tokensito = tokenUsuario().headers.token;
    console.log(tokensito,"tokensito")
@@ -129,7 +130,7 @@ function EditProfile({ userk, userMe }) {
     }
     
     dispatch(postUploadProfile(input))
-
+    history('/home')
     // console.log(formData, "lo que estoy mandando")
   }
  const preview = userMe.profile.includes('uploads')
