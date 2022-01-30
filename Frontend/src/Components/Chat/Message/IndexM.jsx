@@ -7,7 +7,7 @@ export default function Message({own, persona, idother}) {
     const fallows = useSelector((state) => state.follows);
     
     // console.log(user.data, "chat mio")
-    console.log(own, "own")
+  
     const mypersona = user.data.find((e)=>e.id === persona.Id )
     console.log(mypersona, 'mypersona');
     const otherpersona = fallows.data.find((e)=>e.id === persona.Id );

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { postUploadProfile } from "../../actions";
-
+import {tokenUsuario} from "../../actions/actionTypes";
 
 
 import {
@@ -21,7 +21,8 @@ function EditProfile({ userk, userMe }) {
 
    console.log(userMe, 'mi usuario')
    const dispatch = useDispatch();
-
+   const tokensito = tokenUsuario().headers.token;
+   console.log(tokensito,"tokensito")
   const [input, setInput] = useState({
     //  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiBf9NIb94QLztGC6JuQk3-FNCrCY1ry64GA&usqp=CAU"
     // "https://images.ole.com.ar/2022/01/01/smOuc4YsP_340x340__1.jpg"  
@@ -35,7 +36,7 @@ function EditProfile({ userk, userMe }) {
     birthday: userMe.birthday
 
   });
-  console.log(input)
+
   
   const [image, setImage] = useState({ preview: '', data: '' });
   const [imageP, setImageP] = useState({ preview: '', data: '' });
@@ -60,23 +61,14 @@ function EditProfile({ userk, userMe }) {
 
 
   function handleChange(evt) {
-    let mirar = evt.target.value;
-    console.log(mirar, "change")
+   
     setInput({
       ...input,
       [evt.target.name]: evt.target.value
     })
   }
 
-  // function handleChangeImg(evt) {
-  //   let mirar = evt.target.value;
-  //   let valor = evt.target.value;
-  //   console.log(mirar, "changeimage")
-  //   setInput({
-  //     ...input,
-  //     [evt.target.name]: valor
-  //   })
-  // }
+
 
   // const fileOnChange = (evt) =>  {
   //   let valor = evt.target.files[0];
@@ -131,7 +123,7 @@ function EditProfile({ userk, userMe }) {
         method: 'PUT',
         body: formData,
         headers: {
-          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IldscHFGVGtsTjFUQUx4SHBWRWE2SDc1VTVWRjIiLCJpYXQiOjE2NDM1MTMxMTUsImV4cCI6MTY0MzU5OTUxNX0.biUgxAC8u3dDDI3B5dt9Bnx1JWr1tW26fllf9y-XiLc"      }
+          "token":  tokensito   }
       });
 
     if (response) {console.log(response.statusText)}
@@ -144,7 +136,7 @@ function EditProfile({ userk, userMe }) {
         method: 'PUT',
         body: formDataP,
         headers: {
-          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IldscHFGVGtsTjFUQUx4SHBWRWE2SDc1VTVWRjIiLCJpYXQiOjE2NDM1MTMxMTUsImV4cCI6MTY0MzU5OTUxNX0.biUgxAC8u3dDDI3B5dt9Bnx1JWr1tW26fllf9y-XiLc"  }
+          "token": tokensito }
       })
 
       if (responder) {console.log(responder.statusText)}
@@ -156,7 +148,7 @@ function EditProfile({ userk, userMe }) {
   }
  const preview = userMe.profile.includes('uploads')
  const previewP = userMe.background_picture.includes('uploads')
- console.log(userMe.profile.includes('uploads'), 'prueba de includes')
+
 
   return (<>
     <GlobalStyle />

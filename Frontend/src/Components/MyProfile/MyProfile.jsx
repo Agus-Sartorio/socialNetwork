@@ -8,7 +8,7 @@ import { DivModal } from "./StyledMyProfile";
 
 const MyProfile = ({ myProfile }) => {
   const myPost = useSelector((state) => state.myProfilePost);
-
+  const preview = myProfile.data[0].profile.includes('uploads')
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const MyProfile = ({ myProfile }) => {
   return (
     <>
       <div>
-        <img src={myProfile.data[0].profile} alt={myProfile.data[0].fullname} />
+        <img src={preview?`https://dogskll.herokuapp.com/${myProfile.data[0].profile}` : myProfile.data[0].profile} alt={myProfile.data[0].fullname} />
         <h1>{myProfile.data[0].fullname}</h1>
         <DivModal>
           <ModalFollows />
