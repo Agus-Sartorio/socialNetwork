@@ -8,12 +8,12 @@ import DefaultUser from '../Icons/DefaultUser'
 
 export default function Post({ p }) {
     const preview = p.autorData[0]?.profile.includes('uploads')
-    console.log(p.autorData[0]?.profile,'preview')
+    console.log(p.autorData[0]?.profile, 'preview')
     return (
         <StyledPost className='post'>
             <Link className='post__link' to={`/profile/${p.autorData[0]?.id}`}>
-                {p.autorData[0]?.profile?
-                    <img className='post__avatar' src={preview?`${process.env.REACT_APP_PUERTO}${p.autorData[0]?.profile}`:  p.autorData[0]?.profile} alt={p.autorData[0]?.fullname} /> :
+                {p.autorData[0]?.profile ?
+                    <img className='post__avatar' src={preview ? `${process.env.REACT_APP_PUERTO}${p.autorData[0]?.profile}` : p.autorData[0]?.profile} alt={p.autorData[0]?.fullname} /> :
                     <DefaultUser className='post__avatar' />
                 }
             </Link>
