@@ -17,33 +17,30 @@ export default function Chat() {
   useEffect(() => {
     dispatch(getFollows())
   }, [dispatch])
+  
+        const contactos = fallows.data;
+        console.log(contactos, 'chats lo que mando')
+    
+    return (     
+        
+     <>
+     
+     <NavBar/>
+     
+        <ContainerIndex>
+          <SideBar/>  
+          {contactos? <Chats contactos={contactos}/>:<div>cargando...</div>}    
+         
+        </ContainerIndex>
+      
+  
+    
+      
 
-  const contactos = fallows.data;
-  console.log(contactos, 'chats lo que mando')
-  // useEffect(() => {
-  //    dispatch(getFollows())
-  //  }, [dispatch])
-  return (
-
-    <>
-
-      <NavBar />
-
-      <ContainerIndex>
-        <SideBar />
-        {contactos ? <Chats contactos={contactos} /> : <div>cargando...</div>}
-
-      </ContainerIndex>
-
-
-
-
-
-
-    </>
-
+     
+     </>
+    
 
 
-  );
-}
+ );} 
 

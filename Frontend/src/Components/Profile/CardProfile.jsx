@@ -1,52 +1,58 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { tokenUsuario } from "../../actions/actionTypes";
-import Modal from "./Modal";
+import { ModalFollowers } from "./ModalFollowers";
+import { ModalFollows } from "./ModalFollows";
 import { DivCardProfile } from "./styledCardProfile";
+import DefaultUser from '../Icons/DefaultUser'
+import { useDispatch } from "react-redux";
+import { clearStateFollowsUser, getFollowUserById } from "../../actions";
+import { tokenUsuario } from "../../actions/actionTypes";
+import { useState } from "react";
 
-const CardProfile = ({ profile, myProfile, followUser }) => {
-    const [button, setButton] = useState(false)
+const CardProfile = ({ profile, followUser, myId }) => {
+    const [showFollowers, setShowFollowers] = useState(false);
+    const [showFollowing, setShowFollowings] = useState(false);
+
+    const isFollowing = followUser.followers?.map(e => e.id).includes(myId.id)
+    const dispatch = useDispatch()
     const idToFollow = { "followMe": profile.id }
 
-
-    async function followUnFollow() {
-        if (button) {
-            setButton(false)
+    async function followUnFollow(e) {
+        e.preventDefault()
+        try {
             await axios.put(`${process.env.REACT_APP_PUERTO}usuarios/follow/`, idToFollow, tokenUsuario())
-        } else {
-            setButton(true)
-            await axios.put(`${process.env.REACT_APP_PUERTO}usuarios/follow/`, idToFollow, tokenUsuario())
+            dispatch(clearStateFollowsUser())
+            dispatch(getFollowUserById(profile.id))
+        } catch (err) {
+            console.log(err)
         }
+
     }
 
-
-
-    useEffect(() => {
-        profile.follow.followers.includes(myProfile.data[0].id) === true ?
-            setButton(true) : setButton(false)
-    }, [profile.follow.followers, myProfile])
     return (
         <DivCardProfile>
-            <div className="head">
-                <img src={profile.profile} className="img" alt='imagen de usuario' />
+            {profile.profile.startsWith('https://avatars.') ?
+                <img className="card__image" src={profile.profile} alt={profile.fullname} /> :
+                <DefaultUser className="card__image" />
+            }
+            <h2 className="card__fullname">{profile.fullname}</h2>
+            <p className="card__email">{profile.email}</p>
+            <div className='card__show'>
+                <button onClick={() => setShowFollowers(!showFollowers)}>
+                    {followUser.followers?.length}
+                    <span>{followUser.followers?.length === 1 ? ' Seguidor' : ' Seguidores'}</span>
+                </button>
+                <button onClick={() => setShowFollowings(!showFollowing)} >
+                    {followUser.follows?.length} <span>Siguiendo</span>
+                </button>
             </div>
-            <div className="body">
-                <div>
-                    <h3>{profile.fullname}</h3>
-                    <p>{profile.email}</p>
-                </div>
-                <div className="follows-button">
-                   <Modal followUser={followUser}
-                   myProfile={myProfile}
-                   />
-                    <div>
-                        {button === false ? <button onClick={followUnFollow} className="follow"> seguir</button> : <button onClick={followUnFollow} className='unfollow'>dejar de seguir</button>}
-
-                    </div>
-
-                </div>
-            </div>
-
+            <button onClick={followUnFollow} className="card__btn-follow">
+                {isFollowing ? 'Dejar de seguir' : 'Seguir'}
+            </button>
+            {followUser.follows ?
+                <>
+                    <ModalFollows show={showFollowing} setShow={setShowFollowings} followUser={followUser} />
+                    <ModalFollowers show={showFollowers} setShow={setShowFollowers} followUser={followUser} />
+                </> : <p>Este usuario no está siguiendo a nadie</p>}
         </DivCardProfile>
     )
 }

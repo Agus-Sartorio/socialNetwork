@@ -3,19 +3,22 @@ import styled from 'styled-components';
 export const StyledForm = styled.form`
     display: flex;
     flex-direction: column;
-    margin-top: 15px;
     width: 90%;
     height: 90px;
     overflow: hidden;
     border-radius: 7px;
     max-width: 600px;
     padding: 15px;
-    background-color: var(--grey-9);
+    background-color: var(--grey-3);
     position: relative;
     transition: height 300ms;
 
     &.expanded{
         height: 140px;
+
+        .btn-submit{
+            display: inline-block;
+        }
     }
 
     .img-post{
@@ -35,17 +38,18 @@ export const StyledForm = styled.form`
             min-height: 60px;
             width: 100%;
             border: 1px solid transparent;
-            background-color: white;
+            background-color: var(--grey-4);
             border-radius: 7px;
             font-size: 14px;
+            color: #ccc;
             padding: 10px 50px 10px 10px;
             resize: none;
             transition: box-shadow 300ms, border 300ms;
 
             &:focus{
                 outline: none;
-                box-shadow: 0px 5px 15px -5px rgba(0, 0, 0, 0.1);
-                border: 1px solid #ddd;
+                box-shadow: var(--box-shadow);
+                border: 1px solid var(--grey-2);
             }
         }
     }
@@ -79,10 +83,9 @@ export const StyledForm = styled.form`
             background-color: transparent;
             border: none;
             color: var(--blue-1);
-
         }
         &:hover{
-            background-color: var(--blue-2);
+            background-color: var(--blue-2-50);
         }
     }
 
@@ -97,6 +100,7 @@ export const StyledForm = styled.form`
         border-radius: 15px;
         cursor: pointer;
         transition: transform 300ms;
+        display: none;
 
             &:hover{
                 transform: scale(1.03);

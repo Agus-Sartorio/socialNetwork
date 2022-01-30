@@ -6,16 +6,18 @@ import Red from '../Icons/Red'
 import Settings from '../Icons/Settings';
 import { useUserAuth } from "../Context/UserContext";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 export default function SideBar() {
-
+    const navigate = useNavigate();
     const { user, logOut } = useUserAuth()
     console.log(user)
 
     const handleLogOut = () => {
         try {
             logOut();
+            navigate('/')
 
         } catch (error) {
             console.log(error.message)

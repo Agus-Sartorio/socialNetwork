@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { postUploadProfile } from "../../actions";
-
+import {tokenUsuario} from "../../actions/actionTypes";
+import { useNavigate }  from 'react-router-dom'
 
 
 import {
-  GroupForm, InputName, LabelName,
+  GroupForm, LabelName,InputName,
   InputDescription, SelectRol,
   OptionRol, PrincipalContainer,
   ImageProfile, ImagePortada, FormContainer, DownContainer,
@@ -16,28 +17,30 @@ import {
 import { GlobalStyle } from './Styled';
 
 
+function EditProfile({ userk, userMe }) {
 
-function EditProfile({ userk }) {
+  const navigate = useNavigate();
 
-
-  const dispatch = useDispatch();
-
+   const dispatch = useDispatch();
+   const tokensito = tokenUsuario().headers.token;
+   console.log(tokensito,"tokensito")
   const [input, setInput] = useState({
     //  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiBf9NIb94QLztGC6JuQk3-FNCrCY1ry64GA&usqp=CAU"
     // "https://images.ole.com.ar/2022/01/01/smOuc4YsP_340x340__1.jpg"  
     // `${process.env.REACT_APP_PUERTO}
     // `${process.env.REACT_APP_PUERTO}uploads/ESiDsykaitaH1weBOslWLJs0TLJ2_profile.jpg`
 
-    fullname: userk.data[0].fullname,
-    description: userk.data[0].description,
-    profile: userk.data[0].profile,
-    background_picture: `./BReact.png`,
-    nacionalidad: userk.data[0].nacionalidad,
-    email: userk.data[0].email,
-    birthday: userk.data[0].birthday
-  });
-  console.log(input)
+    fullname: userMe.fullname,
+    description: userMe.description,
+    nacionalidad: userMe.nacionalidad,
+    email:  userMe.email,
+    birthday: userMe.birthday
 
+  });
+
+  
+  const [image, setImage] = useState({ preview: '', data: '' });
+  const [imageP, setImageP] = useState({ preview: '', data: '' });
   const [, setEditP] = useState(false);
   const [, setEdit] = useState(false);
   const [OptionUpProfile, setOptionUpProfile] = useState(false);
@@ -59,29 +62,80 @@ function EditProfile({ userk }) {
 
 
   function handleChange(evt) {
-    let mirar = evt.target.value;
-    console.log(mirar)
+   
     setInput({
       ...input,
       [evt.target.name]: evt.target.value
     })
   }
 
-  function handleChangeImg(evt) {
-    let mirar = evt.target.value;
-    let valor = evt.target.value;
-    console.log(mirar)
-    setInput({
-      ...input,
-      [evt.target.name]: valor
-    })
+
+
+  const handleFileChangeP = (e) => {
+    
+    const imgP = { 
+     preview: URL.createObjectURL(e.target.files[0]),
+     data: e.target.files[0],
+   }
+  
+   userMe.background_picture=imgP.preview;
+     setImageP(imgP)
   }
+
+
+  const handleFileChange = (e) => {
+    
+    const img = { 
+      preview: URL.createObjectURL(e.target.files[0]),
+      data: e.target.files[0],
+      }
+    
+    if(e.target.name === 'profile'){
+      userMe.profile=img.preview;
+      setImage(img)
+    }
+
+  }
+
 
 
   async function handleSubmit(evt) {
+
     evt.preventDefault()
+    
+    let formData = new FormData();
+    let formDataP = new FormData();
+    
+    if(image.data !== ""){    
+      formData.append('profile', image.data)
+      const response = await fetch(`${process.env.REACT_APP_PUERTO}usuarios/updateProfile`, {
+        method: 'PUT',
+        body: formData,
+        headers: {
+          "token":  tokensito   }
+      });
+
+    if (response) {console.log(response.statusText)}
+    }
+
+    if(imageP.data !== ""){    
+      formDataP.append('background_picture', imageP.data)
+      const responder = await fetch(`${process.env.REACT_APP_PUERTO}usuarios/updateBackPicture`, {
+        method: 'PUT',
+        body: formDataP,
+        headers: {
+          "token": tokensito }
+      })
+
+      if (responder) {console.log(responder.statusText)}
+    }
+    
     dispatch(postUploadProfile(input))
+    navigate('/home', { replace: true });
+    // console.log(formData, "lo que estoy mandando")
   }
+ const preview = userMe.profile.includes('uploads')
+ const previewP = userMe.background_picture.includes('uploads')
 
 
   return (<>
@@ -90,7 +144,10 @@ function EditProfile({ userk }) {
       <form onSubmit={(evt) => handleSubmit(evt)}>
         {/* `${input.imageport}` */}
         <div>
-          <ImagePortada onMouseEnter={() => setEdit(true)} onMouseOut={() => setEdit(false)} onClick={update2} src={require(`${input.background_picture}`)} />
+          <ImagePortada onMouseEnter={() => setEdit(true)}
+           onMouseOut={() => setEdit(false)}
+            onClick={update2}
+             src={previewP? `${process.env.REACT_APP_PUERTO}${userMe.background_picture}` : userMe.background_picture} />
 
           {/* <div>
               {edit? <LabelImgPort onMouseEnter={()=>setEdit(true)} onMouseOut={()=>setEdit(false)} onClick={update2}>Edit</LabelImgPort> : <></>} 
@@ -101,7 +158,8 @@ function EditProfile({ userk }) {
               <LabelFile> Uploud to photo
                 <InputFile
                   name='background_picture'
-                  onChange={evt => handleChangeImg(evt)} />
+                  onChange={evt => handleFileChangeP(evt)} 
+                  multiple/>
               </LabelFile>
             </FileContainerP>
 
@@ -113,7 +171,10 @@ function EditProfile({ userk }) {
 
         <div>
 
-          <ImageProfile src={`${input.profile}`} onMouseEnter={() => setEditP(true)} onMouseOut={() => setEditP(false)} onClick={update} />
+          <ImageProfile src={preview? `${process.env.REACT_APP_PUERTO}${userMe.profile}` : userMe.profile} 
+          onMouseEnter={() => setEditP(true)} 
+          onMouseOut={() => setEditP(false)}
+           onClick={update} />
 
         </div>
 
@@ -125,8 +186,8 @@ function EditProfile({ userk }) {
             <LabelFile> Uploud to photo
               <InputFile
                 name='profile'
-                onChange={evt => handleChangeImg(evt)}
-              />
+                onChange={evt=>handleFileChange(evt)}
+                multiple/>
             </LabelFile>
           </FileContainer>
 
@@ -247,7 +308,7 @@ function EditProfile({ userk }) {
 
         </FormContainer>
         <DivSubmitContainer>
-          {(input.fullname !== '') ?
+          {(input.fullname !== '') ? 
 
             <ButtonSubmit type='submit'>Guardar</ButtonSubmit>
             : <span>username is require</span>

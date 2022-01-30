@@ -19,9 +19,17 @@ export const MY_PROFILE='MY_PROFILE';
 export const GET_NAME='GET_NAME';
 export const CREATE_POST= 'CREATE_POST';
 export const GET_ALL_POSTS = 'GET_ALL_POST';
-export const GET_FOLLOWERS = 'GET_FOLLOWERS'
+export const GET_FOLLOWERS = 'GET_FOLLOWERS';
+export const CLEAR_MY_FOLLOW_STATE = 'CLEAR_MY_FOLLOW_STATE'
 export const GET_FOLLOWS = 'GET_FOLLOWS';
 export const SORT_BY_AZ='SORT_BY_AZ';
 export const SORT_BY_ZA='SORT_BY_ZA';
 export const FOLLOW_USER_BY_ID='FOLLOW_USER_BY_ID';
+export const GET_MY_POST = 'GET_MY_POST';
+export const GET_MY_FRIENDS_POST = 'GET_MY_FRIENDS_POST';
+export const CLEAR_FOLLOW_USER_STATE='CLEAR_FOLLOW_USER_STATE';
+export const GET_MY_ID='GET_MY_ID';
+export const GET_CLEAN_FRIENDS = 'GET_CLEAN_FRIENDS';
+export const CLEAN_HOME = 'CLEAN_HOME'
+
 

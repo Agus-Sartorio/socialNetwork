@@ -8,13 +8,10 @@ import axios from "axios";
 import { bake_cookie } from 'sfcookies'
 import { StyledLogIn } from "./styles";
 import logoHenry from '../../images/LOGO-HENRY.png'
-import { useDispatch } from "react-redux";
-import { getMyProfileData } from "../../actions";
 
 
 
 export default function Form() {
-  const dispatch = useDispatch();
   const Navigate = useNavigate();
 
   function githubSignIn() {
@@ -36,7 +33,6 @@ export default function Form() {
       await githubSignIn();
       await registro();
       Navigate("/home");
-      dispatch(getMyProfileData())
 
     } catch (error) {
       console.log(error);

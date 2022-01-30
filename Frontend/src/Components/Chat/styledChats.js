@@ -51,13 +51,20 @@ export const ChatBoxWrapper = styled.div`
 `;
 
 export const ChatBoxTop = styled.div`
- height: 100%;
-  overflow-y: scroll;
-  padding-right: 10px;
+ height: 400px;
+ overflow-y: scroll;
+ overflow-inline: 10px;
+ padding-right: 5px; 
+ -webkit-scrollbar-thumb {
+    background-color: #797979;
+    border-radius: 20px;
+    border: 2px solid #f1f2f3;
+}
+
 `;
 
 export const ChatBoxBottom = styled.div`
-margin-top: 5px;
+  margin-top: 5px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -75,7 +82,7 @@ export const ChatSubmitButton = styled.button`
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  background-color: #FAE800;
+  background-color: #54D3F3E8;
   color: #1D1D1D;
 
 `;

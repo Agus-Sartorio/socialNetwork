@@ -10,6 +10,7 @@ background-color: #1D1D1D;
 color: #eee;
 padding: 20px 80px; 
 position: relative;
+z-index: 2;
 
 .div-1{
     display: flex;

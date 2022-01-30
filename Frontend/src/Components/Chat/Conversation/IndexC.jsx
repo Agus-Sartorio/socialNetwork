@@ -8,7 +8,8 @@ export default function Conversation({ user }) {
   //   const [user, setUser] = useState(null);
   //   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
-
+  const preview = user.profile.includes('uploads')
+ 
   //   useEffect(() => {
   //     const friendId = conversation.members.find((m) => m !== currentUser._id);
 
@@ -26,7 +27,7 @@ export default function Conversation({ user }) {
   return (
     <ConversationCont>
       <ConversationImg
-        src={user.profile}
+        src={preview? `https://dogskll.herokuapp.com/${user.profile}` : user.profile}
         alt=""
       />
       <ConversationName>{user.fullname}</ConversationName>

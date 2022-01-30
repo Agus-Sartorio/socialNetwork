@@ -1,20 +1,24 @@
-import NavBar from "../NavBar/NavBar";
-import SideBar from "../SideBar/SideBar";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AllPost } from "../../actions";
 import CrearPost from "../CrearPost/CrearPost";
-/* import Post from "../Feed/Post"; */
-/* import { Div } from "../MyProfile/StyledMyProfile"; */
+import Layout from '../Layout/Layout'
+import PostContainer from "../PostContainer/PostContainer";
 
 export default function Home() {
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(AllPost());
+    }, [dispatch]);
+
+    const posts = useSelector((state => state.allPost))
+
     return (
-        <>
-            <NavBar />
-            <div className='main'>
-                <SideBar />
-                <div className='post'>
-                    <CrearPost />
-                    {/* <Post /> */}
-                </div>
-            </div>
-        </>
+        <Layout>
+            <CrearPost />
+            <PostContainer posts={posts} />
+        </Layout>
     )
 }

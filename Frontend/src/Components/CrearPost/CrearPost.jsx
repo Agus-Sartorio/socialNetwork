@@ -4,6 +4,7 @@ import { StyledForm } from "./styles"
 import { useDispatch } from "react-redux"
 import { CreatePost } from "../../actions"
 import Upload from '../Icons/Upload'
+import { Link } from "react-router-dom"
 
 
 
@@ -36,10 +37,12 @@ export default function CrearPost() {
 
         <StyledForm className={input.description ? 'expanded' : undefined} onSubmit={submitHandler}>
             <div className='img-post'>
+                <Link to={'/myprofile'}>
                 <img className='user-img' src={user.photoURL} alt="" width={"20px"} height={"20px"} />
+                </Link>
                 <textarea
                     className='textarea'
-                    placeholder={"¿Qué estas pensando " + user.displayName?.split(' ')[0] + "?"}
+                    placeholder={"¿Qué estas pensando " + user?.displayName?.split(' ')[0] + "?"}
                     name='description'
                     value={input.description}
                     onChange={handleChange}
