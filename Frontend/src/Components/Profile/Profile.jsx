@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import {
   clearProfileState,
-  getClean,
   getFollowUserById,
   getMyfriendsPost,
   getProfile,
-  getMyId
+  getMyId,
+  getCleanFriends
 } from "../../actions";
 import NavBar from "../NavBar/NavBar";
 import SideBar from "../SideBar/SideBar";
@@ -31,7 +31,7 @@ const Profile = () => {
     dispatch(getMyId())
     return () => {
       dispatch(clearProfileState());
-      dispatch(getClean())
+      dispatch(getCleanFriends())
     };
   }, [dispatch, id]);
 
