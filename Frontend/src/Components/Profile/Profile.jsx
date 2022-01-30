@@ -6,7 +6,6 @@ import {
   getClean,
   getFollowUserById,
   getMyfriendsPost,
-  getMyProfileData,
   getProfile,
   getMyId
 } from "../../actions";
@@ -28,7 +27,6 @@ const Profile = () => {
   useEffect(() => {
     dispatch(getProfile(id));
     dispatch(getFollowUserById(id));
-    dispatch(getMyProfileData());
     dispatch(getMyfriendsPost(id))
     dispatch(getMyId())
     return () => {
@@ -39,23 +37,23 @@ const Profile = () => {
 
 
 
-    return (
-        <div>
-            <NavBar />
-            <Container>
-                <SideBar />
-                {Object.keys(profile).length && Object.keys(myId).length?
-                    <div>
-                        <CardProfile
-                            profile={profile}
-                            followUser={followUser}
-                            myId={myId}
-                        />
-                    </div>
-                    : <div>cargando...</div>
-                }
-            </Container>
-            
+  return (
+    <div>
+      <NavBar />
+      <Container>
+        <SideBar />
+        {Object.keys(profile).length && Object.keys(myId).length ?
+          <div>
+            <CardProfile
+              profile={profile}
+              followUser={followUser}
+              myId={myId}
+            />
+          </div>
+          : <div>cargando...</div>
+        }
+      </Container>
+
       {myFrindsPost?.data?.length ? (
         myFrindsPost?.data?.map((p) => {
           return (
@@ -69,7 +67,7 @@ const Profile = () => {
 
               <span>{p.autorData?.[0]?.fullname}</span>
               <hr />
-              <span>{format(p.createdAt)}</span>
+              <span>{format(p?.createdAt)}</span>
               <h1>{p.description}</h1>
               <button>Like</button>
             </div>
@@ -78,8 +76,8 @@ const Profile = () => {
       ) : (
         <div>Cargando...</div>
       )}
-        </div>
-    )
+    </div>
+  )
 }
 
 export default Profile;

@@ -8,23 +8,23 @@ import { DivModal } from "./StyledMyProfile";
 
 const MyProfile = ({ myProfile }) => {
   const myPost = useSelector((state) => state.myProfilePost);
-  
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getMyPost());
   }, [dispatch]);
 
-    return (
-        <>
-            <div>
-                <img src={myProfile.data[0].profile} alt={myProfile.data[0].fullname} />
-                <h1>{myProfile.data[0].fullname}</h1>
-                <DivModal>
-                    <ModalFollows />
-                    <ModalMyFollowers />
-                </DivModal>
-                {myPost.data?.length ? (
+  return (
+    <>
+      <div>
+        <img src={myProfile.data[0].profile} alt={myProfile.data[0].fullname} />
+        <h1>{myProfile.data[0].fullname}</h1>
+        <DivModal>
+          <ModalFollows />
+          <ModalMyFollowers />
+        </DivModal>
+        {myPost.data?.length ? (
           myPost.data.map((p) => {
             return (
               <div key={p._id}>
@@ -37,7 +37,7 @@ const MyProfile = ({ myProfile }) => {
 
                 <span>{p.autorData?.[0]?.fullname}</span>
                 <hr />
-                <span>{format(p.createdAt)}</span>
+                <span>{format(p?.createdAt)}</span>
                 <h1>{p.description}</h1>
                 <button>Like</button>
               </div>
@@ -46,10 +46,10 @@ const MyProfile = ({ myProfile }) => {
         ) : (
           <div>Cargando...</div>
         )}
-            </div>
+      </div>
 
-        </>
-    )
+    </>
+  )
 }
 
 export default MyProfile;

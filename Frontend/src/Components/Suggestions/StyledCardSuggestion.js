@@ -71,6 +71,16 @@ export const StyledCardSuggestions = styled.article`
         }
     }
 
+    .card__follow{
+        margin-top: 30px;
+        font-weight: 500;
+        color: var(--grey-1);
+
+        span{
+            font-weight: 600;
+        }
+    }
+
     .card__span-link{
         position: absolute;
         top: 0;
