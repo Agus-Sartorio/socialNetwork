@@ -13,13 +13,13 @@ export default function ChatOnline({contactos}) {
     //   dispatch(getFollows())
     // }, [dispatch])
 
-          console.log(contactos, 'chatOnline')
+          // console.log(contactos, 'chatOnline')
 
           const order = contactos.sort((a, b) => {
             if (a.fullname.toLowerCase() > b.fullname.toLowerCase()) return 1
             else return -1
                })  
-               console.log(order, 'chatOnline ordenando alfabetic')
+              //  console.log(order, 'chatOnline ordenando alfabetic')
 
 //   const [friends, setFriends] = useState([]);
 //   const [onlineFriends, setOnlineFriends] = useState([]);

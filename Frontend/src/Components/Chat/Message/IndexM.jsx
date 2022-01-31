@@ -1,17 +1,31 @@
+import React, { useEffect } from 'react';
 import {Messagenormal, MessageTop, MessageImg, MessageText} from './styledM'
-import {useSelector } from 'react-redux';
+import {useSelector, useDispatch } from 'react-redux';
+import { getProfile } from "../../../actions";
 
-export default function Message({own,user,mensajes}) {
+export default function Message({own,user,mensajes,idCont}) {
+    
+  const dispatch = useDispatch();
 
-  // if(mensajes.Id !== undefined){
-    // }
+  if(idCont !== undefined){console.log(idCont,'llega el id contacnto??')}
+
+  useEffect(() => {
+    dispatch(getProfile(idCont))
+  }, [dispatch])  
+  
+  const contact = useSelector((state) => state.profile);
+  if(contact !== undefined){ console.log(contact, 'llega el contacto')}
+
+  
+  if (user.data[0] !== undefined){var userMe =user.data[0];}
+  // if(mensajes.Id !== undefined){  profile
+    // } getProfile
     // const fallows = useSelector((state) => state.follows);
     // const otherpersona = fallows.data.find((e)=>e.id === persona.Id );
-    if (user.data[0] !== undefined){var userMe =user.data[0];
-    console.log(mensajes, "mensajes")
-    console.log(mensajes.Id, "Id del mensaje")
-    }
-
+      // console.log(mensajes.Id, "Id del mensaje")
+    // console.log(contact, "mensajes")
+    // console.log(contact.profile, "foto")
+    
     // const mypersona = user.data.find((e)=>e.id === persona.Id )
     // console.log(mypersona, 'mypersona');
     // if(otherpersona !== undefined) {console.log(otherpersona.profile.includes('uploads'), "tiene upluads?")
@@ -28,7 +42,7 @@ export default function Message({own,user,mensajes}) {
       <MessageTop>
         <MessageImg
           
-          src={own? `${process.env.REACT_APP_PUERTO}${userMe.profile}` :  "https://images.ole.com.ar/2022/01/01/smOuc4YsP_340x340__1.jpg"}
+          src={own? `${process.env.REACT_APP_PUERTO}${userMe.profile}` :  `${process.env.REACT_APP_PUERTO}${contact.profile}`}
           alt=""
         />
         <MessageText className='messagetextown'>{own? mensajes.mensaje : mensajes.mensaje}</MessageText>

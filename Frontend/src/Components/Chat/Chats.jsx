@@ -1,8 +1,9 @@
 /* import { getMyProfileData, getFollows } from "../../actions";
 /* import { Link } from 'react-router-dom'; */
 import {conversacion} from './Message/conversacion';
-import {useSelector} from 'react-redux'; 
-import React, {useState} from "react";
+import { getProfile } from "../../actions";
+import {useSelector, useDispatch } from 'react-redux';
+import React, {useState, useEffect} from "react";
 import Conversation from './Conversation/IndexC';
 import Message from './Message/IndexM';
 import ChatOnline from './ChatOnline/index';
@@ -17,9 +18,12 @@ import { Messenger, ChatMenu, ChatMenuWrapper,
  
 export default function Chats({contactos}) {
 
-    
-  const [Idother,] = useState('')
-  console.log(conversacion, 'probando conversacion')
+
+  const dispatch = useDispatch();
+
+  const [Idother, setIdother] = useState('')
+  const [Contacto, setContacto] = useState({})
+  // console.log(conversacion, 'probando conversacion')
    const mensajesOrigin=[
     
   {orden: 1,
@@ -57,19 +61,32 @@ export default function Chats({contactos}) {
   const user = useSelector((state) => state.myProfileData);
    
   const Myid = user.data[0].id
-  console.log( Myid, 'my id para el chat')
+  // console.log( Myid, 'my id para el chat')
 
   mensajes.forEach((element)=>{
     if(Myid === element.Id){
       element.own=true;
-      console.log(element, 'validacion de mensajes')
-    
-       }
+      
+    }
+    // console.log(element, 'validacion de mensajes')
   });    
-
   
-    // if(Myid === mensajes[1].Id){mensajes[1].own=true;
-    // console.log(mensajes[1].own, 'validacion') }
+  const contact = useSelector((state) => state.profile);
+  const handleGetId = (id)=>{
+    setIdother(id);
+  }
+  useEffect(() => {
+    dispatch(getProfile(Idother))
+  }, [dispatch])  
+  
+  if(Idother !== undefined){
+
+  }
+  // if(Myid === mensajes[1].Id){mensajes[1].own=true;
+  // useEffect(() => {
+  //   setContacto(contact);
+  // })  
+    console.log(contact, 'Idother') 
 //   useEffect(() => {
 //    dispatch(getFollows())
 //    }, [dispatch])
@@ -89,7 +106,7 @@ export default function Chats({contactos}) {
           {/* <Conversation user={contactos}/> */}
 
           {contactos.map((c) => (
-            <div>
+            <div onClick={()=>handleGetId(c.id)}>
                 <Conversation user={c}/>
             </div>
           ))}   
@@ -102,7 +119,11 @@ export default function Chats({contactos}) {
             <>
               <ChatBoxTop>
               {mensajes.map((c) => (
-               <Message key={c.orden} own={c.own} mensajes={c} user={user}/>
+               <Message key={c.orden} 
+                own={c.own}
+                mensajes={c} 
+                user={user} 
+                idCont={Idother}/>
                  ))} 
                   
                     {/* <Message own={mensajes[0].own} />
