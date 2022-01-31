@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AllPost } from "../../actions";
+import { AllPost, getMyId} from "../../actions";
 import CrearPost from "../CrearPost/CrearPost";
 import Layout from '../Layout/Layout'
 import PostContainer from "../PostContainer/PostContainer";
@@ -11,6 +11,7 @@ export default function Home() {
 
     useEffect(() => {
         dispatch(AllPost());
+        dispatch(getMyId())
     }, [dispatch]);
 
     const posts = useSelector((state => state.allPost))

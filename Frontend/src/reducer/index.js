@@ -1,7 +1,7 @@
 
 import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_USER, GET_NAME, 
     PUT_UPLOUD_PROFILE, GET_MY_PROFILE, GET_USER_BY_ID, MY_PROFILE, CREATE_POST, GET_ALL_POSTS, 
-    GET_FOLLOWS, GET_FOLLOWERS, FOLLOW_USER_BY_ID, GET_MY_POST, GET_MY_FRIENDS_POST,CLEAR_FOLLOW_USER_STATE, GET_MY_ID, CLEAR_MY_FOLLOW_STATE, SORT_BY_AZ, GET_CLEAN_FRIENDS, CLEAN_HOME} from "../actions/actionTypes"
+    GET_FOLLOWS, GET_FOLLOWERS, FOLLOW_USER_BY_ID, GET_MY_POST, GET_MY_FRIENDS_POST,CLEAR_FOLLOW_USER_STATE, GET_MY_ID, CLEAR_MY_FOLLOW_STATE, SORT_BY_AZ, GET_CLEAN_FRIENDS, CLEAN_HOME, GET_MY_PHOTO} from "../actions/actionTypes"
     import { sortByAz } from "../actions"
 
 
@@ -19,7 +19,8 @@ const initialState = {
     myProfilePost:[],
     myFriendsPost: [],
     myId:[],
-    sort:[]
+    sort:[],
+    myPhoto:[]
 
 }
 
@@ -140,7 +141,13 @@ export function rootReducer(state = initialState, action) {
                     ...state,
                     allPost:[],
                     myProfileData:[]
-                }    
+                }  
+                
+                case GET_MY_PHOTO:
+                    return{
+                        ...state,
+                        myPhoto: action.payload
+                    }
         default:
             return state
     }

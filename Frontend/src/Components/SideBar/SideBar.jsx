@@ -1,18 +1,30 @@
 import { StyledSideBar } from "./styles";
 import Channels from '../Icons/Channels'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Chevron from '../Icons/Chevron'
 import Red from '../Icons/Red'
 import Settings from '../Icons/Settings';
 import { useUserAuth } from "../Context/UserContext";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getMyPhoto } from "../../actions";
+
 
 
 export default function SideBar() {
     const navigate = useNavigate();
     const { user, logOut } = useUserAuth()
     console.log(user)
+
+    const dispatch = useDispatch()
+
+    const myPhoto = useSelector((state) => state.myPhoto)
+
+    useEffect(()=> {
+        dispatch(getMyPhoto())
+    },[dispatch])
+
 
     const handleLogOut = () => {
         try {
@@ -40,8 +52,8 @@ export default function SideBar() {
             </button>
             <div className='user'>
                 <button onClick={handleClick}>
-                    <img src={user.photoURL} alt="" />
-                    <p>{user.displayName?.split(' ')[0]}</p>
+                    <img src={myPhoto?myPhoto.data?.profile[0]==='u'? process.env.REACT_APP_PUERTO + myPhoto.data?.profile : myPhoto.data?.profile: "https://static2.elnortedecastilla.es/www/pre2017/multimedia/noticias/201501/12/media/cortadas/facebook-profile-picture-no-pic-avatar--575x323.jpg"} alt="" />
+                    <p>{myPhoto?.data?.fullname.split(' ')[0]}</p>
                     <span className={isuser ? 'chevron' : undefined}><Chevron /></span>
                 </button>
             </div>
