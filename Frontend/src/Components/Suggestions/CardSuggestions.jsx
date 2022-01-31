@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { tokenUsuario } from "../../actions/actionTypes";
 import { StyledCardSuggestions } from "./StyledCardSuggestion";
 import Follow from '../Icons/Follow'
-import DefaultUser from '../Icons/DefaultUser'
 
 const CardSuggestions = ({ fullname, id, profile, email }) => {
 
@@ -24,10 +23,8 @@ const CardSuggestions = ({ fullname, id, profile, email }) => {
 
     return (
         <StyledCardSuggestions className='card'>
-            {profile.startsWith('https://avatars.') ?
-                <img className="card__image" src={profile} alt={fullname} /> :
-                <DefaultUser className="card__image" />
-            }
+                <img className="card__image" src={profile.includes('http')?profile:process.env.REACT_APP_PUERTO+profile} alt={fullname} /> 
+         
             <h3 className='card__name'>
                 <Link to={`/profile/${id}`} className="Link">
                     {fullname}

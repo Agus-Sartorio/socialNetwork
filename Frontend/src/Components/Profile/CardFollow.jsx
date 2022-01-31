@@ -9,7 +9,7 @@ export const CardFollow = ({ fullname, profile, email, id }) => {
         <>
             <Card key={id}>
                 <p className='name' key={id}>
-                    <img className='user-img' src={profile} alt={fullname} />
+                    <img className='user-img' src={profile.includes('http')?profile:process.env.REACT_APP_PUERTO+profile} alt={fullname} />
                     <Link to={`/${myId.id === id ? 'myprofile' : `profile/${id}`}`} >
                         {fullname}
                         <span className='email'>{email}</span>
