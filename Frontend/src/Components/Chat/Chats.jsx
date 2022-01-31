@@ -1,6 +1,6 @@
 /* import { getMyProfileData, getFollows } from "../../actions";
 /* import { Link } from 'react-router-dom'; */
-import {conversaciones, mensajesOrigin, Messages} from './Message/conversacion';
+import {mensajesOrigin, Messages} from './Message/conversacion';
 import { getProfile } from "../../actions";
 import {useSelector, useDispatch } from 'react-redux';
 import React, {useState, useEffect} from "react";
@@ -16,11 +16,11 @@ import { Messenger, ChatMenu, ChatMenuWrapper,
 
 
  
-export default function Chats({contactos}) {
+export default function Chats({contactos,conversaciones}) {
 
 
   const dispatch = useDispatch();
-
+  console.log(conversaciones, 'conversaciones') 
   const [Idother, setIdother] = useState('')
   const [Contacto, setContacto] = useState({})
   // console.log(conversacion, 'probando conversacion')
@@ -45,6 +45,10 @@ export default function Chats({contactos}) {
   const contact = useSelector((state) => state.profile);
   const handleGetId = (id)=>{
     setIdother(id);
+    console.log(Idother, 'el id del contacto')
+    // const conversacion= conversaciones.find((e)=>{e.id == id})
+    // console.log(conversacion, 'La conversacion')
+
   }
   useEffect(() => {
     dispatch(getProfile(Idother))
@@ -57,7 +61,7 @@ export default function Chats({contactos}) {
   // useEffect(() => {
   //   setContacto(contact);
   // })  
-    console.log(contact, 'Idother') 
+    // console.log(contact, 'Idother') 
 //   useEffect(() => {
 //    dispatch(getFollows())
 //    }, [dispatch])

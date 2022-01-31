@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import {conversaciones} from './Message/conversacion';
 import { getFollows,getMyProfileData } from "../../actions";
 import { useDispatch, useSelector } from 'react-redux';
 import NavBar from '../NavBar/NavBar';
@@ -33,7 +34,7 @@ export default function Chat() {
      
         <ContainerIndex>
           <SideBar/>  
-          {contactos? <Chats contactos={contactos}/>:<div>cargando...</div>}    
+          {contactos? <Chats contactos={contactos} conversaciones={conversaciones}/>:<div>cargando...</div>}    
          
         </ContainerIndex>
       

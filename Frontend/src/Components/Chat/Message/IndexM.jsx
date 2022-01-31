@@ -7,14 +7,14 @@ export default function Message({own,user,mensajes,idCont}) {
     
   const dispatch = useDispatch();
 
-  if(idCont !== undefined){console.log(idCont,'llega el id contacnto??')}
+  // if(idCont !== undefined){console.log(idCont,'llega el id contacnto??')}
 
   useEffect(() => {
     dispatch(getProfile(idCont))
   }, [dispatch])  
   
   const contact = useSelector((state) => state.profile);
-  if(contact !== undefined){ console.log(contact, 'llega el contacto')}
+  // if(contact !== undefined){ console.log(contact, 'llega el contacto')}
 
   
   if (user.data[0] !== undefined){var userMe =user.data[0];
@@ -47,7 +47,7 @@ export default function Message({own,user,mensajes,idCont}) {
       <MessageTop>
         <MessageImg
           
-          src={own? userMe.profile.includes('uploads')?`${process.env.REACT_APP_PUERTO}${userMe.profile}` :<></>: `${process.env.REACT_APP_PUERTO}${contact[0].profile}`}
+          src={own? userMe.profile.includes('uploads')?`${process.env.REACT_APP_PUERTO}${userMe.profile}` :<></>: `${process.env.REACT_APP_PUERTO}${userMe.profile}`}
           alt=""
         />
         <MessageText className='messagetextown'>{own? mensajes.mensaje : mensajes.mensaje}</MessageText>

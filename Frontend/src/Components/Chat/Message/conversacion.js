@@ -39,7 +39,7 @@ export const conversaciones ={
                  
         date: 5,
         fullname:'Jhoan',
-        id: '',
+        id: '8ctkOFlC8VREDcx6lEtcYEyrxp92',
         id_conv:5
 
       },
@@ -121,7 +121,7 @@ const Messages ={
             own:false
        
         },{orden: 5,
-            Id:'6d5zgcvhomXcQKMAYd2qY2zWhQe2',
+            Id:'ESiDsykaitaH1weBOslWLJs0TLJ2',
             mensaje:'Será que desde el celular se puede',
             own:false
        
@@ -139,6 +139,41 @@ const Messages ={
          ]
  
      },
+
+
+     {
+
+      id_conv: 3,
+      mensajes:[   
+       {orden: 1,
+         Id:'FXpKkFgG0JUky8y5O8lNu5Qw73U2',
+         mensaje:'Bien bien',
+         own:false
+     
+       },{ orden: 2,
+         Id:'FXpKkFgG0JUky8y5O8lNu5Qw73U2',
+         mensaje:'Lo que hiciste quedo super tambien es una victoria',
+         own:false
+
+      },{orden: 3,
+         Id:'WlpqFTklN1TALxHpVEa6H75U5VF2',
+         mensaje:'Sii victoria del equipo, ahora me vere los animes de hoy y a darle al chat jajaja',
+         own:false
+     
+      },{orden: 4,
+          Id:'FXpKkFgG0JUky8y5O8lNu5Qw73U2',
+          mensaje:'Ya los vi hehehe',
+          own:false
+     
+      },{orden: 5,
+          Id:'FXpKkFgG0JUky8y5O8lNu5Qw73U2',
+          mensaje:'Bueno solo uno',
+          own:false
+     
+      },
+       ]
+
+   },
 
 
 
