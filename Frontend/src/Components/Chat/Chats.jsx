@@ -4,7 +4,7 @@ import {conversacion} from './Message/conversacion';
 import {useSelector} from 'react-redux'; 
 import React, {useState} from "react";
 import Conversation from './Conversation/IndexC';
-// import Message from './Message/IndexM';
+import Message from './Message/IndexM';
 import ChatOnline from './ChatOnline/index';
 
 import { Messenger, ChatMenu, ChatMenuWrapper,
@@ -56,7 +56,7 @@ export default function Chats({contactos}) {
   const mensajes= mensajesOrigin.reverse();
   const user = useSelector((state) => state.myProfileData);
    
-  const Myid = user.data
+  const Myid = user.data[0].id
   console.log( Myid, 'my id para el chat')
 
   mensajes.forEach((element)=>{
@@ -90,7 +90,7 @@ export default function Chats({contactos}) {
 
           {contactos.map((c) => (
             <div>
-                <Conversation user={c} />
+                <Conversation user={c}/>
             </div>
           ))}   
 
@@ -101,9 +101,9 @@ export default function Chats({contactos}) {
           {true? (
             <>
               <ChatBoxTop>
-              {/* {mensajes.map((c) => (
-               <Message own={c.own} persona={c} idother={Idother}/>
-                 ))}  */}
+              {mensajes.map((c) => (
+               <Message key={c.orden} own={c.own} mensajes={c} user={user}/>
+                 ))} 
                   
                     {/* <Message own={mensajes[0].own} />
                     <Message own={mensajes[1].own} />

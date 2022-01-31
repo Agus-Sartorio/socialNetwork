@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { getFollows } from "../../actions";
+import { getFollows,getMyProfileData } from "../../actions";
 import { useDispatch, useSelector } from 'react-redux';
 import NavBar from '../NavBar/NavBar';
 /* import {Link} from 'react-router-dom'; */
@@ -17,9 +17,13 @@ export default function Chat() {
   useEffect(() => {
     dispatch(getFollows())
   }, [dispatch])
+
+  useEffect(() => {
+    dispatch(getMyProfileData())
+  }, [dispatch])
   
-        const contactos = fallows.data;
-        console.log(contactos, 'chats lo que mando')
+         const contactos = fallows.data;
+        // console.log(contactos, 'chats lo que mando')
     
     return (     
         

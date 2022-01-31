@@ -7,10 +7,10 @@ export default function Message({own,user,mensajes}) {
     // }
     // const fallows = useSelector((state) => state.follows);
     // const otherpersona = fallows.data.find((e)=>e.id === persona.Id );
-    var userMe =user.data[0];
-    console.log(userMe, "UserMe")
+    if (user.data[0] !== undefined){var userMe =user.data[0];
+    console.log(mensajes, "mensajes")
     console.log(mensajes.Id, "Id del mensaje")
-    
+    }
 
     // const mypersona = user.data.find((e)=>e.id === persona.Id )
     // console.log(mypersona, 'mypersona');
@@ -31,7 +31,7 @@ export default function Message({own,user,mensajes}) {
           src={own? `${process.env.REACT_APP_PUERTO}${userMe.profile}` :  "https://images.ole.com.ar/2022/01/01/smOuc4YsP_340x340__1.jpg"}
           alt=""
         />
-        <MessageText className='messagetextown'>{own? 'hola': 'hola como estas?'}</MessageText>
+        <MessageText className='messagetextown'>{own? mensajes.mensaje : mensajes.mensaje}</MessageText>
       </MessageTop>
       <div className="messageBottom">1 hour ago</div>
       </Messagenormal>
