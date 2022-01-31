@@ -15,7 +15,7 @@ export default function Post({ p }) {
     
     return (
         <StyledPost className='post'>`
-            <Link className='post__link' to={`/${myId.id === p.autorData[0]?.id ? 'myprofile':`/profile/${p.autorData[0]?.id}`}`}>
+            <Link className='post__link' to={`/${myId.id === p.autorData[0]?.id ? 'myprofile':`profile/${p.autorData[0]?.id}`}`}>
                 {p.autorData[0]?.profile ?
                     <img className='post__avatar' src={preview ? `${process.env.REACT_APP_PUERTO}${p.autorData[0]?.profile}` : p.autorData[0]?.profile} alt={p.autorData[0]?.fullname} /> :
                     <DefaultUser className='post__avatar' />
