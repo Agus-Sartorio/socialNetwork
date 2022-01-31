@@ -1,8 +1,7 @@
-import { useUserAuth } from "../Context/UserContext"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { StyledForm } from "./styles"
-import { useDispatch } from "react-redux"
-import { CreatePost } from "../../actions"
+import { useDispatch, useSelector } from "react-redux"
+import { CreatePost, getMyPhoto } from "../../actions"
 import Upload from '../Icons/Upload'
 import { Link } from "react-router-dom"
 
@@ -10,13 +9,20 @@ import { Link } from "react-router-dom"
 
 export default function CrearPost() {
 
-    const { user } = useUserAuth()
+    const dispatch = useDispatch()
+
+    const myPhoto = useSelector((state) => state.myPhoto)
+
+    useEffect(()=> {
+        dispatch(getMyPhoto())
+    },[dispatch])
+
     const [input, setInput] = useState({
         description: ""
     })
     const [, setFile] = useState(null)
 
-    const dispatch = useDispatch();
+
 
     function handleChange(e) {
         setInput({
@@ -38,11 +44,11 @@ export default function CrearPost() {
         <StyledForm className={input.description ? 'expanded' : undefined} onSubmit={submitHandler}>
             <div className='img-post'>
                 <Link to={'/myprofile'}>
-                <img className='user-img' src={user.photoURL} alt="" width={"20px"} height={"20px"} />
+                <img className='user-img' src={myPhoto?myPhoto.data?.profile[0]==='u'? process.env.REACT_APP_PUERTO + myPhoto.data?.profile : myPhoto.data?.profile: "https://static2.elnortedecastilla.es/www/pre2017/multimedia/noticias/201501/12/media/cortadas/facebook-profile-picture-no-pic-avatar--575x323.jpg"} alt="" width={"20px"} height={"20px"} />
                 </Link>
                 <textarea
                     className='textarea'
-                    placeholder={"¿Qué estas pensando " + user?.displayName?.split(' ')[0] + "?"}
+                    placeholder={"¿Qué estas pensando " + myPhoto?.data?.fullname.split(' ')[0] + "?"}
                     name='description'
                     value={input.description}
                     onChange={handleChange}
