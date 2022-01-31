@@ -20,7 +20,7 @@ const MyProfile = ({ myProfile }) => {
 
   return (
     <>
-      <img src={preview ? `${process.env.REACT_APP_PUERTO}${myProfile.data[0].profile}` : myProfile.data[0].profile} alt={myProfile.data[0].fullname} />
+      <img src={preview ? `${process.env.REACT_APP_PUERTO}${myProfile.data[0].profile}` : myProfile.data[0].profile} alt={myProfile.data[0].fullname} width='250' height='250' />
       <h1>{myProfile.data[0].fullname}</h1>
       <DivModal>
         <ModalFollows />
