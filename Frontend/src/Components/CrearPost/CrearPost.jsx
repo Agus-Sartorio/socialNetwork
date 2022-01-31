@@ -13,9 +13,9 @@ export default function CrearPost() {
 
     const myPhoto = useSelector((state) => state.myPhoto)
 
-    useEffect(()=> {
+    useEffect(() => {
         dispatch(getMyPhoto())
-    },[dispatch])
+    }, [dispatch])
 
     const [input, setInput] = useState({
         description: ""
@@ -25,9 +25,11 @@ export default function CrearPost() {
 
 
     function handleChange(e) {
+        const isEmpty = /^\s/.test(e.target.value);
+        console.log(e.target.value);
         setInput({
             ...input,
-            [e.target.name]: e.target.value,
+            [e.target.name]: isEmpty ? '' : e.target.value,
         })
     }
     function submitHandler(e) {
@@ -44,7 +46,7 @@ export default function CrearPost() {
         <StyledForm className={input.description ? 'expanded' : undefined} onSubmit={submitHandler}>
             <div className='img-post'>
                 <Link to={'/myprofile'}>
-                <img className='user-img' src={myPhoto?myPhoto.data?.profile[0]==='u'? process.env.REACT_APP_PUERTO + myPhoto.data?.profile : myPhoto.data?.profile: "https://static2.elnortedecastilla.es/www/pre2017/multimedia/noticias/201501/12/media/cortadas/facebook-profile-picture-no-pic-avatar--575x323.jpg"} alt="" width={"20px"} height={"20px"} />
+                    <img className='user-img' src={myPhoto ? myPhoto.data?.profile[0] === 'u' ? process.env.REACT_APP_PUERTO + myPhoto.data?.profile : myPhoto.data?.profile : "https://static2.elnortedecastilla.es/www/pre2017/multimedia/noticias/201501/12/media/cortadas/facebook-profile-picture-no-pic-avatar--575x323.jpg"} alt="" width={"20px"} height={"20px"} />
                 </Link>
                 <textarea
                     className='textarea'
