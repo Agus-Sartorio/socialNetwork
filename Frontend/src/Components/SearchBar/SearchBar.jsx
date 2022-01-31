@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { getPeopleByName } from "../../actions";
+import { getMyId, getPeopleByName } from "../../actions";
 import { StyledForm } from "./styles";
 import Search from "../Icons/Search";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,6 +12,7 @@ export default function SearchBar() {
   const dispatch = useDispatch();
 
   const users = useSelector((state => state.search));
+  const myId = useSelector((state) => state.myId)
 
   const [filteredData, setFilteredData] = useState([]);
 
@@ -50,6 +51,7 @@ export default function SearchBar() {
   };
   useEffect(() => {
     dispatch(getPeopleByName(filteredData))
+    dispatch(getMyId())
   }, [dispatch, filteredData])
 
   return (
@@ -70,8 +72,8 @@ export default function SearchBar() {
             {filteredData?.map((value) => {
               return (
                 <p className='name' key={value.id}>
-                  <img className='user-img' src={value.profile} alt={value.fullname.split(' ')[0]} />
-                  <Link to={`/profile/` + value.id} >
+                  <img className='user-img' src={value.profile.includes('http')?value.profile:process.env.REACT_APP_PUERTO+value.profile} alt={value.fullname.split(' ')[0]} />
+                  <Link to={`/${myId.id===value.id?`myprofile`:`profile/`+value.id}`} >
                     {value.fullname}
                     <span className='email'>{value.email}</span>
                     <span className='span-link' />
