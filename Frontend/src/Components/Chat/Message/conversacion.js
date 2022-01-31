@@ -1,4 +1,4 @@
-export const conversacion ={
+export const conversaciones ={
     
       data:[{
                  
@@ -145,6 +145,45 @@ const Messages ={
 
 
 
-]
+]}
 
-}
+
+
+ export const mensajesOrigin = () =>{
+
+  let mensajes=
+   [
+     
+     {orden: 1,
+      Id:'6d5zgcvhomXcQKMAYd2qY2zWhQe2',
+      mensaje:'Sisi ya funciona',
+      own:false
+      
+    },{ orden: 2,
+      Id:'WlpqFTklN1TALxHpVEa6H75U5VF2',
+    mensaje:'lo que hiciste conmigo',
+    own:false
+ },{orden: 3,
+    Id:'WlpqFTklN1TALxHpVEa6H75U5VF2',
+    mensaje:'Borrandolo de firebase',
+    own:false
+
+ },{orden: 4,
+     Id:'6d5zgcvhomXcQKMAYd2qY2zWhQe2',
+     mensaje:'Ahora a mi tamopoco me funciona',
+     own:false
+
+ },{orden: 5,
+     Id:'6d5zgcvhomXcQKMAYd2qY2zWhQe2',
+     mensaje:'?',
+     own:false
+
+ },{ orden: 6,
+     Id:'6d5zgcvhomXcQKMAYd2qY2zWhQe2',
+     mensaje:'Como arreglaste lo del login?',
+     own:false
+    }
+ ];
+
+    return mensajes.reverse()
+} 

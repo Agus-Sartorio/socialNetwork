@@ -1,6 +1,6 @@
 /* import { getMyProfileData, getFollows } from "../../actions";
 /* import { Link } from 'react-router-dom'; */
-import {conversacion} from './Message/conversacion';
+import {conversaciones, mensajesOrigin, Messages} from './Message/conversacion';
 import { getProfile } from "../../actions";
 import {useSelector, useDispatch } from 'react-redux';
 import React, {useState, useEffect} from "react";
@@ -24,40 +24,11 @@ export default function Chats({contactos}) {
   const [Idother, setIdother] = useState('')
   const [Contacto, setContacto] = useState({})
   // console.log(conversacion, 'probando conversacion')
-   const mensajesOrigin=[
-    
-  {orden: 1,
-    Id:'6d5zgcvhomXcQKMAYd2qY2zWhQe2',
-    mensaje:'Sisi ya funciona',
-    own:false
-
-  },{ orden: 2,
-    Id:'WlpqFTklN1TALxHpVEa6H75U5VF2',
-    mensaje:'lo que hiciste conmigo',
-    own:false
- },{orden: 3,
-    Id:'WlpqFTklN1TALxHpVEa6H75U5VF2',
-    mensaje:'Borrandolo de firebase',
-    own:false
-
- },{orden: 4,
-     Id:'6d5zgcvhomXcQKMAYd2qY2zWhQe2',
-     mensaje:'Ahora a mi tamopoco me funciona',
-     own:false
-
- },{orden: 5,
-     Id:'6d5zgcvhomXcQKMAYd2qY2zWhQe2',
-     mensaje:'?',
-     own:false
-
- },{ orden: 6,
-     Id:'6d5zgcvhomXcQKMAYd2qY2zWhQe2',
-     mensaje:'Como arreglaste lo del login?',
-     own:false
-    }
-];
+  
   // const dispatch = useDispatch();
-  const mensajes= mensajesOrigin.reverse();
+
+  console.log(mensajesOrigin(), 'mensajes prueba') 
+  const mensajes = mensajesOrigin();
   const user = useSelector((state) => state.myProfileData);
    
   const Myid = user.data[0].id

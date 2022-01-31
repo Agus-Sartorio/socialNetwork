@@ -17,7 +17,12 @@ export default function Message({own,user,mensajes,idCont}) {
   if(contact !== undefined){ console.log(contact, 'llega el contacto')}
 
   
-  if (user.data[0] !== undefined){var userMe =user.data[0];}
+  if (user.data[0] !== undefined){var userMe =user.data[0];
+    
+    
+
+  }
+
   // if(mensajes.Id !== undefined){  profile
     // } getProfile
     // const fallows = useSelector((state) => state.follows);
@@ -42,7 +47,7 @@ export default function Message({own,user,mensajes,idCont}) {
       <MessageTop>
         <MessageImg
           
-          src={own? `${process.env.REACT_APP_PUERTO}${userMe.profile}` :  `${process.env.REACT_APP_PUERTO}${contact.profile}`}
+          src={own? userMe.profile.includes('uploads')?`${process.env.REACT_APP_PUERTO}${userMe.profile}` :<></>: `${process.env.REACT_APP_PUERTO}${contact[0].profile}`}
           alt=""
         />
         <MessageText className='messagetextown'>{own? mensajes.mensaje : mensajes.mensaje}</MessageText>
