@@ -12,7 +12,7 @@ export default function Post({ p }) {
    
 
     const myId = useSelector((state) => state.myId)
-    
+    //comentario
     return (
         <StyledPost className='post'>`
             <Link className='post__link' to={`/${myId.id === p.autorData[0]?.id ? 'myprofile':`profile/${p.autorData[0]?.id}`}`}>
