@@ -3,10 +3,12 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { tokenUsuario } from "../../actions/actionTypes";
 import { StyledCardSuggestions } from "./StyledCardSuggestion";
-import Follow from '../Icons/Follow'
+import Follow from '../Icons/Follow';
+import { useDispatch } from "react-redux"
+import { getUsers } from "../../actions";
 
 const CardSuggestions = ({ fullname, id, profile, email }) => {
-
+    const dispatch = useDispatch()
     const [button, setButton] = useState(false);
 
     const idToFollow = { "followMe": id }
@@ -16,6 +18,7 @@ const CardSuggestions = ({ fullname, id, profile, email }) => {
         try {
             await axios.put(`${process.env.REACT_APP_PUERTO}usuarios/follow/`, idToFollow, tokenUsuario())
             setButton(true)
+            dispatch(getUsers())
         } catch (err) {
             console.log(err)
         }

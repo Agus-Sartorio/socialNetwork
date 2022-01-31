@@ -4,10 +4,7 @@ import React, { useState, useEffect } from 'react';
 import EditProfile from './EditProfile';
 import SideBar from "../SideBar/SideBar";
 import NavBar from '../NavBar/NavBar'
-import {
-  Container2, SidebarContainer,
-
-} from './Styled';
+import { Container2, SidebarContainer } from './Styled';
 
 function Edit() {
   const dispatch = useDispatch();
@@ -27,8 +24,8 @@ function Edit() {
         <SidebarContainer>
           <SideBar setgstate={setgstate} />
         </SidebarContainer>
-        {userk.data? <EditProfile userk={userk} userMe={userk.data[0]}/>:<div>cargando...</div>}
-       
+        {userk.data ? <EditProfile userk={userk} userMe={userk.data[0]} /> : <div>cargando...</div>}
+
       </Container2>
     </>
 

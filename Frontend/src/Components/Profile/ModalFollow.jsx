@@ -1,8 +1,8 @@
-import { cohorte, sortBy } from "../../auxiliares/constantes"
-import { Select } from "../Select/Select"
-import { CardFollow } from "./CardFollow"
-import { StyledModal } from "./styledCardProfile"
-export const ModalFollows = ({ followUser, show, setShow }) => {
+import { cohorte, sortBy } from "../../auxiliares/constantes";
+import { Select } from "../Select/Select";
+import { CardFollow } from "./CardFollow";
+import { StyledModal } from "./styledCardProfile";
+export function ModalFollow ({ followUser, show, setShow }) {
     return (
         <StyledModal
             show={show}
@@ -11,7 +11,7 @@ export const ModalFollows = ({ followUser, show, setShow }) => {
             <div style={{ color: "black" }}>
                 <Select data={cohorte} />
                 <Select data={sortBy} />
-                {followUser.follows ? followUser.follows.map(e => <CardFollow
+                {followUser ? followUser.map(e => <CardFollow
                     fullname={e.fullname}
                     email={e.email}
                     profile={e.profile}
@@ -22,5 +22,5 @@ export const ModalFollows = ({ followUser, show, setShow }) => {
                     <div>cargando</div>}
             </div>
         </StyledModal>
-    )
+    );
 }

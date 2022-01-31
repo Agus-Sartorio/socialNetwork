@@ -21,6 +21,7 @@ import {
   GET_CLEAN_FRIENDS,
   CLEAN_HOME,
   GET_MY_PHOTO,
+  CLEAR_MY_PROFILE,
  
 } from "./actionTypes";
 
@@ -144,7 +145,6 @@ export const getMyProfileData = () => {
         `${process.env.REACT_APP_PUERTO}usuarios/?myself=true`,
         tokenUsuario()
       );
-      console.log(profile);
       return dispatch({ type: MY_PROFILE, payload: profile.data });
     } catch (err) {
       console.log(err);
@@ -160,7 +160,6 @@ export const CreatePost = (payload) => {
         payload,
         tokenUsuario()
       );
-      console.log(data, "data post");
       return data;
     } catch (err) {
       console.log(err);
@@ -294,4 +293,6 @@ export const getMyPhoto = () => {
     };
   };
 
-
+  export const clearMyProfile = () => {
+    return { type: CLEAR_MY_PROFILE, payload: [] };
+  };
