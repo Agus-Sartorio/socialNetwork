@@ -2,7 +2,6 @@ import axios from "axios";
 import { ModalFollowers } from "./ModalFollowers";
 import { ModalFollows } from "./ModalFollows";
 import { DivCardProfile } from "./styledCardProfile";
-import DefaultUser from '../Icons/DefaultUser'
 import { useDispatch } from "react-redux";
 import { clearStateFollowsUser, getFollowUserById } from "../../actions";
 import { tokenUsuario } from "../../actions/actionTypes";
@@ -30,10 +29,7 @@ const CardProfile = ({ profile, followUser, myId }) => {
 
     return (
         <DivCardProfile>
-            {profile.profile.startsWith('https://avatars.') ?
-                <img className="card__image" src={profile.profile} alt={profile.fullname} /> :
-                <DefaultUser className="card__image" />
-            }
+            <img className="card__image" src={profile.profile.includes('http') ? profile.profile : process.env.REACT_APP_PUERTO + profile.profile} alt={profile.fullname} /> 
             <h2 className="card__fullname">{profile.fullname}</h2>
             <p className="card__email">{profile.email}</p>
             <div className='card__show'>
