@@ -19,7 +19,9 @@ import {
   CLEAR_MY_FOLLOW_STATE,
   SORT_BY_AZ,
   GET_CLEAN_FRIENDS,
-  CLEAN_HOME
+  CLEAN_HOME,
+  GET_MY_PHOTO,
+ 
 } from "./actionTypes";
 
 export const getUsers = () => {
@@ -277,3 +279,19 @@ export function getCleanHome() {
       type: CLEAN_HOME,
     };
   }
+  
+export const getMyPhoto = () => {
+    return async (dispatch) => {
+      try {
+        const myPhoto= await axios.get(
+          `${process.env.REACT_APP_PUERTO}usuarios/?myId=true&fastProfile=true`,
+          tokenUsuario()
+        );
+        return dispatch({ type: GET_MY_PHOTO, payload: myPhoto.data });
+      } catch (err) {
+        console.log(err);
+      }
+    };
+  };
+
+
