@@ -58,41 +58,47 @@ export const conversaciones ={
 
 }
 
-const Messages ={
+export const Messages ={
 
 
     data:[{
 
-       id_conv: 1,
+       id_conv: 5,
        mensajes:[   
-        {orden: 1,
+        { orden: 1,
           Id:'6d5zgcvhomXcQKMAYd2qY2zWhQe2',
-          mensaje:'Sisi ya funciona',
+          mensaje:'Como arreglaste lo del login?',
           own:false
       
         },{ orden: 2,
-          Id:'WlpqFTklN1TALxHpVEa6H75U5VF2',
-          mensaje:'lo que hiciste conmigo',
+          Id:'6d5zgcvhomXcQKMAYd2qY2zWhQe2',
+          mensaje:'?',
           own:false
-       },{orden: 3,
-          Id:'WlpqFTklN1TALxHpVEa6H75U5VF2',
-          mensaje:'Borrandolo de firebase',
-          own:false
+
+
+       },{  orden: 3,
+        Id:'6d5zgcvhomXcQKMAYd2qY2zWhQe2',
+        mensaje:'Ahora a mi tamopoco me funciona',
+        own:false
       
        },{orden: 4,
-           Id:'6d5zgcvhomXcQKMAYd2qY2zWhQe2',
-           mensaje:'Ahora a mi tamopoco me funciona',
-           own:false
+        Id:'WlpqFTklN1TALxHpVEa6H75U5VF2',
+        mensaje:'Borrandolo de firebase',
+        own:false
+         
       
        },{orden: 5,
-           Id:'6d5zgcvhomXcQKMAYd2qY2zWhQe2',
-           mensaje:'?',
-           own:false
+        Id:'WlpqFTklN1TALxHpVEa6H75U5VF2',
+        mensaje:'lo que hiciste conmigo',
+        own:false
+         
+        
       
        },{ orden: 6,
-           Id:'6d5zgcvhomXcQKMAYd2qY2zWhQe2',
-           mensaje:'Como arreglaste lo del login?',
-           own:false
+        Id:'6d5zgcvhomXcQKMAYd2qY2zWhQe2',
+        mensaje:'Sisi ya funciona',
+        own:false
+         
           }]
 
     },
@@ -101,40 +107,57 @@ const Messages ={
 
         id_conv: 2,
         mensajes:[   
-         {orden: 1,
-           Id:'WlpqFTklN1TALxHpVEa6H75U5VF2',
-           mensaje:'Dale',
-           own:false
+         {
+          orden: 1,
+          Id:'WlpqFTklN1TALxHpVEa6H75U5VF2',
+          mensaje:'Subí unos cbios para que los acepte, siempre me arroja el error de deploy',
+          own:false
        
-         },{ orden: 2,
-           Id:'ESiDsykaitaH1weBOslWLJs0TLJ2',
-           mensaje:'Hoy si me relaje un poco ya mañana vuelvo con toda',
-           own:false
-        },{orden: 3,
-           Id:'WlpqFTklN1TALxHpVEa6H75U5VF2',
-           mensaje:'Relax',
-           own:false
+         },{ 
+           
+          
+            orden: 2,
+            Id:'ESiDsykaitaH1weBOslWLJs0TLJ2',
+            mensaje:'Vale',
+            own:false
+
+
+
+        },{  
+          
+          orden: 3,
+          Id:'ESiDsykaitaH1weBOslWLJs0TLJ2',
+          mensaje:'Será que desde el celular se puede',
+          own:false
        
         },{orden: 4,
             Id:'WlpqFTklN1TALxHpVEa6H75U5VF2',
             mensaje:'A pues si no está desde el compu tranquilo',
             own:false
        
-        },{orden: 5,
-            Id:'ESiDsykaitaH1weBOslWLJs0TLJ2',
-            mensaje:'Será que desde el celular se puede',
-            own:false
+        },{ orden: 5,
+          Id:'WlpqFTklN1TALxHpVEa6H75U5VF2',
+          mensaje:'Relax',
+          own:false
+          
        
-        },{ orden: 6,
-            Id:'ESiDsykaitaH1weBOslWLJs0TLJ2',
-            mensaje:'Vale',
-            own:false
+        },{ 
+          orden: 6,
+          Id:'ESiDsykaitaH1weBOslWLJs0TLJ2',
+          mensaje:'Hoy si me relaje un poco ya mañana vuelvo con toda',
+          own:false 
+          
+          
+          
            },
 
          { orden: 7,
-            Id:'WlpqFTklN1TALxHpVEa6H75U5VF2',
-            mensaje:'Subí unos cbios para que los acepte, siempre me arroja el error de deploy',
-            own:false
+          Id:'WlpqFTklN1TALxHpVEa6H75U5VF2',
+          mensaje:'Dale',
+          own:false 
+           
+          
+          
            }
          ]
  

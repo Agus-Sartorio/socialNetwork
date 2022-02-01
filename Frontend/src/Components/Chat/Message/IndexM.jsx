@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {Messagenormal, MessageTop, MessageImg, MessageText} from './styledM'
-import {useSelector, useDispatch } from 'react-redux';
-import { getProfile } from "../../../actions";
+//import { useDispatch } from 'react-redux';
+//import { getProfile } from "../../../actions";
 
-export default function Message({own,user,mensajes,idCont}) {
+export default function Message({own,user,mensajes,contact}) {
     
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   // if(idCont !== undefined){console.log(idCont,'llega el id contacnto??')}
 
@@ -16,21 +16,46 @@ export default function Message({own,user,mensajes,idCont}) {
   // const contact = useSelector((state) => state.profile);
   // if(contact !== undefined){ console.log(contact, 'llega el contacto')}
 
+  let profileUser = ''; 
+  if (user.data.length !== 0){
+    
+    var userMe =user.data[0];
+    console.log(userMe, 'mi usuario')
+
+    if(userMe.profile.includes('uploads') === true){
+
+       profileUser = `${process.env.REACT_APP_PUERTO}${userMe.profile}`
+      }
+    
+    else {
+
+      profileUser=userMe.profile
+    }
+    
+    }
+     
+
+
+   let profileContact = ''; 
+   if(contact.length !== 0){
+
+     console.log(contact, 'el otro usuario');
+     if(contact.profile.includes('uploads') === true){
   
-  if (user.data[0] !== undefined){var userMe =user.data[0];
-    
-    
+         profileContact= `${process.env.REACT_APP_PUERTO}${contact.profile}`;
+     }
+   
+      else{
+         
+        profileContact=contact.profile;
 
-  }
-
-  // if(mensajes.Id !== undefined){  profile
-    // } getProfile
-    // const fallows = useSelector((state) => state.follows);
-    // const otherpersona = fallows.data.find((e)=>e.id === persona.Id );
-      // console.log(mensajes.Id, "Id del mensaje")
-    // console.log(contact, "mensajes")
-    // console.log(contact.profile, "foto")
+      }
+   
+    }   
     
+ 
+    // if (contact !== undefined){console.log(contact,'contanto en indexM')}
+    //userMe.profile.includes('uploads')?
     // const mypersona = user.data.find((e)=>e.id === persona.Id )
     // console.log(mypersona, 'mypersona');
     // if(otherpersona !== undefined) {console.log(otherpersona.profile.includes('uploads'), "tiene upluads?")
@@ -47,7 +72,7 @@ export default function Message({own,user,mensajes,idCont}) {
       <MessageTop>
         <MessageImg
           
-          src={own? userMe.profile.includes('uploads')?`${process.env.REACT_APP_PUERTO}${userMe.profile}` :<></>: `${process.env.REACT_APP_PUERTO}${userMe.profile}`}
+          src={own? `${profileUser}` : `${profileContact}`}
           alt=""
         />
         <MessageText className='messagetextown'>{own? mensajes.mensaje : mensajes.mensaje}</MessageText>

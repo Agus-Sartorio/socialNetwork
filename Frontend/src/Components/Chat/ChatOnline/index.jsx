@@ -3,7 +3,7 @@ import React from 'react';
 import {ChatOnlineFriend, ChatOnlineImgContainer, ChatOnlineImg, ChatOnlineBadger} from "./styledOnline";
 
 
-export default function ChatOnline({contactos}) {
+export default function ChatOnline({contacto}) {
 
 
 
@@ -15,10 +15,10 @@ export default function ChatOnline({contactos}) {
 
           // console.log(contactos, 'chatOnline')
 
-          const order = contactos.sort((a, b) => {
-            if (a.fullname.toLowerCase() > b.fullname.toLowerCase()) return 1
-            else return -1
-               })  
+          //  contactos.sort((a, b) => {
+          //   if (a.fullname.toLowerCase() > b.fullname.toLowerCase()) return 1
+          //   else return -1
+          //      })  
               //  console.log(order, 'chatOnline ordenando alfabetic')
 
 //   const [friends, setFriends] = useState([]);
@@ -51,18 +51,17 @@ export default function ChatOnline({contactos}) {
 
   return (
     <div>
-       {contactos.map((e) => (
        
        <ChatOnlineFriend>
           <ChatOnlineImgContainer>
             <ChatOnlineImg
-              src={e.profile.includes('uploads')? `${process.env.REACT_APP_PUERTO}${e.profile}` : e.profile} 
+              src={contacto.profile.includes('uploads')? `${process.env.REACT_APP_PUERTO}${contacto.profile}` : contacto.profile} 
               alt=""
             />
             <ChatOnlineBadger/>
           </ChatOnlineImgContainer>
-          <span className="chatOnlineName">{e.fullname}</span>
-        </ChatOnlineFriend>))}
+          <span className="chatOnlineName">{contacto.fullname}</span>
+        </ChatOnlineFriend>
         
       
     </div>
