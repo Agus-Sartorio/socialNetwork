@@ -1,10 +1,17 @@
 /* import { getMyProfileData, getFollows } from "../../actions";
 /* import { Link } from 'react-router-dom'; */
-import {useSelector} from 'react-redux'; 
-import React, {useState} from "react";
+import {mensajesOrigin, Messages} from './Message/conversacion';
+import { getProfile } from "../../actions";
+import {useSelector, useDispatch } from 'react-redux';
+import React, {useState, useEffect} from "react";
 import Conversation from './Conversation/IndexC';
-// import Message from './Message/IndexM';
+import Message from './Message/IndexM';
 import ChatOnline from './ChatOnline/index';
+// import  io  from 'socket.io-client';
+
+
+
+
 
 import { Messenger, ChatMenu, ChatMenuWrapper,
          ChatMenuInput, ChatBox, ChatBoxWrapper, ChatBoxTop,
@@ -14,64 +21,96 @@ import { Messenger, ChatMenu, ChatMenuWrapper,
 
 
  
-export default function Chats({contactos}) {
-
-    
-  const [Idother,] = useState('')
-  console.log(Idother.length, 'probando length')
-   const mensajesOrigin=[
-    
-  {orden: 1,
-    Id:'6d5zgcvhomXcQKMAYd2qY2zWhQe2',
-    mensaje:'Sisi ya funciona',
-    own:false
-
-  },{ orden: 2,
-    Id:'WlpqFTklN1TALxHpVEa6H75U5VF2',
-    mensaje:'lo que hiciste conmigo',
-    own:false
- },{orden: 3,
-    Id:'WlpqFTklN1TALxHpVEa6H75U5VF2',
-    mensaje:'Borrandolo de firebase',
-    own:false
-
- },{orden: 4,
-     Id:'6d5zgcvhomXcQKMAYd2qY2zWhQe2',
-     mensaje:'Ahora a mi tamopoco me funciona',
-     own:false
-
- },{orden: 5,
-     Id:'6d5zgcvhomXcQKMAYd2qY2zWhQe2',
-     mensaje:'?',
-     own:false
-
- },{ orden: 6,
-     Id:'6d5zgcvhomXcQKMAYd2qY2zWhQe2',
-     mensaje:'Como arreglaste lo del login?',
-     own:false
-    }
-];
-  // const dispatch = useDispatch();
-  const mensajes= mensajesOrigin.reverse();
-  const user = useSelector((state) => state.myProfileData);
+export default function Chats({contactos,conversaciones,user}) {
    
-  const Myid = user.data
-  console.log( Myid, 'my id para el chat')
+  // const [conversations, setConversations] = useState([]);
+  // const [currentChat, setCurrentChat] = useState(null);
+  // const [messages, setMessages] = useState([]);
+  // const [socket, setSocket] = useState(null);
 
-  mensajes.forEach((element)=>{
-    if(Myid === element.Id){
-      element.own=true;
-      console.log(element, 'validacion de mensajes')
-    
-       }
-  });    
+  const dispatch = useDispatch();
+  // console.log(conversaciones, 'conversaciones') 
 
+  // useEffect(()=>{
+  //   setSocket(io('http://localhost:3002'))
+  // },[])
+
+  const contact = useSelector((state) => state.profile);
+  // if(contact.length !== 0)console.log(contact, 'me debe mostrar el ID al que le di click')
   
-    // if(Myid === mensajes[1].Id){mensajes[1].own=true;
-    // console.log(mensajes[1].own, 'validacion') }
+  // const user = useSelector((state) => state.myProfileData);
+  const [Idother, setIdother] = useState('')
+  const [ChatoN, setChatoN] = useState(false)
+  // const [Contact, setContact] = useState({})
+  // console.log(conversacion, 'probando conversacion')
+  
+  // const dispatch = useDispatch();
+
+  // console.log(mensajesOrigin(), 'mensajes prueba') 
+  const mensajes = mensajesOrigin();
+  
+  
+  if(user.data.length !== 0) {
+    
+    const Myid = user.data[0].id
+    //  console.log( Myid, 'my id para el chat')
+    
+    mensajes.forEach((element)=>{
+      if(Myid === element.Id){
+        element.own=true;
+        
+      }
+    })
+      // console.log(element, 'validacion de mensajes')
+  };    
+  
+
+  const handleGetId = (id)=>{
+    setIdother(id);
+    setChatoN(true);
+    // const conversacion= conversaciones.find((e)=>{e.id == id})
+    // console.log(conversacion, 'La conversacion')
+   }
+  
+      
+    // console.log(user, 'user')
+
+
+  if(Idother !== ''){
+    const conversacion= conversaciones;
+    const con = conversacion.data.find(e=> e.id === Idother)
+    // console.log(con, 'con')
+    const idconver= con.id_conv;
+    // console.log(idconver, 'id de la coversacion')
+    // console.log(Messages.data, 'los mensajes')
+    var mens = Messages.data.find(e=> idconver === e.id_conv)
+    // console.log(mens.mensajes, 'me muestra el mensaje que es')
+    
+
+    const Myid = user.data[0].id
+    mens.mensajes.forEach((element)=>{
+      if(Myid === element.Id){
+        element.own=true;
+        
+      }
+    })
+    
+  }
+
+
+  useEffect(() => {
+    if(Idother !==''){
+    dispatch(getProfile(Idother))
+  }}, [Idother])  
+ 
+  // if(Myid === mensajes[1].Id){mensajes[1].own=true;
+  // useEffect(() => {
+  //   setContacto(contact);
+  // })  
+    // console.log(contact, 'Idother') 
 //   useEffect(() => {
 //    dispatch(getFollows())
-//    }, [dispatch])
+//    }, [dispatch]) id_conv
 
 //     const fallows = useSelector((state) => state.search)
 //     const contactos= fallows.data
@@ -87,9 +126,9 @@ export default function Chats({contactos}) {
           <ChatMenuInput placeholder="Search for friends"/>
           {/* <Conversation user={contactos}/> */}
 
-          {contactos.map((c) => (
-            <div>
-                <Conversation user={c} />
+          {contactos.map((c,index) => (
+            <div onClick={()=>handleGetId(c.id)} key={index}>
+                <Conversation key={c.id} user={c}/>
             </div>
           ))}   
 
@@ -97,12 +136,16 @@ export default function Chats({contactos}) {
       </ChatMenu>
       <ChatBox>
         <ChatBoxWrapper>
-          {true? (
+          {ChatoN? (
             <>
               <ChatBoxTop>
-              {/* {mensajes.map((c) => (
-               <Message own={c.own} persona={c} idother={Idother}/>
-                 ))}  */}
+              {mens.mensajes.map((c) => (
+               <Message key={c.orden} 
+                own={c.own}
+                mensajes={c} 
+                user={user} 
+                contact={contact}/>
+                 ))} 
                   
                     {/* <Message own={mensajes[0].own} />
                     <Message own={mensajes[1].own} />
@@ -137,8 +180,12 @@ export default function Chats({contactos}) {
         </ChatBox>
         <ChatOnlineContainer>
           <ChatOnlineWrapper>
+             
+             {contactos.map((c,index)=>(
 
-           <ChatOnline contactos={contactos}/>
+               <ChatOnline key={index} contacto={c}/>
+
+             ))}
             {/* <ChatOnline
             onlineUsers={onlineUsers}
             currentId={user._id}
