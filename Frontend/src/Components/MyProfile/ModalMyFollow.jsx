@@ -1,13 +1,12 @@
 import { DivSelect, StyledModal } from "./StyledMyProfile";
 import { useState } from "react";
-import { useSelector } from "react-redux";
 import { CardFollow } from "../Profile/CardFollow";
 import { Select } from "../Select/Select";
 import { cohorte, sortBy } from "../../auxiliares/constantes";
 
-export const ModalFollows = () => {
+export const ModalMyFollow = ({follow,action}) => {
     const [isPopOpen2, setIsPosOpen2] = useState(false)
-    const follows = useSelector((state) => state.follows)
+    
     return (
         <>
             <span style={{
@@ -16,7 +15,7 @@ export const ModalFollows = () => {
             }}
                 onClick={() => setIsPosOpen2(!isPopOpen2)}
             >
-                {follows.data?.length} siguiendo
+                {follow.data?.length+' '+action}
             </span>
             <StyledModal
                 show={isPopOpen2}
@@ -27,7 +26,7 @@ export const ModalFollows = () => {
                         <Select data={cohorte} />
                         <Select data={sortBy} />
                     </DivSelect>
-                    {follows.data ? follows.data.map(e => <CardFollow
+                    {follow.data ? follow.data.map(e => <CardFollow
                         fullname={e.fullname}
                         email={e.email}
                         profile={e.profile}
@@ -39,5 +38,4 @@ export const ModalFollows = () => {
             </StyledModal>
         </>
     )
-
 }

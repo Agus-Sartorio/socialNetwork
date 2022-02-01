@@ -14,16 +14,14 @@ import { getMyPhoto } from "../../actions";
 
 export default function SideBar() {
     const navigate = useNavigate();
-    const { user, logOut } = useUserAuth()
-    console.log(user)
-
+    const { logOut } = useUserAuth()
     const dispatch = useDispatch()
 
     const myPhoto = useSelector((state) => state.myPhoto)
 
-    useEffect(()=> {
+    useEffect(() => {
         dispatch(getMyPhoto())
-    },[dispatch])
+    }, [dispatch])
 
 
     const handleLogOut = () => {
@@ -52,7 +50,7 @@ export default function SideBar() {
             </button>
             <div className='user'>
                 <button onClick={handleClick}>
-                    <img src={myPhoto?myPhoto.data?.profile[0]==='u'? process.env.REACT_APP_PUERTO + myPhoto.data?.profile : myPhoto.data?.profile: "https://static2.elnortedecastilla.es/www/pre2017/multimedia/noticias/201501/12/media/cortadas/facebook-profile-picture-no-pic-avatar--575x323.jpg"} alt="" />
+                    <img src={myPhoto ? myPhoto.data?.profile[0] === 'u' ? process.env.REACT_APP_PUERTO + myPhoto.data?.profile : myPhoto.data?.profile : "https://static2.elnortedecastilla.es/www/pre2017/multimedia/noticias/201501/12/media/cortadas/facebook-profile-picture-no-pic-avatar--575x323.jpg"} alt="" />
                     <p>{myPhoto?.data?.fullname.split(' ')[0]}</p>
                     <span className={isuser ? 'chevron' : undefined}><Chevron /></span>
                 </button>

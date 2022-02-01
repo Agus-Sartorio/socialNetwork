@@ -23,7 +23,6 @@ function EditProfile({ userk, userMe }) {
 
    const dispatch = useDispatch();
    const tokensito = tokenUsuario().headers.token;
-   console.log(tokensito,"tokensito")
   const [input, setInput] = useState({
     //  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiBf9NIb94QLztGC6JuQk3-FNCrCY1ry64GA&usqp=CAU"
     // "https://images.ole.com.ar/2022/01/01/smOuc4YsP_340x340__1.jpg"  

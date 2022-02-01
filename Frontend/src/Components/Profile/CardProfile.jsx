@@ -1,9 +1,8 @@
 import axios from "axios";
-import { ModalFollowers } from "./ModalFollowers";
-import { ModalFollows } from "./ModalFollows";
+import { ModalFollow } from "./ModalFollow";
 import { DivCardProfile } from "./styledCardProfile";
 import { useDispatch } from "react-redux";
-import { clearStateFollowsUser, getFollowUserById } from "../../actions";
+import { clearMyFollowsState, clearMyProfile, clearStateFollowsUser,  getFollowUserById } from "../../actions";
 import { tokenUsuario } from "../../actions/actionTypes";
 import { useState } from "react";
 
@@ -18,9 +17,11 @@ const CardProfile = ({ profile, followUser, myId }) => {
     async function followUnFollow(e) {
         e.preventDefault()
         try {
+            dispatch(clearMyProfile())
             await axios.put(`${process.env.REACT_APP_PUERTO}usuarios/follow/`, idToFollow, tokenUsuario())
             dispatch(clearStateFollowsUser())
             dispatch(getFollowUserById(profile.id))
+            dispatch(clearMyFollowsState())
         } catch (err) {
             console.log(err)
         }
@@ -46,8 +47,8 @@ const CardProfile = ({ profile, followUser, myId }) => {
             </button>
             {followUser.follows ?
                 <>
-                    <ModalFollows show={showFollowing} setShow={setShowFollowings} followUser={followUser} />
-                    <ModalFollowers show={showFollowers} setShow={setShowFollowers} followUser={followUser} />
+                    <ModalFollow show={showFollowers} setShow={setShowFollowers} followUser={followUser.followers} />
+                    <ModalFollow show={showFollowing} setShow={setShowFollowings} followUser={followUser.follows} />
                 </> : <p>Este usuario no está siguiendo a nadie</p>}
         </DivCardProfile>
     )
