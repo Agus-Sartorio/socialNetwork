@@ -12,8 +12,9 @@ import Chats from './Chats.jsx';
 // const { user } = useUserAuth();
 // console.log(user, "yo como persona que me logeo")
 
-export default function Chat() {
-
+export default function Chat({response}) {
+  
+  console.log(response,'response')
   const dispatch = useDispatch();
   const fallows = useSelector((state) => state.follows);
   const user = useSelector((state) =>  state.myProfileData);
