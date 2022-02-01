@@ -87,6 +87,12 @@ const GlobalStyle = createGlobalStyle`
       transform: translateX(-50%);
     }
   }
+
+  @media (max-width: 360px){
+    .app .main .main-content{
+      padding: 10px;
+    }
+  }
 `;
 
 export default GlobalStyle;
