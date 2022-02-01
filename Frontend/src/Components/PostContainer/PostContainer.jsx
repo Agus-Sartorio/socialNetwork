@@ -2,6 +2,7 @@ import Post from '../Post/Post'
 import { StyledPostContainer } from "./styles";
 
 export default function PostContainer({ posts = [] }) {
+    console.log(posts)
 
     return (
         <StyledPostContainer>

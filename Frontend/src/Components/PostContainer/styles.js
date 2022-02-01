@@ -8,4 +8,8 @@ export const StyledPostContainer = styled.section`
     .post{
         margin: 20px 0;
     }
+
+    @media (max-width: 860px){
+        max-width: 900px;
+    }
 `

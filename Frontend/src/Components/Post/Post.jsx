@@ -6,16 +6,39 @@ import CommentBubble from '../Icons/CommentBubble'
 import Share from '../Icons/Share'
 import DefaultUser from '../Icons/DefaultUser'
 import { useSelector } from "react-redux";
+import axios from "axios";
+import { tokenUsuario } from "../../actions/actionTypes";
+import { useState } from "react";
+
 
 export default function Post({ p }) {
+    console.log(p)
     const preview = p.autorData[0]?.profile.includes('uploads')
-   
+    const [like, setLike] = useState(0)
+
+    const idpost = { "idpost": p._id }
+
+    const id = useSelector((state) => state.myPhoto)
+
+    async function likeDislike() {
+        try {
+            if (p.likes.map((el) => el.id).includes(id.data.id)) {
+                await axios.put(`${process.env.REACT_APP_PUERTO}posts/likes`, idpost, tokenUsuario())
+                like === 0 ? setLike(-1) : setLike(0)
+
+            } else {
+                await axios.put(`${process.env.REACT_APP_PUERTO}posts/likes`, idpost, tokenUsuario())
+                like === 1 ? setLike(0) : setLike(1)
+            }
+        } catch (err) {
+            console.log(err)
+        }
+    }
 
     const myId = useSelector((state) => state.myId)
-    //comentario
     return (
-        <StyledPost className='post'>`
-            <Link className='post__link' to={`/${myId.id === p.autorData[0].id ? 'myprofile':`profile/${p.autorData[0].id}`}`}>
+        <StyledPost className='post'>
+            <Link className='post__link' to={`/${myId.id === p.autorData[0].id ? 'myprofile' : `profile/${p.autorData[0].id}`}`}>
                 {p.autorData[0]?.profile ?
                     <img className='post__avatar' src={preview ? `${process.env.REACT_APP_PUERTO}${p.autorData[0]?.profile}` : p.autorData[0]?.profile} alt={p.autorData[0]?.fullname} /> :
                     <DefaultUser className='post__avatar' />
@@ -23,18 +46,24 @@ export default function Post({ p }) {
             </Link>
             <div className='post__info'>
                 <header className='post__header'>
-                    <p className='post__fullname'>{p.autorData[0]?.fullname}</p>
+                    <p className='post__fullname'>
+                        <Link to={`/${myId.id === p.autorData[0].id ? 'myprofile' : `profile/${p.autorData[0].id}`}`}>
+                            {p.autorData[0]?.fullname}
+                        </Link>
+                    </p>
                     <p className='post__date'>{format(p?.createdAt)}</p>
                 </header>
                 <p className='post__description'>{p.description}</p>
                 <footer className='post__footer'>
                     <div className='post__stats'>
-                        <p className='post__likes stats'><Experience /> 10</p>
+                        <p className='post__likes stats'><Experience />{p.likes?.length || 0}</p>
                         <p className='post__comments stats'><CommentBubble /> 15</p>
                     </div>
-                    <button className='post__btn share'><Share />Compartir</button>
-                    <button className='post__btn comment'><CommentBubble />Comentar</button>
-                    <button className='post__btn like'><Experience />Me Gusta</button>
+                    <div className='post__btns'>
+                        <button className='post__btn share'><Share /><span>Compartir</span></button>
+                        <button className='post__btn comment'><CommentBubble /><span>Comentar</span></button>
+                        <button className='post__btn like'><Experience /><span>Me Gusta</span></button>
+                    </div>
                 </footer>
             </div>
         </StyledPost>

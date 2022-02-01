@@ -66,6 +66,9 @@ display: flex;
 flex-direction: row;
 `
 export const DivModal = styled.div`
+width: 14%;
 display: flex;
 flex-direction: row;
+justify-content: space-between;
+
 `
