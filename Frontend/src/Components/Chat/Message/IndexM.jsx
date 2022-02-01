@@ -9,11 +9,11 @@ export default function Message({own,user,mensajes,idCont}) {
 
   // if(idCont !== undefined){console.log(idCont,'llega el id contacnto??')}
 
-  useEffect(() => {
-    dispatch(getProfile(idCont))
-  }, [dispatch])  
+  // useEffect(() => {
+  //   dispatch(getProfile(idCont))
+  // }, [dispatch])  
   
-  const contact = useSelector((state) => state.profile);
+  // const contact = useSelector((state) => state.profile);
   // if(contact !== undefined){ console.log(contact, 'llega el contacto')}
 
   

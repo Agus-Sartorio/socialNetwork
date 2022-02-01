@@ -21,6 +21,12 @@ export default function Chats({contactos,conversaciones}) {
 
   const dispatch = useDispatch();
   console.log(conversaciones, 'conversaciones') 
+
+
+  const contact = useSelector((state) => state.profile);
+
+  
+  const user = useSelector((state) => state.myProfileData);
   const [Idother, setIdother] = useState('')
   const [Contacto, setContacto] = useState({})
   // console.log(conversacion, 'probando conversacion')
@@ -29,7 +35,7 @@ export default function Chats({contactos,conversaciones}) {
 
   console.log(mensajesOrigin(), 'mensajes prueba') 
   const mensajes = mensajesOrigin();
-  const user = useSelector((state) => state.myProfileData);
+  
    
   const Myid = user.data[0].id
   // console.log( Myid, 'my id para el chat')
@@ -42,17 +48,34 @@ export default function Chats({contactos,conversaciones}) {
     // console.log(element, 'validacion de mensajes')
   });    
   
-  const contact = useSelector((state) => state.profile);
+
   const handleGetId = (id)=>{
     setIdother(id);
-    console.log(Idother, 'el id del contacto')
+    console.log(id, 'el id del contacto')
     // const conversacion= conversaciones.find((e)=>{e.id == id})
     // console.log(conversacion, 'La conversacion')
 
   }
+  
+
+      
+    console.log(contact, 'contact')
+
+  
+ 
+
+  if(Idother !== ''){
+    const conversacion= conversaciones;
+    const con = conversacion.data.find(e=> e.id === Idother)
+    console.log(con, 'con')
+    console.log(Idother, 'Ide seteado')
+  }
+
+
   useEffect(() => {
+    if(Idother !==''){
     dispatch(getProfile(Idother))
-  }, [dispatch])  
+  }}, [dispatch])  
   
   if(Idother !== undefined){
 
