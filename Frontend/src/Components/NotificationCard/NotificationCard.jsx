@@ -1,21 +1,19 @@
 import { StyledNotificationCard } from "./styles";
-import Like from '../Icons/Like'
 import { Link } from "react-router-dom";
 
-export default function NotificationCard() {
+export default function NotificationCard({id,content,name,icon}) {
     return (
-        <StyledNotificationCard>
+        <StyledNotificationCard key={id}>
             <div className='icono'>
-                <Like />
+                <img src={process.env.REACT_APP_PUERTO+icon} alt="NotFound" />
             </div>
             <div className='texto'>
                 <p>
-                    <Link to='' className='div-click'>
+                    <Link to={`/${content==='te empezo a seguir'?`profile/${id}`:'home'}`} className='div-click'>
                         <span className='link'></span>
-                        <span className='user-name'>Agustin</span> le ha dado like a tu publicación
+                        <span className='user-name'>{name+' '}</span>{content}
                     </Link>
                 </p>
-
             </div>
         </StyledNotificationCard>
     )
