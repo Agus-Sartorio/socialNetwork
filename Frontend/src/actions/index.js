@@ -22,6 +22,8 @@ import {
   CLEAN_HOME,
   GET_MY_PHOTO,
   CLEAR_MY_PROFILE,
+  GET_NOTIFICATIONS,
+  CLEAR_NOTIFICATIONS,
  
 } from "./actionTypes";
 
@@ -295,4 +297,23 @@ export const getMyPhoto = () => {
 
   export const clearMyProfile = () => {
     return { type: CLEAR_MY_PROFILE, payload: [] };
+  };
+
+
+  export const getNotifications = () => {
+    return async (dispatch) => {
+      try {
+        const notifications= await axios.get(
+          `${process.env.REACT_APP_PUERTO}usuarios/notifications`,
+          tokenUsuario()
+        );
+        return dispatch({ type: GET_NOTIFICATIONS, payload: notifications.data });
+      } catch (err) {
+        console.log(err);
+      }
+    };
+  };
+
+  export const clearNotifications = () => {
+    return { type:CLEAR_NOTIFICATIONS, payload:{notifications:[]}};
   };
