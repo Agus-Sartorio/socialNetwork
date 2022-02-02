@@ -18,7 +18,10 @@ const CardSuggestions = ({ fullname, id, profile, email }) => {
         try {
             await axios.put(`${process.env.REACT_APP_PUERTO}usuarios/follow/`, idToFollow, tokenUsuario())
             setButton(true)
-            dispatch(getUsers())
+            setTimeout(function(){
+                dispatch(getUsers())
+            },500)
+            
         } catch (err) {
             console.log(err)
         }
