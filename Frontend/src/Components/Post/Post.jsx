@@ -56,13 +56,13 @@ export default function Post({ p }) {
                 <p className='post__description'>{p.description}</p>
                 <footer className='post__footer'>
                     <div className='post__stats'>
-                        <p className='post__likes stats'><Experience />{p.likes?.length || 0}</p>
+                        <p className='post__likes stats'><Experience />{p.likes.length + like}</p>
                         <p className='post__comments stats'><CommentBubble /> 15</p>
                     </div>
                     <div className='post__btns'>
                         <button className='post__btn share'><Share /><span>Compartir</span></button>
                         <button className='post__btn comment'><CommentBubble /><span>Comentar</span></button>
-                        <button className='post__btn like'><Experience /><span>Me Gusta</span></button>
+                        <button className='post__btn like' onClick={likeDislike}><Experience /><span>Me Gusta</span></button>
                     </div>
                 </footer>
             </div>
