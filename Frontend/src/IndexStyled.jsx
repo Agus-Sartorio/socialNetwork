@@ -64,6 +64,8 @@ const GlobalStyle = createGlobalStyle`
         position: relative;
         z-index: 1;
         background-color: var(--grey-2);
+        height: calc(100vh - 79px);
+        overflow-y: auto;
       }
     }
   }
