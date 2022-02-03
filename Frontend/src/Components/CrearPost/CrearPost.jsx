@@ -66,7 +66,7 @@ export default function CrearPost() {
                 />
                 <button className='btn'><Upload /></button>
             </div>
-            <button className='btn-submit' type='submit'>Compartir</button>
+            <button className='btn-submit' disabled={input.description ? true : undefined} type='submit'>Compartir</button>
         </StyledForm>
     )
 }

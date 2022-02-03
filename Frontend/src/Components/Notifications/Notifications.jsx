@@ -6,7 +6,7 @@ import { tokenUsuario } from "../../actions/actionTypes";
 import NotificationCard from "../NotificationCard/NotificationCard";
 import { StyledNotifications, StyledOverflow } from "./styles";
 
-export default function Notifications({ setOpen,notifications }) {
+export default function Notifications({ setOpen, notifications }) {
     const dispatch = useDispatch()
     const overlay = useRef();
     const event = (e) => {
@@ -46,7 +46,7 @@ export default function Notifications({ setOpen,notifications }) {
                         <p>Notificaciones</p>
                         <button className='btn' onClick={deleteAll}>Limpiar todo</button>
                     </div>
-                    {notifications.notifications.length ? notifications.notifications.map(e =>
+                    {notifications.notifications?.length ? notifications.notifications.map(e =>
                         <NotificationCard
                             id={e.id}
                             content={e.content}
