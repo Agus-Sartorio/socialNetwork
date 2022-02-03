@@ -24,6 +24,8 @@ import {
   CLEAR_MY_PROFILE,
   GET_NOTIFICATIONS,
   CLEAR_NOTIFICATIONS,
+  GET_POST_BY_ID,
+  CLEAR_POST_BY_ID,
  
 } from "./actionTypes";
 
@@ -316,4 +318,26 @@ export const getMyPhoto = () => {
 
   export const clearNotifications = () => {
     return { type:CLEAR_NOTIFICATIONS, payload:{notifications:[]}};
+  };
+
+
+  export const getPostById = (id) => {
+    return async (dispatch) => {
+      try {
+        const postById = await axios.get(
+          `${process.env.REACT_APP_PUERTO}posts/?idpost=${id}`,
+          tokenUsuario()
+        );
+        return dispatch({
+          type: GET_POST_BY_ID,
+          payload: postById.data,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  };
+
+  export const clearPostById = () => {
+    return { type:CLEAR_POST_BY_ID, payload:[]};
   };

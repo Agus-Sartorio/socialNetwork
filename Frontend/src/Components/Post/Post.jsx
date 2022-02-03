@@ -12,7 +12,6 @@ import { useState } from "react";
 
 
 export default function Post({ p }) {
-    console.log(p)
     const preview = p.autorData[0]?.profile.includes('uploads')
     const [like, setLike] = useState(0)
 
