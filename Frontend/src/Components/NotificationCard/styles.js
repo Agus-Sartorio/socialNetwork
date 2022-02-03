@@ -52,4 +52,11 @@ export const StyledNotificationCard = styled.div`
             font-weight: bold;
         }
     }
+
+    .delete{
+        left: 80%;
+        position: absolute;
+        width: 50px;
+        height: 50px;
+    }
 `

@@ -10,6 +10,7 @@ import { ProtectedRoute } from './Components/ProtectedRoute'
 import Profile from './Components/Profile/Profile.jsx';
 import { ViewProfile } from "./Components/MyProfile/ViewProfile.jsx";
 import NotFound from "./Components/NotFound/NotFound.jsx";
+import { Publication } from "./Components/Publication/Publication.jsx";
 function App() {
   return (
     <div className='app'>
@@ -25,6 +26,7 @@ function App() {
           <Route path="/suggestions" element={<ProtectedRoute><Suggestions /></ProtectedRoute>} />
           <Route path='/profile/:id' element={<ProtectedRoute><Profile /></ProtectedRoute>} />
           <Route path='/myprofile' element={<ProtectedRoute><ViewProfile /></ProtectedRoute>} />
+          <Route path='/post/:id' element={<Publication/>}/>
           <Route path='*' element={<NotFound />} />
         </Routes>
       </UserAuthContextProvider>

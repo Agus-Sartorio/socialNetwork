@@ -21,7 +21,6 @@ export default function Home() {
 
     const posts = useSelector((state => state.allPost))
 
-
     useEffect(()=>{
         io(`${process.env.REACT_APP_PUERTO}`)
       },[])
