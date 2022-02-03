@@ -171,6 +171,17 @@ export const CreatePost = (payload) => {
   };
 };
 
+export const CreateComment = (payload) => {
+  return async (dispatch) => {
+    try {
+      const info = await axios.post(`${process.env.REACT_APP_PUERTO}posts/comentarios`, payload, tokenUsuario())
+      return info;
+    } catch(error) {
+      console.log(error)
+    }
+  }
+}
+
 export const AllPost = () => {
   return async (dispatch) => {
     try {

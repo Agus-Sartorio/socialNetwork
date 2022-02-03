@@ -26,7 +26,6 @@ export default function CrearPost() {
 
     function handleChange(e) {
         const isEmpty = /^\s/.test(e.target.value);
-        console.log(e.target.value);
         setInput({
             ...input,
             [e.target.name]: isEmpty ? '' : e.target.value,
@@ -66,7 +65,7 @@ export default function CrearPost() {
                 />
                 <button className='btn'><Upload /></button>
             </div>
-            <button className='btn-submit' disabled={input.description ? true : undefined} type='submit'>Compartir</button>
+            <button className='btn-submit' disabled={input.description ? undefined: true} type='submit'>Compartir</button>
         </StyledForm>
     )
 }
