@@ -16,7 +16,7 @@ export const Publication = () => {
         return () => {
             dispatch(clearPostById())
         }
-    },[dispatch])
+    },[dispatch,id])
     return(
         <Layout>
             <PostContainer posts={post}/>
