@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-export default function Comments({ el, idPost }) {
+export default function Comments({ el }) {
   console.log(el, "coment");
   const myId = useSelector((state) => state.myId);
 

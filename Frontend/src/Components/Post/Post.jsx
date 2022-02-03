@@ -14,6 +14,7 @@ import Comments from "../Comentarios/Comments";
 
 
 export default function Post({ p }) {
+    const postById = useSelector((state)=>state.postById)
     const preview = p.autorData[0]?.profile.includes('uploads')
     const [like, setLike] = useState(0)
 
@@ -66,10 +67,14 @@ export default function Post({ p }) {
                         <button className='post__btn like' onClick={likeDislike}><Experience /><span>Me Gusta</span></button>
                     </div>
                 </footer>
-               {p.comentarios.slice(0,3).map((el) => <Comments el={el} key={el._id} idPost={p._id} p={p}/>).reverse()}
-               {
-                   p.comentarios.length > 3 ? (<Link to={`/post/` + p._id}> Ver mas
+                {postById.data? 
+                p.comentarios.map((el) => <Comments el={el} key={el._id} p={p}/>).reverse()
+                :
+                p.comentarios.slice(0,3).map((el) => <Comments el={el} key={el._id} p={p}/>).reverse()}
+            
+               {postById.data? null : p.comentarios.length > 3 ? (<Link to={`/post/` + p._id}> Ver mas
                    </Link>) : null
+                   
                }
                 <CreateComment p={p}/>
             </div>
