@@ -9,6 +9,8 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { tokenUsuario } from "../../actions/actionTypes";
 import { useState } from "react";
+import CreateComment from '../Comentarios/CreateComment'
+import Comments from "../Comentarios/Comments";
 
 
 export default function Post({ p }) {
@@ -56,7 +58,7 @@ export default function Post({ p }) {
                 <footer className='post__footer'>
                     <div className='post__stats'>
                         <p className='post__likes stats'><Experience />{p.likes.length + like}</p>
-                        <p className='post__comments stats'><CommentBubble /> 15</p>
+                        <p className='post__comments stats'><CommentBubble />{p.comentarios.length}</p>
                     </div>
                     <div className='post__btns'>
                         <button className='post__btn share'><Share /><span>Compartir</span></button>
@@ -64,6 +66,12 @@ export default function Post({ p }) {
                         <button className='post__btn like' onClick={likeDislike}><Experience /><span>Me Gusta</span></button>
                     </div>
                 </footer>
+               {p.comentarios.slice(0,3).map((el) => <Comments el={el} key={el._id} idPost={p._id} p={p}/>).reverse()}
+               {
+                   p.comentarios.length > 3 ? (<Link to={`/post/` + p._id}> Ver mas
+                   </Link>) : null
+               }
+                <CreateComment p={p}/>
             </div>
         </StyledPost>
     )
