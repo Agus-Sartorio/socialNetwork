@@ -10,7 +10,6 @@ import { io } from 'socket.io-client'
 export default function Messenger({visible}) {
 
     const socket = useRef()
-    const ControlRenders  = useRef(0);
     const dispatch = useDispatch()
     const { conversations, myId, chat, chat:{chats} } = useSelector(state => state)
     const [arrived, setarrived] = useState({})

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import {conversaciones} from './Message/conversacion';
+//import {conversaciones} from './Message/conversacion';
 import { getFollows,getMyProfileData, getMyId } from "../../actions";
 import { useDispatch, useSelector } from 'react-redux';
 import NavBar from '../NavBar/NavBar';

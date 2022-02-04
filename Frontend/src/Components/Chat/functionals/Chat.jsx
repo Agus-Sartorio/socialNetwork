@@ -11,7 +11,8 @@ import { useSelector } from 'react-redux';
 export default function Chat() {
 
     const { chat: { friend , chats } } = useSelector(state => state)
-
+    //  console.log(friend, 'lo que estoy areglando ??')
+    //  console.log(chats, 'chats????')
     return (
         <List sx={{ width: '100%', maxWidth: 600, zIndex: 0}}>
             {
@@ -20,7 +21,7 @@ export default function Chat() {
                     <>
                     <ListItem alignItems="center">
                         <ListItemAvatar>
-                            <Avatar alt={friend?.username} src={`${process.env.REACT_APP_PUERTO}` + (friend?.profile || "images/4.jpg")} />
+                            <Avatar alt={friend?.username} src={friend.profile.includes('uploads')?`${process.env.REACT_APP_PUERTO}` + friend.profile : friend.profile} />
                         </ListItemAvatar>
                         <ListItemText
                             primary={friend?.username}

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import React, { useEffect } from 'react';
 import EditProfile from './EditProfile';
 import Layout from '../Layout/Layout'
+import LoaderFull from "../Loader/LoaderFull";
 
 function Edit() {
   const dispatch = useDispatch();
@@ -14,7 +15,7 @@ function Edit() {
 
   return (
     <Layout>
-      {userInfo.data ? <EditProfile userInfo={userInfo.data[0]} /> : <div>cargando...</div>}
+      {userInfo.data ? <EditProfile userInfo={userInfo.data[0]} /> : <LoaderFull></LoaderFull>}
     </Layout>
 
   );
