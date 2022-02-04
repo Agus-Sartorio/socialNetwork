@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { StyledForm } from "./styles";
 import { useDispatch, useSelector } from "react-redux";
-import { CreatePost, getMyPhoto } from "../../actions";
+import { CreatePost } from "../../actions";
 import Upload from "../Icons/Upload";
 import { Link } from "react-router-dom";
 
@@ -9,10 +9,6 @@ export default function CrearPost() {
   const dispatch = useDispatch();
 
   const myPhoto = useSelector((state) => state.myPhoto);
-
-  useEffect(() => {
-    dispatch(getMyPhoto());
-  }, [dispatch]);
 
   const [input, setInput] = useState({
     description: "",

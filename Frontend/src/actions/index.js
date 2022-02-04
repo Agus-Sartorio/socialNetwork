@@ -141,7 +141,7 @@ export function getPeopleByName(name) {
 
       return dispatch({
         type: GET_NAME,
-        payload: names.data.data,
+        payload: names.data
       });
     } catch (error) {
       console.log(error);
