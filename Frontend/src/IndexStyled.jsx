@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 // #FAE800
 //#1D1D1D
 const GlobalStyle = createGlobalStyle`

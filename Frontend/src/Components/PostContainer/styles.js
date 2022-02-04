@@ -1,15 +1,15 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const StyledPostContainer = styled.section`
-    margin-top: 30px;
-    width: 100%;
-    max-width: 1000px;
+  margin-top: 30px;
+  width: 100%;
+  max-width: 1000px;
 
-    .post{
-        margin: 20px 0;
-    }
+  .post {
+    margin: 20px 0;
+  }
 
-    @media (max-width: 860px){
-        max-width: 900px;
-    }
-`
+  @media (max-width: 860px) {
+    max-width: 900px;
+  }
+`;

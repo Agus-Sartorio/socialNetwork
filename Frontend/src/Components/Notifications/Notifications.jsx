@@ -30,7 +30,7 @@ export default function Notifications({ setOpen, notifications }) {
     async function deleteAll(e) {
         e.preventDefault()
         try {
-            await axios.delete(`${process.env.REACT_APP_PUERTO}usuarios/notifications/`, tokenUsuario())
+            await axios.delete(`${process.env.REACT_APP_PUERTO}usuarios/notifications`, tokenUsuario())
             dispatch(clearNotifications())
         } catch (err) {
             console.log(err)
@@ -51,7 +51,9 @@ export default function Notifications({ setOpen, notifications }) {
                             id={e.id}
                             content={e.content}
                             name={e.name}
-                            icon={e.icon} />) : <div>no tienes notificaciones</div>}
+                            icon={e.icon}
+                            idpost={e.idpost}
+                            _id={e._id} />) : <div>no tienes notificaciones</div>}
                 </div>
             </StyledNotifications>
         </>

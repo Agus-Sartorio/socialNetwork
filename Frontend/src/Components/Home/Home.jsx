@@ -22,7 +22,11 @@ export default function Home() {
     }, [dispatch]);
 
     const posts = useSelector((state => state.allPost))
-    
+
+    useEffect(()=>{
+        io(`${process.env.REACT_APP_PUERTO}`)
+      },[])
+
     return (
         <Layout>
             <CrearPost />

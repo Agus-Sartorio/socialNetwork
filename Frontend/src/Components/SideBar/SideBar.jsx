@@ -3,6 +3,7 @@ import Channels from '../Icons/Channels'
 import { useEffect, useState } from "react";
 import Chevron from '../Icons/Chevron'
 import Red from '../Icons/Red'
+import Admin from '../Icons/Admin'
 import Settings from '../Icons/Settings';
 import { useUserAuth } from "../Context/UserContext";
 import { Link } from "react-router-dom";
@@ -104,6 +105,23 @@ export default function SideBar() {
                     </ul>
                 }
             </details>
+            {myPhoto.data ? myPhoto.data.rol === 'ADMIN' ?
+                <>
+                    <details open={open === false && undefined}>
+                        <summary className='canales'>
+                            <Admin />
+                            Admin
+                            <span><Chevron /></span>
+                        </summary>
+                        {
+                            open &&
+                            <ul className='list'>
+                                <li><Link to='/admin/authorize'># Autorizar</Link></li>
+                                <li><Link to='/admin/blockAccount'># Bloquear</Link></li>
+                            </ul>
+                        }
+                    </details>
+                </> : <></> : []}
         </StyledSideBar>
     )
 }
