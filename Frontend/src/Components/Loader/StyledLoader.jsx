@@ -6,7 +6,7 @@ const move = keyframes`
   
   
 from {
-     transform: translate(-49%, -110px) rotate(1turn) 
+     transform: translate(-49%, -130px) rotate(1turn) 
 }
 to {
     transform: translate(-49%, 0px) rotate(0turn) 
