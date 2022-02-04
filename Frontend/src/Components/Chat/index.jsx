@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import {conversaciones} from './Message/conversacion';
-import { getFollows,getMyProfileData } from "../../actions";
+import { getFollows,getMyProfileData, getMyId } from "../../actions";
 import { useDispatch, useSelector } from 'react-redux';
 import NavBar from '../NavBar/NavBar';
 import Messenger from './Messenger';
@@ -21,13 +21,12 @@ export default function Chat({response}) {
   // if(user.length !== 0)console.log(user, "yo como persona que me logeo")
   useEffect(() => {
     dispatch(getFollows())
+    dispatch(getMyProfileData())
+    dispatch(getMyId())
   }, [dispatch])
 
-  useEffect(() => {
-    dispatch(getMyProfileData())
-  }, [dispatch])
-  
-       const contactos = fallows.data;
+ 
+      const contactos = fallows.data;
         // console.log(contactos, 'chats lo que mando')
     
     return (     

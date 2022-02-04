@@ -14,7 +14,7 @@ const FriendItem = ({ name, profile, state, id }) => {
   <>
     <ListItem alignItems="flex-start" onClick={handleClick}>
     <ListItemAvatar>
-      <Avatar alt={name} src={`${process.env.REACT_APP_PUERTO}`+profile} />
+      <Avatar alt={name} src={profile.includes('upluads')? `${process.env.REACT_APP_PUERTO}`+profile : profile} />
     </ListItemAvatar>
     <ListItemText
       primary={name}

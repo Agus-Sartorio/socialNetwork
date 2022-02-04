@@ -1,5 +1,5 @@
 import { Container, Grid } from '@mui/material';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { get_CONVERSATIONS, PUSHchat, user_ALL } from '../../actions';
 import Conversation from './functionals/Conversation';
@@ -8,7 +8,9 @@ import MessagesList from './functionals/MessagesList';
 import { io } from 'socket.io-client'
 
 export default function Messenger({visible}) {
+
     const socket = useRef()
+    const ControlRenders  = useRef(0);
     const dispatch = useDispatch()
     const { conversations, myId, chat, chat:{chats} } = useSelector(state => state)
     const [arrived, setarrived] = useState({})
@@ -46,9 +48,16 @@ export default function Messenger({visible}) {
     }, [arrived])
 
     useEffect(() => {
+         
+        // if(ControlRenders.current === 0){
+        //     ControlRenders.current = ControlRenders.current + 1
+        //     return 
+        // }
+        console.log(myId.id, "Id mio que mando al socket")     
         socket.current.emit("addUser", myId.id);
-        console.log(myId.id, "Id mio que mando al socket")
         socket.current.on("getUsers", users=>{console.log(users, 'usuarios conectados')})
+        
+        
     }, []);
 
 

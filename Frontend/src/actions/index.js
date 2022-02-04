@@ -84,20 +84,6 @@ export const clearProfileState = () => {
 };
 
 
-export function postUploadProfile(payload,id){
-    console.log(payload)
-    return async function(dispatch) {
-        try {
-            const response = await axios.put(`${process.env.REACT_APP_PUERTO}usuarios/${id}`, payload)
-            console.log(response)
-            return response
-
-        }catch(error){
-            console.log(error);
-        }
-    }
-}
-
 
 export const getMyProfile = () => {
   return async (dispatch) => {
@@ -388,8 +374,9 @@ export const NEW_MESSAGE = async (body)=>{
 export const user_ALL = () => {
 	return async (dispatch) => {
 		try {
-			const {data: Users} =await axios(`${process.env.REACT_APP_PUERTO}users`, tokenUsuario());
-			return dispatch({type:USERS_ALL, payload: Users})
+			const {data: Users} =await axios(`${process.env.REACT_APP_PUERTO}usuarios/?myself=false&follows=false`, tokenUsuario());
+			console.log(Users, 'Probando ruta Users')
+      return dispatch({type:USERS_ALL, payload: Users})
 		} catch (error) {
 			console.error(error)
 		}

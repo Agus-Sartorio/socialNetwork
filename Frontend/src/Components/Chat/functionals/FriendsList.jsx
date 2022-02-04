@@ -4,12 +4,13 @@ import FriendItem from './FriendItem';
 import { useSelector } from 'react-redux';
 
 export default function FriendList() {
-  const { users } = useSelector(state => state)
+  const { follows } = useSelector(state => state)
+  console.log(follows.data,'los follows')
   return (
     <List sx={{ width: '100%', maxWidth: 360,  zIndex:0 }}>
       {
-        users.map((e, i) => (
-          <FriendItem name={e.username} state={"offline"} key={e._id} profile={'images/' + (i+1) + '.jpg'} id={e._id}/>
+        follows.data.map((e, i) => (
+          <FriendItem name={e.fullname} state={"offline"} key={e._id} profile={e.profile} id={e._id}/>
 ))
       }
     </List>

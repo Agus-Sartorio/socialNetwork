@@ -7,17 +7,17 @@ import { useSelector } from "react-redux"
 
 const TypeBox = ({socket}) => {
   const {chat:{id, friend}, myId} = useSelector(state=>state)
-  console.log(myId);
+  console.log(myId.id, 'desde typebox');
   const [msg, setmsg] = useState()
   const handleClick =  ({target:{value}})=>{
     
     socket.current.emit("sendMessage", {
-      senderId: myId,
+      senderId: myId.id,
       receiverId: friend.id,
       text: msg
     })
     
-    NEW_MESSAGE({conversationId:id, text: msg, sender:myId})
+    NEW_MESSAGE({conversationId:id, text: msg, sender:myId.id})
     value=""
     setmsg("")
   }
