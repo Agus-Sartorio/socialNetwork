@@ -1,6 +1,6 @@
 import { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AllPost, getCleanHome, getMyId} from "../../actions";
+import { AllPost, getCleanHome } from "../../actions";
 import CrearPost from "../CrearPost/CrearPost";
 import Layout from '../Layout/Layout'
 import PostContainer from "../PostContainer/PostContainer";
