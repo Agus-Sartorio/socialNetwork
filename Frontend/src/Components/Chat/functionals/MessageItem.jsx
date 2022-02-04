@@ -4,14 +4,12 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Divider from '@mui/material/Divider';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
-import { useState } from 'react';
-import { format } from 'timeago.js'
 import { get_CHAT } from '../../../actions';
 import { useDispatch } from 'react-redux';
 
 const MessageItem = ({ name, message, profile, date, id, friend}) => {
 
-  const [time, settime] = useState(format(date, 'en_US'));
+  // const [time, settime] = useState(format(date, 'en_US'));
   const dispatch = useDispatch()
 
   const handleChat = (id)=>{

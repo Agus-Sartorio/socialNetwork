@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { clearMyFollowsState, getFollowers, getFollows, getMyProfileData } from "../../actions"
 import Layout from "../Layout/Layout"
 import MyProfile from "./MyProfile"
-import {Loader} from "../Loader/Loader"
+import LoaderFull from "../Loader/LoaderFull"
 
 export const ViewProfile = () => {
     const myProfile = useSelector((state) => state.myProfileData)
@@ -27,7 +27,7 @@ export const ViewProfile = () => {
                     myProfile={myProfile}
                 />
                     :
-                    <Loader></Loader>
+                    <LoaderFull></LoaderFull>
             }
         </Layout>
     )

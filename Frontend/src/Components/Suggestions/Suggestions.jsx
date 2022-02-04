@@ -4,7 +4,7 @@ import { clearUsersState, getUsers } from "../../actions";
 import CardSuggestions from "./CardSuggestions";
 import { DivCards } from "./StyledSuggestions";
 import Layout from '../Layout/Layout'
-import { Loader } from "../Loader/Loader";
+import LoaderFull from "../Loader/LoaderFull";
 
 
 const Suggestions = () => {
@@ -31,7 +31,7 @@ const Suggestions = () => {
                         follow={e.follow}
                         key={e.id}
                     />
-                ) : <Loader></Loader>}
+                ) : <LoaderFull></LoaderFull>}
                 <div className="espacios"></div>
             </DivCards>
         </Layout>

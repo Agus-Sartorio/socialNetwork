@@ -83,6 +83,7 @@ const Message = ({ name, message, profile, date, type }) => {
                     />
                 </ListItem>
             )
+            default : return (<></>)
     }
 
 };
