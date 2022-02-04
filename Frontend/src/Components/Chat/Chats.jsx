@@ -7,7 +7,7 @@ import React, {useState, useEffect} from "react";
 import Conversation from './Conversation/IndexC';
 import Message from './Message/IndexM';
 import ChatOnline from './ChatOnline/index';
-// import  io  from 'socket.io-client';
+//import  io  from 'socket.io-client';
 
 
 
@@ -33,6 +33,10 @@ export default function Chats({contactos,conversaciones,user}) {
 
   // useEffect(()=>{
   //   setSocket(io('http://localhost:3002'))
+  //   console.log(socket,"socket");
+  //   socket.on('conectado',(data)=>{
+  //     console.log(data,  'data')
+  //   })
   // },[])
 
   const contact = useSelector((state) => state.profile);

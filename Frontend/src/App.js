@@ -15,6 +15,7 @@ import { ProtectedRouteAdmin } from "./Components/ProtectedRoutes/ProtectedRoute
 import { Authorize } from "./Components/Admin/Authorize.jsx";
 import { BlockAccount } from "./Components/Admin/BlockAccount.jsx";
 function App() {
+
   return (
     <div className='app'>
       {/* <GlobalStyle/> */}
@@ -24,7 +25,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LogIn />} />
           <Route path="/edit" element={<ProtectedRoute><Edit /></ProtectedRoute>} />
-          <Route path="/chat" element={<ProtectedRoute><Chat /></ProtectedRoute>} />
+          <Route path="/chat" element={<ProtectedRoute><Chat/></ProtectedRoute>} />
           <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
           <Route path="/suggestions" element={<ProtectedRoute><Suggestions /></ProtectedRoute>} />
           <Route path='/profile/:id' element={<ProtectedRoute><Profile /></ProtectedRoute>} />

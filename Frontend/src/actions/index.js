@@ -24,10 +24,15 @@ import {
   CLEAR_MY_PROFILE,
   GET_NOTIFICATIONS,
   CLEAR_NOTIFICATIONS,
+  CONVERSATIONS,
+  PUSHCHAT,
+  USERS_ALL,
+  CHAT,
   GET_POST_BY_ID,
   CLEAR_POST_BY_ID,
  
 } from "./actionTypes";
+
 
 export const getUsers = () => {
   return async (dispatch) => {
@@ -79,6 +84,8 @@ export const getFollowUserById = (id) => {
 export const clearProfileState = () => {
   return { type: CLEAR_PROFILE_STATE, payload: [] };
 };
+
+
 
 export const getMyProfile = () => {
   return async (dispatch) => {
@@ -329,7 +336,66 @@ export const getMyPhoto = () => {
 
   export const clearNotifications = () => {
     return { type:CLEAR_NOTIFICATIONS, payload:{notifications:[]}};
+
   };
+
+  export const get_CONVERSATIONS = ()=>{
+    return async(dispatch)=>{
+      try {
+        const  { data } = await axios(`${process.env.REACT_APP_PUERTO}conversation/`, tokenUsuario())
+        console.log(data, 'data de mis conversaciones')
+        return dispatch({type:CONVERSATIONS, payload: data})
+      } catch (error) {
+        console.error(error)
+        alert('error')
+      }
+    }
+  };
+
+//{headers:{token: read_cookie('userToken')}}
+  export const get_CHAT = (conversationId, friend)=>{
+    return async(dispatch)=>{
+      try {
+        const  { data } = await axios(`${process.env.REACT_APP_PUERTO}message/${conversationId}`, tokenUsuario())
+        return dispatch({type:CHAT, payload: {id:conversationId, friend, chats:data}})
+      } catch (error) {
+        console.error(error)
+        alert('error')
+      }
+    }
+  }
+
+
+export const PUSHchat = (msg)=>({
+	type:PUSHCHAT,
+	payload: msg
+});
+
+
+export const NEW_MESSAGE = async (body)=>{
+	
+	try {
+		 await axios.post(`${process.env.REACT_APP_PUERTO}message/`, body, tokenUsuario())
+		return;
+	} catch (error) {
+		console.error(error)
+		alert('error')
+	}
+}
+
+
+export const user_ALL = () => {
+	return async (dispatch) => {
+		try {
+			const {data: Users} =await axios(`${process.env.REACT_APP_PUERTO}usuarios/?myself=false&follows=false`, tokenUsuario());
+			console.log(Users, 'Probando ruta Users')
+      return dispatch({type:USERS_ALL, payload: Users})
+		} catch (error) {
+			console.error(error)
+		}
+	};
+};
+
 
 
   export const getPostById = (id) => {
