@@ -12,6 +12,7 @@ import {
 import CardProfile from "./CardProfile";
 import Layout from "../Layout/Layout";
 import PostContainer from "../PostContainer/PostContainer";
+import { Loader } from "../Loader/Loader";
 
 const Profile = () => {
   const { id } = useParams();
@@ -37,7 +38,7 @@ const Profile = () => {
       {Object.keys(profile).length && Object.keys(myId).length ? (
         <CardProfile profile={profile} followUser={followUser} myId={myId} />
       ) : (
-        <div>cargando...</div>
+        <Loader></Loader>
       )}
       <PostContainer posts={myFriendPost} />
     </Layout>
