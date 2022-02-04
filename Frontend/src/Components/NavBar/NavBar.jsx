@@ -4,18 +4,27 @@ import SearchBar from '../SearchBar/SearchBar'
 import { StyledDiv } from './styles'
 import Email from '../Icons/Email'
 import Bell from '../Icons/Bell'
+import BellPlus from '../Icons/BellPlus'
 import Experience from '../Icons/Experience'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Notifications from '../Notifications/Notifications';
 import { motion } from "framer-motion"
+import { useDispatch, useSelector } from 'react-redux';
+import { getNotifications } from '../../actions';
 
 export default function NavBar() {
 
     const [open, setOpen] = useState(false);
-
+    const notifications = useSelector((state) => state.notifications)
     const handleClick = () => {
         setOpen(!open);
     }
+
+    const dispatch=useDispatch()
+
+    useEffect(()=>{
+        dispatch(getNotifications())
+    },[dispatch])
 
     return (
         <StyledDiv>
@@ -39,7 +48,7 @@ export default function NavBar() {
                             !open &&
                             <span className='nav-hover'>Notificaciones</span>
                         }
-                        <Bell />
+                        {notifications.notifications?.length>0?<BellPlus/>:<Bell/>}
                     </button>
                     {
                         open &&
@@ -51,6 +60,7 @@ export default function NavBar() {
                         >
                             <Notifications
                                 setOpen={setOpen}
+                                notifications={notifications}
                             />
                         </motion.div>
                     }

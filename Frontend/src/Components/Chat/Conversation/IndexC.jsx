@@ -27,7 +27,7 @@ export default function Conversation({ user }) {
   return (
     <ConversationCont>
       <ConversationImg
-        src={preview? `https://dogskll.herokuapp.com/${user.profile}` : user.profile}
+        src={preview? `${process.env.REACT_APP_PUERTO}${user.profile}` : user.profile}
         alt=""
       />
       <ConversationName>{user.fullname}</ConversationName>

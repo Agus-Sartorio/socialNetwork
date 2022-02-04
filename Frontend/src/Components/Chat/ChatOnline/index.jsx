@@ -3,7 +3,7 @@ import React from 'react';
 import {ChatOnlineFriend, ChatOnlineImgContainer, ChatOnlineImg, ChatOnlineBadger} from "./styledOnline";
 
 
-export default function ChatOnline({contactos}) {
+export default function ChatOnline({contacto}) {
 
 
 
@@ -13,13 +13,13 @@ export default function ChatOnline({contactos}) {
     //   dispatch(getFollows())
     // }, [dispatch])
 
-          console.log(contactos, 'chatOnline')
+          // console.log(contactos, 'chatOnline')
 
-          const order = contactos.sort((a, b) => {
-            if (a.fullname.toLowerCase() > b.fullname.toLowerCase()) return 1
-            else return -1
-               })  
-               console.log(order, 'chatOnline ordenando alfabetic')
+          //  contactos.sort((a, b) => {
+          //   if (a.fullname.toLowerCase() > b.fullname.toLowerCase()) return 1
+          //   else return -1
+          //      })  
+              //  console.log(order, 'chatOnline ordenando alfabetic')
 
 //   const [friends, setFriends] = useState([]);
 //   const [onlineFriends, setOnlineFriends] = useState([]);
@@ -51,18 +51,17 @@ export default function ChatOnline({contactos}) {
 
   return (
     <div>
-       {contactos.map((e) => (
        
        <ChatOnlineFriend>
           <ChatOnlineImgContainer>
             <ChatOnlineImg
-              src={e.profile} 
+              src={contacto.profile.includes('uploads')? `${process.env.REACT_APP_PUERTO}${contacto.profile}` : contacto.profile} 
               alt=""
             />
             <ChatOnlineBadger/>
           </ChatOnlineImgContainer>
-          <span className="chatOnlineName">{e.fullname}</span>
-        </ChatOnlineFriend>))}
+          <span className="chatOnlineName">{contacto.fullname}</span>
+        </ChatOnlineFriend>
         
       
     </div>

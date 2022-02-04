@@ -1,22 +1,37 @@
 import { StyledNotificationCard } from "./styles";
-import Like from '../Icons/Like'
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { tokenUsuario } from "../../actions/actionTypes";
+import { useDispatch } from "react-redux";
+import { getNotifications } from "../../actions";
 
-export default function NotificationCard() {
+export default function NotificationCard({id,content,name,icon,_id,idpost}) {
+    const dispatch = useDispatch()
+    async function deleteOne(e){
+        e.preventDefault()
+        try {
+            await axios.delete(`${process.env.REACT_APP_PUERTO}usuarios/notifications/${_id}`, tokenUsuario())
+            dispatch(getNotifications())
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     return (
-        <StyledNotificationCard>
+        <StyledNotificationCard key={_id}>
             <div className='icono'>
-                <Like />
+                <img src={process.env.REACT_APP_PUERTO+icon} alt="NotFound" />
             </div>
             <div className='texto'>
                 <p>
-                    <Link to='' className='div-click'>
+                    <Link to={`/${content==='te empezo a seguir'?`profile/${id}`:`post/${idpost}`}`} className='div-click'>
                         <span className='link'></span>
-                        <span className='user-name'>Agustin</span> le ha dado like a tu publicación
+                        <span className='user-name'>{name+' '}</span>{content} 
                     </Link>
-                </p>
-
+                </p>   
             </div>
+            <button className="delete" onClick={deleteOne} >X</button>
         </StyledNotificationCard>
+        
     )
 }

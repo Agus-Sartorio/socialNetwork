@@ -7,11 +7,12 @@ import {
   getMyfriendsPost,
   getProfile,
   getMyId,
-  getCleanFriends
+  getCleanFriends,
 } from "../../actions";
 import CardProfile from "./CardProfile";
-import Layout from "../Layout/Layout"
-import PostContainer from "../PostContainer/PostContainer"
+import Layout from "../Layout/Layout";
+import PostContainer from "../PostContainer/PostContainer";
+import LoaderFull from "../Loader/LoaderFull";
 
 const Profile = () => {
   const { id } = useParams();
@@ -19,35 +20,29 @@ const Profile = () => {
   const profile = useSelector((state) => state.profile);
   const followUser = useSelector((state) => state.followUser);
   const myFriendPost = useSelector((state) => state.myFriendsPost.data);
-  const myId = useSelector((state) => state.myId)
-
+  const myId = useSelector((state) => state.myId);
 
   useEffect(() => {
     dispatch(getProfile(id));
     dispatch(getFollowUserById(id));
-    dispatch(getMyfriendsPost(id))
-    dispatch(getMyId())
+    dispatch(getMyfriendsPost(id));
+    dispatch(getMyId());
     return () => {
       dispatch(clearProfileState());
-      dispatch(getCleanFriends())
+      dispatch(getCleanFriends());
     };
   }, [dispatch, id]);
 
-
-
   return (
     <Layout>
-      {Object.keys(profile).length && Object.keys(myId).length ?
-        <CardProfile
-          profile={profile}
-          followUser={followUser}
-          myId={myId}
-        />
-        : <div>cargando...</div>
-      }
+      {Object.keys(profile).length && Object.keys(myId).length ? (
+        <CardProfile profile={profile} followUser={followUser} myId={myId} />
+      ) : (
+        <LoaderFull></LoaderFull>
+      )}
       <PostContainer posts={myFriendPost} />
-    </Layout >
-  )
-}
+    </Layout>
+  );
+};
 
 export default Profile;

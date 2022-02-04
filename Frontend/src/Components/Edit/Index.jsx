@@ -1,36 +1,22 @@
 import { getMyProfileData } from "../../actions";
 import { useDispatch, useSelector } from 'react-redux'
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import EditProfile from './EditProfile';
-import SideBar from "../SideBar/SideBar";
-import NavBar from '../NavBar/NavBar'
-import {
-  Container2, SidebarContainer,
-
-} from './Styled';
+import Layout from '../Layout/Layout'
+import LoaderFull from "../Loader/LoaderFull";
 
 function Edit() {
   const dispatch = useDispatch();
-  const userk = useSelector((state) => state.myProfileData)
+  const userInfo = useSelector((state) => state.myProfileData)
+
   useEffect(() => {
     dispatch(getMyProfileData())
   }, [dispatch])
 
-  const [, setgstate] = useState(true);
-
   return (
-
-    <>
-
-      <NavBar />
-      <Container2>
-        <SidebarContainer>
-          <SideBar setgstate={setgstate} />
-        </SidebarContainer>
-        {userk.data? <EditProfile userk={userk} userMe={userk.data[0]}/>:<div>cargando...</div>}
-       
-      </Container2>
-    </>
+    <Layout>
+      {userInfo.data ? <EditProfile userInfo={userInfo.data[0]} /> : <LoaderFull></LoaderFull>}
+    </Layout>
 
   );
 }

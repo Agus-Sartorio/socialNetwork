@@ -32,5 +32,15 @@ export const GET_MY_ID='GET_MY_ID';
 export const GET_CLEAN_FRIENDS = 'GET_CLEAN_FRIENDS';
 export const CLEAN_HOME = 'CLEAN_HOME';
 export const GET_MY_PHOTO = 'GET_MY_PHOTO';
+export const CLEAR_MY_PROFILE='CLEAR_MY_PROFILE';
+export const GET_NOTIFICATIONS='GET_NOTIFICATIONS';
+export const CLEAR_NOTIFICATIONS = 'CLEAR_NOTIFICATIONS';
+export const CONVERSATIONS = 'CONVERSATIONS';
+export const CHAT='CHAT';
+export const PUSHCHAT = 'PUSHCHAT';
+export const USERS_ALL = 'USERS_ALL';
+export const GET_POST_BY_ID= 'GET_POST_BY_ID';
+export const CLEAR_POST_BY_ID='CLEAR_POST_BY_ID';
+export const CREATE_COMMENT = 'CREATE_COMMENT';
 
 

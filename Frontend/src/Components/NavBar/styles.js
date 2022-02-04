@@ -134,4 +134,19 @@ img{
         }
     }
 }
+
+.bell{ 
+    position: relative;
+    background-color : red ;
+} 
+.bell::after{ 
+    content:""; 
+    width: 1.2ch; 
+    height:1.2ch; 
+    position: absolute; 
+    background: red; 
+    top:0; 
+    left:.3ch; 
+    border-radius: 50%; 
+    }
 `

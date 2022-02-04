@@ -21,8 +21,18 @@ import {
   GET_CLEAN_FRIENDS,
   CLEAN_HOME,
   GET_MY_PHOTO,
+  CLEAR_MY_PROFILE,
+  GET_NOTIFICATIONS,
+  CLEAR_NOTIFICATIONS,
+  CONVERSATIONS,
+  PUSHCHAT,
+  USERS_ALL,
+  CHAT,
+  GET_POST_BY_ID,
+  CLEAR_POST_BY_ID,
  
 } from "./actionTypes";
+
 
 export const getUsers = () => {
   return async (dispatch) => {
@@ -74,6 +84,8 @@ export const getFollowUserById = (id) => {
 export const clearProfileState = () => {
   return { type: CLEAR_PROFILE_STATE, payload: [] };
 };
+
+
 
 export const getMyProfile = () => {
   return async (dispatch) => {
@@ -129,7 +141,7 @@ export function getPeopleByName(name) {
 
       return dispatch({
         type: GET_NAME,
-        payload: names.data.data,
+        payload: names.data
       });
     } catch (error) {
       console.log(error);
@@ -144,7 +156,6 @@ export const getMyProfileData = () => {
         `${process.env.REACT_APP_PUERTO}usuarios/?myself=true`,
         tokenUsuario()
       );
-      console.log(profile);
       return dispatch({ type: MY_PROFILE, payload: profile.data });
     } catch (err) {
       console.log(err);
@@ -160,13 +171,23 @@ export const CreatePost = (payload) => {
         payload,
         tokenUsuario()
       );
-      console.log(data, "data post");
       return data;
     } catch (err) {
       console.log(err);
     }
   };
 };
+
+export const CreateComment = (payload) => {
+  return async (dispatch) => {
+    try {
+      const info = await axios.post(`${process.env.REACT_APP_PUERTO}posts/comentarios`, payload, tokenUsuario())
+      return info;
+    } catch(error) {
+      console.log(error)
+    }
+  }
+}
 
 export const AllPost = () => {
   return async (dispatch) => {
@@ -294,4 +315,106 @@ export const getMyPhoto = () => {
     };
   };
 
+  export const clearMyProfile = () => {
+    return { type: CLEAR_MY_PROFILE, payload: [] };
+  };
 
+
+  export const getNotifications = () => {
+    return async (dispatch) => {
+      try {
+        const notifications= await axios.get(
+          `${process.env.REACT_APP_PUERTO}usuarios/notifications`,
+          tokenUsuario()
+        );
+        return dispatch({ type: GET_NOTIFICATIONS, payload: notifications.data });
+      } catch (err) {
+        console.log(err);
+      }
+    };
+  };
+
+  export const clearNotifications = () => {
+    return { type:CLEAR_NOTIFICATIONS, payload:{notifications:[]}};
+
+  };
+
+  export const get_CONVERSATIONS = ()=>{
+    return async(dispatch)=>{
+      try {
+        const  { data } = await axios(`${process.env.REACT_APP_PUERTO}conversation/`, tokenUsuario())
+        console.log(data, 'data de mis conversaciones')
+        return dispatch({type:CONVERSATIONS, payload: data})
+      } catch (error) {
+        console.error(error)
+        alert('error')
+      }
+    }
+  };
+
+//{headers:{token: read_cookie('userToken')}}
+  export const get_CHAT = (conversationId, friend)=>{
+    return async(dispatch)=>{
+      try {
+        const  { data } = await axios(`${process.env.REACT_APP_PUERTO}message/${conversationId}`, tokenUsuario())
+        return dispatch({type:CHAT, payload: {id:conversationId, friend, chats:data}})
+      } catch (error) {
+        console.error(error)
+        alert('error')
+      }
+    }
+  }
+
+
+export const PUSHchat = (msg)=>({
+	type:PUSHCHAT,
+	payload: msg
+});
+
+
+export const NEW_MESSAGE = async (body)=>{
+	
+	try {
+		 await axios.post(`${process.env.REACT_APP_PUERTO}message/`, body, tokenUsuario())
+		return;
+	} catch (error) {
+		console.error(error)
+		alert('error')
+	}
+}
+
+
+export const user_ALL = () => {
+	return async (dispatch) => {
+		try {
+			const {data: Users} =await axios(`${process.env.REACT_APP_PUERTO}usuarios/?myself=false&follows=false`, tokenUsuario());
+			console.log(Users, 'Probando ruta Users')
+      return dispatch({type:USERS_ALL, payload: Users})
+		} catch (error) {
+			console.error(error)
+		}
+	};
+};
+
+
+
+  export const getPostById = (id) => {
+    return async (dispatch) => {
+      try {
+        const postById = await axios.get(
+          `${process.env.REACT_APP_PUERTO}posts/?idpost=${id}`,
+          tokenUsuario()
+        );
+        return dispatch({
+          type: GET_POST_BY_ID,
+          payload: postById.data,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  };
+
+  export const clearPostById = () => {
+    return { type:CLEAR_POST_BY_ID, payload:[]};
+  };

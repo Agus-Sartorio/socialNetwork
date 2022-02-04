@@ -3,6 +3,7 @@ import Channels from '../Icons/Channels'
 import { useEffect, useState } from "react";
 import Chevron from '../Icons/Chevron'
 import Red from '../Icons/Red'
+import Admin from '../Icons/Admin'
 import Settings from '../Icons/Settings';
 import { useUserAuth } from "../Context/UserContext";
 import { Link } from "react-router-dom";
@@ -14,16 +15,14 @@ import { getMyPhoto } from "../../actions";
 
 export default function SideBar() {
     const navigate = useNavigate();
-    const { user, logOut } = useUserAuth()
-    console.log(user)
-
+    const { logOut } = useUserAuth()
     const dispatch = useDispatch()
 
     const myPhoto = useSelector((state) => state.myPhoto)
 
-    useEffect(()=> {
+    useEffect(() => {
         dispatch(getMyPhoto())
-    },[dispatch])
+    }, [dispatch])
 
 
     const handleLogOut = () => {
@@ -52,7 +51,7 @@ export default function SideBar() {
             </button>
             <div className='user'>
                 <button onClick={handleClick}>
-                    <img src={myPhoto?myPhoto.data?.profile[0]==='u'? process.env.REACT_APP_PUERTO + myPhoto.data?.profile : myPhoto.data?.profile: "https://static2.elnortedecastilla.es/www/pre2017/multimedia/noticias/201501/12/media/cortadas/facebook-profile-picture-no-pic-avatar--575x323.jpg"} alt="" />
+                    <img src={myPhoto ? myPhoto.data?.profile[0] === 'u' ? process.env.REACT_APP_PUERTO + myPhoto.data?.profile : myPhoto.data?.profile : "https://static2.elnortedecastilla.es/www/pre2017/multimedia/noticias/201501/12/media/cortadas/facebook-profile-picture-no-pic-avatar--575x323.jpg"} alt="" />
                     <p>{myPhoto?.data?.fullname.split(' ')[0]}</p>
                     <span className={isuser ? 'chevron' : undefined}><Chevron /></span>
                 </button>
@@ -106,6 +105,23 @@ export default function SideBar() {
                     </ul>
                 }
             </details>
+            {myPhoto.data ? myPhoto.data.rol === 'ADMIN' ?
+                <>
+                    <details open={open === false && undefined}>
+                        <summary className='canales'>
+                            <Admin />
+                            Admin
+                            <span><Chevron /></span>
+                        </summary>
+                        {
+                            open &&
+                            <ul className='list'>
+                                <li><Link to='/admin/authorize'># Autorizar</Link></li>
+                                <li><Link to='/admin/blockAccount'># Bloquear</Link></li>
+                            </ul>
+                        }
+                    </details>
+                </> : <></> : []}
         </StyledSideBar>
     )
 }
