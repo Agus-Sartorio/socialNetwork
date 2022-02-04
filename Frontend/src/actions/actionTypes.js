@@ -35,5 +35,8 @@ export const GET_MY_PHOTO = 'GET_MY_PHOTO';
 export const CLEAR_MY_PROFILE='CLEAR_MY_PROFILE';
 export const GET_NOTIFICATIONS='GET_NOTIFICATIONS';
 export const CLEAR_NOTIFICATIONS = 'CLEAR_NOTIFICATIONS';
-
+export const CONVERSATIONS = 'CONVERSATIONS';
+export const CHAT='CHAT';
+export const PUSHCHAT = 'PUSHCHAT';
+export const USERS_ALL = 'USERS_ALL';
 

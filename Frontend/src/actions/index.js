@@ -24,6 +24,10 @@ import {
   CLEAR_MY_PROFILE,
   GET_NOTIFICATIONS,
   CLEAR_NOTIFICATIONS,
+  CONVERSATIONS,
+  PUSHCHAT,
+  USERS_ALL,
+  CHAT,
  
 } from "./actionTypes";
 
@@ -316,4 +320,62 @@ export const getMyPhoto = () => {
 
   export const clearNotifications = () => {
     return { type:CLEAR_NOTIFICATIONS, payload:{notifications:[]}};
+
   };
+
+  export const get_CONVERSATIONS = ()=>{
+    return async(dispatch)=>{
+      try {
+        const  { data } = await axios(`${process.env.REACT_APP_PUERTO}conversation/`, tokenUsuario())
+        console.log(data, 'data de mis conversaciones')
+        return dispatch({type:CONVERSATIONS, payload: data})
+      } catch (error) {
+        console.error(error)
+        alert('error')
+      }
+    }
+  };
+
+//{headers:{token: read_cookie('userToken')}}
+  export const get_CHAT = (conversationId, friend)=>{
+    return async(dispatch)=>{
+      try {
+        const  { data } = await axios(`${process.env.REACT_APP_PUERTO}message/${conversationId}`, tokenUsuario())
+        return dispatch({type:CHAT, payload: {id:conversationId, friend, chats:data}})
+      } catch (error) {
+        console.error(error)
+        alert('error')
+      }
+    }
+  }
+
+
+export const PUSHchat = (msg)=>({
+	type:PUSHCHAT,
+	payload: msg
+});
+
+
+export const NEW_MESSAGE = async (body)=>{
+	
+	try {
+		 await axios.post(`${process.env.REACT_APP_PUERTO}message/`, body, tokenUsuario())
+		return;
+	} catch (error) {
+		console.error(error)
+		alert('error')
+	}
+}
+
+
+export const user_ALL = () => {
+	return async (dispatch) => {
+		try {
+			const {data: Users} =await axios(`${process.env.REACT_APP_PUERTO}users`, tokenUsuario());
+			return dispatch({type:USERS_ALL, payload: Users})
+		} catch (error) {
+			console.error(error)
+		}
+	};
+};
+

@@ -3,11 +3,11 @@ import {conversaciones} from './Message/conversacion';
 import { getFollows,getMyProfileData } from "../../actions";
 import { useDispatch, useSelector } from 'react-redux';
 import NavBar from '../NavBar/NavBar';
-
+import Messenger from './Messenger';
 /* import {Link} from 'react-router-dom'; */
 import SideBar from '../SideBar/SideBar';
 import { ContainerIndex } from './styledChats';
-import Chats from './Chats.jsx';
+// import Chats from './Chats.jsx';
 
 // const { user } = useUserAuth();
 // console.log(user, "yo como persona que me logeo")
@@ -38,7 +38,7 @@ export default function Chat({response}) {
      
         <ContainerIndex>
           <SideBar/>  
-          {contactos? <Chats contactos={contactos} user={user} conversaciones={conversaciones}/>:<div>cargando...</div>}    
+          {contactos? <Messenger user={user}/> : <div>cargando...</div>}    
          
         </ContainerIndex>
       

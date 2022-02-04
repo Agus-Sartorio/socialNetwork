@@ -15,15 +15,15 @@ import io from 'socket.io-client';
 
 
 function App() {
-  const [response, setResponse] = useState("");
+//   const [response, setResponse] = useState("");
 
 
-  useEffect(()=>{
-    const socket = io(`http://localhost:3002`);
-    socket.on("FromAPI", data => {
-      setResponse(data);
- })
-  },[])
+//   useEffect(()=>{
+//     const socket = io(`http://localhost:3002`);
+//     socket.on("FromAPI", data => {
+//       setResponse(data);
+//  })
+//   },[])
 
   return (
     <div className='app'>
@@ -34,7 +34,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LogIn />} />
           <Route path="/edit" element={<ProtectedRoute><Edit /></ProtectedRoute>} />
-          <Route path="/chat" element={<ProtectedRoute><Chat response={response} /></ProtectedRoute>} />
+          <Route path="/chat" element={<ProtectedRoute><Chat/></ProtectedRoute>} />
           <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
           <Route path="/suggestions" element={<ProtectedRoute><Suggestions /></ProtectedRoute>} />
           <Route path='/profile/:id' element={<ProtectedRoute><Profile /></ProtectedRoute>} />

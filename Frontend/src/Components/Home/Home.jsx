@@ -13,8 +13,8 @@ import io,{Socket} from 'socket.io-client';
 
 //////////////////////
 export default function Home() {
-    const renderizadoControl = useRef(0);
-    const [Socket, setSocket] = useState('ok');
+    // const renderizadoControl = useRef(0);
+    // const [Socket, setSocket] = useState('ok');
    
   
 //  socket.on('connection',()=>{
@@ -38,35 +38,35 @@ const user = useSelector((state => state.myId));
     const posts = useSelector((state => state.allPost))
     
 ////////////////////////////arriba no se nota
-    useEffect(()=>{
-        let socket =io('http://localhost:3002')
-        setSocket(socket);
-        console.log(Socket,'el gran Socket')
-        socket.on('connection',()=>{
-        console.log('estoy conectado desde el back')   
+    // useEffect(()=>{
+    //     let socket =io('http://localhost:3001')
+    //     setSocket(socket);
+    //     console.log(Socket,'el gran Socket')
+    //     socket.on('connection',()=>{
+    //     console.log('estoy conectado desde el back')   
         
         
-    }) 
-      },[ ])
+    // }) 
+    //   },[ ])
 
-      useEffect(() => {
-          if(renderizadoControl.current===0){
-              renderizadoControl.current= renderizadoControl.current +1;
-              return
-          };
+    //   useEffect(() => {
+    //       if(renderizadoControl.current===0){
+    //           renderizadoControl.current= renderizadoControl.current +1;
+    //           return
+    //       };
      
          
-            Socket.emit("addUser", user.id);
-            Socket.on("getUsers", (users) => {
+    //         Socket.emit("addUser", user.id);
+    //         Socket.on("getUsers", (users) => {
                
-                console.log(users,"usuarios conectados")
+    //             console.log(users,"usuarios conectados")
             
-                //   setOnlineUsers(
-            //     user.followings.filter((f) => users.some((u) => u.userId === f))
-            //   );
-            });
+    //             //   setOnlineUsers(
+    //         //     user.followings.filter((f) => users.some((u) => u.userId === f))
+    //         //   );
+    //         });
          
-      }, [user.id]);
+    //   }, [user]);
 
     // if(socket !== null) { socket.on('conectado',function(data){
     //     console.log(data,'data socket')
