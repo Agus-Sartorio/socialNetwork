@@ -31,6 +31,7 @@ import {
  
 } from "./actionTypes";
 
+
 export const getUsers = () => {
   return async (dispatch) => {
     try {
@@ -81,6 +82,22 @@ export const getFollowUserById = (id) => {
 export const clearProfileState = () => {
   return { type: CLEAR_PROFILE_STATE, payload: [] };
 };
+
+
+export function postUploadProfile(payload,id){
+    console.log(payload)
+    return async function(dispatch) {
+        try {
+            const response = await axios.put(`${process.env.REACT_APP_PUERTO}usuarios/${id}`, payload)
+            console.log(response)
+            return response
+
+        }catch(error){
+            console.log(error);
+        }
+    }
+}
+
 
 export const getMyProfile = () => {
   return async (dispatch) => {
