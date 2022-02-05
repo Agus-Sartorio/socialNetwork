@@ -40,7 +40,7 @@ export default function Chat() {
             {
                 chats?.map(e => (
                     <Message
-                    key={e._id}
+                    key={e.id}
                     name={e.sender===friend.id?friend.username:'You'}
                     message={e.text} date={e.createdAt}
                     type={e.sender===friend.id?"friend":"own"}
