@@ -14,8 +14,8 @@ export default function Home() {
     useEffect(() => {
         dispatch(AllPost());
         return () => {
-            dispatch(getCleanHome())
             dispatch(getMyId())
+            dispatch(getCleanHome())
           }
     }, [dispatch]);
 

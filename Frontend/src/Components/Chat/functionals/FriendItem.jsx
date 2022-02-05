@@ -1,14 +1,20 @@
 import {ListItem, ListItemText, ListItemAvatar, Divider, Avatar} from '@mui/material/';
 import axios from 'axios';
 import { read_cookie } from 'sfcookies';
-
+import { useDispatch} from 'react-redux';
+import {  get_CONVERSATIONS} from "../../../actions";
 
 const FriendItem = ({ name, profile, state, id }) => {
+  
+  const dispatch = useDispatch()
 
-
-  const handleClick = async () => {
+    console.log(id, 'id que mando al post desde item')
+    
+    const handleClick = async () => {
     await axios.post(`${process.env.REACT_APP_PUERTO}conversation/`, { receiverId: id }, { headers: { token: read_cookie('userToken') } })
+    dispatch(get_CONVERSATIONS())
   }
+  
 
   return (
   <>
