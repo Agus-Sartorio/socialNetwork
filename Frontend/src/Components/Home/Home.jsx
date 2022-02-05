@@ -1,33 +1,28 @@
-import { useEffect} from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AllPost, getCleanHome } from "../../actions";
+import { AllPost, getCleanHome, getMyId } from "../../actions";
 import CrearPost from "../CrearPost/CrearPost";
-import Layout from '../Layout/Layout'
+import Layout from "../Layout/Layout";
 import PostContainer from "../PostContainer/PostContainer";
 
-
 export default function Home() {
+  const dispatch = useDispatch();
 
-  
-    const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(AllPost());
+    dispatch(getMyId());
 
-    useEffect(() => {
-        dispatch(AllPost());
-        dispatch(getMyId())
-       
-        return () => {
-            dispatch(getCleanHome())
-          }
+    return () => {
+      dispatch(getCleanHome());
+    };
+  }, [dispatch]);
 
-    }, [dispatch]);
+  const posts = useSelector((state) => state.allPost);
 
-    const posts = useSelector((state => state.allPost))
-
-
-    return (
-        <Layout>
-            <CrearPost />
-            <PostContainer posts={posts} />
-        </Layout>
-    )
+  return (
+    <Layout>
+      <CrearPost />
+      <PostContainer posts={posts} />
+    </Layout>
+  );
 }
