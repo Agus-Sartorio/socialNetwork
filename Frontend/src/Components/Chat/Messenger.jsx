@@ -7,14 +7,22 @@ import FriendList from './functionals/FriendsList';
 import MessagesList from './functionals/MessagesList';
 import { io } from 'socket.io-client'
 
-export default function Messenger({visible}) {
-
+export default function Messenger({visible, contactos}) {
+    
     const socket = useRef()
+    const control = useRef(0)
     const dispatch = useDispatch()
-    const { conversations, myId, chat, chat:{chats} } = useSelector(state => state)
+    const { conversations, chat, myId, chat:{chats} } = useSelector(state => state)
+    
+    const [online, setOnline] = useState();
+    const [offline, setOffline] = useState();
     const [arrived, setarrived] = useState({})
+  
     useEffect(()=>{
-        socket.current = io(`${process.env.REACT_APP_PUERTO}`)
+
+        socket.current = io(`${process.env.REACT_APP_PUERTO}`)  
+        socket.current.emit("addUser", myId?.id);
+        // socket.current.on("getUsers", users=>{console.log(users, 'usuarios conectados')})
         
     }, [visible])
 
@@ -48,16 +56,50 @@ export default function Messenger({visible}) {
 
     useEffect(() => {
          
-        // if(ControlRenders.current === 0){
-        //     ControlRenders.current = ControlRenders.current + 1
+        // if(control.current === 0){
+        //     control.current = control.current + 1
         //     return 
         // }
-        console.log(myId.id, "Id mio que mando al socket")     
-        socket.current.emit("addUser", myId.id);
-        socket.current.on("getUsers", users=>{console.log(users, 'usuarios conectados')})
+
+        socket.current.on("getUsers", users=> {
+            // console.log(users, 'usuarios conectados')
+            let online= [];
+            let Offline= [];
+            let aux = users.filter((e)=> e.userId !== myId?.id )
+            // console.log(aux, 'auxiliar')
+               
+            if (aux.length ){
+
+                for(let i=0;i < aux.length;i++){ 
+    
+                       for(let j=0; j < contactos.length; j++){
+    
+                           
+                           if(aux[i].userId === contactos[j].id ){
+                               online.push(contactos[j])
+                               continue
+                            }
+                            
+    
+                            if ( !aux.length || aux[i].userId !== contactos[j].id){
+    
+                                Offline.push(contactos[j]) 
+                            }
+                        } 
+    
+                    } 
+            }
+
+            else{Offline=contactos}
+
+                // console.log(online, 'contactos online')
+                setOnline(online);
+                setOffline(Offline)
+            })
+            
         
         
-    }, []);
+    }, [socket.current]);
 
 
 
@@ -84,7 +126,7 @@ export default function Messenger({visible}) {
             </Grid>
             <Grid xs  item={true}>
                 <Container>
-                    <FriendList />
+                    <FriendList online={online} offline={offline} />
                 </Container>
             </Grid>
         </Grid>

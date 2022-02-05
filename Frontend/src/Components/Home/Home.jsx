@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AllPost, getCleanHome } from "../../actions";
+import { AllPost, getCleanHome, getMyId } from "../../actions";
 
 import CrearPost from "../CrearPost/CrearPost";
 import Layout from "../Layout/Layout";
@@ -15,6 +15,7 @@ export default function Home() {
         dispatch(AllPost());
         return () => {
             dispatch(getCleanHome())
+            dispatch(getMyId())
           }
     }, [dispatch]);
 

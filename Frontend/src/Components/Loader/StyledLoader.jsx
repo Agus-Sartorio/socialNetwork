@@ -20,7 +20,7 @@ export const Loader = styled(Loadersvg)`
   width: 250px;
   height: 250px;
   z-index: -1;
-
+  
       /* animation-name: ${move};
       animation-duration: 0.9s;
       animation-iteration-count: infinite; 

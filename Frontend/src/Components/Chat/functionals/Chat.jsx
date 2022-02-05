@@ -13,6 +13,8 @@ export default function Chat() {
     const { chat: { friend , chats } } = useSelector(state => state)
     //  console.log(friend, 'lo que estoy areglando ??')
     //  console.log(chats, 'chats????')
+     console.log(chats, 'que mierda es chats')
+    console.log(friend, 'que es friend aqui y porque da error')
     return (
         <List sx={{ width: '100%', maxWidth: 600, zIndex: 0}}>
             {
@@ -21,7 +23,7 @@ export default function Chat() {
                     <>
                     <ListItem alignItems="center">
                         <ListItemAvatar>
-                            <Avatar alt={friend?.username} src={friend.profile.includes('uploads')?`${process.env.REACT_APP_PUERTO}` + friend.profile : friend.profile} />
+                            <Avatar alt={friend?.username} src={friend? `${process.env.REACT_APP_PUERTO}` + friend?.profile:friend?.profile } />
                         </ListItemAvatar>
                         <ListItemText
                             primary={friend?.username}
@@ -38,11 +40,11 @@ export default function Chat() {
             {
                 chats?.map(e => (
                     <Message
-                    key={e._id}
+                    key={e.id}
                     name={e.sender===friend.id?friend.username:'You'}
                     message={e.text} date={e.createdAt}
                     type={e.sender===friend.id?"friend":"own"}
-                    profile={e.sender===friend.id?e.profile:null}
+                    profile={e.sender===friend.id?friend.profile:null}
                     />
                     ))
                 }

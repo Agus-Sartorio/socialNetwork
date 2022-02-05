@@ -342,7 +342,7 @@ export const getMyPhoto = () => {
   export const get_CONVERSATIONS = ()=>{
     return async(dispatch)=>{
       try {
-        const  { data } = await axios(`${process.env.REACT_APP_PUERTO}conversation/`, tokenUsuario())
+        const  { data } = await axios.get(`${process.env.REACT_APP_PUERTO}conversation/`, tokenUsuario())
         console.log(data, 'data de mis conversaciones')
         return dispatch({type:CONVERSATIONS, payload: data})
       } catch (error) {
@@ -356,8 +356,8 @@ export const getMyPhoto = () => {
   export const get_CHAT = (conversationId, friend)=>{
     return async(dispatch)=>{
       try {
-        const  { data } = await axios(`${process.env.REACT_APP_PUERTO}message/${conversationId}`, tokenUsuario())
-        return dispatch({type:CHAT, payload: {id:conversationId, friend, chats:data}})
+        const  { data } = await axios.get(`${process.env.REACT_APP_PUERTO}message/${conversationId}`, tokenUsuario())
+        return dispatch({type:CHAT, payload: {id:conversationId, friend:friend, chats:data}})
       } catch (error) {
         console.error(error)
         alert('error')
