@@ -12,18 +12,20 @@ import { ContainerIndex } from './styledChats';
 // const { user } = useUserAuth();
 // console.log(user, "yo como persona que me logeo")
 
-export default function Chat({response}) {
+export default function Chat() {
   
-  console.log(response,'response')
+  
   const dispatch = useDispatch();
   const fallows = useSelector((state) => state.follows);
   const user = useSelector((state) =>  state.myProfileData);
+ 
   // if(user.length !== 0)console.log(user, "yo como persona que me logeo")
   useEffect(() => {
     dispatch(getFollows())
     dispatch(getMyProfileData())
     dispatch(getMyId())
   }, [dispatch])
+  
 
  
       const contactos = fallows.data;
@@ -37,7 +39,7 @@ export default function Chat({response}) {
      
         <ContainerIndex>
           <SideBar/>  
-          {contactos? <Messenger user={user}/> : <div>cargando...</div>}    
+          {contactos? <Messenger user={user} contactos={contactos} /> : <div>cargando...</div>}    
          
         </ContainerIndex>
       

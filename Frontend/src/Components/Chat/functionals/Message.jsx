@@ -11,7 +11,7 @@ const Message = ({ name, message, profile, date, type }) => {
     const { myProfileData } = useSelector(state => state)
     console.log(profile, 'esto es lo que llega')
     console.log(myProfileData.data[0].profile, 'mi perfil los datos')
-    if (profile === null){
+    if (profile === null || profile === undefined){
        
         profile=myProfileData.data[0].profile
        

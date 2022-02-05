@@ -3,23 +3,29 @@ import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import { useState } from "react";
 import { NEW_MESSAGE } from "../../../actions";
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from 'react-redux';
 
 const TypeBox = ({socket}) => {
+  const dispatch = useDispatch()
   const {chat:{id, friend}, myId} = useSelector(state=>state)
-  console.log(myId.id, 'desde typebox');
+  // console.log(myId.id, 'desde typebox');
+  // console.log(friend, 'desde friend typebox');
   const [msg, setmsg] = useState()
+
   const handleClick =  ({target:{value}})=>{
-    
+    console.log(id, 'miro que id conversationle mando a sendmessage ')
     socket.current.emit("sendMessage", {
       senderId: myId.id,
       receiverId: friend.id,
       text: msg
     })
     
-    NEW_MESSAGE({conversationId:id, text: msg, sender:myId.id})
-    value=""
-    setmsg("")
+  
+      NEW_MESSAGE({conversationId:id, text: msg, sender:myId.id})
+      value=""
+      setmsg("")
+  
+    
   }
   return (
     <Container sx={{ bgcolor: "#fff"}}>
