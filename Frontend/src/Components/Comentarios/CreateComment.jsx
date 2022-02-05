@@ -34,6 +34,7 @@ export default function Comments({ p }) {
         value={input.comentario}
         name='comentario'
         onChange={handleChange}
+        required
       />
 
       <button type="submit">comentar</button>

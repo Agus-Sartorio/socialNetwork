@@ -31,6 +31,21 @@ function EditProfile({ userInfo }) {
   const [, setEdit] = useState(false);
   const [OptionUpProfile, setOptionUpProfile] = useState(false);
   const [OptionUpPort, setOptionUpPort] = useState(false);
+  const [errors, setErrors] = useState({});
+
+
+  const ErrorsValidacion = () => {
+    let errors = {}
+    
+    if (!input.fullname || input.fullname.length > 25 || !/^(([A-Za-z])*([A-Za-z]+)?\s)+([A-Za-z])*([A-Za-z]+)?$/.test(input.fullname)){
+      errors.fullname = "No se permiten numeros, 25 caracteres permitidos";
+    }
+    if(input.description.length > 100 ){
+      errors.description = "solo se permiten 100 caracteres"
+    }
+    return errors;
+  }
+
 
   const update = () => {
     setOptionUpProfile((previousState) => {
@@ -49,6 +64,10 @@ function EditProfile({ userInfo }) {
       ...input,
       [evt.target.name]: evt.target.value,
     });
+    setErrors(ErrorsValidacion({
+      ...input,
+      [evt.target.name]: evt.target.value,
+  }))
   }
 
   const handleFileChangeP = (e) => {
@@ -114,14 +133,17 @@ function EditProfile({ userInfo }) {
         console.log(responder.statusText);
       }
     }
-
-    dispatch(postUploadProfile(input));
-    navigate("/home", { replace: true });
+    if(ErrorsValidacion()){
+      dispatch(postUploadProfile(input));
+      navigate("/myprofile", { replace: true });  
+    }
     // console.log(formData, "lo que estoy mandando")
   }
   const preview = userInfo.profile.includes("uploads");
   const previewP = userInfo.background_picture.includes("uploads");
 
+  
+ 
   return (
     <StyledEdit>
       <h1 className="edit__profile"> Editar Perfil </h1>
@@ -202,6 +224,7 @@ function EditProfile({ userInfo }) {
                 name="fullname"
                 onChange={(evt) => handleChange(evt)}
               />
+              {errors.fullname && (<p>{errors.fullname}</p>)}
             </label>
 
             <label>
@@ -266,6 +289,7 @@ function EditProfile({ userInfo }) {
               name="description"
               onChange={(evt) => handleChange(evt)}
             />
+            {errors.description && (<p>{errors.descriptions}</p>)}
           </label>
 
           {/* {(input.fullname !== '') ?
