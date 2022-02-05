@@ -4,7 +4,8 @@ import MessageItem from './MessageItem';
 import { useSelector } from 'react-redux';
 
 export default function MessagesList({conversations}) {
-
+  
+  console.log(conversations, ' no llega nada o que')
   const {follows} = useSelector(state => state)
 
   return (

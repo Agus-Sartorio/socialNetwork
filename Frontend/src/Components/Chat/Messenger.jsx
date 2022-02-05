@@ -34,11 +34,7 @@ export default function Messenger({visible, contactos}) {
                 text: data.text,
                 createdAt: Date.now()
             }) )
-            setarrived({
-                sender: data.senderId,
-                text: data.text,
-                createdAt: Date.now()
-            })
+         
         })
 
         socket.current.on('myMessage', data=>{
@@ -50,9 +46,6 @@ export default function Messenger({visible, contactos}) {
         })
     }, [socket])
 
-    useEffect(()=>{
-        arrived && chat?conversations?.[conversations.indexOf(chat.id)]?.members.includes(arrived.senderId) : false && dispatch( PUSHchat(arrived) )
-    }, [arrived])
 
     useEffect(() => {
          
