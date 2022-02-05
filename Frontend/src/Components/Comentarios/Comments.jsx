@@ -1,20 +1,35 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { format } from "timeago.js";
+import { StyledComment } from "./styles";
 
 export default function Comments({ el }) {
   console.log(el, "coment");
   const myId = useSelector((state) => state.myPhoto);
 
   return (
-    <>
-      <div>
-        <Link to={`/${myId.data.id === el.id ? "myprofile" : `profile/${el.id}`}`}>
-          <img src={el.profile} alt="" width={"30px"} height={"30px"} />
-          <span>{el.fullname}</span>{" "}
-        </Link>
-        <span>{el.comentario}</span>
+    <StyledComment>
+      <Link
+        to={`/${myId.data.id === el.id ? "myprofile" : `profile/${el.id}`}`}
+      >
+        <img
+          className="comment__avatar"
+          src={el.profile}
+          alt={el.fullname.split(" ")[0]}
+        />
+      </Link>
+      <div className="comment__text">
+        <div>
+          <Link
+            to={`/${myId.data.id === el.id ? "myprofile" : `profile/${el.id}`}`}
+          >
+            <h3>{el.fullname}</h3>
+          </Link>
+          <p>{el.comentario}</p>
+        </div>
+        <p className="comment__time">{format(el.createdAt)}</p>
       </div>
-    </>
+    </StyledComment>
   );
 }
