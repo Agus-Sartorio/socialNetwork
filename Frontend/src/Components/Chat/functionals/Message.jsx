@@ -19,10 +19,12 @@ const Message = ({ name, message, profile, date, type }) => {
     switch (type) {
         case "own":
             return (
-                <ListItem alignItems="flex-start" sx={{ flexDirection: 'row-reverse', textAlign: 'right', marginBottom: 1 }}
+                <ListItem alignItems="flex-start"
+                 sx={{ flexDirection: 'row-reverse', textAlign: 'right', marginBottom: 1 }}
                 >
                     <ListItemAvatar sx={{ marginRight: 0, marginLeft: 2 }}>
-                        <Avatar alt={name} src={profile.includes('uploads')?`${process.env.REACT_APP_PUERTO}`+ profile : profile} />
+                        <Avatar alt={name} 
+                        src={profile.includes('uploads')?`${process.env.REACT_APP_PUERTO}`+ profile : profile} />
                     </ListItemAvatar>
                     <ListItemText
                         primary={message}
