@@ -10,13 +10,12 @@ import { io } from 'socket.io-client'
 export default function Messenger({visible, contactos}) {
     
     const socket = useRef()
-    const control = useRef(0)
     const dispatch = useDispatch()
     const { conversations, chat, myId, chat:{chats} } = useSelector(state => state)
     
-    const [online, setOnline] = useState();
+    const [online, setOnline] = useState([]);
     const [offline, setOffline] = useState();
-    const [arrived, setarrived] = useState({})
+   
   
     useEffect(()=>{
 
@@ -109,12 +108,12 @@ export default function Messenger({visible, contactos}) {
         <Grid container direction="row" justifyContent="center" alignItems="start">
             <Grid xs  item={true}>
                 <Container>
-                    <MessagesList conversations={conversations} />
+                    <MessagesList conversations={conversations}/>
                 </Container>
             </Grid>
             <Grid xs={6}  item={true}>
                 <Container>
-                    <Conversation socket={socket} />
+                    <Conversation socket={socket} online={online} />
                 </Container>
             </Grid>
             <Grid xs  item={true}>

@@ -3,7 +3,7 @@ import List from '@mui/material/List';
 import MessageItem from './MessageItem';
 import { useSelector } from 'react-redux';
 
-export default function MessagesList({conversations}) {
+export default function MessagesList({conversations, online}) {
   
   console.log(conversations, ' no llega nada o que')
   const {follows} = useSelector(state => state)
@@ -15,7 +15,7 @@ export default function MessagesList({conversations}) {
           //declaro un array amigo que contendra la data de mi amigo.
           //osea me trae mis amigos con los que he conversado
           console.log(e, 'a ver que dicen las conversas')
-          const [friend] = follows.data.filter(u=> e.members.includes(u.id))
+          const [friend] = follows.data.filter(u=> e.members.includes(u?.id))
           console.log('este es friend:', friend)
         
           return(

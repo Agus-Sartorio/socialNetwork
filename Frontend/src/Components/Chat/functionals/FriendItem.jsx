@@ -11,7 +11,9 @@ const FriendItem = ({ name, profile, state, id }) => {
     console.log(id, 'id que mando al post desde item')
     
     const handleClick = async () => {
-    await axios.post(`${process.env.REACT_APP_PUERTO}conversation/`, { receiverId: id }, { headers: { token: read_cookie('userToken') } })
+    await axios.post(`${process.env.REACT_APP_PUERTO}conversation/`, 
+    { receiverId: id }, { headers: { token: read_cookie('userToken') } })
+    
     dispatch(get_CONVERSATIONS())
   }
   

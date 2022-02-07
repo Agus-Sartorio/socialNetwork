@@ -2,8 +2,9 @@ import { Container, Grid, TextField } from "@mui/material";
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import { useState } from "react";
-import { NEW_MESSAGE } from "../../../actions";
 import { useDispatch, useSelector } from 'react-redux';
+import { NEW_MESSAGE, get_CONVERSATIONS } from "../../../actions";
+
 
 const TypeBox = ({socket}) => {
   const dispatch = useDispatch()
@@ -14,6 +15,7 @@ const TypeBox = ({socket}) => {
 
   const handleClick =  ({target:{value}})=>{
     console.log(id, 'miro que id conversationle mando a sendmessage ')
+    
     socket.current.emit("sendMessage", {
       senderId: myId.id,
       receiverId: friend.id,
@@ -24,6 +26,10 @@ const TypeBox = ({socket}) => {
       NEW_MESSAGE({conversationId:id, text: msg, sender:myId.id})
       value=""
       setmsg("")
+
+    //  dispatch(get_CONVERSATIONS())
+  
+
   
     
   }
