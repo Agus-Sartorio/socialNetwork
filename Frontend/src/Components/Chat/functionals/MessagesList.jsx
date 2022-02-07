@@ -3,7 +3,7 @@ import List from '@mui/material/List';
 import MessageItem from './MessageItem';
 import { useSelector } from 'react-redux';
 
-export default function MessagesList({conversations, online}) {
+export default function MessagesList({conversations}) {
   
   console.log(conversations, ' no llega nada o que')
   const {follows} = useSelector(state => state)

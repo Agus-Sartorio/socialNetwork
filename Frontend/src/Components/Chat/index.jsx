@@ -23,13 +23,16 @@ export default function Chat() {
   // if(user.length !== 0)console.log(user, "yo como persona que me logeo")
   useEffect(() => {
    
-
-    dispatch(getFollows())
     dispatch(getMyProfileData())
     dispatch(getMyId())
   }, [])
   
+  useEffect(() => {
+   
 
+    dispatch(getFollows())
+   
+  }, [])
  
       const contactos = fallows.data;
         // console.log(contactos, 'chats lo que mando')

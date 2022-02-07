@@ -55,7 +55,7 @@ export default function Chat({online}) {
                     key={e.id}
                     name={e.sender===friend.id?friend.username:'You'}
                     message={e.text} date={e.createdAt}
-                    type={e.sender===friend.id?"friend":"own"}
+                    type={e.sender===friend.id? "friend": e.sender === me.id ?"own": ""}
                     profile={e.sender===friend.id?friend.profile:null}
                     />
                     ))
