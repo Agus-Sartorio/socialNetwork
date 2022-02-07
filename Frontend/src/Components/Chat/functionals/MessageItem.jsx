@@ -21,7 +21,7 @@ const MessageItem = ({ name, message, profile, date, id, friend}) => {
     <>
       <ListItem alignItems="flex-start" onClick={()=>handleChat(id)} >
         <ListItemAvatar>
-          <Avatar alt={name} src={profile.includes('uploads')?`${process.env.REACT_APP_PUERTO}` + profile : profile} />
+          <Avatar alt={name} src={profile?.includes('uploads')?`${process.env.REACT_APP_PUERTO}` + profile : profile} />
         </ListItemAvatar>
         <ListItemText
           primary={name}
