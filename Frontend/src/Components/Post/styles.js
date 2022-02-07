@@ -1,4 +1,13 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const spin = keyframes`
+  0%{
+    transform: rotate(0);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+`;
 
 export const StyledPost = styled.article`
   display: flex;
@@ -101,6 +110,14 @@ export const StyledPost = styled.article`
     span {
       margin-left: 20px;
     }
+  }
+
+  .loading {
+    animation: ${spin} 2s linear infinite;
+  }
+
+  .likedByMe {
+    background-color: var(--red-1);
   }
 
   .post__stats {
