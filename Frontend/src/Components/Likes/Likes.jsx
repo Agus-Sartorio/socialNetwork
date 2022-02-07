@@ -31,7 +31,7 @@ export default function Likes({ setShowLikes, p }) {
   return (
     <StyledOverflow ref={overlay} onClick={handleOverlayClick}>
       <StyledLikes>
-        <h3 className="layout__title">Marcado como me gusta por :</h3>
+        <h3 className="layout__title">Marcado como me gusta por:</h3>
         {p?.likes?.map((p) => {
           console.log(p);
           return (

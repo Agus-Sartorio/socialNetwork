@@ -11,39 +11,45 @@ import { tokenUsuario } from "../../actions/actionTypes";
 import { useState } from "react";
 import Likes from "../Likes/Likes";
 import CommentsContainer from "../Comentarios/CommentsContainer";
+import Loading from "../Icons/Loading";
 
 export default function Post({ p }) {
   const preview = p.autorData[0]?.profile.includes("uploads");
   const id = useSelector((state) => state.myPhoto);
+  /*   const { id: myId } = useSelector((state) => state.myProfileData.data[0]); */
 
   const [like, setLike] = useState(0);
   const [showLikes, setShowLikes] = useState(false);
-
+  const [likedByMe, setLikedByMe] = useState(
+    p.likes.map((el) => el.id).includes(id.data.id)
+  );
   const [showComments, setShowComments] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleComments = () => setShowComments(!showComments);
 
   const handleLikes = () => setShowLikes(true);
   const idpost = { idpost: p._id };
 
+  /* const likedByMe = p.likes.map((el) => el.id).includes(id.data.id); */
+
   async function likeDislike() {
     try {
-      if (p.likes.map((el) => el.id).includes(id.data.id)) {
-        await axios.put(
-          `${process.env.REACT_APP_PUERTO}posts/likes`,
-          idpost,
-          tokenUsuario()
-        );
+      setLoading(true);
+      await axios.put(
+        `${process.env.REACT_APP_PUERTO}posts/likes`,
+        idpost,
+        tokenUsuario()
+      );
+      setLoading(false);
+      setLikedByMe(!likedByMe);
+      if (likedByMe) {
         like === 0 ? setLike(-1) : setLike(0);
       } else {
-        await axios.put(
-          `${process.env.REACT_APP_PUERTO}posts/likes`,
-          idpost,
-          tokenUsuario()
-        );
         like === 1 ? setLike(0) : setLike(1);
       }
     } catch (err) {
+      setLoading(false);
       console.log(err);
     }
   }
@@ -104,12 +110,15 @@ export default function Post({ p }) {
                 <Share />
                 <span>Compartir</span>
               </button>
-              <button className="post__btn comment">
+              <button onClick={handleComments} className="post__btn comment">
                 <CommentBubble />
                 <span>Comentar</span>
               </button>
-              <button className="post__btn like" onClick={likeDislike}>
-                <Experience />
+              <button
+                className={`post__btn like ${likedByMe ? "likedByMe" : ""}`}
+                onClick={likeDislike}
+              >
+                {loading ? <Loading /> : <Experience />}
                 <span>Me Gusta</span>
               </button>
             </div>

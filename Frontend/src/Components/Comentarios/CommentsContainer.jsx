@@ -22,7 +22,9 @@ export default function CommentsContainer({ post }) {
             .map((el) => <Comments el={el} key={el._id} p={post} />)
             .reverse()}
       {postById.data ? null : post.comentarios.length > 3 ? (
-        <Link to={`/post/` + post._id}> Ver mas</Link>
+        <Link className="comment__mas" to={`/post/` + post._id}>
+          Ver más
+        </Link>
       ) : null}
       <CreateComment p={post} />
     </CommentContainer>

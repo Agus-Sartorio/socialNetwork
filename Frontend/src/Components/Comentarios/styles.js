@@ -43,6 +43,19 @@ export const StyledComment = styled.article`
 
 export const CommentContainer = styled(motion.div)`
   margin-top: 20px;
+
+  .comment__mas {
+    text-decoration: none;
+    color: #eee;
+    display: block;
+    text-align: center;
+    margin-bottom: 15px;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 `;
 
 export const Create = styled.form`
