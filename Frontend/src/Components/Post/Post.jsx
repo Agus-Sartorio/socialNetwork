@@ -95,6 +95,11 @@ export default function Post({ p }) {
             <p className="post__date">{format(p?.createdAt)}</p>
           </header>
           <p className="post__description">{p.description}</p>
+          {
+                p.image?.map(i => (
+                  <img width="201" src={process.env.REACT_APP_PUERTO+i} alt=''/>
+                ))
+              }
           <footer className="post__footer">
             <div className="post__stats">
               <button onClick={handleLikes} className="post__likes stats">

@@ -21,13 +21,13 @@ export default function MessagesList({conversations}) {
           return(
             <MessageItem id={e?._id}
              // estoy mandando los datos de mi contactoy los los mensajes
-              friend={{id:friend.id, username:friend.fullname, profile:friend.profile}} 
+              friend={{id:friend?.id, username:friend?.fullname, profile:friend?.profile}} 
               key={friend?.id} 
               name={friend?.usurname}
               message={e.message?.text} 
               date={e.message?.createdAt}
                
-              profile={friend.profile}/>
+              profile={friend?.profile}/>
         )
         })
       }

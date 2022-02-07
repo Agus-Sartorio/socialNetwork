@@ -27,6 +27,7 @@ export default function Likes({ setShowLikes, p }) {
   };
 
   const myId = useSelector((state) => state.myId);
+  
 
   return (
     <StyledOverflow ref={overlay} onClick={handleOverlayClick}>
@@ -37,7 +38,7 @@ export default function Likes({ setShowLikes, p }) {
           return (
             <div key={p.id} className="likes__div">
               <Link
-                to={`${myId.id === p.id ? "/myprofile" : `/profile/${p.id}`}`}
+                to={`/${myId.id === p.id ? "myprofile" : `profile/${p.id}`}`}
                 className="likes__link"
               >
                 <span className="likes__span" />

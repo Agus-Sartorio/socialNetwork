@@ -13,7 +13,8 @@ export default function CrearPost() {
   const [input, setInput] = useState({
     description: "",
   });
-  const [, setFile] = useState(null);
+  const [file, setFile] = useState([]);
+  const [view, setView] = useState([])
 
   function handleChange(e) {
     const isEmpty = /^\s/.test(e.target.value);
@@ -22,14 +23,46 @@ export default function CrearPost() {
       [e.target.name]: isEmpty ? "" : e.target.value,
     });
   }
+  const extraerBase64 = async ($event) => new Promise((resolve) => {
+    try {
+      const reader = new FileReader();
+      reader.readAsDataURL($event);
+      reader.onload = () => {
+        resolve(reader.result);
+      };
+      reader.onerror = error => {
+        resolve({
+          base: null
+        });
+      };
+
+    } catch (e) {
+      return null;
+    }
+  })
   function submitHandler(e) {
     e.preventDefault();
-    dispatch(CreatePost(input));
+    let data = new FormData();
+    
+    file.forEach(f=>{
+      data.append('image', f)
+    })
+    
+    
+    data.append('description', input.description)
+    dispatch(CreatePost(data));
     alert("se creo el post");
     setInput({
       description: "",
     });
     window.location.reload();
+  }
+  const handleFile = async (e)=>{
+    setFile(file=>[...file, e.target.files[0]])
+    let img = await extraerBase64(e.target.files[0])
+    setView(view => [...view, img])
+    console.log(view)
+    
   }
   return (
     <StyledForm
@@ -60,15 +93,20 @@ export default function CrearPost() {
           name="description"
           value={input.description}
           onChange={handleChange}
-        />
+          />
       </div>
+          {
+            view?.map(v =>(
+              <img src={v} alt='' width={'50px'} height={'50px'}/>
+            ))
+          }
       <div className="file-btn">
         <input
           className="input-file"
           type="file"
           id="file"
           accept=".png, .jpeg, .jpg"
-          onChange={(e) => setFile(e.target.files[0])}
+          onChange={handleFile}
         />
         <button className="btn">
           <Upload />
