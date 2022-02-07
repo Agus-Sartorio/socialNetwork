@@ -7,6 +7,7 @@ import Messenger from './Messenger';
 /* import {Link} from 'react-router-dom'; */
 import SideBar from '../SideBar/SideBar';
 import { ContainerIndex } from './styledChats';
+import Loaderfull from '../Loader/LoaderFull'
 // import Chats from './Chats.jsx';
 
 // const { user } = useUserAuth();
@@ -39,7 +40,7 @@ export default function Chat() {
      
         <ContainerIndex>
           <SideBar/>  
-          {contactos? <Messenger user={user} contactos={contactos} /> : <div>cargando...</div>}    
+          {contactos? <Messenger user={user} contactos={contactos} /> : <Loaderfull></Loaderfull>}    
          
         </ContainerIndex>
       
