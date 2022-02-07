@@ -10,12 +10,14 @@ import { useSelector } from 'react-redux';
 
 export default function Chat({online}) {
 
-    const { chat: { friend , chats } } = useSelector(state => state)
+    const { chat: { friend , chats }, myProfileData } = useSelector(state => state)
     //  console.log(friend, 'lo que estoy areglando ??')
     //  console.log(chats, 'chats????')
      console.log(chats, 'que mierda es chats')
      console.log(friend, 'que es friend aqui y porque da error')
      console.log(online, ' esta online?')
+     let me=myProfileData.data[0];
+     console.log(me, 'yo soy yo')
      let contactOnline=false;
      if (online.length !== 0){
         contactOnline = online.some((contact)=>contact.id===friend.id)
@@ -26,13 +28,13 @@ export default function Chat({online}) {
         <List sx={{ width: '100%', maxWidth: 600, zIndex: 0}}>
             <ListItem alignItems="center">
                 <ListItemAvatar>
-                    <Avatar alt={friend?.username} src={friend.profile?.includes('uploads')? `${process.env.REACT_APP_PUERTO}` + friend.profile : friend.profile } />
+                    <Avatar alt={friend?.username? friend.username : me.fullname } src={friend.profile? friend.profile.includes('uploads')? `${process.env.REACT_APP_PUERTO}` + friend.profile : friend.profile : me.profile.includes('uploads')? `${process.env.REACT_APP_PUERTO}` + me.profile : me.profile  } />
                 </ListItemAvatar>
                 <ListItemText
-                    primary={friend?.username}
+                    primary={friend?.username? friend.username : me.fullname}
                     secondary={
                         <>
-                            {contactOnline? "online" : "offline"}
+                            {friend.username? contactOnline? "online" : "offline" : "online"}
                         </>
                     }
                 />
