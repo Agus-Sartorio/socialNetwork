@@ -10,7 +10,8 @@ export default function PostsExperiences() {
   return (
     <div>
       {posts?.map((el) => (
-          <>
+          <div key={el.id}>
+          
           <Link to={`/${myId.id === el.autorData[0].id ? 'myprofile' : `profile/${el.autorData[0].id}`}`} >
          <img src={el.autorData[0].profile} alt='' width={'20px'} height={'20px'}/>
         {el.autorData[0].fullname}
@@ -18,7 +19,7 @@ export default function PostsExperiences() {
         <div>{el.description}</div>
         {el.tags[0]}
         
-        </>
+        </div>
         
       ))}
     </div>
