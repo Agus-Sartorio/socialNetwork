@@ -7,7 +7,7 @@ import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_USER, GET_NAME,
      GET_CLEAN_FRIENDS, CLEAN_HOME, GET_MY_PHOTO, 
      CLEAR_MY_PROFILE, GET_NOTIFICATIONS, CLEAR_NOTIFICATIONS,
      GET_POST_BY_ID, CLEAR_POST_BY_ID, CREATE_COMMENT,CONVERSATIONS,
-     PUSHCHAT, USERS_ALL, CHAT} from "../actions/actionTypes"
+     PUSHCHAT, USERS_ALL, CHAT, EXPERIENCES_POSTS} from "../actions/actionTypes"
     import { sortByAz } from "../actions"
 
 
@@ -36,7 +36,8 @@ const initialState = {
 		      id: ''
             },
 
-    postById:[]
+    postById:[],
+    experiencesPost:[]
 }
 
 
@@ -219,7 +220,12 @@ export function rootReducer(state = initialState, action) {
                     return{
                         ...state,
                         postById:action.payload
-                    }                 
+                    }   
+                case EXPERIENCES_POSTS:
+                    return{
+                        ...state,
+                        experiencesPost: action.payload
+                    }                  
         default:
             return state
     }
