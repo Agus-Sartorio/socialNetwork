@@ -15,7 +15,9 @@ import NotFound from "./Components/NotFound/NotFound.jsx";
 import { Publication } from "./Components/Publication/Publication.jsx";
 import { ProtectedRouteAdmin } from "./Components/ProtectedRoutes/ProtectedRouteAdmin.jsx";
 import { Authorize } from "./Components/Admin/Authorize.jsx";
-import { BlockAccount } from "./Components/Admin/BlockAccount.jsx";
+import Experiences from "./Components/Experiencias/ExperienceHome.jsx";
+import { BlockAccount } from "./Components/Admin/BlockAccount/BlockAccount.jsx";
+
 function App() {
   const socket = useRef()
   return (
@@ -35,7 +37,8 @@ function App() {
           <Route path='/myprofile' element={<ProtectedRoute><ViewProfile /></ProtectedRoute>} />
           <Route path='/post/:id' element={<ProtectedRoute><Publication/></ProtectedRoute>}/>
           <Route path='/admin/authorize' element={<ProtectedRouteAdmin><Authorize/></ProtectedRouteAdmin>}/>
-          <Route path='/admin/blockAccount' element={<ProtectedRouteAdmin><BlockAccount/></ProtectedRouteAdmin>}/>
+          <Route path='/admin/blockAccount' element={<BlockAccount/>}/>
+          <Route path='experiences' element={<Experiences/>}/>
           <Route path='*' element={<NotFound />} />
         </Routes>
       </SocketConext.Provider>

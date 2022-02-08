@@ -1,3 +1,4 @@
+import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
 import { format } from "timeago.js";
 import { StyledPost } from "./styles";
@@ -12,6 +13,7 @@ import { useState } from "react";
 import Likes from "../Likes/Likes";
 import CommentsContainer from "../Comentarios/CommentsContainer";
 import Loading from "../Icons/Loading";
+import ImgModal from "./ImgModal";
 
 export default function Post({ p }) {
   const preview = p.autorData[0]?.profile.includes("uploads");
@@ -21,12 +23,21 @@ export default function Post({ p }) {
   const [like, setLike] = useState(0);
   const [showLikes, setShowLikes] = useState(false);
   const [likedByMe, setLikedByMe] = useState(
-    p.likes.map((el) => el.id).includes(id.data.id)
+    p.likes.map((el) => el?.id).includes(id?.data?.id)
   );
   const [showComments, setShowComments] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [showModal, setShowModal] = useState(null);
 
   const handleComments = () => setShowComments(!showComments);
+
+  const handleOpenModal = (img) => {
+    setShowModal(img);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(null);
+  };
 
   const handleLikes = () => setShowLikes(true);
   const idpost = { idpost: p._id };
@@ -60,9 +71,9 @@ export default function Post({ p }) {
         <Link
           className="post__link"
           to={`/${
-            id.data.id === p.autorData[0].id
+            id.data?.id === p.autorData[0].id
               ? "myprofile"
-              : `profile/${p.autorData[0].id}`
+              : `profile/${p.autorData[0]?.id}`
           }`}
         >
           {p.autorData[0]?.profile ? (
@@ -84,9 +95,9 @@ export default function Post({ p }) {
             <p className="post__fullname">
               <Link
                 to={`/${
-                  id.data.id === p.autorData[0].id
+                  id.data?.id === p.autorData[0].id
                     ? "myprofile"
-                    : `profile/${p.autorData[0].id}`
+                    : `profile/${p.autorData[0]?.id}`
                 }`}
               >
                 {p.autorData[0]?.fullname}
@@ -95,11 +106,15 @@ export default function Post({ p }) {
             <p className="post__date">{format(p?.createdAt)}</p>
           </header>
           <p className="post__description">{p.description}</p>
-          {
-                p.image?.map(i => (
-                  <img width="201" src={process.env.REACT_APP_PUERTO+i} alt=''/>
-                ))
-              }
+          {p.image?.filter(Boolean).map((i, index) => (
+            <img
+              className="post__img"
+              key={i.id || index}
+              onClick={() => handleOpenModal(i)}
+              src={process.env.REACT_APP_PUERTO + i}
+              alt=""
+            />
+          ))}
           <footer className="post__footer">
             <div className="post__stats">
               <button onClick={handleLikes} className="post__likes stats">
@@ -132,6 +147,11 @@ export default function Post({ p }) {
         </div>
         {showLikes && <Likes setShowLikes={setShowLikes} p={p} />}
       </StyledPost>
+      {showModal &&
+        ReactDOM.createPortal(
+          <ImgModal img={showModal} handleCloseModal={handleCloseModal} />,
+          document.getElementById("modal")
+        )}
     </>
   );
 }

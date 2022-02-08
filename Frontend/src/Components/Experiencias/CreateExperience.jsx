@@ -1,22 +1,48 @@
-import React, { useState } from "react";
-import { StyledForm } from "./styles";
+import React, { useEffect, useState } from "react";
+import { StyledForm } from "../CrearPost/styles";
 import { useDispatch, useSelector } from "react-redux";
-import { CreatePost } from "../../actions";
+import {
+  AllPost,
+  CreatePost,
+  getCleanHome,
+  getExperiencesPosts,
+  getMyId,
+  getMyPhoto,
+} from "../../actions";
 import Upload from "../Icons/Upload";
 import { Link } from "react-router-dom";
 
-let id = 0;
-
-export default function CrearPost() {
+export default function CrearExperience() {
   const dispatch = useDispatch();
 
   const myPhoto = useSelector((state) => state.myPhoto);
+  useEffect(() => {
+    dispatch(getMyPhoto());
+    dispatch(getExperiencesPosts());
+    return () => {
+      dispatch(getMyId()); // !!no tocar please
+      dispatch(getCleanHome());
+    };
+  }, [dispatch]);
 
   const [input, setInput] = useState({
     description: "",
+    tags: [],
   });
   const [file, setFile] = useState([]);
   const [view, setView] = useState([]);
+
+  function handleSelect(e) {
+    if (input.tags.length <= 1) {
+      setInput({
+        ...input,
+        tags: [...input.tags, [e.target.value]],
+      });
+    } else {
+      return null;
+    }
+    console.log(input.tags.length, "length");
+  }
 
   function handleChange(e) {
     const isEmpty = /^\s/.test(e.target.value);
@@ -51,6 +77,7 @@ export default function CrearPost() {
     });
 
     data.append("description", input.description);
+    data.append("tags", input.tags);
     dispatch(CreatePost(data));
     alert("se creo el post");
     setInput({
@@ -61,19 +88,18 @@ export default function CrearPost() {
   const handleFile = async (e) => {
     setFile((file) => [...file, e.target.files[0]]);
     let img = await extraerBase64(e.target.files[0]);
-    setView((view) => [...view, { img, id: id++ }]);
+    setView((view) => [...view, img]);
+    console.log(view);
   };
-
-  const handleDelete = (id) => {
-    let newArr = view.filter((i) => i.id !== id);
-    setView(newArr);
+  const handleBorrar = (el) => {
+    setInput({
+      ...input,
+      tags: input.tags.filter((e) => e !== el),
+    });
   };
-
-  console.log(view);
-
   return (
     <StyledForm
-      className={input.description || view.length ? "expanded" : undefined}
+      className={input.description ? "expanded" : undefined}
       onSubmit={submitHandler}
     >
       <div className="img-post">
@@ -95,44 +121,44 @@ export default function CrearPost() {
         <textarea
           className="textarea"
           placeholder={
-            "¿Qué estas pensando " + myPhoto?.data?.fullname.split(" ")[0] + "?"
+            myPhoto?.data?.fullname.split(" ")[0] +
+            " cuentanos tu experiencia para asi ayudar a otros henrys "
           }
           name="description"
           value={input.description}
+          required
           onChange={handleChange}
         />
       </div>
-      <div className="file-btn">
-        <input
-          className="input-file"
-          type="file"
-          id="file"
-          accept=".png, .jpeg, .jpg"
-          onChange={handleFile}
-        />
-        <button className="btn">
-          <Upload />
-        </button>
-      </div>
-      <div className="expanded__div">
-        <div className="img-preview">
-          {view?.map(({ img, id }) => (
-            <div key={id} className="img-preview-div">
-              <img src={img} alt="" />
-              <button className="btn__delete" onClick={() => handleDelete(id)}>
-                X
-              </button>
-            </div>
+    
+      <label htmlFor="tags">Tags</label>
+      <select required onChange={(e) => handleSelect(e)}>
+        <option value="" selected disabled hidden>
+          selecciona solo un tag
+        </option>
+        <option>#M1</option>
+        <option>#M2</option>
+        <option>#M3</option>
+        <option>#M4</option>
+        <option>#ProyectoIndividual</option>
+        <option>#ProyectoGrupal</option>
+      </select>
+      <ul>
+        <li>
+          {input.tags?.map((el) => (
+            <button type="button" key={el} onClick={() => handleBorrar(el)}>
+              <li key={el.id}>{el}</li>
+            </button>
           ))}
-        </div>
-        <button
-          className="btn-submit"
-          disabled={input.description || view.length ? undefined : true}
-          type="submit"
-        >
-          Compartir
-        </button>
-      </div>
+        </li>
+      </ul>
+      <button
+        className="btn-submit"
+        disabled={input.description ? undefined : true}
+        type="submit"
+      >
+        Compartir
+      </button>
     </StyledForm>
   );
 }

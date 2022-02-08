@@ -31,6 +31,9 @@ import {
   GET_POST_BY_ID,
   CLEAR_POST_BY_ID,
   SOCKET,
+  EXPERIENCES_POSTS,
+  GET_ALL_USERS,
+  CLEAR_ALL_USERS,
  
 } from "./actionTypes";
 
@@ -424,3 +427,32 @@ export const user_ALL = () => {
   export const get_SOCKET = (socket) => {
     return { type: SOCKET, payload: socket };
   };
+ export const getExperiencesPosts = () => {
+   return async (dispatch) => {
+     try{
+       const expPost = await axios.get(`${process.env.REACT_APP_PUERTO}posts?experience=true`, tokenUsuario());
+       return dispatch({
+         type: EXPERIENCES_POSTS,
+         payload: expPost.data
+       })
+     }catch (error){
+       console.log(error);
+     }
+   }
+ }
+
+ export const getAllUsers = () => {
+	return async (dispatch) => {
+		try {
+			const allUsers =await axios(`${process.env.REACT_APP_PUERTO}usuarios/?myself=false`, tokenUsuario());
+      return dispatch({type:GET_ALL_USERS, payload: allUsers.data})
+		} catch (error) {
+			console.error(error)
+		}
+	};
+};
+
+
+export const clearAllUsers = () => {
+  return { type:CLEAR_ALL_USERS, payload:[]};
+}

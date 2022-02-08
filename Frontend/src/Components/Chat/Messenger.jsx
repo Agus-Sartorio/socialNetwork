@@ -83,7 +83,7 @@ export default function Messenger({visible,contactos}) {
         //     return 
         // }
 
-        gsock.current?.on("getUsers", users=> {
+        gsock.current.on("getUsers", users=> {
             let online= [];
             let Offline= [];
             let aux = users.filter((e)=> e.userId !== myId?.id )
