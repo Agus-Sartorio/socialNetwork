@@ -1,19 +1,19 @@
 import { Container, Grid } from '@mui/material';
 import { useEffect, useRef, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { get_CONVERSATIONS, PUSHchat, user_ALL,  getFollows } from '../../actions';
+import { get_CONVERSATIONS, PUSHchat, user_ALL,  getFollows, getMyProfileData } from '../../actions';
 import Conversation from './functionals/Conversation';
 import FriendList from './functionals/FriendsList';
 import MessagesList from './functionals/MessagesList';
 import { io } from 'socket.io-client'
 
-export default function Messenger({visible,contactos}) {
+export default function Messenger({visible,contactos,user}) {
     
      console.log(contactos, 'heee')
     // const sockete = useRef(sockety)
     const dispatch = useDispatch()
     const { conversations,  myId, Socket, follows } = useSelector(state => state)
-
+    console.log(Socket, 'Socket')
 
     const gsock = useRef();
     // let socket = useRef();
@@ -83,11 +83,11 @@ export default function Messenger({visible,contactos}) {
         //     return 
         // }
 
-        gsock.current.on("getUsers", users=> {
+        Socket.on("getUsers", users=> {
             let online= [];
             let Offline= [];
             let aux = users.filter((e)=> e.userId !== myId?.id )
-            // console.log(aux, 'auxiliar')
+            console.log(aux, 'auxiliar');
                
             if (aux.length ){
 
@@ -108,8 +108,13 @@ export default function Messenger({visible,contactos}) {
                             }
                         } 
     
+                 
                     } 
-            }
+                    console.log(online,'brge')
+                    console.log(Offline,'bgre 2')
+
+                }
+
 
             else{Offline=contactos}
                  console.log(Offline,'mmm')
@@ -135,14 +140,17 @@ export default function Messenger({visible,contactos}) {
 
     useEffect(() => {
         dispatch(getFollows());
-    }, [getFollows]);
+    }, [dispatch,getFollows]);
 
+    useEffect(() => {
+        dispatch(getMyProfileData());
+    }, [getMyProfileData]);
 
     return (
         <Grid container direction="row" justifyContent="center" alignItems="start">
             <Grid xs  item={true}>
                 <Container>
-                    <MessagesList conversations={conversations}/>
+                    <MessagesList conversations={conversations} user={user}/>
                 </Container>
             </Grid>
             <Grid xs={6}  item={true}>

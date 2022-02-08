@@ -12,7 +12,7 @@ import Avatar from '@mui/material/Avatar';
 import { Container, Divider } from '@mui/material';
 
 
-export default function Chat({online}) {
+export default function Chat({online,user}) {
     const dispatch = useDispatch()
     const { chat: { friend , chats }, myProfileData } = useSelector(state => state)
     //  console.log(friend, 'lo que estoy areglando ??')
@@ -23,11 +23,16 @@ export default function Chat({online}) {
     useEffect(()=>{
          
          dispatch(getMyProfileData())
-         me.current = myProfileData?.data[0];
-       
-        // socket.current.on("getUsers", users=>{console.log(users, 'usuarios conectados')})       
-    }, [])
-
+         console.log(myProfileData, 'que es aqui y porque da error')
+         if(myProfileData.length !== 0){
+            me.current = myProfileData?.data[0]; 
+            console.log('entro el hpta')}
+         
+         // socket.current.on("getUsers", users=>{console.log(users, 'usuarios conectados')})       
+        }, [dispatch])
+        
+        
+        
      let contactOnline=false;
      if (online.length !== 0){
         contactOnline = online.some((contact)=>contact.id===friend.id)

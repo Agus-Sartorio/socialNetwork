@@ -21,12 +21,17 @@ export default function Chat({socket}) {
   const user = useSelector((state) =>  state.myProfileData);
  
   // if(user.length !== 0)console.log(user, "yo como persona que me logeo")
+
   useEffect(() => {
    
     dispatch(getFollows())
+  }, [])
+
+
+  useEffect(() => {
     dispatch(getMyProfileData())
     dispatch(getMyId())
-  }, [])
+  }, [dispatch])
   
       const contactos = fallows.data;
     
