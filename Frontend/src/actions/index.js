@@ -439,7 +439,7 @@ export const user_ALL = () => {
  export const getAllUsers = () => {
 	return async (dispatch) => {
 		try {
-			const allUsers =await axios(`${process.env.REACT_APP_PUERTO}usuarios/?myself=false`, tokenUsuario());
+			const allUsers =await axios(`${process.env.REACT_APP_PUERTO}usuarios?locked=true`, tokenUsuario());
       return dispatch({type:GET_ALL_USERS, payload: allUsers.data})
 		} catch (error) {
 			console.error(error)
