@@ -1,13 +1,9 @@
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-<<<<<<< HEAD
-import { AllPost, getCleanHome, getMyId, get_SOCKET } from "../../actions";
 import { io } from 'socket.io-client'
-=======
-import { AllPost, getCleanHome, getFollows, getMyId } from "../../actions";
+import { AllPost, getCleanHome, getFollows, getMyId, get_SOCKET } from "../../actions";
 import Bienvenido from "./Bienvenido";
 
->>>>>>> 4b9e544b851bcf8959114c4b4f72c50ea3e31985
 import CrearPost from "../CrearPost/CrearPost";
 import Layout from "../Layout/Layout";
 import PostContainer from "../PostContainer/PostContainer";
@@ -16,11 +12,8 @@ export default function Home({visible}) {
     
     const contr = useRef(0)
     const posts = useSelector((state => state.allPost))
-<<<<<<< HEAD
     const {myId} = useSelector(state => state)
-=======
     const follows = useSelector((state) => state.follows)
->>>>>>> 4b9e544b851bcf8959114c4b4f72c50ea3e31985
     const dispatch = useDispatch()
     const socket= useRef()
     console.log(socket, 'funciona el contexto?')
