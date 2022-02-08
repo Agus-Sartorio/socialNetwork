@@ -10,6 +10,9 @@ import PostContainer from "../PostContainer/PostContainer";
 export default function Home() {
 
     const posts = useSelector((state => state.allPost))
+
+    const follows = useSelector((state) => state.follows)
+    const fastProfile = useSelector((state)=>state.myPhoto)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -25,16 +28,12 @@ export default function Home() {
 
 
     return (
+        fastProfile?.data?.state===true?
         <Layout>
             <CrearPost />
-         
-                
-              
-                 <PostContainer posts={posts} /> 
-              
-                 
-          
-            
-        </Layout>
+                {
+                    follows?.length || posts?.length ? (<PostContainer posts={posts} /> ) :<Bienvenido/>
+                }
+        </Layout>:<Layout><div>tu perfil se encuentra bloqueado temporalmente</div></Layout>
     )
 }
