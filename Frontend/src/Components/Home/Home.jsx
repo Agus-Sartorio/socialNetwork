@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AllPost, getCleanHome, getFollows, getMyId } from "../../actions";
-import Bienvenido from "./Bienvenido";
+
 
 import CrearPost from "../CrearPost/CrearPost";
 import Layout from "../Layout/Layout";
@@ -10,7 +10,6 @@ import PostContainer from "../PostContainer/PostContainer";
 export default function Home() {
 
     const posts = useSelector((state => state.allPost))
-    const follows = useSelector((state) => state.follows)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -30,9 +29,9 @@ export default function Home() {
             <CrearPost />
          
                 
-                {
-                    follows?.length || posts?.length ? (<PostContainer posts={posts} /> ) :<Bienvenido/>
-                }
+              
+                 <PostContainer posts={posts} /> 
+              
                  
           
             

@@ -33,6 +33,7 @@ import {
   EXPERIENCES_POSTS,
   GET_ALL_USERS,
   CLEAR_ALL_USERS,
+  FILTER_BY_TAGS,
  
 } from "./actionTypes";
 
@@ -450,4 +451,11 @@ export const user_ALL = () => {
 
 export const clearAllUsers = () => {
   return { type:CLEAR_ALL_USERS, payload:[]};
+}
+
+export const filterByTags = (payload) => {
+return{
+  type: FILTER_BY_TAGS,
+  payload
+}
 }

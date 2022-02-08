@@ -2,14 +2,13 @@ import React, { useEffect, useState } from "react";
 import { StyledForm } from "../CrearPost/styles";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  AllPost,
   CreatePost,
   getCleanHome,
   getExperiencesPosts,
   getMyId,
   getMyPhoto,
 } from "../../actions";
-import Upload from "../Icons/Upload";
+
 import { Link } from "react-router-dom";
 
 export default function CrearExperience() {
@@ -29,8 +28,7 @@ export default function CrearExperience() {
     description: "",
     tags: [],
   });
-  const [file, setFile] = useState([]);
-  const [view, setView] = useState([]);
+
 
   function handleSelect(e) {
     if (input.tags.length <= 1) {
@@ -51,30 +49,10 @@ export default function CrearExperience() {
       [e.target.name]: isEmpty ? "" : e.target.value,
     });
   }
-  const extraerBase64 = async ($event) =>
-    new Promise((resolve) => {
-      try {
-        const reader = new FileReader();
-        reader.readAsDataURL($event);
-        reader.onload = () => {
-          resolve(reader.result);
-        };
-        reader.onerror = (error) => {
-          resolve({
-            base: null,
-          });
-        };
-      } catch (e) {
-        return null;
-      }
-    });
+  
   function submitHandler(e) {
     e.preventDefault();
-    let data = new FormData();
-
-    file.forEach((f) => {
-      data.append("image", f);
-    });
+    let data = new FormData()
 
     data.append("description", input.description);
     data.append("tags", input.tags);
@@ -85,12 +63,6 @@ export default function CrearExperience() {
     });
     window.location.reload();
   }
-  const handleFile = async (e) => {
-    setFile((file) => [...file, e.target.files[0]]);
-    let img = await extraerBase64(e.target.files[0]);
-    setView((view) => [...view, img]);
-    console.log(view);
-  };
   const handleBorrar = (el) => {
     setInput({
       ...input,
@@ -136,12 +108,12 @@ export default function CrearExperience() {
         <option value="" selected disabled hidden>
           selecciona solo un tag
         </option>
-        <option>#M1</option>
-        <option>#M2</option>
-        <option>#M3</option>
-        <option>#M4</option>
-        <option>#ProyectoIndividual</option>
-        <option>#ProyectoGrupal</option>
+        <option value='#M1'>#M1</option>
+        <option  value='#M2'>#M2</option>
+        <option  value='#M3'>#M3</option>
+        <option value='#M4'>#M4</option>
+        <option value='#ProyectoIndividual'>#ProyectoIndividual</option>
+        <option  value='#ProyectoGrupal'>#ProyectoGrupal</option>
       </select>
       <ul>
         <li>

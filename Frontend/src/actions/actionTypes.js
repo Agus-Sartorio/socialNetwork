@@ -45,5 +45,6 @@ export const CREATE_COMMENT = 'CREATE_COMMENT';
 export const EXPERIENCES_POSTS = 'EXPERIENCES_POSTS';
 export const GET_ALL_USERS = 'GET_ALL_USERS';
 export const CLEAR_ALL_USERS = 'CLEAR_ALL_USERS';
+export const FILTER_BY_TAGS = 'FILTER_BY_TAGS';
 
 
