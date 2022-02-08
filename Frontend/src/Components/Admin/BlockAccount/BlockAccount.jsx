@@ -18,7 +18,7 @@ export const BlockAccount = () => {
     }, [dispatch]);
     return(
         <Layout>
-            {allUsers.data?.length? allUsers.data.map(e => <CardAllUsers users={e}/>):<LoaderFull/>}
+            {allUsers.data?.length? allUsers.data.map(e => <CardAllUsers key={e.id} users={e}/>):<LoaderFull/>}
             
         </Layout>
     )

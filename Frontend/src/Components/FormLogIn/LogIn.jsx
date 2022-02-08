@@ -8,12 +8,14 @@ import axios from "axios";
 import { bake_cookie } from 'sfcookies'
 import { StyledLogIn } from "./styles";
 import logoHenry from '../../images/LOGO-HENRY.png'
+import { useDispatch } from "react-redux";
+import { getMyPhoto } from "../../actions";
 
 
 
 export default function Form() {
   const Navigate = useNavigate();
-
+  const dispatch = useDispatch()
   function githubSignIn() {
     const githubAuthProvider = new GithubAuthProvider();
     return signInWithPopup(authentication, githubAuthProvider);
@@ -32,6 +34,7 @@ export default function Form() {
     try {
       await githubSignIn();
       await registro();
+      dispatch(getMyPhoto())
       Navigate("/home");
 
     } catch (error) {
