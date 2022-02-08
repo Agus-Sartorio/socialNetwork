@@ -27,7 +27,6 @@ export default function Likes({ setShowLikes, p }) {
   };
 
   const myId = useSelector((state) => state.myId);
-  
 
   return (
     <StyledOverflow ref={overlay} onClick={handleOverlayClick}>
