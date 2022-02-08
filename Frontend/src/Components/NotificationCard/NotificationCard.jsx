@@ -24,7 +24,7 @@ export default function NotificationCard({id,content,name,icon,_id,idpost}) {
             </div>
             <div className='texto'>
                 <p>
-                    <Link to={`/${content==='te empezo a seguir'?`profile/${id}`:`post/${idpost}`}`} className='div-click'>
+                    <Link to={`/${content==='te empezó a seguir'?`profile/${id}`:`post/${idpost}`}`} className='div-click'>
                         <span className='link'></span>
                         <span className='user-name'>{name+' '}</span>{content} 
                     </Link>
