@@ -5,6 +5,8 @@ import { CreatePost } from "../../actions";
 import Upload from "../Icons/Upload";
 import { Link } from "react-router-dom";
 
+let id = 0;
+
 export default function CrearPost() {
   const dispatch = useDispatch();
 
@@ -14,7 +16,7 @@ export default function CrearPost() {
     description: "",
   });
   const [file, setFile] = useState([]);
-  const [view, setView] = useState([])
+  const [view, setView] = useState([]);
 
   function handleChange(e) {
     const isEmpty = /^\s/.test(e.target.value);
@@ -23,33 +25,32 @@ export default function CrearPost() {
       [e.target.name]: isEmpty ? "" : e.target.value,
     });
   }
-  const extraerBase64 = async ($event) => new Promise((resolve) => {
-    try {
-      const reader = new FileReader();
-      reader.readAsDataURL($event);
-      reader.onload = () => {
-        resolve(reader.result);
-      };
-      reader.onerror = error => {
-        resolve({
-          base: null
-        });
-      };
-
-    } catch (e) {
-      return null;
-    }
-  })
+  const extraerBase64 = async ($event) =>
+    new Promise((resolve) => {
+      try {
+        const reader = new FileReader();
+        reader.readAsDataURL($event);
+        reader.onload = () => {
+          resolve(reader.result);
+        };
+        reader.onerror = (error) => {
+          resolve({
+            base: null,
+          });
+        };
+      } catch (e) {
+        return null;
+      }
+    });
   function submitHandler(e) {
     e.preventDefault();
     let data = new FormData();
-    
-    file.forEach(f=>{
-      data.append('image', f)
-    })
-    
-    
-    data.append('description', input.description)
+
+    file.forEach((f) => {
+      data.append("image", f);
+    });
+
+    data.append("description", input.description);
     dispatch(CreatePost(data));
     alert("se creo el post");
     setInput({
@@ -57,16 +58,22 @@ export default function CrearPost() {
     });
     window.location.reload();
   }
-  const handleFile = async (e)=>{
-    setFile(file=>[...file, e.target.files[0]])
-    let img = await extraerBase64(e.target.files[0])
-    setView(view => [...view, img])
-    console.log(view)
-    
-  }
+  const handleFile = async (e) => {
+    setFile((file) => [...file, e.target.files[0]]);
+    let img = await extraerBase64(e.target.files[0]);
+    setView((view) => [...view, { img, id: id++ }]);
+  };
+
+  const handleDelete = (id) => {
+    let newArr = view.filter((i) => i.id !== id);
+    setView(newArr);
+  };
+
+  console.log(view);
+
   return (
     <StyledForm
-      className={input.description ? "expanded" : undefined}
+      className={input.description || view.length ? "expanded" : undefined}
       onSubmit={submitHandler}
     >
       <div className="img-post">
@@ -93,13 +100,8 @@ export default function CrearPost() {
           name="description"
           value={input.description}
           onChange={handleChange}
-          />
+        />
       </div>
-          {
-            view?.map(v =>(
-              <img src={v} alt='' width={'50px'} height={'50px'}/>
-            ))
-          }
       <div className="file-btn">
         <input
           className="input-file"
@@ -112,13 +114,25 @@ export default function CrearPost() {
           <Upload />
         </button>
       </div>
-      <button
-        className="btn-submit"
-        disabled={input.description ? undefined : true}
-        type="submit"
-      >
-        Compartir
-      </button>
+      <div className="expanded__div">
+        <div className="img-preview">
+          {view?.map(({ img, id }) => (
+            <div key={id} className="img-preview-div">
+              <img src={img} alt="" />
+              <button className="btn__delete" onClick={() => handleDelete(id)}>
+                X
+              </button>
+            </div>
+          ))}
+        </div>
+        <button
+          className="btn-submit"
+          disabled={input.description || view.length ? undefined : true}
+          type="submit"
+        >
+          Compartir
+        </button>
+      </div>
     </StyledForm>
   );
 }

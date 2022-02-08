@@ -29,7 +29,7 @@ export const StyledForm = styled.form`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 
     .user-img {
       margin-right: 15px;
@@ -110,6 +110,61 @@ export const StyledForm = styled.form`
 
     &:hover {
       transform: scale(1.03);
+    }
+  }
+
+  .img-preview {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: auto;
+    width: 100%;
+
+    .img-preview-div {
+      position: relative;
+      width: 70px;
+      height: 40px;
+      margin-bottom: 5px;
+
+      &:not(:last-child) {
+        margin-right: 15px;
+      }
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+  }
+
+  .expanded__div {
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .btn__delete {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--red-1);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: filter 300ms;
+
+    &:hover {
+      filter: brightness(1.4);
+    }
+  }
+
+  @media (max-width: 595px) {
+    &.expanded {
+      height: 190px !important;
     }
   }
 `;
