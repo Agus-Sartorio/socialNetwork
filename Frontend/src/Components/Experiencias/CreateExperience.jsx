@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { StyledForm } from "../CrearPost/styles";
+import { StyledForm } from "./styles";
 import { useDispatch, useSelector } from "react-redux";
 import {
   CreatePost,
@@ -8,8 +8,8 @@ import {
   getMyId,
   getMyPhoto,
 } from "../../actions";
-
 import { Link } from "react-router-dom";
+import Delete from "../Icons/Delete";
 
 export default function CrearExperience() {
   const dispatch = useDispatch();
@@ -29,12 +29,11 @@ export default function CrearExperience() {
     tags: [],
   });
 
-
   function handleSelect(e) {
     if (input.tags.length <= 1) {
       setInput({
         ...input,
-        tags: [...input.tags, [e.target.value]],
+        tags: [e.target.value],
       });
     } else {
       return null;
@@ -49,10 +48,10 @@ export default function CrearExperience() {
       [e.target.name]: isEmpty ? "" : e.target.value,
     });
   }
-  
+
   function submitHandler(e) {
     e.preventDefault();
-    let data = new FormData()
+    let data = new FormData();
 
     data.append("description", input.description);
     data.append("tags", input.tags);
@@ -102,35 +101,52 @@ export default function CrearExperience() {
           onChange={handleChange}
         />
       </div>
-    
-      <label htmlFor="tags">Tags</label>
-      <select required onChange={(e) => handleSelect(e)}>
-        <option value="" selected disabled hidden>
-          selecciona solo un tag
-        </option>
-        <option value='#M1'>#M1</option>
-        <option  value='#M2'>#M2</option>
-        <option  value='#M3'>#M3</option>
-        <option value='#M4'>#M4</option>
-        <option value='#ProyectoIndividual'>#ProyectoIndividual</option>
-        <option  value='#ProyectoGrupal'>#ProyectoGrupal</option>
-      </select>
-      <ul>
-        <li>
-          {input.tags?.map((el) => (
-            <button type="button" key={el} onClick={() => handleBorrar(el)}>
-              <li key={el.id}>{el}</li>
-            </button>
-          ))}
-        </li>
-      </ul>
-      <button
-        className="btn-submit"
-        disabled={input.description ? undefined : true}
-        type="submit"
-      >
-        Compartir
-      </button>
+      <div className="tags__container">
+        <label htmlFor="tags" className="tags__label">
+          Etiqueta
+        </label>
+        <select
+          disabled={input.description ? undefined : true}
+          id="tags"
+          required
+          onChange={(e) => handleSelect(e)}
+          className="tags__select"
+        >
+          <option value="" selected disabled hidden>
+            Selecciona solo una etiqueta
+          </option>
+          <option value="#M1">#M1</option>
+          <option value="#M2">#M2</option>
+          <option value="#M3">#M3</option>
+          <option value="#M4">#M4</option>
+          <option value="#ProyectoIndividual">#ProyectoIndividual</option>
+          <option value="#ProyectoGrupal">#ProyectoGrupal</option>
+        </select>
+        <ul>
+          <li>
+            {input.tags?.map((el) => (
+              <button
+                className="tags__btn"
+                type="button"
+                key={el}
+                onClick={() => handleBorrar(el)}
+              >
+                <li>
+                  {el}
+                  <Delete />
+                </li>
+              </button>
+            ))}
+          </li>
+        </ul>
+        <button
+          className="btn-submit"
+          disabled={input.description && input.tags.length ? undefined : true}
+          type="submit"
+        >
+          Compartir
+        </button>
+      </div>
     </StyledForm>
   );
 }
