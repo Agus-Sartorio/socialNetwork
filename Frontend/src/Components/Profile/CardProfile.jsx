@@ -21,7 +21,7 @@ const CardProfile = ({ profile, followUser, myId }) => {
   const [showFollowers, setShowFollowers] = useState(false);
   const [showFollowing, setShowFollowings] = useState(false);
 
-  const isFollowing = followUser.followers?.map((e) => e.id).includes(myId.id);
+  const isFollowing = followUser?.followers?.map((e) => e.id).includes(myId?.id);
   const dispatch = useDispatch();
   const idToFollow = { followMe: profile.id };
 

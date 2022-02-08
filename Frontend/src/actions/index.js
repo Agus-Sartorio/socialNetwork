@@ -30,6 +30,7 @@ import {
   CHAT,
   GET_POST_BY_ID,
   CLEAR_POST_BY_ID,
+  EXPERIENCES_POSTS,
  
 } from "./actionTypes";
 
@@ -418,3 +419,17 @@ export const user_ALL = () => {
   export const clearPostById = () => {
     return { type:CLEAR_POST_BY_ID, payload:[]};
   };
+
+ export const getExperiencesPosts = () => {
+   return async (dispatch) => {
+     try{
+       const expPost = await axios.get(`${process.env.REACT_APP_PUERTO}posts?experience=true`, tokenUsuario());
+       return dispatch({
+         type: EXPERIENCES_POSTS,
+         payload: expPost.data
+       })
+     }catch (error){
+       console.log(error);
+     }
+   }
+ }

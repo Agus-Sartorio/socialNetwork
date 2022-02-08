@@ -14,6 +14,8 @@ import { Publication } from "./Components/Publication/Publication.jsx";
 import { ProtectedRouteAdmin } from "./Components/ProtectedRoutes/ProtectedRouteAdmin.jsx";
 import { Authorize } from "./Components/Admin/Authorize.jsx";
 import { BlockAccount } from "./Components/Admin/BlockAccount.jsx";
+import Experiences from "./Components/Experiencias/ExperienceHome.jsx";
+
 function App() {
 
   return (
@@ -33,6 +35,7 @@ function App() {
           <Route path='/post/:id' element={<ProtectedRoute><Publication/></ProtectedRoute>}/>
           <Route path='/admin/authorize' element={<ProtectedRouteAdmin><Authorize/></ProtectedRouteAdmin>}/>
           <Route path='/admin/blockAccount' element={<ProtectedRouteAdmin><BlockAccount/></ProtectedRouteAdmin>}/>
+          <Route path='experiences' element={<Experiences/>}/>
           <Route path='*' element={<NotFound />} />
         </Routes>
       </UserAuthContextProvider>

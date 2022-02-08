@@ -71,7 +71,7 @@ export default function Post({ p }) {
         <Link
           className="post__link"
           to={`/${
-            id.data?.id === p.autorData[0]?.id
+            id.data?.id === p.autorData[0].id
               ? "myprofile"
               : `profile/${p.autorData[0]?.id}`
           }`}
@@ -95,7 +95,7 @@ export default function Post({ p }) {
             <p className="post__fullname">
               <Link
                 to={`/${
-                  id.data?.id === p.autorData[0]?.id
+                  id.data?.id === p.autorData[0].id
                     ? "myprofile"
                     : `profile/${p.autorData[0]?.id}`
                 }`}

@@ -57,7 +57,7 @@ export default function NavBar() {
             </motion.div>
           )}
         </div>
-        <Link to="#" className="link">
+        <Link to="/experiences" className="link">
           {!open && <span className="nav-hover">Experiencias</span>}
           <Experience />
         </Link>
