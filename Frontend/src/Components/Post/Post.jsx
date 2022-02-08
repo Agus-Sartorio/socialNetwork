@@ -145,7 +145,9 @@ export default function Post({ p }) {
           </footer>
           {showComments && <CommentsContainer post={p} />}
         </div>
-        {showLikes && <Likes setShowLikes={setShowLikes} p={p} />}
+        {showLikes && p.likes.length > 0 && (
+          <Likes setShowLikes={setShowLikes} p={p} />
+        )}
       </StyledPost>
       {showModal &&
         ReactDOM.createPortal(
