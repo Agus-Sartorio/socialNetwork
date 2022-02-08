@@ -164,7 +164,37 @@ export const StyledForm = styled.form`
 
   @media (max-width: 595px) {
     &.expanded {
-      height: 190px !important;
+      height: 190px;
+    }
+
+    .expanded__div {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .img-preview {
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-submit {
+      margin-left: 0;
+      margin-top: 10px;
+    }
+  }
+
+  @media (max-width: 490px) {
+    &.expanded {
+      height: 240px;
+    }
+
+    .img-preview-div {
+      margin: 5px;
+
+      &:not(:last-child) {
+        margin-right: 5px !important;
+      }
     }
   }
 `;
