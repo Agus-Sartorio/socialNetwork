@@ -15,8 +15,13 @@ export default function Home({visible}) {
     const posts = useSelector((state => state.allPost))
     const {myId} = useSelector(state => state)
     const follows = useSelector((state) => state.follows)
+<<<<<<< HEAD
     const dispatch = useDispatch();
     console.log(socket, 'funciona el contexto?')
+=======
+    const fastProfile = useSelector((state)=>state.myPhoto)
+    const dispatch = useDispatch()
+>>>>>>> f732a36948b48f6119ab20e290949aa264636faf
 
     useEffect(() => {
         dispatch(getMyId()) // !!no tocar please
@@ -39,16 +44,12 @@ export default function Home({visible}) {
     }, [visible, myId ])
 
     return (
+        fastProfile?.data?.state===true?
         <Layout>
             <CrearPost />
-         
-                
                 {
                     follows?.length || posts?.length ? (<PostContainer posts={posts} /> ) :<Bienvenido/>
                 }
-                 
-          
-            
-        </Layout>
+        </Layout>:<Layout><div>tu perfil se encuentra bloqueado temporalmente</div></Layout>
     )
 }
