@@ -42,5 +42,5 @@ export const USERS_ALL = 'USERS_ALL';
 export const GET_POST_BY_ID= 'GET_POST_BY_ID';
 export const CLEAR_POST_BY_ID='CLEAR_POST_BY_ID';
 export const CREATE_COMMENT = 'CREATE_COMMENT';
-
+export const SOCKET= 'SOCKET';
 

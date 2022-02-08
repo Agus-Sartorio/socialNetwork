@@ -11,8 +11,6 @@ const MessageItem = ({ name, message, profile, date, id, friend}) => {
 
   // const [time, settime] = useState(format(date, 'en_US'));
   const dispatch = useDispatch()
-  console.log(friend, 'parametros')
-  console.log(id, 'id conversation')
   const handleChat = (id)=>{
     dispatch(get_CHAT(id, friend))
   }

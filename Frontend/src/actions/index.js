@@ -30,6 +30,7 @@ import {
   CHAT,
   GET_POST_BY_ID,
   CLEAR_POST_BY_ID,
+  SOCKET,
  
 } from "./actionTypes";
 
@@ -417,4 +418,9 @@ export const user_ALL = () => {
 
   export const clearPostById = () => {
     return { type:CLEAR_POST_BY_ID, payload:[]};
+  };
+
+
+  export const get_SOCKET = (socket) => {
+    return { type: SOCKET, payload: socket };
   };

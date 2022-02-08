@@ -1,4 +1,6 @@
 import { Route, Routes } from "react-router-dom";
+import {useRef} from 'react';
+import SocketConext from "./Components/Context/SocketContext.jsx";
 import GlobalStyle from "./IndexStyled.jsx";
 import LogIn from './Components/FormLogIn/LogIn';
 import Home from './Components/Home/Home';
@@ -15,18 +17,19 @@ import { ProtectedRouteAdmin } from "./Components/ProtectedRoutes/ProtectedRoute
 import { Authorize } from "./Components/Admin/Authorize.jsx";
 import { BlockAccount } from "./Components/Admin/BlockAccount.jsx";
 function App() {
-
+  const socket = useRef()
   return (
     <div className='app'>
       {/* <GlobalStyle/> */}
 
       <GlobalStyle />
       <UserAuthContextProvider>
+      <SocketConext.Provider value={socket}>
         <Routes>
           <Route path="/" element={<LogIn />} />
           <Route path="/edit" element={<ProtectedRoute><Edit /></ProtectedRoute>} />
-          <Route path="/chat" element={<ProtectedRoute><Chat/></ProtectedRoute>} />
-          <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+          <Route path="/chat" element={<ProtectedRoute><Chat /></ProtectedRoute>} />
+          <Route path="/home" element={<ProtectedRoute><Home  /></ProtectedRoute>} />
           <Route path="/suggestions" element={<ProtectedRoute><Suggestions /></ProtectedRoute>} />
           <Route path='/profile/:id' element={<ProtectedRoute><Profile /></ProtectedRoute>} />
           <Route path='/myprofile' element={<ProtectedRoute><ViewProfile /></ProtectedRoute>} />
@@ -35,6 +38,7 @@ function App() {
           <Route path='/admin/blockAccount' element={<ProtectedRouteAdmin><BlockAccount/></ProtectedRouteAdmin>}/>
           <Route path='*' element={<NotFound />} />
         </Routes>
+      </SocketConext.Provider>
       </UserAuthContextProvider>
     </div>
   )

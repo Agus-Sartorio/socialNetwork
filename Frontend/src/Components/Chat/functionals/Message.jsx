@@ -5,17 +5,23 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import { format } from 'timeago.js'
 import { useSelector } from 'react-redux';
+import {useEffect} from 'react';
 
 
 const Message = ({ name, message, profile, date, type }) => {
     const { myProfileData } = useSelector(state => state)
-    console.log(profile, 'esto es lo que llega')
-    console.log(myProfileData.data[0].profile, 'mi perfil los datos')
-    if (profile === null || profile === undefined){
-       
-        profile=myProfileData.data[0].profile
-       
-    }
+    // console.log(myProfileData?.data[0].profile, 'mi perfil los datos')
+    // const me = useRef(null);
+    useEffect(()=>{
+
+        if (profile === null || profile === undefined){
+           
+           // profile=myProfileData?.data[0].profile
+           
+        }
+        //  me.current = myProfileData?.data[0];
+        // socket.current.on("getUsers", users=>{console.log(users, 'usuarios conectados')})       
+    }, [myProfileData])
     switch (type) {
         case "own":
             return (
@@ -24,7 +30,7 @@ const Message = ({ name, message, profile, date, type }) => {
                 >
                     <ListItemAvatar sx={{ marginRight: 0, marginLeft: 2 }}>
                         <Avatar alt={name} 
-                        src={profile.includes('uploads')?`${process.env.REACT_APP_PUERTO}`+ profile : profile} />
+                        src={profile?.includes('uploads')?`${process.env.REACT_APP_PUERTO}`+ profile : profile} />
                     </ListItemAvatar>
                     <ListItemText
                         primary={message}
@@ -57,7 +63,7 @@ const Message = ({ name, message, profile, date, type }) => {
             return (
                 <ListItem alignItems="flex-start" sx={{ bgcolor: "#00666622", borderRadius: 2, marginBottom: 1 }}>
                     <ListItemAvatar>
-                        <Avatar alt={name} src={profile.includes('uploads')?`${process.env.REACT_APP_PUERTO}`+ profile : profile} />
+                        <Avatar alt={name} src={profile?.includes('uploads')?`${process.env.REACT_APP_PUERTO}`+ profile : profile} />
                     </ListItemAvatar>
                     <ListItemText
                         primary={message}

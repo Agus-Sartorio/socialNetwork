@@ -6,7 +6,7 @@ import FriendItem from './FriendItem';
 export default function FriendList({online,offline}) {
  
   
-  console.log(offline, 'pruebas definitivas')
+ 
   return (
     <List sx={{ width: '100%', maxWidth: 360,  zIndex:0 }}>
       {online?.map((e, i) => ( 
