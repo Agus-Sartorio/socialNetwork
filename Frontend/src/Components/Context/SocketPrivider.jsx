@@ -1,17 +1,26 @@
 import React from 'react';
-import { io } from 'socket.io-client'
+import { useReducer } from 'react';
+import { reducer } from './reducer';
 import {SocketContext} from './SocketContext'
 
-const initial_State = {
 
-    socket: io(`${process.env.REACT_APP_PUERTO}`),
+const State = {
+
+    socket:{},
+
 }
 
 function SocketPrivider({children}) {
   
+    const [state, dispatch] = useReducer(reducer, State)
+      
+    const conexion = ()=>{
+        dispatch({type:'CONECT'});
+    }
+  
     return (
 
-        <SocketContext.Provider value={initial_State.socket}></SocketContext.Provider>
+        <SocketContext.Provider value={state}> {children} </SocketContext.Provider>
     ) 
 
 }

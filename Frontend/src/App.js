@@ -17,17 +17,19 @@ import { ProtectedRouteAdmin } from "./Components/ProtectedRoutes/ProtectedRoute
 import { Authorize } from "./Components/Admin/Authorize.jsx";
 import Experiences from "./Components/Experiencias/ExperienceHome.jsx";
 import { BlockAccount } from "./Components/Admin/BlockAccount/BlockAccount.jsx";
+import  SocketPrivider from './Components/Context/SocketPrivider'
 
 function App() {
-  const socket = useRef()
+
   return (
     <div className='app'>
       {/* <GlobalStyle/> */}
 
       <GlobalStyle />
       <UserAuthContextProvider>
-      <SocketConext.Provider value={socket}>
-        <Routes>
+
+      <SocketPrivider>
+        <Routes> 
           <Route path="/" element={<LogIn />} />
           <Route path="/edit" element={<ProtectedRoute><Edit /></ProtectedRoute>} />
           <Route path="/chat" element={<ProtectedRoute><Chat /></ProtectedRoute>} />
@@ -41,7 +43,7 @@ function App() {
           <Route path='experiences' element={<Experiences/>}/>
           <Route path='*' element={<NotFound />} />
         </Routes>
-      </SocketConext.Provider>
+      </SocketPrivider>
       </UserAuthContextProvider>
     </div>
   )

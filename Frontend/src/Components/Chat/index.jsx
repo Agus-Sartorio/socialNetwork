@@ -41,7 +41,7 @@ export default function Chat() {
      
         <ContainerIndex>
           <SideBar/>  
-          {contactos? <Messenger user={user} contactos={contactos} socket={socket}/> : <Loaderfull></Loaderfull>}    
+          {contactos? <Messenger user={user} contactos={contactos} /> : <Loaderfull></Loaderfull>}    
          
         </ContainerIndex>
 

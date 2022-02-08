@@ -1,2 +1,2 @@
 import React from "react";
-export const SocketConext = React.createContext({})
+export const SocketContext = React.createContext({})
