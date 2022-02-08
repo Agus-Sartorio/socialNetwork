@@ -31,7 +31,7 @@ export default function Home() {
          
                 
                 {
-                    follows.length || posts.length ? (<PostContainer posts={posts} /> ) :<Bienvenido/>
+                    follows?.length || posts?.length ? (<PostContainer posts={posts} /> ) :<Bienvenido/>
                 }
                  
           

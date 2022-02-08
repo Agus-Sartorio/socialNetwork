@@ -31,6 +31,8 @@ import {
   GET_POST_BY_ID,
   CLEAR_POST_BY_ID,
   EXPERIENCES_POSTS,
+  GET_ALL_USERS,
+  CLEAR_ALL_USERS,
  
 } from "./actionTypes";
 
@@ -433,3 +435,19 @@ export const user_ALL = () => {
      }
    }
  }
+
+ export const getAllUsers = () => {
+	return async (dispatch) => {
+		try {
+			const allUsers =await axios(`${process.env.REACT_APP_PUERTO}usuarios/?myself=false`, tokenUsuario());
+      return dispatch({type:GET_ALL_USERS, payload: allUsers.data})
+		} catch (error) {
+			console.error(error)
+		}
+	};
+};
+
+
+export const clearAllUsers = () => {
+  return { type:CLEAR_ALL_USERS, payload:[]};
+}
