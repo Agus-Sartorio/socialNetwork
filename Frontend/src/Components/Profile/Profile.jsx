@@ -19,7 +19,7 @@ const Profile = () => {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.profile);
   const followUser = useSelector((state) => state.followUser);
-  const myFriendPost = useSelector((state) => state.myFriendsPost.data);
+  const myFriendPost = useSelector((state) => state.myFriendsPost);
   const myId = useSelector((state) => state.myId);
 
   useEffect(() => {
@@ -40,7 +40,8 @@ const Profile = () => {
       ) : (
         <LoaderFull></LoaderFull>
       )}
-      <PostContainer posts={myFriendPost} />
+      {myFriendPost?.length?<PostContainer posts={myFriendPost} />:<LoaderFull/>}
+      
     </Layout>
   );
 };

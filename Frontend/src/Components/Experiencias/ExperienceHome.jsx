@@ -3,21 +3,16 @@ import CrearExperience from "./CreateExperience";
 import Layout from "../Layout/Layout";
 import PostsExperiences from "./PostsExperiences";
 
-
-
-export default function Experiences () {
-    return (
-      <Layout>        <div>
-           Aca vas a encontrar las experiencias de otros Henry's no estas solo, contactalos!
-        </div>
-
-       <CrearExperience/>
-       <PostsExperiences/>
-       </Layout>
-
-       
-      
-
-
-    )
+export default function Experiences() {
+  return (
+    <Layout>
+      <h1 className="layout__title">Experiencias</h1>
+      <p className="layout__description">
+        Acá vas a encontrar las experiencias de otros Henrys. ¡No estás solo,
+        contactalos!
+      </p>
+      <CrearExperience />
+      <PostsExperiences />
+    </Layout>
+  );
 }
