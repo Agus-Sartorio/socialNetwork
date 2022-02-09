@@ -17,7 +17,6 @@ import {
   CLEAR_FOLLOW_USER_STATE,
   GET_MY_ID,
   CLEAR_MY_FOLLOW_STATE,
-  SORT_BY_AZ,
   GET_CLEAN_FRIENDS,
   CLEAN_HOME,
   GET_MY_PHOTO,
@@ -35,6 +34,7 @@ import {
   CLEAR_ALL_USERS,
   FILTER_BY_TAGS,
   CLEAR_MY_POSTS,
+  AUTHORIZED,
  
 } from "./actionTypes";
 
@@ -277,10 +277,6 @@ export const clearMyFollowsState = () => {
   return { type: CLEAR_MY_FOLLOW_STATE, payload: [] };
 };
 
-export const sortByAz = () => {
-  return { type: SORT_BY_AZ };
-};
-
 export const getMyId = () => {
   return async (dispatch) => {
     try {
@@ -468,3 +464,14 @@ export const clearMyPosts = () => {
     payload:[]
   }
   }
+
+  export const authorized = () => {
+    return async (dispatch) => {
+      try {
+        const authorized =await axios(`${process.env.REACT_APP_PUERTO}usuarios/henry`, tokenUsuario());
+        return dispatch({type:AUTHORIZED, payload: authorized.data})
+      } catch (error) {
+        console.error(error)
+      }
+    };
+  };

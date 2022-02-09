@@ -34,23 +34,23 @@ export default function PostContainer({ posts = [] }) {
   return (
     allPost?.length ?
       <StyledPostContainer>
-        {!currentPosts[0]._id ? <Bienvenido /> : null}
-        {currentPosts[0]._id ? currentPosts.map((p) => <Post p={p} key={p._id} />) : null}
+        {!currentPosts[0]?._id ? <Bienvenido /> : null}
+        {currentPosts[0]?._id ? currentPosts.map((p) => <Post p={p} key={p._id} />) : null}
         {postsPerPage >= posts.length ? null :
           <div className='visor' id="visor" ref={externalRef}>cargando...</div>}
       </ StyledPostContainer>
       :
       myProfilePost?.length ?
         <StyledPostContainer>
-          {!currentPosts[0]._id ? <NoPosts/> : null}
-          {currentPosts[0]._id ? currentPosts.map((p) => <Post p={p} key={p._id} />) : null}
+          {!currentPosts[0]?._id ? <NoPosts/> : null}
+          {currentPosts[0]?._id ? currentPosts.map((p) => <Post p={p} key={p._id} />) : null}
           {postsPerPage >= posts.length ? null :
             <div className='visor' id="visor" ref={externalRef}>cargando...</div>}
 
         </StyledPostContainer>
         :
-        <StyledPostContainer> {!currentPosts[0]._id ? <FriendNoPosts/> : null}
-          {currentPosts[0]._id ? currentPosts.map((p) => <Post p={p} key={p._id} />) : null}
+        <StyledPostContainer> {!currentPosts[0]?._id? <FriendNoPosts/> : null}
+          {currentPosts[0]?._id ? currentPosts.map((p) => <Post p={p} key={p._id} />) : null}
           {postsPerPage >= posts.length ? null :
             <div className='visor' id="visor" ref={externalRef}>cargando...</div>}
         </StyledPostContainer>
