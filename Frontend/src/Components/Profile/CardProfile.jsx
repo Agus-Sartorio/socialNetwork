@@ -42,6 +42,49 @@ const CardProfile = ({ profile, followUser, myId }) => {
     }
   }
 
+  async function handleChange(e) {
+    if (e.target.value === 'por malas palabras') {
+      e.preventDefault();
+      if(window.confirm('reportar a '+ profile.fullname + ' ' + e.target.value)){
+        try {
+          await axios.put(`${process.env.REACT_APP_PUERTO}posts/notification`, { idUser: profile.id, message: e.target.value }, tokenUsuario());
+          alert('reportaste a ' + profile.fullname + ' ' + e.target.value)
+        } catch (err) {
+          console.log(err);
+        }
+      }else{
+        return false
+      }
+   
+    }
+    if (e.target.value === 'por acoso') {
+      e.preventDefault();
+      if(window.confirm('reportar a '+ profile.fullname + ' ' + e.target.value)){
+        try {
+          await axios.put(`${process.env.REACT_APP_PUERTO}posts/notification`, { idUser: profile.id, message: e.target.value }, tokenUsuario());
+          alert('reportaste a ' + profile.fullname + ' ' + e.target.value)
+        } catch (err) {
+          console.log(err);
+        }
+      }else{
+        return false
+      }
+    }
+    if (e.target.value === 'por contenido inapropiado') {
+      e.preventDefault();
+      if(window.confirm('reportar a '+ profile.fullname + ' ' + e.target.value)){
+        try {
+          await axios.put(`${process.env.REACT_APP_PUERTO}posts/notification`, { idUser: profile.id, message: e.target.value }, tokenUsuario());
+          alert('reportaste a ' + profile.fullname + ' ' + e.target.value)
+        } catch (err) {
+          console.log(err);
+        }
+      }else{
+        return false
+      }
+    }
+  }
+
   const previewP = profile.background_picture.includes("uploads");
 
   return (
@@ -89,6 +132,12 @@ const CardProfile = ({ profile, followUser, myId }) => {
           <button onClick={followUnFollow} className="card__btn-follow">
             {isFollowing ? "Dejar de seguir" : "Seguir"}
           </button>
+          <select onChange={handleChange} >
+            <option>Reportar</option>
+            <option value='por malas palabras'>por malas palabras</option>
+            <option value='por acoso'>por acoso</option>
+            <option value='por contenido inapropiado'>por contenido inapropiado</option>
+          </select>
         </div>
         {followUser.follows ? (
           <>

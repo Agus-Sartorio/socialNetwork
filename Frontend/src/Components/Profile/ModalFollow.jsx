@@ -1,5 +1,3 @@
-import { cohorte, sortBy } from "../../auxiliares/constantes";
-import { Select } from "../Select/Select";
 import { CardFollow } from "./CardFollow";
 import { StyledModal } from "./styledCardProfile";
 export function ModalFollow ({ followUser, show, setShow }) {
@@ -9,7 +7,6 @@ export function ModalFollow ({ followUser, show, setShow }) {
             handleClose={() => setShow(false)}
         >
             <div style={{ color: "black" }}>
-                <Select data={sortBy} />
                 {followUser ? followUser.map(e => <CardFollow
                     fullname={e.fullname}
                     email={e.email}

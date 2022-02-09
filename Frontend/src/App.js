@@ -36,7 +36,7 @@ function App() {
           <Route path='/post/:id' element={<ProtectedRouteLocked><Publication/></ProtectedRouteLocked>}/>
           <Route path='/admin/authorize' element={<ProtectedRouteAdmin><Authorize/></ProtectedRouteAdmin>}/>
           <Route path='/admin/blockAccount' element={<ProtectedRouteAdmin><BlockAccount/></ProtectedRouteAdmin>}/>
-          <Route path='experiences' element={<ProtectedRouteAdmin><Experiences/></ProtectedRouteAdmin>}/>
+          <Route path='experiences' element={<ProtectedRouteLocked><Experiences/></ProtectedRouteLocked>}/>
           <Route path='*' element={<NotFound />} />
         </Routes>
       </UserAuthContextProvider>

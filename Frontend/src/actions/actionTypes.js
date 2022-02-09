@@ -22,8 +22,6 @@ export const GET_ALL_POSTS = 'GET_ALL_POST';
 export const GET_FOLLOWERS = 'GET_FOLLOWERS';
 export const CLEAR_MY_FOLLOW_STATE = 'CLEAR_MY_FOLLOW_STATE'
 export const GET_FOLLOWS = 'GET_FOLLOWS';
-export const SORT_BY_AZ='SORT_BY_AZ';
-export const SORT_BY_ZA='SORT_BY_ZA';
 export const FOLLOW_USER_BY_ID='FOLLOW_USER_BY_ID';
 export const GET_MY_POST = 'GET_MY_POST';
 export const GET_MY_FRIENDS_POST = 'GET_MY_FRIENDS_POST';
@@ -47,4 +45,5 @@ export const GET_ALL_USERS = 'GET_ALL_USERS';
 export const CLEAR_ALL_USERS = 'CLEAR_ALL_USERS';
 export const FILTER_BY_TAGS = 'FILTER_BY_TAGS';
 export const CLEAR_MY_POSTS = 'CLEAR_MY_POSTS';
-
+export const AUTHORIZED = 'AUTHORIZED';
+export const POST_AUTHORIZED = 'POST_AUTHORIZED';

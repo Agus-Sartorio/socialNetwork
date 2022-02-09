@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Bienvenida, Welcome } from "./styles";
+import { Welcome } from "./styles";
 
 export default function Bienvenido () {
     return(
