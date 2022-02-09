@@ -22,7 +22,7 @@ export default function Chat({ online }) {
   console.log(me, "yo soy yo");
   let contactOnline = false;
   if (online.length !== 0) {
-    contactOnline = online.some((contact) => contact.id === friend.id);
+    contactOnline = online.some((contact) => contact?.id === friend?.id);
     console.log(contactOnline, "validacion");
   }
 
@@ -44,7 +44,7 @@ export default function Chat({ online }) {
           />
         </ListItemAvatar>
         <ListItemText
-          primary={friend?.username ? friend.username : me?.fullname}
+          primary={friend?.username ? friend?.username : me?.fullname}
           secondary={
             <>
               {friend.username
@@ -70,13 +70,13 @@ export default function Chat({ online }) {
                 message={e.text}
                 date={e.createdAt}
                 type={
-                  e.sender === friend.id
+                  e.sender === friend?.id
                     ? "friend"
-                    : e.sender === me.id
+                    : e.sender === me?.id
                     ? "own"
                     : ""
                 }
-                profile={e.sender === friend.id ? friend.profile : null}
+                profile={e.sender === friend.id ? friend.profile : me?.profile}
               />
             ))}
           </Container>

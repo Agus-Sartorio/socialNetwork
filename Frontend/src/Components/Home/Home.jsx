@@ -5,23 +5,22 @@ import Bienvenido from "./Bienvenido";
 import CrearPost from "../CrearPost/CrearPost";
 import Layout from "../Layout/Layout";
 import PostContainer from "../PostContainer/PostContainer";
-import {SocketContext} from '../Context/SocketContext'
+import { io } from 'socket.io-client'
 
-export default function Home({visible}) {
+export default function Home({visible,socket}) {
 
-    const {socket} = useContext(SocketContext)
+
     
     const contr = useRef(0)
+    const gsock = useRef(null)
     const posts = useSelector((state => state.allPost))
     const {myId} = useSelector(state => state)
     const follows = useSelector((state) => state.follows)
-<<<<<<< HEAD
-    const dispatch = useDispatch();
+    const Socket = useSelector((state) => state.Socket)
     console.log(socket, 'funciona el contexto?')
-=======
     const fastProfile = useSelector((state)=>state.myPhoto)
     const dispatch = useDispatch()
->>>>>>> f732a36948b48f6119ab20e290949aa264636faf
+     console.log(Socket, 'debe mostrar un objeto no null')
 
     useEffect(() => {
         dispatch(getMyId()) // !!no tocar please
@@ -34,14 +33,20 @@ export default function Home({visible}) {
     }, [dispatch]);
 
     
-    useEffect(()=>{
-     
-       console.log(socket, 'debe mostrar un objeto no null')
-        // socket.current = io(`${process.env.REACT_APP_PUERTO}`)  
-        // socket.current.emit("addUser", myId?.id);
-        // // socket.current.on("getUsers", users=>{console.log(users, 'usuarios conectados')})
-        // dispatch(get_SOCKET(socket.current))
-    }, [visible, myId ])
+    // useEffect(()=>{
+
+    //     if(contr.current === 0){
+    //      contr.current=contr.current+1
+    //      return
+    //     }
+
+    //         gsock.current = io(`${process.env.REACT_APP_PUERTO}`)  
+    //         gsock.current.emit("addUser", myId?.id);
+    //         // socket.current.on("getUsers", users=>{console.log(users, 'usuarios conectados')})
+    //         //dispatch(get_SOCKET(gsock.current))
+        
+
+    //  }, [visible, myId ])
 
     return (
         fastProfile?.data?.state===true?

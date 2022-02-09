@@ -5,23 +5,24 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import { format } from 'timeago.js'
 import { useSelector } from 'react-redux';
-import {useEffect} from 'react';
+import {useEffect, useRef} from 'react';
 
 
 const Message = ({ name, message, profile, date, type }) => {
-    const { myProfileData } = useSelector(state => state)
-    // console.log(myProfileData?.data[0].profile, 'mi perfil los datos')
-    // const me = useRef(null);
-    useEffect(()=>{
+    // const { myProfileData } = useSelector(state => state)
+    // //  console.log(profile, 'mi perfil los datos')
+    //  const me = useRef(null);
+    // useEffect(()=>{
 
-        if (profile === null || profile === undefined){
+    //     if (profile === null || profile === undefined){
            
-           // profile=myProfileData?.data[0].profile
+    //         me.current=myProfileData?.data[0].profile
            
-        }
-        //  me.current = myProfileData?.data[0];
+    //     }
+       
         // socket.current.on("getUsers", users=>{console.log(users, 'usuarios conectados')})       
-    }, [myProfileData])
+    // }, [myProfileData])
+
     switch (type) {
         case "own":
             return (
@@ -30,7 +31,7 @@ const Message = ({ name, message, profile, date, type }) => {
                 >
                     <ListItemAvatar sx={{ marginRight: 0, marginLeft: 2 }}>
                         <Avatar alt={name} 
-                        src={profile?.includes('uploads')?`${process.env.REACT_APP_PUERTO}`+ profile : profile} />
+                         src={profile?.includes('uploads')? `${process.env.REACT_APP_PUERTO}` + profile : profile } />
                     </ListItemAvatar>
                     <ListItemText
                         primary={message}

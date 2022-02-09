@@ -23,12 +23,12 @@ export default function Chat() {
   useEffect(() => {
    
     dispatch(getFollows())
+    dispatch(getMyId())
   }, [])
 
 
   useEffect(() => {
     dispatch(getMyProfileData())
-    dispatch(getMyId())
   }, [dispatch])
   
       const contactos = fallows.data;

@@ -9,41 +9,39 @@ import { io } from 'socket.io-client'
 
 export default function Messenger({visible,contactos,user}) {
     
-     console.log(contactos, 'heee')
     // const sockete = useRef(sockety)
     const dispatch = useDispatch()
-    const { conversations,  myId, Socket, follows } = useSelector(state => state)
-    console.log(Socket, 'Socket')
-
+    const { conversations,  myId, follows } = useSelector(state => state)
     const gsock = useRef();
-    // let socket = useRef();
-    // const contr = useRef(0);
-    if(Socket.length !== 0){
+    const contr = useRef(0);
+   
+    
+    console.log(follows.data, 'heee k2')
+    console.log(contactos,'lo que llega de contactos')
+    // if(Socket.length !== 0){
        
-        gsock.current = Socket;
-    }
+    //     gsock.current = Socket;
+    // }
 
     useEffect(()=>{
-        // if(contr.current === 0){
-        //  contr.current=contr.current+1
-        //  return
-        // }
 
-
-        if(gsock.current===undefined){
+        if(contr.current === 1 || contr.current === 0){
+         contr.current=contr.current+1
+         return
+        }
 
             gsock.current = io(`${process.env.REACT_APP_PUERTO}`)  
             gsock.current.emit("addUser", myId?.id);
             // socket.current.on("getUsers", users=>{console.log(users, 'usuarios conectados')})
             //dispatch(get_SOCKET(gsock.current))
-        }
+        
 
-     }, [visible, myId ])
+     }, [ contr.current])
 
 
     
     const [online, setOnline] = useState([]);
-    const [offline, setOffline] = useState();
+    const [offline, setOffline] = useState([]);
    
   
     // useEffect(()=>{
@@ -55,7 +53,7 @@ export default function Messenger({visible,contactos,user}) {
     // }, [visible])
 
     useEffect(()=>{
-        gsock.current.on("getMessage", data=>{
+        gsock.current?.on("getMessage", data=>{
             console.log('aqui???')
             dispatch( PUSHchat({
                 sender: data.senderId,
@@ -83,7 +81,7 @@ export default function Messenger({visible,contactos,user}) {
         //     return 
         // }
 
-        gsock.current.on("getUsers", users=> {
+        gsock.current?.on("getUsers", users=> {
             let online= [];
             let Offline= [];
             let aux = users.filter((e)=> e.userId !== myId?.id )
@@ -126,7 +124,7 @@ export default function Messenger({visible,contactos,user}) {
             
         
         
-    }, [gsock.current]);
+    }, [gsock.current, contactos]);
 
 
 
