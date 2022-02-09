@@ -225,11 +225,6 @@ export function rootReducer(state = initialState, action) {
                         postById:action.payload
                     }   
                 
-                 case SOCKET:
-                     return{
-                         ...state,
-                         Socket:action.payload
-                     }   
                 case EXPERIENCES_POSTS:
                     return{
                         ...state,

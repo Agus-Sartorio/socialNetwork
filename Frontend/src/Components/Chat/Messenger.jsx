@@ -124,7 +124,7 @@ export default function Messenger({visible,contactos,user}) {
             
         
         
-    }, [gsock.current, contactos]);
+    }, [gsock.current]);
 
 
 
