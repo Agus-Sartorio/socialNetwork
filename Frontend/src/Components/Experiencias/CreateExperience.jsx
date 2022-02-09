@@ -92,8 +92,7 @@ export default function CrearExperience() {
         <textarea
           className="textarea"
           placeholder={
-            myPhoto?.data?.fullname.split(" ")[0] +
-            " cuentanos tu experiencia para asi ayudar a otros henrys "
+            "Contanos tu experiencia para asi ayudar a otros Henrys "
           }
           name="description"
           value={input.description}

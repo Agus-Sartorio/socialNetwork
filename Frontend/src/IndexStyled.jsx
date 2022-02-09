@@ -90,6 +90,12 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
+  .layout__description{
+    color: #ccc;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
   @media (max-width: 360px){
     .app .main .main-content{
       padding: 10px;
