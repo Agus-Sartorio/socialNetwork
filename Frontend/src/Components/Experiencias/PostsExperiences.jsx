@@ -42,19 +42,19 @@ export default function PostsExperiences() {
               <section className="post__section">
                 <Link
                   to={`/${
-                    myId.id === el.autorData[0].id
+                    myId?.id === el.autorData[0]?.id
                       ? "myprofile"
-                      : `profile/${el.autorData[0].id}`
+                      : `profile/${el.autorData[0]?.id}`
                   }`}
                 >
                   <img
-                    src={el.autorData[0].profile}
+                    src={el.autorData[0]?.profile}
                     alt=""
                     width={"30px"}
                     height={"30px"}
                     className="post__profile"
                   />
-                  <p>{el.autorData[0].fullname}</p>
+                  <p>{el.autorData[0]?.fullname}</p>
                   <Experience />
                 </Link>
               </section>

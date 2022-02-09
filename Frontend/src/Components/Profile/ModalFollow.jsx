@@ -9,7 +9,6 @@ export function ModalFollow ({ followUser, show, setShow }) {
             handleClose={() => setShow(false)}
         >
             <div style={{ color: "black" }}>
-                <Select data={cohorte} />
                 <Select data={sortBy} />
                 {followUser ? followUser.map(e => <CardFollow
                     fullname={e.fullname}

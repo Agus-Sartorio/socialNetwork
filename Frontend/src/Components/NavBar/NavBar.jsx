@@ -15,6 +15,7 @@ import { getNotifications } from "../../actions";
 export default function NavBar() {
   const [open, setOpen] = useState(false);
   const notifications = useSelector((state) => state.notifications);
+  const fastProfile = useSelector((state) => state.myPhoto);
   const handleClick = () => {
     setOpen(!open);
   };
@@ -34,8 +35,9 @@ export default function NavBar() {
             <img className="logo" src={logo} alt="" />
           </Link>
         </p>
-        <SearchBar />
+        {fastProfile?.data?.state === true ? <SearchBar />:null}
       </div>
+      {fastProfile?.data?.state === true ?
       <div className="botones">
         <Link to="#" className="link">
           {!open && <span className="nav-hover">Mensajes</span>}
@@ -61,7 +63,7 @@ export default function NavBar() {
           {!open && <span className="nav-hover">Experiencias</span>}
           <Experience />
         </Link>
-      </div>
+      </div>:null}
     </StyledDiv>
   );
 }

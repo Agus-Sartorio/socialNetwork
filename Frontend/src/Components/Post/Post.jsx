@@ -18,6 +18,7 @@ import ImgModal from "./ImgModal";
 export default function Post({ p }) {
   const preview = p.autorData[0]?.profile.includes("uploads");
   const id = useSelector((state) => state.myPhoto);
+  const fastProfile = useSelector((state) => state.myPhoto);
   /*   const { id: myId } = useSelector((state) => state.myProfileData.data[0]); */
 
   const [like, setLike] = useState(0);
@@ -115,6 +116,7 @@ export default function Post({ p }) {
               alt=""
             />
           ))}
+          {fastProfile?.data?.state === true ?
           <footer className="post__footer">
             <div className="post__stats">
               <button onClick={handleLikes} className="post__likes stats">
@@ -142,7 +144,7 @@ export default function Post({ p }) {
                 <span>Me Gusta</span>
               </button>
             </div>
-          </footer>
+          </footer>:null}
           {showComments && <CommentsContainer post={p} />}
         </div>
         {showLikes && p.likes.length > 0 && (

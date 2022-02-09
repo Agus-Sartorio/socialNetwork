@@ -32,11 +32,11 @@ function App() {
           <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
           <Route path="/suggestions" element={<ProtectedRouteLocked><Suggestions /></ProtectedRouteLocked>} />
           <Route path='/profile/:id' element={<ProtectedRouteLocked><Profile /></ProtectedRouteLocked>} />
-          <Route path='/myprofile' element={<ProtectedRouteLocked><ViewProfile /></ProtectedRouteLocked>} />
+          <Route path='/myprofile' element={<ProtectedRoute><ViewProfile /></ProtectedRoute>} />
           <Route path='/post/:id' element={<ProtectedRouteLocked><Publication/></ProtectedRouteLocked>}/>
           <Route path='/admin/authorize' element={<ProtectedRouteAdmin><Authorize/></ProtectedRouteAdmin>}/>
           <Route path='/admin/blockAccount' element={<ProtectedRouteAdmin><BlockAccount/></ProtectedRouteAdmin>}/>
-          <Route path='experiences' element={<Experiences/>}/>
+          <Route path='experiences' element={<ProtectedRouteAdmin><Experiences/></ProtectedRouteAdmin>}/>
           <Route path='*' element={<NotFound />} />
         </Routes>
       </UserAuthContextProvider>
