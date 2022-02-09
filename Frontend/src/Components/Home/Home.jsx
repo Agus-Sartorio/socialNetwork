@@ -8,33 +8,30 @@ import PostContainer from "../PostContainer/PostContainer";
 
 
 export default function Home() {
-  const posts = useSelector((state) => state.allPost);
+    const posts = useSelector((state) => state.allPost);
 
-  const follows = useSelector((state) => state.follows);
-  const fastProfile = useSelector((state) => state.myPhoto);
-  const dispatch = useDispatch();
+    const follows = useSelector((state) => state.follows);
+    const fastProfile = useSelector((state) => state.myPhoto);
+    const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(AllPost());
-    dispatch(getFollows());
-    return () => {
-      dispatch(getMyId()); // !!no tocar please
-      dispatch(getCleanHome());
-    };
-  }, [dispatch]);
+    useEffect(() => {
+        dispatch(AllPost());
+        dispatch(getFollows());
+        return () => {
+            dispatch(getMyId()); // !!no tocar please
+            dispatch(getCleanHome());
+        };
+    }, [dispatch]);
 
-  return fastProfile?.data?.state === true ? (
-    <Layout>
-      <CrearPost />
-      {follows?.length || posts?.length ? (
-        <PostContainer posts={posts} />
-      ) : (
-        <LoaderFull/>
-      )}
-    </Layout>
-  ) : (
-    <Layout>
-      <div>tu perfil se encuentra bloqueado temporalmente</div>
-    </Layout>
-  );
+    return (
+        <Layout>
+            {fastProfile?.data?.state === true ?
+            <CrearPost />:<div>Su cuenta esta bloqueada consute <a href="https://policies.google.com/terms?hl=es">aqui</a> los terminos y condiciones</div>}
+            {follows?.length || posts?.length ? (
+                <PostContainer posts={posts} />
+            ) : (
+                <LoaderFull />
+            )}
+        </Layout>
+    )
 }

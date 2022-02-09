@@ -61,50 +61,53 @@ export default function SideBar() {
                 <div className='settings'>
 
                     <Link to='/myprofile'><p># Perfil</p></Link>
+
                     <button className='cerrar-sesion' onClick={handleLogOut}>
                         <a href="/"># Cerrar sesion</a>
                     </button>
                 </div>
             }
-            <details open={open === false && undefined}>
-                <summary className='canales'>
-                    <Channels />
-                    Canales
-                    <span><Chevron /></span>
-                </summary>
-                {
-                    open &&
-                    <ul className='list'>
-                        <Link to="/chat"><li><p># Canal 1</p></li></Link>
-                    </ul>
-                }
-            </details>
-            <details open={open === false && undefined}>
-                <summary className='canales'>
-                    <Red />
-                    Red
-                    <span><Chevron /></span>
-                </summary>
-                {
-                    open &&
-                    <ul className='list'>
-                        <li><Link to='/suggestions'># Sugerencias</Link></li>
-                    </ul>
-                }
-            </details>
-            <details open={open === false && undefined}>
-                <summary className='canales'>
-                    <Settings />
-                    Settings
-                    <span><Chevron /></span>
-                </summary>
-                {
-                    open &&
-                    <ul className='list'>
-                        <Link to="/edit"><li><p># Editar perfil</p></li></Link>
-                    </ul>
-                }
-            </details>
+            {myPhoto?.data?.state === true ? <div>
+                <details open={open === false && undefined}>
+                    <summary className='canales'>
+                        <Channels />
+                        Canales
+                        <span><Chevron /></span>
+                    </summary>
+                    {
+                        open &&
+                        <ul className='list'>
+                            <Link to="/chat"><li><p># Canal 1</p></li></Link>
+                        </ul>
+                    }
+                </details>
+                <details open={open === false && undefined}>
+                    <summary className='canales'>
+                        <Red />
+                        Red
+                        <span><Chevron /></span>
+                    </summary>
+                    {
+                        open &&
+                        <ul className='list'>
+                            <li><Link to='/suggestions'># Sugerencias</Link></li>
+                        </ul>
+                    }
+                </details>
+                <details open={open === false && undefined}>
+                    <summary className='canales'>
+                        <Settings />
+                        Settings
+                        <span><Chevron /></span>
+                    </summary>
+                    {
+                        open &&
+                        <ul className='list'>
+                            <Link to="/edit"><li><p># Editar perfil</p></li></Link>
+                        </ul>
+                    }
+                </details>
+            </div> : null}
             {myPhoto.data ? myPhoto.data.rol === 'ADMIN' ?
                 <>
                     <details open={open === false && undefined}>

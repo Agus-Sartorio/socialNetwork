@@ -5,7 +5,6 @@ import useNearScreen from '../../Hooks/useNearScreen';
 import Bienvenido from '../Home/Bienvenido';
 import FriendNoPosts from '../Home/FriendNoPosts';
 import NoPosts from '../Home/NoPosts';
-import LoaderFull from '../Loader/LoaderFull';
 import Post from '../Post/Post'
 import { StyledPostContainer } from "./styles";
 
@@ -15,11 +14,6 @@ export default function PostContainer({ posts = [] }) {
 
   const allPost = useSelector((state) => state.allPost)
   const myProfilePost = useSelector((state) => state.myProfilePost)
-  const myFriendsPost = useSelector((state) => state.myFriendsPost)
-
-  console.log(allPost, 'todos')
-  console.log(myFriendsPost, 'friends')
-  console.log(myProfilePost, 'mios')
 
   let lastPostInpage = currentPage * postsPerPage;
   let firstPostInpage = lastPostInpage - postsPerPage
