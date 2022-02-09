@@ -113,7 +113,7 @@ export const StyledForm = styled.form`
     outline: none;
     transition: box-shadow 0.3s ease;
     border: none;
-    width: 170px;
+    width: 180px;
     margin-right: 15px;
 
     &:focus {
@@ -169,6 +169,131 @@ export const StyledForm = styled.form`
   @media (max-width: 490px) {
     &.expanded {
       height: 240px;
+    }
+  }
+`;
+
+export const StyledDiv = styled.div`
+  margin-top: 50px;
+  width: 100%;
+
+  .tags__label {
+    margin-right: 15px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #eee;
+  }
+
+  .tags__select {
+    padding: 8px;
+    border-radius: 5px;
+    font-weight: 500;
+    outline: none;
+    transition: box-shadow 0.3s ease;
+    border: none;
+    width: 180px;
+    margin-right: 15px;
+
+    &:focus {
+      box-shadow: 0 0 0 3px var(--yellow-1);
+    }
+  }
+
+  .post__contain {
+    margin-top: 25px;
+    columns: 3;
+  }
+
+  .post__article {
+    padding: 15px;
+    background-color: #eee;
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin-bottom: 15px;
+    border-radius: 7px;
+    word-break: break-word;
+  }
+
+  .post__section {
+    display: flex;
+    align-items: center;
+
+    a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--grey-2);
+      font-weight: 600;
+      width: 100%;
+    }
+
+    p {
+      margin-left: 10px;
+      font-size: 18px;
+    }
+
+    svg {
+      color: #eee;
+      margin-left: auto;
+      padding: 5px;
+      background-color: var(--red-1);
+      border-radius: 50%;
+      min-width: 30px;
+      height: 30px;
+    }
+  }
+
+  .post__profile {
+    border-radius: 50%;
+  }
+
+  .post__desc {
+    margin: 10px 0;
+  }
+
+  .post__ul {
+    list-style: none;
+    color: #666;
+    font-weight: 600;
+
+    li {
+      display: inline-block;
+
+      &:not(:last-child) {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .post__error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--grey-1);
+    padding: 20px 30px;
+    border-radius: 7px;
+    width: fit-content;
+    margin: 0 auto;
+    font-weight: 600;
+    border: 3px solid var(--red-1);
+    color: #bbb;
+
+    svg {
+      margin-right: 10px;
+      color: var(--red-1);
+    }
+  }
+
+  @media (max-width: 800px) {
+    .post__contain {
+      columns: 2;
+    }
+  }
+
+  @media (max-width: 550px) {
+    .post__contain {
+      columns: 1;
     }
   }
 `;
