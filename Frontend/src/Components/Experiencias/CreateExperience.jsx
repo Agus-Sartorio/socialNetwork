@@ -10,6 +10,7 @@ import {
 } from "../../actions";
 import { Link } from "react-router-dom";
 import Delete from "../Icons/Delete";
+import toast, {Toaster} from 'react-hot-toast';
 
 export default function CrearExperience() {
   const dispatch = useDispatch();
@@ -68,11 +69,20 @@ export default function CrearExperience() {
       tags: input.tags.filter((e) => e !== el),
     });
   };
+
+  const notify = () => toast.success('Tu post se creo exitosamente', {
+    duration: 9000,
+    position: 'top-center'});
+
+
   return (
     <StyledForm
       className={input.description ? "expanded" : undefined}
       onSubmit={submitHandler}
+      onClick={notify}
     >
+        <Toaster toastOptions={ {success: {
+      duration: 7000}}} />
       <div className="img-post">
         <Link to={"/myprofile"}>
           <img

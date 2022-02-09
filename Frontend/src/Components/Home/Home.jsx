@@ -26,7 +26,7 @@ export default function Home() {
     return (
         <Layout>
             {fastProfile?.data?.state === true ?
-            <CrearPost />:<div>Su cuenta esta bloqueada consute <a href="https://policies.google.com/terms?hl=es">aqui</a> los terminos y condiciones</div>}
+            <CrearPost />:<div>Su cuenta esta bloqueada consulte <a href="https://policies.google.com/terms?hl=es">aqui</a> los terminos y condiciones</div>}
             {follows?.length || posts?.length ? (
                 <PostContainer posts={posts} />
             ) : (
