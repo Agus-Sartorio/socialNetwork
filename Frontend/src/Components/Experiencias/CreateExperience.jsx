@@ -73,7 +73,7 @@ export default function CrearExperience() {
   const notify = () => toast.success('Tu post se creo exitosamente', {
     duration: 9000,
     position: 'top-center'});
-
+//holaa
 
   return (
     <StyledForm
