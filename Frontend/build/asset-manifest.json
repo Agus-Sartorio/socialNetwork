@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.js": "/static/js/main.830655bf.js",
+    "static/js/132.80e72e48.chunk.js": "/static/js/132.80e72e48.chunk.js",
+    "static/media/notFound.png": "/static/media/notFound.87be537f4bf2e9d45e5e.png",
+    "static/media/loader2.svg": "/static/media/loader2.227b4a2088b89c150d27cb6e17bde515.svg",
+    "static/media/LOGO-HENRY.png": "/static/media/LOGO-HENRY.0653c6b28448329dc626.png",
+    "static/media/LogoHenry.svg": "/static/media/LogoHenry.60013e1ba48b0a8fbd920d7d511e13c6.svg",
+    "index.html": "/index.html",
+    "static/media/cohete.svg": "/static/media/cohete.ebea49f949619107f1361cfdf7026cc7.svg",
+    "main.830655bf.js.map": "/static/js/main.830655bf.js.map",
+    "132.80e72e48.chunk.js.map": "/static/js/132.80e72e48.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.830655bf.js"
+  ]
+}

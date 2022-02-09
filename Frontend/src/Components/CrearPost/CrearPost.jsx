@@ -69,8 +69,6 @@ export default function CrearPost() {
     setView(newArr);
   };
 
-  console.log(view);
-
   return (
     <StyledForm
       className={input.description || view.length ? "expanded" : undefined}

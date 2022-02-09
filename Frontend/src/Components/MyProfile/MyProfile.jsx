@@ -7,9 +7,10 @@ import {
 import PostContainer from "../PostContainer/PostContainer";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { getMyPost } from "../../actions";
+import { clearMyPosts, getMyPost } from "../../actions";
 import Cohorte from "../Icons/Cohorte";
 import { ModalFollow } from "../Profile/ModalFollow";
+import LoaderFull from "../Loader/LoaderFull";
 
 const MyProfile = ({ myProfile }) => {
   const [showFollowers, setShowFollowers] = useState(false);
@@ -19,14 +20,15 @@ const MyProfile = ({ myProfile }) => {
 
   useEffect(() => {
     dispatch(getMyPost());
+    return () => {
+      dispatch(clearMyPosts())
+    }
   }, [dispatch]);
 
-  const posts = useSelector((state) => state.myProfilePost.data);
+  const posts = useSelector((state) => state.myProfilePost);
   const follows = useSelector((state) => state.follows);
   const followers = useSelector((state) => state.followers);
   const preview = myProfile.data[0].background_picture.includes("uploads");
-
-  console.log(myProfile.data[0], "aaaaaaaaaaaaaaaaaaa");
 
   return (
     <>
@@ -107,7 +109,7 @@ const MyProfile = ({ myProfile }) => {
         <ModalMyFollow follow={followers} action={"Seguidores"} />
         <ModalMyFollow follow={follows} action={"Siguiendo"} />
       </DivModal> */}
-      <PostContainer posts={posts} />
+      {posts?.length?<PostContainer posts={posts} />:<LoaderFull/>}
     </>
   );
 };
