@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AllPost, getCleanHome, getFollows, getMyId } from "../../actions";
-import Bienvenido from "./Bienvenido";
 import CrearPost from "../CrearPost/CrearPost";
 import Layout from "../Layout/Layout";
+import LoaderFull from "../Loader/LoaderFull";
 import PostContainer from "../PostContainer/PostContainer";
+
 
 export default function Home() {
   const posts = useSelector((state) => state.allPost);
@@ -28,7 +29,7 @@ export default function Home() {
       {follows?.length || posts?.length ? (
         <PostContainer posts={posts} />
       ) : (
-        <Bienvenido />
+        <LoaderFull/>
       )}
     </Layout>
   ) : (

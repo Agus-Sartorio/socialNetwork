@@ -34,6 +34,7 @@ import {
   GET_ALL_USERS,
   CLEAR_ALL_USERS,
   FILTER_BY_TAGS,
+  CLEAR_MY_POSTS,
  
 } from "./actionTypes";
 
@@ -199,7 +200,7 @@ export const AllPost = () => {
       let { data: { data } } = await axios.get(`${process.env.REACT_APP_PUERTO}posts/?follows=true`, tokenUsuario()) //despues agregarle la query
       return dispatch({
         type: GET_ALL_POSTS,
-        payload: data
+        payload: data.length===0?['algo']:data
       })
     } catch (error) {
       console.log(error)
@@ -244,7 +245,7 @@ export const getMyPost = () => {
       );
       return dispatch({
         type: GET_MY_POST,
-        payload: myPost.data,
+        payload: myPost.data.data.length===0?['algo']:myPost.data.data
       });
     } catch (error) {
       console.log(error);
@@ -261,7 +262,7 @@ export const getMyfriendsPost = (id) => {
       );
       return dispatch({
         type: GET_MY_FRIENDS_POST,
-        payload: friendsPost.data,
+        payload: friendsPost.data.data.length===0?['algo']:friendsPost.data.data
       });
     } catch (error) {
       console.log(error);
@@ -459,3 +460,11 @@ return{
   payload
 }
 }
+
+
+export const clearMyPosts = () => {
+  return{
+    type: CLEAR_MY_POSTS,
+    payload:[]
+  }
+  }
