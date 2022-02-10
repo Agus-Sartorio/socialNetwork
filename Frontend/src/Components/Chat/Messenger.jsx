@@ -77,12 +77,8 @@ export default function Messenger({ visible, contactos, user }) {
     //     control.current = control.current + 1
     //     return
     // }
-<<<<<<< HEAD
  
     let Offline = [];
-=======
-
->>>>>>> 938dc32367787b7220d8581412f062e77250c301
     gsock.current?.on("getUsers", (users) => {
       let online = [];
       let aux = users.filter((e) => e.userId !== myId?.id);
@@ -111,18 +107,12 @@ export default function Messenger({ visible, contactos, user }) {
       setOnline(online);
       setOffline(Offline);
     });
-<<<<<<< HEAD
     
     if(Offline.length === 0){
      
         setOffline(contactos)
     }
-=======
->>>>>>> 938dc32367787b7220d8581412f062e77250c301
 
-    if (offline.length === 0) {
-      setOffline(contactos);
-    }
   }, [contactos, myId?.id, offline.length]);
 
   useEffect(() => {
