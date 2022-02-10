@@ -3,9 +3,11 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Divider from '@mui/material/Divider';
 import Avatar from '@mui/material/Avatar';
+import { format } from 'timeago.js'
 import Typography from '@mui/material/Typography';
 import { get_CHAT } from '../../../actions';
 import { useDispatch } from 'react-redux';
+import {Pconversa} from './StyledChat'
 
 const MessageItem = ({ name, message, profile, date, id, friend}) => {
 
@@ -25,14 +27,17 @@ const MessageItem = ({ name, message, profile, date, id, friend}) => {
           primary={name}
           secondary={
             <>
-              {message}<br />
+            <Pconversa>
+              {message}
+            </Pconversa>
+
               <Typography
-                sx={{ display: 'inline' }}
+                sx={{ display: 'inline', color:'gray' }}
                 component="span"
                 variant="subtitle2"
                 color="text.primary"
               >
-                {/* {time} */}
+                {format(date)} 
               </Typography>
             </>
           }

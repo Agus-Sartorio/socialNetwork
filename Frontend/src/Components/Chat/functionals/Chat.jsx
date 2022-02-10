@@ -7,6 +7,7 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import { Container, Divider } from "@mui/material";
 import { useSelector } from "react-redux";
+import {Ponline, NameHead, Poffline} from './StyledChat'
 
 export default function Chat({ online }) {
   const {
@@ -44,14 +45,17 @@ export default function Chat({ online }) {
           />
         </ListItemAvatar>
         <ListItemText
-          primary={friend?.username ? friend?.username : me?.fullname}
+          primary={<NameHead>
+          {friend?.username ? friend?.username : me?.fullname}
+          </NameHead>
+          }
           secondary={
             <>
               {friend.username
                 ? contactOnline
-                  ? "online"
-                  : "offline"
-                : "online"}
+                  ? <Ponline>{"online"}</Ponline>
+                  : <Poffline>{"offline"}</Poffline>
+                : <Ponline>{"online"}</Ponline>}
             </>
           }
         />

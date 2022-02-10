@@ -1,15 +1,16 @@
 import React, { useEffect } from "react";
-//import {conversaciones} from './Message/conversacion';
 import { getFollows, getMyProfileData, getMyId } from "../../actions";
 import { useDispatch, useSelector } from "react-redux";
 import NavBar from "../NavBar/NavBar";
 import Messenger from "./Messenger";
-/* import {Link} from 'react-router-dom'; */
 import SideBar from "../SideBar/SideBar";
 import { ContainerIndex } from "./styledChats";
 import Loaderfull from "../Loader/LoaderFull";
-// import Chats from './Chats.jsx';
+import Layout from '../Layout/Layout'
 
+// import Chats from './Chats.jsx';
+//import {conversaciones} from './Message/conversacion';
+/* import {Link} from 'react-router-dom'; */
 // const { user } = useUserAuth();
 // console.log(user, "yo como persona que me logeo")
 
@@ -35,17 +36,15 @@ export default function Chat() {
     
     return (     
         
-     <>
-     
-     <NavBar/> 
-     
-        <ContainerIndex>
-          <SideBar/>  
-          {contactos? <Messenger user={user} contactos={contactos} /> : <Loaderfull></Loaderfull>}    
-         
-        </ContainerIndex>
-
+  
+     ///// aqui va el layout que dice August
+   
+     <Layout>
+        
+                {contactos? <Messenger user={user} contactos={contactos} /> : <Loaderfull></Loaderfull>}    
+ 
+     </Layout>
 
      
-     </>
+   
      )}

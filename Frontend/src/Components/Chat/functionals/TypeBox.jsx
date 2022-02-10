@@ -4,13 +4,14 @@ import SendIcon from '@mui/icons-material/Send';
 import { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { NEW_MESSAGE } from "../../../actions";
-
+import {InputMessage, SendContainer, ButtonSubmit} from './StyledChat'
 
 const TypeBox = ({socket}) => {
 
  
 
   const dispatch = useDispatch()
+
   const {chat:{id, friend}, myId} = useSelector(state=>state)
   // console.log(myId.id, 'desde typebox');
   // console.log(friend, 'desde friend typebox');
@@ -18,49 +19,69 @@ const TypeBox = ({socket}) => {
 
   const handleClick =  ({target:{value}})=>{
  
-    
     socket.current.emit("sendMessage", {
       senderId: myId.id,
       receiverId: friend.id,
       text: msg
-    })
-    
-  
+    }) 
       NEW_MESSAGE({conversationId:id, text: msg, sender:myId.id})
       value=""
       setmsg("")
 
-    //  dispatch(get_CONVERSATIONS())
-  
-
-  
-    
+    //  dispatch(get_CONVERSATIONS())   
   }
+
+  function handleChange(evt) {
+    setmsg(evt.target.value);
+  }
+
+
   return (
-    <Container sx={{ bgcolor: "#fff"}}>
+
+    <>
+   
+    
+    
       {
         id?
-      <Grid container direction="row" justifyContent="center" alignItems="center" >
 
-        <TextField 
+      
+          
+       <SendContainer >
+
+           <InputMessage
+                autoComplete="off"
+                required
+                value={msg}
+                name="message"
+                onChange={(evt) => handleChange(evt)}
+              />  
+
+
+        {/* <TextField 
           id="filled-basic" 
           onChange={({target:{value}})=>{setmsg(value)}} 
           label="Type you message..." variant="filled" 
-          sx={{width:'80%'}} 
+          sx={{width:'80%', height:'520%'}} 
            value={msg}
-        />
+        /> */}
 
-        <Button onClick={handleClick} 
+        <ButtonSubmit  
+           onClick={(evt) => handleClick(evt)}
+           type="submit"
            variant="contained"
-           endIcon={<SendIcon sx={{ marginLeft: 0, height: '40px' }} />}>
-        </Button>
-      </Grid>
+           >
+
+           {<SendIcon sx={{ marginLeft: 0, height: '40px', color:'#504949' }} />}
+        </ButtonSubmit>
+      </SendContainer>
+       
       :
       <span></span>
-
-      }
-    </Container>
-  );
+      
+    }
+   
+    </>);
 };
 
 export default TypeBox;
