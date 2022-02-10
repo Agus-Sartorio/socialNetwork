@@ -5,17 +5,14 @@ import { GithubAuthProvider, signInWithPopup } from "firebase/auth";
 import { authentication } from "../Firebase/firebase";
 import { useUserAuth } from "../Context/UserContext";
 import axios from "axios";
-import { bake_cookie } from 'sfcookies'
+import { bake_cookie, delete_cookie, read_cookie } from 'sfcookies'
 import { StyledLogIn } from "./styles";
 import logoHenry from '../../images/LOGO-HENRY.png'
-import { useDispatch } from "react-redux";
-import { getMyPhoto } from "../../actions";
 
 
 
 export default function Form() {
   const Navigate = useNavigate();
-  const dispatch = useDispatch()
   function githubSignIn() {
     const githubAuthProvider = new GithubAuthProvider();
     return signInWithPopup(authentication, githubAuthProvider);
@@ -34,13 +31,18 @@ export default function Form() {
     try {
       await githubSignIn();
       await registro();
-      dispatch(getMyPhoto())
       Navigate("/home");
+      if(read_cookie('userToken')===false){
+        alert('No eres parte de la comunidad Henry')
+        delete_cookie('userToken')
+    }
 
     } catch (error) {
       console.log(error);
     }
   };
+
+  
 
   const { user } = useUserAuth();
 

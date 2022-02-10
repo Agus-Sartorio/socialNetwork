@@ -38,7 +38,7 @@ export default function NotificationCard({
             to={`/${
               content === "te empezó a seguir"
                 ? `profile/${id}`
-                : content === `Se reporto por un comentario`
+                : content === `Ha sido reportado(a)`
                 ? `admin/blockAccount`
                 : `post/${idpost}`
             }`}

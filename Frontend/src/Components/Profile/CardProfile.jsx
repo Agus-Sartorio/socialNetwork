@@ -181,7 +181,7 @@ const CardProfile = ({ profile, followUser, myId }) => {
             )}
           </>
         ) : (
-          <p>Este usuario no está siguiendo a nadie</p>
+          <p>Cargando</p>
         )}
       </DivFollows>
       {profile.description && (

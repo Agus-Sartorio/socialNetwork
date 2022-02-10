@@ -24,7 +24,10 @@ export const BlockAccount = () => {
       </p>
       <DivCards>
         {allUsers.data?.length ? (
-          allUsers.data.map((e) => <CardAllUsers key={e.id} users={e} />)
+          allUsers.data.map((e) => e.id ? <CardAllUsers key={e.id} users={e} />
+            : (
+              <p>No hay usuarios reportados</p>
+            ))
         ) : (
           <LoaderFull />
         )}
