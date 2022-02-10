@@ -39,7 +39,7 @@ export default function NavBar() {
       </div>
       {fastProfile?.data?.state === true ?
       <div className="botones">
-        <Link to="#" className="link">
+        <Link to="/chat" className="link">
           {!open && <span className="nav-hover">Mensajes</span>}
           <Email />
         </Link>
