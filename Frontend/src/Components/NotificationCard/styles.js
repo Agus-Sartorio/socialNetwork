@@ -60,10 +60,11 @@ export const StyledNotificationCard = styled.div`
     }
   }
 
-  .delete {
-    left: 80%;
-    position: absolute;
+  button.delete {
+    margin-left: auto;
     width: 50px;
     height: 50px;
+    color: black;
+    font-weight: bold;
   }
 `;

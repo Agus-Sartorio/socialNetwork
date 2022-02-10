@@ -116,35 +116,35 @@ export default function Post({ p }) {
               alt=""
             />
           ))}
-          {fastProfile?.data?.state === true ?
-          <footer className="post__footer">
-            <div className="post__stats">
-              <button onClick={handleLikes} className="post__likes stats">
-                <Experience />
-                {p.likes.length + like}
-              </button>
-              <button onClick={handleComments} className="post__comments stats">
-                <CommentBubble /> {p.comentarios.length}
-              </button>
-            </div>
-            <div className="post__btns">
-              <button className="post__btn share">
-                <Share />
-                <span>Compartir</span>
-              </button>
-              <button onClick={handleComments} className="post__btn comment">
-                <CommentBubble />
-                <span>Comentar</span>
-              </button>
-              <button
-                className={`post__btn like ${likedByMe ? "likedByMe" : ""}`}
-                onClick={likeDislike}
-              >
-                {loading ? <Loading /> : <Experience />}
-                <span>Me Gusta</span>
-              </button>
-            </div>
-          </footer>:null}
+          {fastProfile?.data?.state === true ? (
+            <footer className="post__footer">
+              <div className="post__stats">
+                <button onClick={handleLikes} className="post__likes stats">
+                  <Experience />
+                  {p.likes.length + like}
+                </button>
+                <button
+                  onClick={handleComments}
+                  className="post__comments stats"
+                >
+                  <CommentBubble /> {p.comentarios.length}
+                </button>
+              </div>
+              <div className="post__btns">
+                <button onClick={handleComments} className="post__btn comment">
+                  <CommentBubble />
+                  <span>Comentar</span>
+                </button>
+                <button
+                  className={`post__btn like ${likedByMe ? "likedByMe" : ""}`}
+                  onClick={likeDislike}
+                >
+                  {loading ? <Loading /> : <Experience />}
+                  <span>Me Gusta</span>
+                </button>
+              </div>
+            </footer>
+          ) : null}
           {showComments && <CommentsContainer post={p} />}
         </div>
         {showLikes && p.likes.length > 0 && (

@@ -35,9 +35,7 @@ import {
   FILTER_BY_TAGS,
   CLEAR_MY_POSTS,
   AUTHORIZED,
- 
 } from "./actionTypes";
-
 
 export const getUsers = () => {
   return async (dispatch) => {
@@ -89,8 +87,6 @@ export const getFollowUserById = (id) => {
 export const clearProfileState = () => {
   return { type: CLEAR_PROFILE_STATE, payload: [] };
 };
-
-
 
 export const getMyProfile = () => {
   return async (dispatch) => {
@@ -146,7 +142,7 @@ export function getPeopleByName(name) {
 
       return dispatch({
         type: GET_NAME,
-        payload: names.data
+        payload: names.data,
       });
     } catch (error) {
       console.log(error);
@@ -186,26 +182,35 @@ export const CreatePost = (payload) => {
 export const CreateComment = (payload) => {
   return async (dispatch) => {
     try {
-      const info = await axios.post(`${process.env.REACT_APP_PUERTO}posts/comentarios`, payload, tokenUsuario())
+      const info = await axios.post(
+        `${process.env.REACT_APP_PUERTO}posts/comentarios`,
+        payload,
+        tokenUsuario()
+      );
       return info;
-    } catch(error) {
-      console.log(error)
+    } catch (error) {
+      console.log(error);
     }
-  }
-}
+  };
+};
 
 export const AllPost = () => {
   return async (dispatch) => {
     try {
-      let { data: { data } } = await axios.get(`${process.env.REACT_APP_PUERTO}posts/?follows=true`, tokenUsuario()) //despues agregarle la query
+      let {
+        data: { data },
+      } = await axios.get(
+        `${process.env.REACT_APP_PUERTO}posts/?follows=true`,
+        tokenUsuario()
+      ); //despues agregarle la query
       return dispatch({
         type: GET_ALL_POSTS,
-        payload: data.length===0?['algo']:data
-      })
+        payload: data.length === 0 ? ["algo"] : data,
+      });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 };
 
 export const getFollows = () => {
@@ -245,7 +250,7 @@ export const getMyPost = () => {
       );
       return dispatch({
         type: GET_MY_POST,
-        payload: myPost.data.data.length===0?['algo']:myPost.data.data
+        payload: myPost.data.data.length === 0 ? ["algo"] : myPost.data.data,
       });
     } catch (error) {
       console.log(error);
@@ -262,7 +267,8 @@ export const getMyfriendsPost = (id) => {
       );
       return dispatch({
         type: GET_MY_FRIENDS_POST,
-        payload: friendsPost.data.data.length===0?['algo']:friendsPost.data.data
+        payload:
+          friendsPost.data.data.length === 0 ? ["algo"] : friendsPost.data.data,
       });
     } catch (error) {
       console.log(error);
@@ -297,181 +303,196 @@ export function getCleanFriends() {
   };
 }
 export function getCleanHome() {
-    return {
-      type: CLEAN_HOME,
-    };
-  }
-  
+  return {
+    type: CLEAN_HOME,
+  };
+}
+
 export const getMyPhoto = () => {
-    return async (dispatch) => {
-      try {
-        const myPhoto= await axios.get(
-          `${process.env.REACT_APP_PUERTO}usuarios/?myId=true&fastProfile=true`,
-          tokenUsuario()
-        );
-        return dispatch({ type: GET_MY_PHOTO, payload: myPhoto.data });
-      } catch (err) {
-        console.log(err);
-      }
-    };
-  };
-
-  export const clearMyProfile = () => {
-    return { type: CLEAR_MY_PROFILE, payload: [] };
-  };
-
-
-  export const getNotifications = () => {
-    return async (dispatch) => {
-      try {
-        const notifications= await axios.get(
-          `${process.env.REACT_APP_PUERTO}usuarios/notifications`,
-          tokenUsuario()
-        );
-        return dispatch({ type: GET_NOTIFICATIONS, payload: notifications.data });
-      } catch (err) {
-        console.log(err);
-      }
-    };
-  };
-
-  export const clearNotifications = () => {
-    return { type:CLEAR_NOTIFICATIONS, payload:{notifications:[]}};
-
-  };
-
-  export const get_CONVERSATIONS = ()=>{
-    return async(dispatch)=>{
-      try {
-        const  { data } = await axios.get(`${process.env.REACT_APP_PUERTO}conversation/`, tokenUsuario())
-        console.log(data, 'data de mis conversaciones')
-        return dispatch({type:CONVERSATIONS, payload: data})
-      } catch (error) {
-        console.error(error)
-        alert('error')
-      }
+  return async (dispatch) => {
+    try {
+      const myPhoto = await axios.get(
+        `${process.env.REACT_APP_PUERTO}usuarios/?myId=true&fastProfile=true`,
+        tokenUsuario()
+      );
+      return dispatch({ type: GET_MY_PHOTO, payload: myPhoto.data });
+    } catch (err) {
+      console.log(err);
     }
   };
+};
+
+export const clearMyProfile = () => {
+  return { type: CLEAR_MY_PROFILE, payload: [] };
+};
+
+export const getNotifications = () => {
+  return async (dispatch) => {
+    try {
+      const notifications = await axios.get(
+        `${process.env.REACT_APP_PUERTO}usuarios/notifications`,
+        tokenUsuario()
+      );
+      return dispatch({ type: GET_NOTIFICATIONS, payload: notifications.data });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+export const clearNotifications = () => {
+  return { type: CLEAR_NOTIFICATIONS, payload: { notifications: [] } };
+};
+
+export const get_CONVERSATIONS = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_PUERTO}conversation/`,
+        tokenUsuario()
+      );
+      console.log(data, "data de mis conversaciones");
+      return dispatch({ type: CONVERSATIONS, payload: data });
+    } catch (error) {
+      console.error(error);
+      alert("error");
+    }
+  };
+};
 
 //{headers:{token: read_cookie('userToken')}}
-  export const get_CHAT = (conversationId, friend)=>{
-    return async(dispatch)=>{
-      try {
-        const  { data } = await axios.get(`${process.env.REACT_APP_PUERTO}message/${conversationId}`, tokenUsuario())
-        return dispatch({type:CHAT, payload: {id:conversationId, friend:friend, chats:data}})
-      } catch (error) {
-        console.error(error)
-        alert('error')
-      }
+export const get_CHAT = (conversationId, friend) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_PUERTO}message/${conversationId}`,
+        tokenUsuario()
+      );
+      return dispatch({
+        type: CHAT,
+        payload: { id: conversationId, friend: friend, chats: data },
+      });
+    } catch (error) {
+      console.error(error);
+      alert("error");
     }
-  }
+  };
+};
 
-
-export const PUSHchat = (msg)=>({
-	type:PUSHCHAT,
-	payload: msg
+export const PUSHchat = (msg) => ({
+  type: PUSHCHAT,
+  payload: msg,
 });
 
-
-export const NEW_MESSAGE = async (body)=>{
-	
-	try {
-		 await axios.post(`${process.env.REACT_APP_PUERTO}message/`, body, tokenUsuario())
-		return;
-	} catch (error) {
-		console.error(error)
-		alert('error')
-	}
-}
-
+export const NEW_MESSAGE = async (body) => {
+  try {
+    await axios.post(
+      `${process.env.REACT_APP_PUERTO}message/`,
+      body,
+      tokenUsuario()
+    );
+    return;
+  } catch (error) {
+    console.error(error);
+    alert("error");
+  }
+};
 
 export const user_ALL = () => {
-	return async (dispatch) => {
-		try {
-			const {data: Users} =await axios(`${process.env.REACT_APP_PUERTO}usuarios/?myself=false&follows=false`, tokenUsuario());
-			console.log(Users, 'Probando ruta Users')
-      return dispatch({type:USERS_ALL, payload: Users})
-		} catch (error) {
-			console.error(error)
-		}
-	};
+  return async (dispatch) => {
+    try {
+      const { data: Users } = await axios(
+        `${process.env.REACT_APP_PUERTO}usuarios/?myself=false&follows=false`,
+        tokenUsuario()
+      );
+      console.log(Users, "Probando ruta Users");
+      return dispatch({ type: USERS_ALL, payload: Users });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 };
 
-
-
-  export const getPostById = (id) => {
-    return async (dispatch) => {
-      try {
-        const postById = await axios.get(
-          `${process.env.REACT_APP_PUERTO}posts/?idpost=${id}`,
-          tokenUsuario()
-        );
-        return dispatch({
-          type: GET_POST_BY_ID,
-          payload: postById.data,
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    };
+export const getPostById = (id) => {
+  return async (dispatch) => {
+    try {
+      const postById = await axios.get(
+        `${process.env.REACT_APP_PUERTO}posts/?idpost=${id}`,
+        tokenUsuario()
+      );
+      return dispatch({
+        type: GET_POST_BY_ID,
+        payload: postById.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
-
-  export const clearPostById = () => {
-    return { type:CLEAR_POST_BY_ID, payload:[]};
-  };
-
- export const getExperiencesPosts = () => {
-   return async (dispatch) => {
-     try{
-       const expPost = await axios.get(`${process.env.REACT_APP_PUERTO}posts?experience=true`, tokenUsuario());
-       return dispatch({
-         type: EXPERIENCES_POSTS,
-         payload: expPost.data
-       })
-     }catch (error){
-       console.log(error);
-     }
-   }
- }
-
- export const getAllUsers = () => {
-	return async (dispatch) => {
-		try {
-			const allUsers =await axios(`${process.env.REACT_APP_PUERTO}usuarios?locked=true`, tokenUsuario());
-      return dispatch({type:GET_ALL_USERS, payload: allUsers.data})
-		} catch (error) {
-			console.error(error)
-		}
-	};
 };
 
+export const clearPostById = () => {
+  return { type: CLEAR_POST_BY_ID, payload: [] };
+};
+
+export const getExperiencesPosts = () => {
+  return async (dispatch) => {
+    try {
+      const expPost = await axios.get(
+        `${process.env.REACT_APP_PUERTO}posts?experience=true`,
+        tokenUsuario()
+      );
+      return dispatch({
+        type: EXPERIENCES_POSTS,
+        payload: expPost.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getAllUsers = () => {
+  return async (dispatch) => {
+    try {
+      const allUsers = await axios(
+        `${process.env.REACT_APP_PUERTO}usuarios?locked=true`,
+        tokenUsuario()
+      );
+      return dispatch({ type: GET_ALL_USERS, payload: allUsers.data });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
 
 export const clearAllUsers = () => {
-  return { type:CLEAR_ALL_USERS, payload:[]};
-}
+  return { type: CLEAR_ALL_USERS, payload: [] };
+};
 
 export const filterByTags = (payload) => {
-return{
-  type: FILTER_BY_TAGS,
-  payload
-}
-}
-
+  return {
+    type: FILTER_BY_TAGS,
+    payload,
+  };
+};
 
 export const clearMyPosts = () => {
-  return{
+  return {
     type: CLEAR_MY_POSTS,
-    payload:[]
-  }
-  }
-
-  export const authorized = () => {
-    return async (dispatch) => {
-      try {
-        const authorized =await axios(`${process.env.REACT_APP_PUERTO}usuarios/henry`, tokenUsuario());
-        return dispatch({type:AUTHORIZED, payload: authorized.data})
-      } catch (error) {
-        console.error(error)
-      }
-    };
+    payload: [],
   };
+};
+
+export const authorized = () => {
+  return async (dispatch) => {
+    try {
+      const authorized = await axios(
+        `${process.env.REACT_APP_PUERTO}usuarios/henry`,
+        tokenUsuario()
+      );
+      return dispatch({ type: AUTHORIZED, payload: authorized.data });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};

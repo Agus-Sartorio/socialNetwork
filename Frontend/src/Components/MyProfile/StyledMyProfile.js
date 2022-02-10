@@ -119,6 +119,11 @@ export const DivInfo = styled.div`
       margin-right: 10px;
     }
   }
+
+  @media (max-width: 650px) {
+    left: 50%;
+    transform: translateX(-50%);
+  }
 `;
 
 export const DivFollows = styled.div`
@@ -173,6 +178,15 @@ export const DivFollows = styled.div`
     &:hover {
       background-color: black;
       color: var(--yellow-1);
+    }
+  }
+
+  @media (max-width: 650px) {
+    text-align: center;
+    margin: 200px auto 50px;
+
+    .card__center {
+      margin: 0 auto;
     }
   }
 `;

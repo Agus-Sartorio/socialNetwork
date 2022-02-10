@@ -4,11 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { CreatePost } from "../../actions";
 import Upload from "../Icons/Upload";
 import { Link } from "react-router-dom";
-import toast, {Toaster} from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
 
 let id = 0;
-
-
 
 export default function CrearPost() {
   const dispatch = useDispatch();
@@ -45,8 +43,17 @@ export default function CrearPost() {
         return null;
       }
     });
+
+  const notify = () =>
+    toast.success("Tu post se creo exitosamente", {
+      duration: 9000,
+      position: "top-center",
+    });
+
   function submitHandler(e) {
     e.preventDefault();
+    notify();
+    alert("Post creado exitosamente");
     let data = new FormData();
 
     file.forEach((f) => {
@@ -71,18 +78,18 @@ export default function CrearPost() {
     setView(newArr);
   };
 
-  const notify = () => toast.success('Tu post se creo exitosamente', {
-    duration: 9000,
-    position: 'top-center'});
-
   return (
     <StyledForm
-    onClick={notify}
-    className={input.description || view.length ? "expanded" : undefined}
-    onSubmit={submitHandler} 
+      className={input.description || view.length ? "expanded" : undefined}
+      onSubmit={submitHandler}
     >
-    <Toaster toastOptions={ {success: {
-      duration: 7000}}} />
+      <Toaster
+        toastOptions={{
+          success: {
+            duration: 7000,
+          },
+        }}
+      />
       <div className="img-post">
         <Link to={"/myprofile"}>
           <img
@@ -132,9 +139,8 @@ export default function CrearPost() {
             </div>
           ))}
         </div>
-       
+
         <button
-        
           className="btn-submit"
           disabled={input.description || view.length ? undefined : true}
           type="submit"
