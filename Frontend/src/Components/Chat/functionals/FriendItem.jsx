@@ -3,12 +3,13 @@ import axios from 'axios';
 import { read_cookie } from 'sfcookies';
 import { useDispatch} from 'react-redux';
 import {  get_CONVERSATIONS} from "../../../actions";
+import {Ponline, NameHead, Poffline} from './StyledChat'
 
 const FriendItem = ({ name, profile, state, id }) => {
   
   const dispatch = useDispatch()
 
-    console.log(id, 'id que mando al post desde item')
+ 
     
     const handleClick = async () => {
     await axios.post(`${process.env.REACT_APP_PUERTO}conversation/`, 
@@ -17,6 +18,13 @@ const FriendItem = ({ name, profile, state, id }) => {
     dispatch(get_CONVERSATIONS())
   }
   
+  if(state ==="offline"){
+    state=false;
+  }
+
+  if(state==="oline"){
+    state=true
+  }
 
   return (
   <>
@@ -25,10 +33,14 @@ const FriendItem = ({ name, profile, state, id }) => {
       <Avatar alt={name} src={profile} />
     </ListItemAvatar>
     <ListItemText
-      primary={name}
+      primary={
+      <NameHead>
+      {name}
+      </NameHead>
+      }
       secondary={
         <>
-          {state}<br/>
+          {state? <Ponline>{"online"}</Ponline> :<Poffline>{"offline"}</Poffline>}
         </>
       }
     />

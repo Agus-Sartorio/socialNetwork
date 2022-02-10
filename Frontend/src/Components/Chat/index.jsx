@@ -1,15 +1,16 @@
 import React, { useEffect } from "react";
-//import {conversaciones} from './Message/conversacion';
 import { getFollows, getMyProfileData, getMyId } from "../../actions";
 import { useDispatch, useSelector } from "react-redux";
 import NavBar from "../NavBar/NavBar";
 import Messenger from "./Messenger";
-/* import {Link} from 'react-router-dom'; */
 import SideBar from "../SideBar/SideBar";
 import { ContainerIndex } from "./styledChats";
 import Loaderfull from "../Loader/LoaderFull";
-// import Chats from './Chats.jsx';
+import Layout from '../Layout/Layout'
 
+// import Chats from './Chats.jsx';
+//import {conversaciones} from './Message/conversacion';
+/* import {Link} from 'react-router-dom'; */
 // const { user } = useUserAuth();
 // console.log(user, "yo como persona que me logeo")
 
@@ -19,30 +20,31 @@ export default function Chat() {
   const user = useSelector((state) => state.myProfileData);
 
   // if(user.length !== 0)console.log(user, "yo como persona que me logeo")
-  useEffect(() => {
-    dispatch(getMyProfileData());
-    dispatch(getMyId());
-  }, [dispatch]);
 
   useEffect(() => {
-    dispatch(getFollows());
-  }, [dispatch]);
+   
+    dispatch(getFollows())
+    dispatch(getMyId())
+  }, [])
 
-  const contactos = fallows.data;
-  // console.log(contactos, 'chats lo que mando')
 
-  return (
-    <>
-      <NavBar />
+  useEffect(() => {
+    dispatch(getMyProfileData())
+  }, [dispatch])
+  
+      const contactos = fallows.data;
+    
+    return (     
+        
+  
+     ///// aqui va el layout que dice August
+   
+     <Layout>
+        
+                {contactos? <Messenger user={user} contactos={contactos} /> : <Loaderfull></Loaderfull>}    
+ 
+     </Layout>
 
-      <ContainerIndex>
-        <SideBar />
-        {contactos ? (
-          <Messenger user={user} contactos={contactos} />
-        ) : (
-          <Loaderfull></Loaderfull>
-        )}
-      </ContainerIndex>
-    </>
-  );
-}
+     
+   
+     )}

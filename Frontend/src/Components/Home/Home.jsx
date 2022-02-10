@@ -7,6 +7,9 @@ import LoaderFull from "../Loader/LoaderFull";
 import PostContainer from "../PostContainer/PostContainer";
 import { StyledMessage } from "./styles";
 
+
+
+
 export default function Home() {
   const posts = useSelector((state) => state.allPost);
 

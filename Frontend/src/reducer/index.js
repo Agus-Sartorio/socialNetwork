@@ -20,6 +20,7 @@ const initialState = {
     conversations: [],
     Users: [],
     allPost: [],
+    Socket:[],
     follows:[],
     followers:[],
     followUser:[],
@@ -217,6 +218,7 @@ export function rootReducer(state = initialState, action) {
                         ...state,
                         postById:action.payload
                     }   
+                
                 case EXPERIENCES_POSTS:
                     return{
                         ...state,

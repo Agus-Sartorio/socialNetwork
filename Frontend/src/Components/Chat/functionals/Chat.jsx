@@ -7,6 +7,7 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import { Container, Divider } from "@mui/material";
 import { useSelector } from "react-redux";
+import {Ponline, NameHead, Poffline} from './StyledChat'
 
 export default function Chat({ online }) {
   const {
@@ -22,7 +23,7 @@ export default function Chat({ online }) {
   console.log(me, "yo soy yo");
   let contactOnline = false;
   if (online.length !== 0) {
-    contactOnline = online.some((contact) => contact.id === friend.id);
+    contactOnline = online.some((contact) => contact?.id === friend?.id);
     console.log(contactOnline, "validacion");
   }
 
@@ -44,14 +45,17 @@ export default function Chat({ online }) {
           />
         </ListItemAvatar>
         <ListItemText
-          primary={friend?.username ? friend.username : me?.fullname}
+          primary={<NameHead>
+          {friend?.username ? friend?.username : me?.fullname}
+          </NameHead>
+          }
           secondary={
             <>
               {friend.username
                 ? contactOnline
-                  ? "online"
-                  : "offline"
-                : "online"}
+                  ? <Ponline>{"online"}</Ponline>
+                  : <Poffline>{"offline"}</Poffline>
+                : <Ponline>{"online"}</Ponline>}
             </>
           }
         />
@@ -70,13 +74,13 @@ export default function Chat({ online }) {
                 message={e.text}
                 date={e.createdAt}
                 type={
-                  e.sender === friend.id
+                  e.sender === friend?.id
                     ? "friend"
-                    : e.sender === me.id
+                    : e.sender === me?.id
                     ? "own"
                     : ""
                 }
-                profile={e.sender === friend.id ? friend.profile : null}
+                profile={e.sender === friend.id ? friend.profile : me?.profile}
               />
             ))}
           </Container>

@@ -1,4 +1,6 @@
 import { Route, Routes } from "react-router-dom";
+import {useRef} from 'react';
+import SocketConext from "./Components/Context/SocketContext.jsx";
 import GlobalStyle from "./IndexStyled.jsx";
 import LogIn from './Components/FormLogIn/LogIn';
 import Home from './Components/Home/Home';
@@ -15,6 +17,7 @@ import { ProtectedRouteAdmin } from "./Components/ProtectedRoutes/ProtectedRoute
 import { Authorize } from "./Components/Admin/Authorize.jsx";
 import Experiences from "./Components/Experiencias/ExperienceHome.jsx";
 import { BlockAccount } from "./Components/Admin/BlockAccount/BlockAccount.jsx";
+import  SocketPrivider from './Components/Context/SocketPrivider'
 import { ProtectedRoute } from "./Components/ProtectedRoutes/ProtectedRoute.jsx";
 
 function App() {
@@ -25,7 +28,9 @@ function App() {
 
       <GlobalStyle />
       <UserAuthContextProvider>
-        <Routes>
+
+      <SocketPrivider>
+        <Routes> 
           <Route path="/" element={<LogIn />} />
           <Route path="/edit" element={<ProtectedRouteLocked><Edit /></ProtectedRouteLocked>} />
           <Route path="/chat" element={<ProtectedRouteLocked><Chat/></ProtectedRouteLocked>} />
@@ -39,6 +44,7 @@ function App() {
           <Route path='experiences' element={<ProtectedRouteLocked><Experiences/></ProtectedRouteLocked>}/>
           <Route path='*' element={<NotFound />} />
         </Routes>
+      </SocketPrivider>
       </UserAuthContextProvider>
     </div>
   )

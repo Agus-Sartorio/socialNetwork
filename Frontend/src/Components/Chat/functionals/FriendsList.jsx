@@ -6,7 +6,8 @@ import FriendItem from './FriendItem';
 export default function FriendList({online,offline}) {
  
   
-  console.log(offline, 'pruebas definitivas')
+  console.log(offline,'lo que me esta llegando en offline')
+
   return (
     <List sx={{ width: '100%', maxWidth: 360,  zIndex:0 }}>
       {online?.map((e, i) => ( 
