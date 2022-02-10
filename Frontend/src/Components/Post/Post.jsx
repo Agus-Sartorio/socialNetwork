@@ -52,6 +52,7 @@ export default function Post({ p }) {
         idpost,
         tokenUsuario()
       );
+      window.location.reload()
       setLoading(false);
       setLikedByMe(!likedByMe);
       if (likedByMe) {

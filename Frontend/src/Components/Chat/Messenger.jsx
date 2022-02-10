@@ -17,8 +17,10 @@ export default function Messenger({ visible, contactos, user }) {
   // const sockete = useRef(sockety)
   const dispatch = useDispatch();
   const { conversations, myId, follows } = useSelector((state) => state);
+  const [online, setOnline] = useState([]);
+  const [offline, setOffline] = useState([]);
   const gsock = useRef();
-  const contr = useRef(0);
+  // const contr = useRef(0);
 
   console.log(follows.data, "heee k2");
   console.log(contactos, "lo que llega de contactos");
@@ -28,10 +30,10 @@ export default function Messenger({ visible, contactos, user }) {
   // }
 
   useEffect(() => {
-    if (contr.current === 1 || contr.current === 0) {
-      contr.current = contr.current + 1;
-      return;
-    }
+    // if (contr.current === 1 || contr.current === 0) {
+    //   contr.current = contr.current + 1;
+    //   return;
+    // }
 
     gsock.current = io(`${process.env.REACT_APP_PUERTO}`);
     gsock.current.emit("addUser", myId?.id);
@@ -39,8 +41,7 @@ export default function Messenger({ visible, contactos, user }) {
     //dispatch(get_SOCKET(gsock.current))
   }, [dispatch, myId?.id]);
 
-  const [online, setOnline] = useState([]);
-  const [offline, setOffline] = useState([]);
+
 
   // useEffect(()=>{
 
@@ -78,7 +79,7 @@ export default function Messenger({ visible, contactos, user }) {
     //     control.current = control.current + 1
     //     return
     // }
-
+ 
     gsock.current?.on("getUsers", (users) => {
       let online = [];
       let Offline = [];
@@ -100,7 +101,8 @@ export default function Messenger({ visible, contactos, user }) {
         }
         console.log(online, "brge");
         console.log(Offline, "bgre 2");
-      } else {
+      } 
+      else {
         Offline = contactos;
       }
       console.log(Offline, "mmm");
@@ -108,6 +110,12 @@ export default function Messenger({ visible, contactos, user }) {
       setOnline(online);
       setOffline(Offline);
     });
+    
+    if(offline.length === 0){
+     
+        setOffline(contactos)
+    }
+
   }, [contactos, myId?.id]);
 
   useEffect(() => {
@@ -129,7 +137,7 @@ export default function Messenger({ visible, contactos, user }) {
   return (
     <Grid container direction="row" justifyContent="center" alignItems="start">
       <Grid xs item={true}>
-        <Container>
+       <Container sx={{maxHeight: "670px", overflow: "hidden", height: "650px"}}>
           <MessagesList conversations={conversations} user={user} />
         </Container>
       </Grid>
@@ -139,7 +147,7 @@ export default function Messenger({ visible, contactos, user }) {
         </Container>
       </Grid>
       <Grid xs item={true}>
-        <Container>
+      <Container sx={{maxHeight: "670px", overflow: "hidden", height: "650px"}}>
           <FriendList online={online} offline={offline} />
         </Container>
       </Grid>

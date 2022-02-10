@@ -6,12 +6,10 @@ import Admin from "../Icons/Admin";
 import Settings from "../Icons/Settings";
 import { useUserAuth } from "../Context/UserContext";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getMyPhoto } from "../../actions";
 
 export default function SideBar() {
-  const navigate = useNavigate();
   const { logOut } = useUserAuth();
   const dispatch = useDispatch();
 
@@ -24,7 +22,7 @@ export default function SideBar() {
   const handleLogOut = () => {
     try {
       logOut();
-      navigate("/");
+      localStorage.clear()
     } catch (error) {
       console.log(error.message);
     }

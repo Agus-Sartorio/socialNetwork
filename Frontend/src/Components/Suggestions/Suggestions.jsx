@@ -22,16 +22,15 @@ const Suggestions = () => {
         <Layout >
             <h1 className='layout__title'>Sugerencias</h1>
             <DivCards>
-                {users.length ? users.map(e =>
-                    <CardSuggestions
+                {users.length? users.map(e => e.id? <CardSuggestions
                         fullname={e.fullname}
                         id={e.id}
                         profile={e.profile}
                         email={e.email}
                         follow={e.follow}
                         key={e.id}
-                    />
-                ) : <LoaderFull></LoaderFull>}
+                    />:<p>No hay sugerencias</p>
+                ): <LoaderFull></LoaderFull> }
                 <div className="espacios"></div>
             </DivCards>
         </Layout>

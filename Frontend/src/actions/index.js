@@ -45,7 +45,7 @@ export const getUsers = () => {
         tokenUsuario()
       );
 
-      return dispatch({ type: GET_USER, payload: users.data.data });
+      return dispatch({ type: GET_USER, payload: users.data.data.length === 0 ? ["algo"] : users.data.data});
     } catch (err) {
       console.log(err);
     }
@@ -487,7 +487,7 @@ export const authorized = () => {
   return async (dispatch) => {
     try {
       const authorized = await axios(
-        `${process.env.REACT_APP_PUERTO}usuarios/henry`,
+        `${process.env.REACT_APP_PUERTO}reportes/auth`,
         tokenUsuario()
       );
       return dispatch({ type: AUTHORIZED, payload: authorized.data });
