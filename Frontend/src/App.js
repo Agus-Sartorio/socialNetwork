@@ -12,11 +12,11 @@ import { ViewProfile } from "./Components/MyProfile/ViewProfile.jsx";
 import NotFound from "./Components/NotFound/NotFound.jsx";
 import { Publication } from "./Components/Publication/Publication.jsx";
 import { ProtectedRouteAdmin } from "./Components/ProtectedRoutes/ProtectedRouteAdmin.jsx";
-import { Authorize } from "./Components/Admin/Authorize.jsx";
 import Experiences from "./Components/Experiencias/ExperienceHome.jsx";
 import { BlockAccount } from "./Components/Admin/BlockAccount/BlockAccount.jsx";
 import SocketPrivider from "./Components/Context/SocketPrivider";
 import { ProtectedRoute } from "./Components/ProtectedRoutes/ProtectedRoute.jsx";
+import { Authorize } from "./Components/Admin/Authorize/Authorize.jsx";
 
 function App() {
   return (
