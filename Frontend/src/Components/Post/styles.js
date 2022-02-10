@@ -1,4 +1,61 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const spin = keyframes`
+  0%{
+    transform: rotate(0);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+`;
+
+export const StyledOverflow = styled.div`
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 10;
+
+  .div__img {
+    height: 80%;
+    position: relative;
+    background-color: #eee;
+    padding: 20px;
+    border-radius: 10px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      object-fit: contain;
+    }
+  }
+
+  .btn__close {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--red-1);
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+    transition: filter 300ms;
+
+    &:hover {
+      filter: brightness(2);
+    }
+  }
+`;
 
 export const StyledPost = styled.article`
   display: flex;
@@ -103,6 +160,14 @@ export const StyledPost = styled.article`
     }
   }
 
+  .loading {
+    animation: ${spin} 2s linear infinite;
+  }
+
+  .likedByMe {
+    background-color: var(--red-1);
+  }
+
   .post__stats {
     display: flex;
     margin-right: auto;
@@ -146,6 +211,26 @@ export const StyledPost = styled.article`
     justify-content: flex-end;
   }
 
+  .post__img {
+    width: 100%;
+    max-width: 200px;
+    height: 100%;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+
+    &:hover {
+      box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.2);
+    }
+
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+
   @media (max-width: 860px) {
     width: 95%;
 
@@ -161,6 +246,11 @@ export const StyledPost = styled.article`
 
     .post__btns {
       justify-content: space-between;
+    }
+
+    .post__img {
+      max-width: 100%;
+      height: 250px;
     }
   }
 

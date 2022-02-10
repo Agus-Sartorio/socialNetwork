@@ -76,6 +76,7 @@ const GlobalStyle = createGlobalStyle`
     color: var(--grey-9);
     position: relative;
     font-weight: 900;
+    text-align: center;
     
     &::after{
       content: '';
@@ -88,6 +89,12 @@ const GlobalStyle = createGlobalStyle`
       left: 50%;
       transform: translateX(-50%);
     }
+  }
+
+  .layout__description{
+    color: #ccc;
+    margin-bottom: 20px;
+    text-align: center;
   }
 
   @media (max-width: 360px){

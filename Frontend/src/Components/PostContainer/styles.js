@@ -12,4 +12,12 @@ export const StyledPostContainer = styled.section`
   @media (max-width: 860px) {
     max-width: 900px;
   }
+
+  .visor {
+    width: 100%;
+    text-align: center;
+    margin-top: 25px;
+    color: #eee;
+    font-size: 20px;
+  }
 `;

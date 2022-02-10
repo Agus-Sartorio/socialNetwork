@@ -4,85 +4,78 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import { format } from 'timeago.js'
-import { useSelector } from 'react-redux';
+import {MessengeHead, MessengeCont, 
+    MessengeContFriend, Pfriend, Pyou,  MessengeHeadyou,
+     LabeldateFriend, LabeldateYou} from './StyledChat'
 
 
 const Message = ({ name, message, profile, date, type }) => {
-    const { myProfileData } = useSelector(state => state)
-    console.log(profile, 'esto es lo que llega')
-    console.log(myProfileData.data[0].profile, 'mi perfil los datos')
-    if (profile === null){
+    // const { myProfileData } = useSelector(state => state)
+    // //  console.log(profile, 'mi perfil los datos')
+    //  const me = useRef(null);
+    // useEffect(()=>{
+
+    //     if (profile === null || profile === undefined){
+           
+    //         me.current=myProfileData?.data[0].profile
+           
+    //     }
        
-        profile=myProfileData.data[0].profile
-       
-    }
+        // socket.current.on("getUsers", users=>{console.log(users, 'usuarios conectados')})       
+    // }, [myProfileData])
+
     switch (type) {
         case "own":
             return (
-                <ListItem alignItems="flex-start" sx={{ flexDirection: 'row-reverse', textAlign: 'right', marginBottom: 1 }}
-                >
-                    <ListItemAvatar sx={{ marginRight: 0, marginLeft: 2 }}>
-                        <Avatar alt={name} src={profile.includes('uploads')?`${process.env.REACT_APP_PUERTO}`+ profile : profile} />
+                <>
+                < MessengeHeadyou>
+
+               
+               <MessengeCont>
+                
+                        <Pyou>{message}</Pyou>
+                   
+                    <ListItemAvatar>
+                        <Avatar alt={name} 
+                         src={profile?.includes('uploads')? `${process.env.REACT_APP_PUERTO}` + profile : profile } />
                     </ListItemAvatar>
-                    <ListItemText
-                        primary={message}
-                        secondary={
-                            <>
 
-                                <Typography
-                                    sx={{ display: 'inline', marginRight: 2, fontWeight: 'bold' }}
-                                    component="span"
-                                    variant="subtitle2"
-                                    color="text.primary"
-                                >
-                                    {name}
-                                </Typography>
+                   
+                </MessengeCont>   
 
-                                <Typography
-                                    sx={{ display: 'inline' }}
-                                    component="span"
-                                    variant="subtitle2"
-                                    color="text.primary"
-                                >
-                                    {format(date)}
-                                </Typography>
-                            </>
-                        }
-                    />
-                </ListItem>
-            )
+
+                </ MessengeHeadyou>
+                                <LabeldateYou>{format(date)} </LabeldateYou>
+
+                              
+         </>)
+          {/*  final del contenido del todo el mensaje */}
+
         case "friend":
             return (
-                <ListItem alignItems="flex-start" sx={{ bgcolor: "#00666622", borderRadius: 2, marginBottom: 1 }}>
-                    <ListItemAvatar>
-                        <Avatar alt={name} src={profile.includes('uploads')?`${process.env.REACT_APP_PUERTO}`+ profile : profile} />
-                    </ListItemAvatar>
-                    <ListItemText
-                        primary={message}
-                        secondary={
-                            <>
+                <>
+                <MessengeHead>
 
-                                <Typography
-                                    sx={{ display: 'inline', marginRight: 2, fontWeight: 'bold' }}
-                                    component="span"
-                                    variant="subtitle2"
-                                    color="text.primary"
-                                >
-                                    {name}
-                                </Typography>
-                                <Typography
-                                    sx={{ display: 'inline' }}
-                                    component="span"
-                                    variant="subtitle2"
-                                    color="text.primary"
-                                >
-                                    {format(date, 'en_US')}
-                                </Typography>
-                            </>
-                        }
-                    />
-                </ListItem>
-            )
+               
+               <MessengeContFriend>
+                
+                    <ListItemAvatar>
+                        <Avatar alt={name} 
+                         src={profile?.includes('uploads')? `${process.env.REACT_APP_PUERTO}` + profile : profile } />
+                    </ListItemAvatar>
+                    
+                    <Pfriend>{message}</Pfriend>
+                   
+
+                   
+                </MessengeContFriend>   
+
+
+                </MessengeHead>
+                <LabeldateFriend>{format(date)}</LabeldateFriend>
+
+                               
+         </>)
             default : return (<></>)
     }
 

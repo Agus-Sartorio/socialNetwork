@@ -21,7 +21,12 @@ const CardProfile = ({ profile, followUser, myId }) => {
   const [showFollowers, setShowFollowers] = useState(false);
   const [showFollowing, setShowFollowings] = useState(false);
 
-  const isFollowing = followUser.followers?.map((e) => e.id).includes(myId.id);
+  console.log(showFollowers);
+  console.log(showFollowing);
+
+  const isFollowing = followUser?.followers
+    ?.map((e) => e.id)
+    .includes(myId?.id);
   const dispatch = useDispatch();
   const idToFollow = { followMe: profile.id };
 
@@ -39,6 +44,66 @@ const CardProfile = ({ profile, followUser, myId }) => {
       dispatch(clearMyFollowsState());
     } catch (err) {
       console.log(err);
+    }
+  }
+
+  async function handleChange(e) {
+    if (e.target.value === "por malas palabras") {
+      e.preventDefault();
+      if (
+        window.confirm("reportar a " + profile.fullname + " " + e.target.value)
+      ) {
+        try {
+          await axios.put(
+            `${process.env.REACT_APP_PUERTO}posts/notification`,
+            { idUser: profile.id, message: e.target.value },
+            tokenUsuario()
+          );
+          alert("reportaste a " + profile.fullname + " " + e.target.value);
+        } catch (err) {
+          console.log(err);
+        }
+      } else {
+        return false;
+      }
+    }
+    if (e.target.value === "por acoso") {
+      e.preventDefault();
+      if (
+        window.confirm("reportar a " + profile.fullname + " " + e.target.value)
+      ) {
+        try {
+          await axios.put(
+            `${process.env.REACT_APP_PUERTO}posts/notification`,
+            { idUser: profile.id, message: e.target.value },
+            tokenUsuario()
+          );
+          alert("reportaste a " + profile.fullname + " " + e.target.value);
+        } catch (err) {
+          console.log(err);
+        }
+      } else {
+        return false;
+      }
+    }
+    if (e.target.value === "por contenido inapropiado") {
+      e.preventDefault();
+      if (
+        window.confirm("reportar a " + profile.fullname + " " + e.target.value)
+      ) {
+        try {
+          await axios.put(
+            `${process.env.REACT_APP_PUERTO}posts/notification`,
+            { idUser: profile.id, message: e.target.value },
+            tokenUsuario()
+          );
+          alert("reportaste a " + profile.fullname + " " + e.target.value);
+        } catch (err) {
+          console.log(err);
+        }
+      } else {
+        return false;
+      }
     }
   }
 
@@ -89,19 +154,31 @@ const CardProfile = ({ profile, followUser, myId }) => {
           <button onClick={followUnFollow} className="card__btn-follow">
             {isFollowing ? "Dejar de seguir" : "Seguir"}
           </button>
+          <select className="card__select" onChange={handleChange}>
+            <option>Reportar</option>
+            <option value="por malas palabras">Por malas palabras</option>
+            <option value="por acoso">Por acoso</option>
+            <option value="por contenido inapropiado">
+              Por contenido inapropiado
+            </option>
+          </select>
         </div>
         {followUser.follows ? (
           <>
-            <ModalFollow
-              show={showFollowers}
-              setShow={setShowFollowers}
-              followUser={followUser.followers}
-            />
-            <ModalFollow
-              show={showFollowing}
-              setShow={setShowFollowings}
-              followUser={followUser.follows}
-            />
+            {showFollowers && (
+              <ModalFollow
+                setShow={setShowFollowers}
+                followUser={followUser.followers}
+                title="Seguidores"
+              />
+            )}
+            {showFollowing && (
+              <ModalFollow
+                setShow={setShowFollowings}
+                followUser={followUser.follows}
+                title="Siguiendo"
+              />
+            )}
           </>
         ) : (
           <p>Este usuario no está siguiendo a nadie</p>

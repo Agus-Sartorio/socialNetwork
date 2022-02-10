@@ -1,63 +1,130 @@
 import { Container, Grid } from '@mui/material';
 import { useEffect, useRef, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { get_CONVERSATIONS, PUSHchat, user_ALL } from '../../actions';
+import { get_CONVERSATIONS, PUSHchat, user_ALL,  getFollows, getMyProfileData } from '../../actions';
 import Conversation from './functionals/Conversation';
 import FriendList from './functionals/FriendsList';
 import MessagesList from './functionals/MessagesList';
 import { io } from 'socket.io-client'
 
-export default function Messenger({visible}) {
-
-    const socket = useRef()
+export default function Messenger({visible,contactos,user}) {
+    
+    // const sockete = useRef(sockety)
     const dispatch = useDispatch()
-    const { conversations, myId, chat, chat:{chats} } = useSelector(state => state)
-    const [arrived, setarrived] = useState({})
+    const { conversations,  myId, follows } = useSelector(state => state)
+    const gsock = useRef();
+    const contr = useRef(0);
+   
+    
+    console.log(follows.data, 'heee k2')
+    console.log(contactos,'lo que llega de contactos')
+    // if(Socket.length !== 0){
+       
+    //     gsock.current = Socket;
+    // }
+
     useEffect(()=>{
-        socket.current = io(`${process.env.REACT_APP_PUERTO}`)
+
+        if(contr.current === 1 || contr.current === 0){
+         contr.current=contr.current+1
+         return
+        }
+
+            gsock.current = io(`${process.env.REACT_APP_PUERTO}`)  
+            gsock.current.emit("addUser", myId?.id);
+            // socket.current.on("getUsers", users=>{console.log(users, 'usuarios conectados')})
+            //dispatch(get_SOCKET(gsock.current))
         
-    }, [visible])
+
+     }, [ contr.current])
+
+
+    
+    const [online, setOnline] = useState([]);
+    const [offline, setOffline] = useState([]);
+   
+  
+    // useEffect(()=>{
+        
+
+    //     gsock.current?.emit("addUser", myId?.id);
+    //     // socket.current.on("getUsers", users=>{console.log(users, 'usuarios conectados')})
+        
+    // }, [visible])
 
     useEffect(()=>{
-        socket.current.on("getMessage", data=>{
-            console.log('esta es data', data)
+        gsock.current?.on("getMessage", data=>{
+            console.log('aqui???')
             dispatch( PUSHchat({
                 sender: data.senderId,
                 text: data.text,
                 createdAt: Date.now()
             }) )
-            setarrived({
-                sender: data.senderId,
-                text: data.text,
-                createdAt: Date.now()
-            })
+         
         })
 
-        socket.current.on('myMessage', data=>{
+        gsock.current?.on('myMessage', data=>{
+            console.log('aqui???')
             dispatch( PUSHchat({
                 sender: data.senderId,
                 text: data.text,
                 createdAt: Date.now()
             }) )
         })
-    }, [socket])
+    }, [gsock.current])
 
-    useEffect(()=>{
-        arrived && chat?conversations?.[conversations.indexOf(chat.id)]?.members.includes(arrived.senderId) : false && dispatch( PUSHchat(arrived) )
-    }, [arrived])
 
     useEffect(() => {
          
-        // if(ControlRenders.current === 0){
-        //     ControlRenders.current = ControlRenders.current + 1
+        // if(control.current === 0){
+        //     control.current = control.current + 1
         //     return 
         // }
-        console.log(myId.id, "Id mio que mando al socket")     
-        socket.current.emit("addUser", myId.id);
-        socket.current.on("getUsers", users=>{console.log(users, 'usuarios conectados')})
+
+        gsock.current?.on("getUsers", users=> {
+            let online= [];
+            let Offline= [];
+            let aux = users.filter((e)=> e.userId !== myId?.id )
+            console.log(aux, 'auxiliar');
+               
+            if (aux.length ){
+
+                for(let i=0;i < aux.length;i++){ 
+    
+                       for(let j=0; j < contactos.length; j++){
+    
+                           
+                           if(aux[i].userId === contactos[j].id ){
+                               online.push(contactos[j])
+                               continue
+                            }
+                            
+    
+                            if ( !aux.length || aux[i].userId !== contactos[j].id){
+    
+                                Offline.push(contactos[j]) 
+                            }
+                        } 
+    
+                 
+                    } 
+                    console.log(online,'brge')
+                    console.log(Offline,'bgre 2')
+
+                }
+
+
+            else{Offline=contactos}
+                 console.log(Offline,'mmm')
+                // console.log(online, 'contactos online')
+                setOnline(online);
+                setOffline(Offline)
+
+            })
+            
         
         
-    }, []);
+    }, [gsock.current]);
 
 
 
@@ -69,22 +136,29 @@ export default function Messenger({visible}) {
         dispatch(get_CONVERSATIONS())
     }, [get_CONVERSATIONS]);
 
+    useEffect(() => {
+        dispatch(getFollows());
+    }, [dispatch,getFollows]);
+
+    useEffect(() => {
+        dispatch(getMyProfileData());
+    }, [getMyProfileData]);
 
     return (
         <Grid container direction="row" justifyContent="center" alignItems="start">
             <Grid xs  item={true}>
                 <Container>
-                    <MessagesList conversations={conversations} />
+                    <MessagesList conversations={conversations} user={user}/>
                 </Container>
             </Grid>
             <Grid xs={6}  item={true}>
                 <Container>
-                    <Conversation socket={socket} />
+                    <Conversation socket={gsock} online={online} />
                 </Container>
             </Grid>
             <Grid xs  item={true}>
                 <Container>
-                    <FriendList />
+                    <FriendList online={online} offline={offline} />
                 </Container>
             </Grid>
         </Grid>

@@ -3,12 +3,11 @@ import { CLEAR_PROFILE_STATE, CLEAR_USERS_STATE, GET_USER, GET_NAME,
      MY_PROFILE, CREATE_POST, GET_ALL_POSTS, 
      GET_FOLLOWS, GET_FOLLOWERS, FOLLOW_USER_BY_ID, GET_MY_POST, 
      GET_MY_FRIENDS_POST,CLEAR_FOLLOW_USER_STATE,
-     GET_MY_ID, CLEAR_MY_FOLLOW_STATE, SORT_BY_AZ, 
+     GET_MY_ID, CLEAR_MY_FOLLOW_STATE, 
      GET_CLEAN_FRIENDS, CLEAN_HOME, GET_MY_PHOTO, 
      CLEAR_MY_PROFILE, GET_NOTIFICATIONS, CLEAR_NOTIFICATIONS,
      GET_POST_BY_ID, CLEAR_POST_BY_ID, CREATE_COMMENT,CONVERSATIONS,
-     PUSHCHAT, USERS_ALL, CHAT} from "../actions/actionTypes"
-    import { sortByAz } from "../actions"
+     PUSHCHAT, USERS_ALL, CHAT, EXPERIENCES_POSTS, GET_ALL_USERS, CLEAR_ALL_USERS, FILTER_BY_TAGS, CLEAR_MY_POSTS, AUTHORIZED} from "../actions/actionTypes"
 
 
 const initialState = {
@@ -21,6 +20,7 @@ const initialState = {
     conversations: [],
     Users: [],
     allPost: [],
+    Socket:[],
     follows:[],
     followers:[],
     followUser:[],
@@ -36,7 +36,11 @@ const initialState = {
 		      id: ''
             },
 
-    postById:[]
+    postById:[],
+    experiencesPost:[],
+    experiences:[],
+    allUsers:[],
+    authorized:[]
 }
 
 
@@ -142,13 +146,7 @@ export function rootReducer(state = initialState, action) {
                     ...state,
                     followers:action.payload,
                     follows:action.payload,
-                }
-            case SORT_BY_AZ:
-                return{
-                    ...state,
-                    sort:state.followUser.sort(sortByAz)
-                }                            
-                      
+                }                                  
                 case GET_CLEAN_FRIENDS:
                     return{
                         ...state,
@@ -219,7 +217,42 @@ export function rootReducer(state = initialState, action) {
                     return{
                         ...state,
                         postById:action.payload
-                    }                 
+                    }   
+                
+                case EXPERIENCES_POSTS:
+                    return{
+                        ...state,
+                        experiencesPost: action.payload,
+                        experiences: action.payload
+                    }
+                case GET_ALL_USERS:
+                    return{
+                        ...state,
+                        allUsers:action.payload
+                    }
+                case CLEAR_ALL_USERS:
+                    return{
+                        ...state,
+                        allUsers:action.payload
+                    } 
+                case FILTER_BY_TAGS:
+                    const experiencesPost = state.experiences
+                    const regex = /#experience, /i;
+                    const tagsFiltered = action.payload === 'Todos' ? experiencesPost : experiencesPost.filter(el => el.tags[0].replace(regex,"") === action.payload)
+                    return{
+                        ...state,
+                       experiencesPost: tagsFiltered 
+                    }
+                case CLEAR_MY_POSTS:
+                    return{
+                        ...state,
+                        myProfilePost:action.payload
+                    }
+                case AUTHORIZED:
+                    return{
+                        ...state,
+                        authorized:action.payload
+                    }                                     
         default:
             return state
     }

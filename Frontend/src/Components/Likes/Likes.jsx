@@ -31,13 +31,13 @@ export default function Likes({ setShowLikes, p }) {
   return (
     <StyledOverflow ref={overlay} onClick={handleOverlayClick}>
       <StyledLikes>
-        <h3 className="layout__title">Marcado como me gusta por :</h3>
+        <h3 className="layout__title">Marcado como me gusta por:</h3>
         {p?.likes?.map((p) => {
           console.log(p);
           return (
             <div key={p.id} className="likes__div">
               <Link
-                to={`${myId.id === p.id ? "/myprofile" : `/profile/${p.id}`}`}
+                to={`/${myId.id === p.id ? "myprofile" : `profile/${p.id}`}`}
                 className="likes__link"
               >
                 <span className="likes__span" />
