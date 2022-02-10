@@ -45,7 +45,7 @@ export const getUsers = () => {
         tokenUsuario()
       );
 
-      return dispatch({ type: GET_USER, payload: users.data.data });
+      return dispatch({ type: GET_USER, payload: users.data.data.length === 0 ? ["algo"] : users.data.data});
     } catch (err) {
       console.log(err);
     }
