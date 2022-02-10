@@ -41,8 +41,6 @@ export default function Messenger({ visible, contactos, user }) {
     //dispatch(get_SOCKET(gsock.current))
   }, [dispatch, myId?.id]);
 
-
-
   // useEffect(()=>{
 
   //     gsock.current?.emit("addUser", myId?.id);
@@ -79,7 +77,7 @@ export default function Messenger({ visible, contactos, user }) {
     //     control.current = control.current + 1
     //     return
     // }
- 
+
     gsock.current?.on("getUsers", (users) => {
       let online = [];
       let Offline = [];
@@ -101,8 +99,7 @@ export default function Messenger({ visible, contactos, user }) {
         }
         console.log(online, "brge");
         console.log(Offline, "bgre 2");
-      } 
-      else {
+      } else {
         Offline = contactos;
       }
       console.log(Offline, "mmm");
@@ -110,13 +107,11 @@ export default function Messenger({ visible, contactos, user }) {
       setOnline(online);
       setOffline(Offline);
     });
-    
-    if(offline.length === 0){
-     
-        setOffline(contactos)
-    }
 
-  }, [contactos, myId?.id]);
+    if (offline.length === 0) {
+      setOffline(contactos);
+    }
+  }, [contactos, myId?.id, offline.length]);
 
   useEffect(() => {
     dispatch(user_ALL());
@@ -137,7 +132,9 @@ export default function Messenger({ visible, contactos, user }) {
   return (
     <Grid container direction="row" justifyContent="center" alignItems="start">
       <Grid xs item={true}>
-       <Container sx={{maxHeight: "670px", overflow: "hidden", height: "650px"}}>
+        <Container
+          sx={{ maxHeight: "670px", overflow: "hidden", height: "650px" }}
+        >
           <MessagesList conversations={conversations} user={user} />
         </Container>
       </Grid>
@@ -147,7 +144,9 @@ export default function Messenger({ visible, contactos, user }) {
         </Container>
       </Grid>
       <Grid xs item={true}>
-      <Container sx={{maxHeight: "670px", overflow: "hidden", height: "650px"}}>
+        <Container
+          sx={{ maxHeight: "670px", overflow: "hidden", height: "650px" }}
+        >
           <FriendList online={online} offline={offline} />
         </Container>
       </Grid>
