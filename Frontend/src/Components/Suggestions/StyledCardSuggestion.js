@@ -1,4 +1,13 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const spin = keyframes`
+  0%{
+    transform: rotate(0);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+`;
 
 export const StyledCardSuggestions = styled.article`
   display: flex;
@@ -103,5 +112,9 @@ export const StyledCardSuggestions = styled.article`
     bottom: 0;
     left: 0;
     right: 0;
+  }
+
+  .loading {
+    animation: ${spin} 2s linear infinite;
   }
 `;
