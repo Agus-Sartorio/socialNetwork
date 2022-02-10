@@ -76,6 +76,7 @@ const GlobalStyle = createGlobalStyle`
     color: var(--grey-9);
     position: relative;
     font-weight: 900;
+    text-align: center;
     
     &::after{
       content: '';

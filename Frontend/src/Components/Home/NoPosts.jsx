@@ -1,13 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Welcome } from "./styles";
+import { StyledMessage } from "./styles";
 
-export default function NoPosts () {
-    return(
-        <Welcome>
-        <div>
-            No tienes publicaciones  animate a crear tu primer publicacion <Link to='/home'><p>aqui</p> </Link>
-        </div>
-        </Welcome>
-    )
+export default function NoPosts() {
+  return (
+    <StyledMessage>
+      Aún no tenes publicaciones. ¡Animate a crear tu primer publicación
+      <Link to="/home">aqui</Link>!
+    </StyledMessage>
+  );
 }

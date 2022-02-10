@@ -1,18 +1,6 @@
-import React from 'react';
-import {Loader, Cohete} from './StyledLoader'
+import React from "react";
+import { StyledDiv } from "./styles";
 
-export default function LoaderFull( ) {
-
-
-    return (
-        
-    <div>
-        <Loader></Loader>
-        <Cohete></Cohete>
-    </div>
-  
-    )};
-
-  
-  
-  
+export default function LoaderFull() {
+  return <StyledDiv />;
+}

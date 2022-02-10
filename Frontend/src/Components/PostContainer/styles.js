@@ -13,7 +13,7 @@ export const StyledPostContainer = styled.section`
     max-width: 900px;
   }
 
-  .visor{
+  .visor {
     width: 100%;
     text-align: center;
   }
