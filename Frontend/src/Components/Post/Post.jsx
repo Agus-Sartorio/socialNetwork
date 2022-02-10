@@ -4,7 +4,6 @@ import { format } from "timeago.js";
 import { StyledPost } from "./styles";
 import Experience from "../Icons/Experience";
 import CommentBubble from "../Icons/CommentBubble";
-import Share from "../Icons/Share";
 import DefaultUser from "../Icons/DefaultUser";
 import { useSelector } from "react-redux";
 import axios from "axios";
