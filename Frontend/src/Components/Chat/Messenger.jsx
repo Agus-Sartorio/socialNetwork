@@ -17,6 +17,8 @@ export default function Messenger({ visible, contactos, user }) {
   // const sockete = useRef(sockety)
   const dispatch = useDispatch();
   const { conversations, myId, follows } = useSelector((state) => state);
+  const [online, setOnline] = useState([]);
+  const [offline, setOffline] = useState([]);
   const gsock = useRef();
   const contr = useRef(0);
 
@@ -28,10 +30,10 @@ export default function Messenger({ visible, contactos, user }) {
   // }
 
   useEffect(() => {
-    if (contr.current === 1 || contr.current === 0) {
-      contr.current = contr.current + 1;
-      return;
-    }
+    // if (contr.current === 1 || contr.current === 0) {
+    //   contr.current = contr.current + 1;
+    //   return;
+    // }
 
     gsock.current = io(`${process.env.REACT_APP_PUERTO}`);
     gsock.current.emit("addUser", myId?.id);
@@ -39,8 +41,7 @@ export default function Messenger({ visible, contactos, user }) {
     //dispatch(get_SOCKET(gsock.current))
   }, [dispatch, myId?.id]);
 
-  const [online, setOnline] = useState([]);
-  const [offline, setOffline] = useState([]);
+
 
   // useEffect(()=>{
 
@@ -108,6 +109,11 @@ export default function Messenger({ visible, contactos, user }) {
       setOnline(online);
       setOffline(Offline);
     });
+    
+    if(offline.length === 0){
+      setOffline(contactos)
+    }
+
   }, [contactos, myId?.id]);
 
   useEffect(() => {
