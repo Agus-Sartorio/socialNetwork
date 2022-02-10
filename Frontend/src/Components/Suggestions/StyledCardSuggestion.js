@@ -117,4 +117,10 @@ export const StyledCardSuggestions = styled.article`
   .loading {
     animation: ${spin} 2s linear infinite;
   }
+
+  .reporte {
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: 500;
+  }
 `;

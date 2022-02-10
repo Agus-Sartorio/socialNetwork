@@ -32,17 +32,17 @@ const CardAllUsers = ({ users }) => {
     }
   }
 
-  async function deleteReports(e){
+  async function deleteReports(e) {
     e.preventDefault();
-   try{
-    await axios.delete(
-      `${process.env.REACT_APP_PUERTO}reportes/${users.id}`,
-      tokenUsuario()
-    );
-    setReports(false)
-   }catch(err){
-    console.log(err)
-   }
+    try {
+      await axios.delete(
+        `${process.env.REACT_APP_PUERTO}reportes/${users.id}`,
+        tokenUsuario()
+      );
+      setReports(false);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (
@@ -64,22 +64,25 @@ const CardAllUsers = ({ users }) => {
         </Link>
       </h3>
       <p className="card__email">{users.email}</p>
-      {reports?
-      <div className="card__container-btn">
-        {button === users.state ? (
-          <button className="card__btn" onClick={lockedUnlocked}>
-            desbloquear
+      {reports ? (
+        <div className="card__container-btn">
+          {button === users.state ? (
+            <button className="card__btn" onClick={lockedUnlocked}>
+              desbloquear
+            </button>
+          ) : (
+            <button className="card__btn" onClick={lockedUnlocked}>
+              Suspender
+            </button>
+          )}
+
+          <button className="card__btn secondary" onClick={deleteReports}>
+            Descartar
           </button>
-        ) : (
-          <button className="card__btn" onClick={lockedUnlocked}>
-            Suspender
-          </button>
-        )}
-        
-        <button className="card__btn secondary" onClick={deleteReports}>Descartar</button>  
-      </div>
-      :
-      <p>Reportes eliminados</p>}
+        </div>
+      ) : (
+        <p className="reporte">Reporte eliminado</p>
+      )}
     </StyledCardSuggestions>
   );
 };
