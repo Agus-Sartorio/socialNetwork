@@ -80,9 +80,9 @@ export default function Messenger({ visible, contactos, user }) {
     //     return
     // }
  
+    let Offline = [];
     gsock.current?.on("getUsers", (users) => {
       let online = [];
-      let Offline = [];
       let aux = users.filter((e) => e.userId !== myId?.id);
       console.log(aux, "auxiliar");
 
@@ -111,7 +111,7 @@ export default function Messenger({ visible, contactos, user }) {
       setOffline(Offline);
     });
     
-    if(offline.length === 0){
+    if(Offline.length === 0){
      
         setOffline(contactos)
     }
