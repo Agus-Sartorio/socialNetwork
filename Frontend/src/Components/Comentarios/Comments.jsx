@@ -15,7 +15,11 @@ export default function Comments({ el }) {
       >
         <img
           className="comment__avatar"
-          src={el.profile}
+          src={
+            el.profile?.includes("http")
+              ? el.profile.replace(/\\/g, "/")
+              : process.env.REACT_APP_PUERTO + el.profile.replace(/\\/g, "/")
+          }
           alt={el.fullname.split(" ")[0]}
         />
       </Link>

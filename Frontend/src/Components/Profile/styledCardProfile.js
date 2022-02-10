@@ -295,6 +295,7 @@ export const StyledOverflow = styled.div`
   left: 0;
   bottom: 0;
   right: 0;
+  z-index: 1;
 `;
 
 export const StyledLikes = styled.div`
@@ -303,7 +304,7 @@ export const StyledLikes = styled.div`
   background-color: var(--grey-9);
   width: 100%;
   max-width: 500px;
-  height: 350px;
+  height: 360px;
   margin: auto;
   padding: 25px;
   overflow-y: auto;

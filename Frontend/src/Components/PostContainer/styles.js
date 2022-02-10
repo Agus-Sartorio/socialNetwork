@@ -16,5 +16,8 @@ export const StyledPostContainer = styled.section`
   .visor {
     width: 100%;
     text-align: center;
+    margin-top: 25px;
+    color: #eee;
+    font-size: 20px;
   }
 `;

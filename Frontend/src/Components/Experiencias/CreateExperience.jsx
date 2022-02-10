@@ -10,7 +10,7 @@ import {
 } from "../../actions";
 import { Link } from "react-router-dom";
 import Delete from "../Icons/Delete";
-import toast, {Toaster} from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
 
 export default function CrearExperience() {
   const dispatch = useDispatch();
@@ -52,12 +52,13 @@ export default function CrearExperience() {
 
   function submitHandler(e) {
     e.preventDefault();
+    notify();
+    alert("Experiencia creada");
     let data = new FormData();
 
     data.append("description", input.description);
     data.append("tags", input.tags);
     dispatch(CreatePost(data));
-    alert("se creo el post");
     setInput({
       description: "",
     });
@@ -70,19 +71,25 @@ export default function CrearExperience() {
     });
   };
 
-  const notify = () => toast.success('Tu post se creo exitosamente', {
-    duration: 9000,
-    position: 'top-center'});
-//holaa
+  const notify = () =>
+    toast.success("Tu post se creo exitosamente", {
+      duration: 9000,
+      position: "top-center",
+    });
+  //holaa
 
   return (
     <StyledForm
       className={input.description ? "expanded" : undefined}
       onSubmit={submitHandler}
-      onClick={notify}
     >
-        <Toaster toastOptions={ {success: {
-      duration: 7000}}} />
+      <Toaster
+        toastOptions={{
+          success: {
+            duration: 7000,
+          },
+        }}
+      />
       <div className="img-post">
         <Link to={"/myprofile"}>
           <img
@@ -90,8 +97,9 @@ export default function CrearExperience() {
             src={
               myPhoto
                 ? myPhoto.data?.profile[0] === "u"
-                  ? process.env.REACT_APP_PUERTO + myPhoto.data?.profile
-                  : myPhoto.data?.profile
+                  ? process.env.REACT_APP_PUERTO +
+                    myPhoto.data?.profile.replace(/\\/g, "/")
+                  : myPhoto.data?.profile.replace(/\\/g, "/")
                 : "https://static2.elnortedecastilla.es/www/pre2017/multimedia/noticias/201501/12/media/cortadas/facebook-profile-picture-no-pic-avatar--575x323.jpg"
             }
             alt=""
@@ -122,7 +130,7 @@ export default function CrearExperience() {
           className="tags__select"
         >
           <option value="" selected disabled hidden>
-            Selecciona solo una etiqueta
+            Selecciona una
           </option>
           <option value="#M1">#M1</option>
           <option value="#M2">#M2</option>

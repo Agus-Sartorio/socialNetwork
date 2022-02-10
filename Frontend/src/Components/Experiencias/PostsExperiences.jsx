@@ -48,7 +48,12 @@ export default function PostsExperiences() {
                   }`}
                 >
                   <img
-                    src={el.autorData[0]?.profile}
+                    src={
+                      el.autorData?.[0]?.profile?.includes("http")
+                        ? el.autorData?.[0]?.profile.replace(/\\/g, "/")
+                        : process.env.REACT_APP_PUERTO +
+                          el.autorData?.[0]?.profile.replace(/\\/g, "/")
+                    }
                     alt=""
                     width={"30px"}
                     height={"30px"}

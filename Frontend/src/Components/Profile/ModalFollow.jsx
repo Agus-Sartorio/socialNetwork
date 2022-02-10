@@ -32,7 +32,6 @@ export function ModalFollow({ followUser, setShow, title }) {
       <StyledLikes>
         <h3 className="layout__title">{title}</h3>
         {followUser?.map((p) => {
-          console.log(p);
           return (
             <div key={p.id} className="likes__div">
               <Link
@@ -40,7 +39,15 @@ export function ModalFollow({ followUser, setShow, title }) {
                 className="likes__link"
               >
                 <span className="likes__span" />
-                <img src={p.profile} alt={p.fullname.split(" ")[0]} />
+                <img
+                  src={
+                    p.profile?.includes("http")
+                      ? p.profile.replace(/\\/g, "/")
+                      : process.env.REACT_APP_PUERTO +
+                        p.profile.replace(/\\/g, "/")
+                  }
+                  alt={p.fullname.split(" ")[0]}
+                />
                 <p>{p.fullname}</p>
               </Link>
             </div>

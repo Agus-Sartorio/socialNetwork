@@ -36,5 +36,8 @@ export const Welcome = styled.div`
   .visor {
     width: 100%;
     text-align: center;
+    margin-top: 25px;
+    color: #eee;
+    font-size: 20px;
   }
 `;
