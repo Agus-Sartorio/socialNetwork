@@ -66,5 +66,6 @@ export const StyledNotificationCard = styled.div`
     height: 50px;
     color: black;
     font-weight: bold;
+    z-index: 1;
   }
 `;
