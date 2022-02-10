@@ -1,4 +1,4 @@
-export const cohorte = [{option:'21A'},{option:'21B'},{option:'20A'},{option:'20B'},{option:'19A'},{option:'19B'},{option:'18A'},{option:'18B'},{option:'17A'},{option:'17B'},{option:'16A'},{option:'16B'}]
+export const cohorte = [{option:'FT21A'},{option:'FT21B'},{option:'FT20A'},{option:'FT20B'},{option:'FT19A'},{option:'FT19B'},{option:'FT18A'},{option:'FT18B'},{option:'FT17A'},{option:'FT17B'},{option:'FT16A'},{option:'FT16B'}]
 
 
 export const sortBy = [{option:'A-Z'},{option:'Z-A'}]
