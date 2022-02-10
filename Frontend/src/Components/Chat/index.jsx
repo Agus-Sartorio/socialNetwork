@@ -1,12 +1,9 @@
 import React, { useEffect } from "react";
 import { getFollows, getMyProfileData, getMyId } from "../../actions";
 import { useDispatch, useSelector } from "react-redux";
-import NavBar from "../NavBar/NavBar";
 import Messenger from "./Messenger";
-import SideBar from "../SideBar/SideBar";
-import { ContainerIndex } from "./styledChats";
 import Loaderfull from "../Loader/LoaderFull";
-import Layout from '../Layout/Layout'
+import Layout from "../Layout/Layout";
 
 // import Chats from './Chats.jsx';
 //import {conversaciones} from './Message/conversacion';
@@ -22,29 +19,25 @@ export default function Chat() {
   // if(user.length !== 0)console.log(user, "yo como persona que me logeo")
 
   useEffect(() => {
-   
-    dispatch(getFollows())
-    dispatch(getMyId())
-  }, [])
-
+    dispatch(getFollows());
+    dispatch(getMyId());
+  }, [dispatch]);
 
   useEffect(() => {
-    dispatch(getMyProfileData())
-  }, [dispatch])
-  
-      const contactos = fallows.data;
-    
-    return (     
-        
-  
-     ///// aqui va el layout que dice August
-   
-     <Layout>
-        
-                {contactos? <Messenger user={user} contactos={contactos} /> : <Loaderfull></Loaderfull>}    
- 
-     </Layout>
+    dispatch(getMyProfileData());
+  }, [dispatch]);
 
-     
-   
-     )}
+  const contactos = fallows.data;
+
+  return (
+    ///// aqui va el layout que dice August
+
+    <Layout>
+      {contactos ? (
+        <Messenger user={user} contactos={contactos} />
+      ) : (
+        <Loaderfull></Loaderfull>
+      )}
+    </Layout>
+  );
+}
