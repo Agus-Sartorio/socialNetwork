@@ -20,7 +20,7 @@ export default function Messenger({ visible, contactos, user }) {
   const [online, setOnline] = useState([]);
   const [offline, setOffline] = useState([]);
   const gsock = useRef();
-  const contr = useRef(0);
+  // const contr = useRef(0);
 
   console.log(follows.data, "heee k2");
   console.log(contactos, "lo que llega de contactos");
@@ -30,10 +30,10 @@ export default function Messenger({ visible, contactos, user }) {
   // }
 
   useEffect(() => {
-    if (contr.current === 1 || contr.current === 0) {
-      contr.current = contr.current + 1;
-      return;
-    }
+    // if (contr.current === 1 || contr.current === 0) {
+    //   contr.current = contr.current + 1;
+    //   return;
+    // }
 
     gsock.current = io(`${process.env.REACT_APP_PUERTO}`);
     gsock.current.emit("addUser", myId?.id);
@@ -79,7 +79,7 @@ export default function Messenger({ visible, contactos, user }) {
     //     control.current = control.current + 1
     //     return
     // }
-  if(gsock.current !== undefined)
+ 
     gsock.current?.on("getUsers", (users) => {
       let online = [];
       let Offline = [];
@@ -111,7 +111,7 @@ export default function Messenger({ visible, contactos, user }) {
       setOffline(Offline);
     });
     
-    else{
+    if(offline.length === 0){
      
         setOffline(contactos)
     }
