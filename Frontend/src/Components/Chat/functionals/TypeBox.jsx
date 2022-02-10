@@ -25,7 +25,7 @@ const TypeBox = ({socket}) => {
       text: msg
     }) 
       NEW_MESSAGE({conversationId:id, text: msg, sender:myId.id})
-      value=""
+ 
       setmsg("")
 
     //  dispatch(get_CONVERSATIONS())   
@@ -34,6 +34,25 @@ const TypeBox = ({socket}) => {
   function handleChange(evt) {
     setmsg(evt.target.value);
   }
+
+
+ 
+
+   const handleKey=(e)=>{
+
+    if(e.key==='Enter'){
+
+      socket.current.emit("sendMessage", {
+         senderId: myId.id,
+         receiverId: friend.id,
+         text: msg
+    }) 
+      NEW_MESSAGE({conversationId:id, text: msg, sender:myId.id})
+     
+      setmsg("")
+  
+     }
+}
 
 
   return (
@@ -52,8 +71,10 @@ const TypeBox = ({socket}) => {
            <InputMessage
                 autoComplete="off"
                 required
+                type='text'
                 value={msg}
                 name="message"
+                onKeyPress={handleKey}
                 onChange={(evt) => handleChange(evt)}
               />  
 

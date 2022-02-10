@@ -12,6 +12,8 @@ export default function Messenger({visible,contactos,user}) {
     // const sockete = useRef(sockety)
     const dispatch = useDispatch()
     const { conversations,  myId, follows } = useSelector(state => state)
+    const [online, setOnline] = useState([]);
+    const [offline, setOffline] = useState([]);
     const gsock = useRef();
     const contr = useRef(0);
    
@@ -40,8 +42,7 @@ export default function Messenger({visible,contactos,user}) {
 
 
     
-    const [online, setOnline] = useState([]);
-    const [offline, setOffline] = useState([]);
+    
    
   
     // useEffect(()=>{
