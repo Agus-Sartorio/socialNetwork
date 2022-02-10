@@ -9,7 +9,7 @@ export default function MessagesList({conversations}) {
   const {follows} = useSelector(state => state)
 
   return (
-    <List sx={{ width: '100%', maxWidth: 360, zIndex: 1 }}>
+    <List sx={{ width: '100%', height:"100%", maxWidth: 360, zIndex: 1, overflowY: "auto", position: "relative" }}>
       {
         conversations.map((e, i)=>{
           //declaro un array amigo que contendra la data de mi amigo.
