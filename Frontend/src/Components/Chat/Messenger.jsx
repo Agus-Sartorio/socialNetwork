@@ -30,10 +30,10 @@ export default function Messenger({ visible, contactos, user }) {
   // }
 
   useEffect(() => {
-    // if (contr.current === 1 || contr.current === 0) {
-    //   contr.current = contr.current + 1;
-    //   return;
-    // }
+    if (contr.current === 1 || contr.current === 0) {
+      contr.current = contr.current + 1;
+      return;
+    }
 
     gsock.current = io(`${process.env.REACT_APP_PUERTO}`);
     gsock.current.emit("addUser", myId?.id);
