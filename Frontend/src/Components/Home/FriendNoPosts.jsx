@@ -1,13 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Welcome } from "./styles";
+import { StyledMessage } from "./styles";
 
-export default function FriendNoPosts () {
-    return(
-        <Welcome>
-        <div>
-            Este usuario no tiene publicaciones
-        </div>
-        </Welcome>
-    )
+export default function FriendNoPosts() {
+  return <StyledMessage>Este usuario aún no tiene publicaciones</StyledMessage>;
 }

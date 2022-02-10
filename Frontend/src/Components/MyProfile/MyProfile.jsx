@@ -21,8 +21,8 @@ const MyProfile = ({ myProfile }) => {
   useEffect(() => {
     dispatch(getMyPost());
     return () => {
-      dispatch(clearMyPosts())
-    }
+      dispatch(clearMyPosts());
+    };
   }, [dispatch]);
 
   const posts = useSelector((state) => state.myProfilePost);
@@ -30,13 +30,13 @@ const MyProfile = ({ myProfile }) => {
   const followers = useSelector((state) => state.followers);
   const preview = myProfile.data[0].background_picture.includes("uploads");
 
+  let background = myProfile.data[0].background_picture.replace(/\\/g, "/");
+
   return (
     <>
       <DivCardProfile
         bg={
-          preview
-            ? `${process.env.REACT_APP_PUERTO}${myProfile.data[0].background_picture}`
-            : myProfile.data[0].background_picture
+          preview ? `${process.env.REACT_APP_PUERTO}${background}` : background
         }
       >
         <DivInfo>
@@ -73,16 +73,20 @@ const MyProfile = ({ myProfile }) => {
         </div>
         {follows.data ? (
           <>
-            <ModalFollow
-              show={showFollowers}
-              setShow={setShowFollowers}
-              followUser={followers.data}
-            />
-            <ModalFollow
-              show={showFollowing}
-              setShow={setShowFollowings}
-              followUser={follows.data}
-            />
+            {showFollowers && (
+              <ModalFollow
+                title="Seguidores"
+                setShow={setShowFollowers}
+                followUser={followers.data}
+              />
+            )}
+            {showFollowing && (
+              <ModalFollow
+                title="Seguidos"
+                setShow={setShowFollowings}
+                followUser={follows.data}
+              />
+            )}
           </>
         ) : (
           <p>Este usuario no está siguiendo a nadie</p>
@@ -109,7 +113,7 @@ const MyProfile = ({ myProfile }) => {
         <ModalMyFollow follow={followers} action={"Seguidores"} />
         <ModalMyFollow follow={follows} action={"Siguiendo"} />
       </DivModal> */}
-      {posts?.length?<PostContainer posts={posts} />:<LoaderFull/>}
+      {posts?.length ? <PostContainer posts={posts} /> : <LoaderFull />}
     </>
   );
 };

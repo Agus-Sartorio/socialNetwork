@@ -21,7 +21,6 @@ function EditProfile({ userInfo }) {
     fullname: userInfo.fullname,
     description: userInfo.description,
     nacionalidad: userInfo.nacionalidad,
-    email: userInfo.email,
     birthday: userInfo.birthday,
   });
 
@@ -271,15 +270,6 @@ function EditProfile({ userInfo }) {
               />
             </label>
 
-            <label>
-              Email
-              <input
-                type="email"
-                value={`${input.email}`}
-                name="email"
-                onChange={(evt) => handleChange(evt)}
-              />
-            </label>
           </div>
 
           <label className="edit__description">
