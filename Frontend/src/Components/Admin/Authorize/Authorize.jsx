@@ -2,8 +2,10 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { authorized } from "../../../actions";
 import Layout from "../../Layout/Layout";
+import Error from "../../Icons/Error";
 import { CardsAuthorize } from "./CardsAuthorize";
 import { FormAuthorize } from "./FormAuthorize";
+import { CardContainer } from "./styles";
 
 export const Authorize = () => {
   const dispatch = useDispatch();
@@ -14,13 +16,18 @@ export const Authorize = () => {
 
   return (
     <Layout>
-      <p>Personas autorizadas</p>
+      <h1 className="layout__title">Personas autorizadas</h1>
       <FormAuthorize />
-      {usersAuthorized?.length ? (
-        usersAuthorized.map((e) => <CardsAuthorize users={e} />)
-      ) : (
-        <p></p>
-      )}
+      <CardContainer>
+        {!usersAuthorized?.length ? (
+          usersAuthorized.map((e) => <CardsAuthorize users={e} />)
+        ) : (
+          <p className="post__error">
+            <Error />
+            No hay usuarios autorizados.
+          </p>
+        )}
+      </CardContainer>
     </Layout>
   );
 };

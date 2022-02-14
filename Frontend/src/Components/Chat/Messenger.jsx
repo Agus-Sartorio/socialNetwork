@@ -77,10 +77,10 @@ export default function Messenger({ visible, contactos, user }) {
     //     control.current = control.current + 1
     //     return
     // }
-
+ 
+    let Offline = [];
     gsock.current?.on("getUsers", (users) => {
       let online = [];
-      let Offline = [];
       let aux = users.filter((e) => e.userId !== myId?.id);
       console.log(aux, "auxiliar");
 
@@ -107,10 +107,12 @@ export default function Messenger({ visible, contactos, user }) {
       setOnline(online);
       setOffline(Offline);
     });
-
-    if (offline.length === 0) {
-      setOffline(contactos);
+    
+    if(Offline.length === 0){
+     
+        setOffline(contactos)
     }
+
   }, [contactos, myId?.id, offline.length]);
 
   useEffect(() => {
