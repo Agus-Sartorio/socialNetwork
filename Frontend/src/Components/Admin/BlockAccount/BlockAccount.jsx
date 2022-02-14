@@ -5,6 +5,7 @@ import Layout from "../../Layout/Layout";
 import LoaderFull from "../../Loader/LoaderFull";
 import { DivCards } from "../../Suggestions/StyledSuggestions";
 import CardAllUsers from "./CardsAllUsers";
+import Error from "../../Icons/Error";
 
 export const BlockAccount = () => {
   const dispatch = useDispatch();
@@ -24,10 +25,16 @@ export const BlockAccount = () => {
       </p>
       <DivCards>
         {allUsers.data?.length ? (
-          allUsers.data.map((e) => e.id ? <CardAllUsers key={e.id} users={e} />
-            : (
-              <p>No hay usuarios reportados</p>
-            ))
+          allUsers.data.map((e) =>
+            e.id ? (
+              <CardAllUsers key={e.id} users={e} />
+            ) : (
+              <p className="post__error">
+                <Error />
+                No hay usuarios reportados.
+              </p>
+            )
+          )
         ) : (
           <LoaderFull />
         )}

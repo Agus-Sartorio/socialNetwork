@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { authorized } from "../../../actions";
 import { tokenUsuario } from "../../../actions/actionTypes";
 import { cohorte } from "../../../auxiliares/constantes";
+import { Form } from "./styles";
 
 export const FormAuthorize = () => {
   const [input, setInput] = useState("");
@@ -33,16 +34,24 @@ export const FormAuthorize = () => {
     dispatch(authorized());
   }
   return (
-    <form onSubmit={(e) => onSubmit(e)}>
-      <input placeholder="email" onChange={handleInputChange}></input>
-      <select onChange={handleChange}>
-        <option>Cohorte</option>
-        {cohorte.map((e) => (
-          <option value={e.option}>{e.option}</option>
-        ))}
-      </select>
-
-      <button type="submit"> autorizar </button>
-    </form>
+    <Form onSubmit={(e) => onSubmit(e)}>
+      <div className="form__div">
+        <label htmlFor="email">Email</label>
+        <input
+          id="email"
+          placeholder="email"
+          onChange={handleInputChange}
+        ></input>
+        <select onChange={handleChange}>
+          <option>Cohorte</option>
+          {cohorte.map((e) => (
+            <option value={e.option}>{e.option}</option>
+          ))}
+        </select>
+      </div>
+      <button className="form__btn" type="submit">
+        Autorizar
+      </button>
+    </Form>
   );
 };
