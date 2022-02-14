@@ -1,8 +1,14 @@
-export const CardsAuthorize = ({users}) => {
-    return (
-        <>
-        <p>{users.email}</p>
-        <p>{users.cohorte}</p>
-        </>
-    )
-}
+import { Card } from "./styles";
+import Cohorte from "../../Icons/Cohorte";
+
+export const CardsAuthorize = ({ users }) => {
+  return (
+    <Card>
+      <p>{users.email}</p>
+      <p>
+        <Cohorte />
+        {users.cohorte}
+      </p>
+    </Card>
+  );
+};
