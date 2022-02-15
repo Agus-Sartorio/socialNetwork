@@ -19,7 +19,7 @@ export const Authorize = () => {
       <h1 className="layout__title">Personas autorizadas</h1>
       <FormAuthorize />
       <CardContainer>
-        {!usersAuthorized?.length ? (
+        {usersAuthorized?.length ? (
           usersAuthorized.map((e) => <CardsAuthorize users={e} />)
         ) : (
           <p className="post__error">
